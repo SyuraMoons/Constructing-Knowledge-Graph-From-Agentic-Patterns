@@ -1,0 +1,13 @@
+name: Email Automation
+agents:
+  - name: email_classifier
+    role: Email Classifier
+    instructions: Classify incoming emails
+    model: gpt-4
+  - name: responder
+    role: Auto Responder
+    instructions: Generate appropriate email responses
+    model: gpt-4
+workflows:
+  - name: email_handling
+    description: Classify and respond to emails

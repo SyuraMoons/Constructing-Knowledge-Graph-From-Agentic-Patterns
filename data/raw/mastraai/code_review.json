@@ -1,0 +1,17 @@
+{
+  "name": "Code Review System",
+  "agents": [
+    {
+      "name": "reviewer",
+      "role": "Code Reviewer",
+      "instructions": "Review code for quality and best practices",
+      "model": "gpt-4"
+    },
+    {
+      "name": "tester",
+      "role": "Test Engineer",
+      "instructions": "Generate and run tests",
+      "model": "gpt-4"
+    }
+  ]
+}

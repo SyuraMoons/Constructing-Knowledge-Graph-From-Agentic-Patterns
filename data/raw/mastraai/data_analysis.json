@@ -1,0 +1,17 @@
+{
+  "name": "Data Analysis Team",
+  "agents": [
+    {
+      "name": "analyst",
+      "role": "Data Analyst",
+      "instructions": "Analyze data and provide insights",
+      "model": "gpt-4"
+    },
+    {
+      "name": "visualizer",
+      "role": "Data Visualizer",
+      "instructions": "Create visualizations from data",
+      "model": "gpt-4"
+    }
+  ]
+}

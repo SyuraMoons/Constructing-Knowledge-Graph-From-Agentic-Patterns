@@ -1,0 +1,17 @@
+{
+  "name": "Translation Service",
+  "agents": [
+    {
+      "name": "translator",
+      "role": "Translator",
+      "instructions": "Translate content accurately",
+      "model": "gpt-4"
+    },
+    {
+      "name": "localizer",
+      "role": "Cultural Localizer",
+      "instructions": "Adapt content for cultural context",
+      "model": "gpt-4"
+    }
+  ]
+}

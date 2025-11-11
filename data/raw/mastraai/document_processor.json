@@ -1,0 +1,17 @@
+{
+  "name": "Document Processing",
+  "agents": [
+    {
+      "name": "parser",
+      "role": "Document Parser",
+      "instructions": "Extract information from documents",
+      "model": "gpt-4"
+    },
+    {
+      "name": "summarizer",
+      "role": "Summarizer",
+      "instructions": "Summarize document content",
+      "model": "gpt-4"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "HR Assistant",
+  "agents": [
+    {
+      "name": "recruiter",
+      "role": "Recruitment Assistant",
+      "instructions": "Help with recruitment tasks",
+      "model": "gpt-4"
+    },
+    {
+      "name": "onboarding_guide",
+      "role": "Onboarding Guide",
+      "instructions": "Guide new employee onboarding",
+      "model": "gpt-4"
+    }
+  ]
+}

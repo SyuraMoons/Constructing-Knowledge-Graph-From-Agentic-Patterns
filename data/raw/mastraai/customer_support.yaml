@@ -1,0 +1,13 @@
+name: Customer Support System
+agents:
+  - name: support_agent
+    role: Support Agent
+    instructions: Handle customer inquiries
+    model: gpt-4
+  - name: escalation_agent
+    role: Escalation Specialist
+    instructions: Handle complex issues
+    model: gpt-4
+workflows:
+  - name: support_flow
+    description: Customer support workflow

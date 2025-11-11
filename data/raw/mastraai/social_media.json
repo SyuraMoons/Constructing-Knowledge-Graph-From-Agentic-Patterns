@@ -1,0 +1,23 @@
+{
+  "name": "Social Media Manager",
+  "agents": [
+    {
+      "name": "content_planner",
+      "role": "Content Planner",
+      "instructions": "Plan social media content strategy",
+      "model": "gpt-4"
+    },
+    {
+      "name": "post_creator",
+      "role": "Post Creator",
+      "instructions": "Create engaging social media posts",
+      "model": "gpt-4"
+    },
+    {
+      "name": "engagement_monitor",
+      "role": "Engagement Monitor",
+      "instructions": "Monitor and respond to engagement",
+      "model": "gpt-4"
+    }
+  ]
+}

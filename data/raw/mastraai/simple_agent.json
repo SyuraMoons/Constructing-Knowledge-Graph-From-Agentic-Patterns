@@ -1,0 +1,11 @@
+{
+  "name": "Simple Agent",
+  "agents": [
+    {
+      "name": "assistant",
+      "role": "AI Assistant",
+      "instructions": "You are a helpful AI assistant",
+      "model": "gpt-4"
+    }
+  ]
+}

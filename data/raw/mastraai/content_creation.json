@@ -1,0 +1,23 @@
+{
+  "name": "Content Creation Pipeline",
+  "agents": [
+    {
+      "name": "ideator",
+      "role": "Content Ideator",
+      "instructions": "Generate content ideas",
+      "model": "gpt-4"
+    },
+    {
+      "name": "writer",
+      "role": "Content Writer",
+      "instructions": "Write engaging content",
+      "model": "gpt-4"
+    },
+    {
+      "name": "editor",
+      "role": "Content Editor",
+      "instructions": "Edit and refine content",
+      "model": "gpt-4"
+    }
+  ]
+}

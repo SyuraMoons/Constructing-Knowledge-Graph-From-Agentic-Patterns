@@ -1,0 +1,10 @@
+name: Meeting Assistant
+agents:
+  - name: scheduler
+    role: Meeting Scheduler
+    instructions: Schedule and organize meetings
+    model: gpt-4
+  - name: note_taker
+    role: Note Taker
+    instructions: Take meeting notes and action items
+    model: gpt-4

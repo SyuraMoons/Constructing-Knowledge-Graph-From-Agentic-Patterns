@@ -1,0 +1,23 @@
+{
+  "name": "Research Workflow",
+  "agents": [
+    {
+      "name": "researcher",
+      "role": "Researcher",
+      "instructions": "Research and gather information",
+      "model": "gpt-4"
+    },
+    {
+      "name": "writer",
+      "role": "Writer",
+      "instructions": "Write comprehensive reports",
+      "model": "gpt-4"
+    }
+  ],
+  "workflows": [
+    {
+      "name": "research_and_write",
+      "description": "Research a topic and write a report"
+    }
+  ]
+}
