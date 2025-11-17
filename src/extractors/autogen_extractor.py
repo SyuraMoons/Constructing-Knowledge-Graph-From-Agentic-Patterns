@@ -54,7 +54,8 @@ class AutoGenExtractor(base_extractor.BaseExtractor):
         agent = {
             "name": func_name,
             "role": func_name,
-            "description": ""
+            "description": "",
+            "humanInputMode": None
         }
 
         for kw in node.keywords:
@@ -66,6 +67,11 @@ class AutoGenExtractor(base_extractor.BaseExtractor):
             elif kw.arg == "system_message":
                 try:
                     agent["description"] = ast.literal_eval(kw.value)
+                except:
+                    pass
+            elif kw.arg == "human_input_mode":
+                try:
+                    agent["humanInputMode"] = ast.literal_eval(kw.value)
                 except:
                     pass
 

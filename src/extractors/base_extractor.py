@@ -181,7 +181,8 @@ class BaseExtractor(ABC):
                 "tasks": agent.get("tasks", []),  # Will be populated later
                 "tools": agent.get("tools", []),
                 "language_model": agent.get("llm", agent.get("model", agent.get("language_model"))),
-                "memory": agent.get("memory", False)
+                "memory": agent.get("memory", False),
+                "humanInputMode": agent.get("humanInputMode")
             })
         return normalized_agents
 
