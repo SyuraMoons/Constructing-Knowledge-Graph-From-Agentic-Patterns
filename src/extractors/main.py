@@ -52,13 +52,13 @@ def process_all():
                     normalized = extractor.process_file(file_path)
 
                     if normalized:
-                        # Save to normalized directory
-                        output_file = DATA_NORMALIZED / f"{normalized['id']}.json"
+                        # Save to normalized directory with readable filename
+                        output_file = DATA_NORMALIZED / f"{normalized['readable_name']}.json"
                         with open(output_file, 'w', encoding='utf-8') as f:
                             json.dump(normalized, f, indent=2, ensure_ascii=False)
 
                         stats["success"] += 1
-                        print(f"  OK {file_path.name} -> {normalized['id']}.json")
+                        print(f"  OK {file_path.name} -> {normalized['readable_name']}.json")
                     else:
                         stats["failed"] += 1
                         print(f"  FAIL {file_path.name} (extraction failed)")
