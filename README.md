@@ -120,13 +120,15 @@ data:agent_xyz789 a agento:Agent ;
 
 ## Frameworks Supported
 
-| Framework | Patterns | Input Format |
-|-----------|----------|--------------|
-| CrewAI    | 14       | `.py` files  |
-| LangGraph | 13       | `.py` files  |
-| AutoGen   | 12       | `.py` files  |
-| MastraAI  | 12       | `.json/.yaml` files |
-| **Total** | **51**   | |
+| Framework | Patterns | Input Format | Source Repository |
+|-----------|----------|--------------|-------------------|
+| CrewAI    | 14       | `.py` files  | [crewAIInc/crewAI-examples](https://github.com/crewAIInc/crewAI-examples) |
+| LangGraph | 13       | `.py` files  | [langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) |
+| AutoGen   | 12       | `.py` files  | [microsoft/autogen](https://github.com/microsoft/autogen) |
+| MastraAI  | 12       | `.json/.yaml` files | [mastra-ai/mastra](https://github.com/mastra-ai/mastra) |
+| **Total** | **51**   | | |
+
+**Note**: All pattern files are based on official examples from the respective framework repositories. See [DATA_SOURCES.md](DATA_SOURCES.md) for detailed attribution and source links.
 
 ## Statistics
 

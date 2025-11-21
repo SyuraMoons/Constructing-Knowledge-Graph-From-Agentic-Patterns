@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nul)",
+      "Bash(git -C \"C:\\Users\\harfi\\Documents\\Uni\\tugas\\WEB SEMANTIK\\agentic-kg-extractor\" log --all --oneline)",
+      "Bash(find:*)",
+      "Bash(py scripts/json_to_rdf.py:*)",
+      "Bash(py:*)",
+      "Bash(if exist \"data\\rdf\\*.ttl\" del /Q \"data\\rdf\\*.ttl\")",
+      "Bash(del /Q *.ttl 2)",
+      "Bash(dir:*)",
+      "Bash(del /Q *.json 2)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,358 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<http://www.w3id.org/agentic-ai/onto> a owl:Ontology ;
+    dcterms:title "AgentO: Agentic AI Ontology"@en ;
+    dcterms:description "An ontology for representing agentic AI patterns, workflows, and multi-agent systems"@en ;
+    dcterms:creator "Kelompok 3 - Web Semantik"@en ;
+    dcterms:created "2025-11-17"^^xsd:date ;
+    owl:versionInfo "1.1.0 - Extended with AutoGen properties"@en .
+
+#################################################################
+#    Classes
+#################################################################
+
+### Core Classes
+
+agento:Pattern a owl:Class ;
+    rdfs:label "Agentic Pattern"@en ;
+    rdfs:comment "Represents a complete agentic AI pattern from a framework"@en .
+
+agento:Agent a owl:Class ;
+    rdfs:label "Agent"@en ;
+    rdfs:comment "An autonomous entity capable of perceiving, reasoning, and acting"@en ;
+    rdfs:subClassOf prov:Agent .
+
+agento:Task a owl:Class ;
+    rdfs:label "Task"@en ;
+    rdfs:comment "A specific objective or action to be performed by an agent"@en .
+
+agento:Tool a owl:Class ;
+    rdfs:label "Tool"@en ;
+    rdfs:comment "An external capability or API that agents can utilize"@en .
+
+agento:Resource a owl:Class ;
+    rdfs:label "Resource"@en ;
+    rdfs:comment "External data source or service accessed by tools"@en .
+
+agento:Workflow a owl:Class ;
+    rdfs:label "Workflow"@en ;
+    rdfs:comment "A structured pattern of task execution"@en .
+
+agento:WorkflowPattern a owl:Class ;
+    rdfs:label "Workflow Pattern"@en ;
+    rdfs:comment "Type of workflow execution pattern"@en .
+
+agento:WorkflowStep a owl:Class ;
+    rdfs:label "Workflow Step"@en ;
+    rdfs:comment "Individual step in a workflow sequence"@en .
+
+agento:Team a owl:Class ;
+    rdfs:label "Team"@en ;
+    rdfs:comment "Collection of agents working together"@en .
+
+agento:LLMModel a owl:Class ;
+    rdfs:label "Language Model"@en ;
+    rdfs:comment "Large language model configuration used by agents"@en .
+
+agento:Goal a owl:Class ;
+    rdfs:label "Goal"@en ;
+    rdfs:comment "Objective that an agent aims to achieve"@en .
+
+### Workflow Pattern Types
+
+agento:SequentialPattern a owl:Class ;
+    rdfs:label "Sequential Pattern"@en ;
+    rdfs:comment "Workflow where tasks execute one after another"@en ;
+    rdfs:subClassOf agento:WorkflowPattern .
+
+agento:ParallelPattern a owl:Class ;
+    rdfs:label "Parallel Pattern"@en ;
+    rdfs:comment "Workflow where tasks execute simultaneously"@en ;
+    rdfs:subClassOf agento:WorkflowPattern .
+
+agento:NestedPattern a owl:Class ;
+    rdfs:label "Nested Pattern"@en ;
+    rdfs:comment "Workflow containing sub-workflows"@en ;
+    rdfs:subClassOf agento:WorkflowPattern .
+
+#################################################################
+#    Object Properties (Relationships)
+#################################################################
+
+### Pattern Relationships
+
+agento:hasAgentMember a owl:ObjectProperty ;
+    rdfs:label "has agent member"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range agento:Agent .
+
+agento:hasTask a owl:ObjectProperty ;
+    rdfs:label "has task"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range agento:Task .
+
+agento:hasTool a owl:ObjectProperty ;
+    rdfs:label "has tool"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range agento:Tool .
+
+agento:usesTool a owl:ObjectProperty ;
+    rdfs:label "uses tool"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range agento:Tool .
+
+agento:hasGoal a owl:ObjectProperty ;
+    rdfs:label "has goal"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range agento:Goal .
+
+agento:accessesResource a owl:ObjectProperty ;
+    rdfs:label "accesses resource"@en ;
+    rdfs:domain agento:Tool ;
+    rdfs:range agento:Resource .
+
+agento:usesLanguageModel a owl:ObjectProperty ;
+    rdfs:label "uses language model"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range agento:LLMModel .
+
+### Workflow Relationships
+
+agento:hasWorkflowPattern a owl:ObjectProperty ;
+    rdfs:label "has workflow pattern"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range agento:WorkflowPattern .
+
+agento:hasWorkflowStep a owl:ObjectProperty ;
+    rdfs:label "has workflow step"@en ;
+    rdfs:domain agento:WorkflowPattern ;
+    rdfs:range agento:WorkflowStep .
+
+agento:nextStep a owl:ObjectProperty ;
+    rdfs:label "next step"@en ;
+    rdfs:domain agento:WorkflowStep ;
+    rdfs:range agento:WorkflowStep .
+
+agento:performedBy a owl:ObjectProperty ;
+    rdfs:label "performed by"@en ;
+    rdfs:domain agento:WorkflowStep ;
+    rdfs:range agento:Agent .
+
+agento:hasAssociatedTask a owl:ObjectProperty ;
+    rdfs:label "has associated task"@en ;
+    rdfs:domain agento:WorkflowStep ;
+    rdfs:range agento:Task .
+
+agento:assignedTo a owl:ObjectProperty ;
+    rdfs:label "assigned to"@en ;
+    rdfs:domain agento:Task ;
+    rdfs:range agento:Agent .
+
+### Team Relationships
+
+agento:belongsToTeam a owl:ObjectProperty ;
+    rdfs:label "belongs to team"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range agento:Team .
+
+agento:delegatesTo a owl:ObjectProperty ;
+    rdfs:label "delegates to"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range agento:Agent .
+
+agento:collaboratesWith a owl:ObjectProperty ;
+    rdfs:label "collaborates with"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range agento:Agent .
+
+#################################################################
+#    Datatype Properties (Attributes)
+#################################################################
+
+### Pattern Attributes
+
+agento:patternId a owl:DatatypeProperty ;
+    rdfs:label "pattern ID"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range xsd:string .
+
+agento:framework a owl:DatatypeProperty ;
+    rdfs:label "framework"@en ;
+    rdfs:comment "Source framework (crewai, langraph, autogen, mastraai)"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range xsd:string .
+
+agento:sourceFile a owl:DatatypeProperty ;
+    rdfs:label "source file"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range xsd:string .
+
+agento:objective a owl:DatatypeProperty ;
+    rdfs:label "objective"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range xsd:string .
+
+### Agent Attributes
+
+agento:agentId a owl:DatatypeProperty ;
+    rdfs:label "agent ID"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:string .
+
+agento:agentName a owl:DatatypeProperty ;
+    rdfs:label "agent name"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:string .
+
+agento:role a owl:DatatypeProperty ;
+    rdfs:label "role"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:string .
+
+agento:description a owl:DatatypeProperty ;
+    rdfs:label "description"@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf (agento:Agent agento:Task agento:Tool agento:Resource) ] ;
+    rdfs:range xsd:string .
+
+agento:goalDescription a owl:DatatypeProperty ;
+    rdfs:label "goal description"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:string .
+
+agento:backstory a owl:DatatypeProperty ;
+    rdfs:label "backstory"@en ;
+    rdfs:comment "Background story or context for the agent"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:string .
+
+agento:hasMemory a owl:DatatypeProperty ;
+    rdfs:label "has memory"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:boolean .
+
+### AutoGen-specific Properties (Extended)
+
+agento:systemMessage a owl:DatatypeProperty ;
+    rdfs:label "system message"@en ;
+    rdfs:comment "System prompt/message for AutoGen agents"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:string .
+
+agento:humanInputMode a owl:DatatypeProperty ;
+    rdfs:label "human input mode"@en ;
+    rdfs:comment "Human interaction mode: NEVER, ALWAYS, or TERMINATE"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:string .
+
+agento:vendorClass a owl:DatatypeProperty ;
+    rdfs:label "vendor class"@en ;
+    rdfs:comment "Framework-specific class name (e.g., AssistantAgent, UserProxyAgent)"@en ;
+    rdfs:domain agento:Agent ;
+    rdfs:range xsd:string .
+
+### Task Attributes
+
+agento:taskId a owl:DatatypeProperty ;
+    rdfs:label "task ID"@en ;
+    rdfs:domain agento:Task ;
+    rdfs:range xsd:string .
+
+agento:taskTitle a owl:DatatypeProperty ;
+    rdfs:label "task title"@en ;
+    rdfs:domain agento:Task ;
+    rdfs:range xsd:string .
+
+agento:expectedOutput a owl:DatatypeProperty ;
+    rdfs:label "expected output"@en ;
+    rdfs:domain agento:Task ;
+    rdfs:range xsd:string .
+
+### Tool Attributes
+
+agento:toolId a owl:DatatypeProperty ;
+    rdfs:label "tool ID"@en ;
+    rdfs:domain agento:Tool ;
+    rdfs:range xsd:string .
+
+agento:toolName a owl:DatatypeProperty ;
+    rdfs:label "tool name"@en ;
+    rdfs:domain agento:Tool ;
+    rdfs:range xsd:string .
+
+agento:toolType a owl:DatatypeProperty ;
+    rdfs:label "tool type"@en ;
+    rdfs:domain agento:Tool ;
+    rdfs:range xsd:string .
+
+### Workflow Attributes
+
+agento:workflowType a owl:DatatypeProperty ;
+    rdfs:label "workflow type"@en ;
+    rdfs:comment "Type: Sequential, Parallel, or Nested"@en ;
+    rdfs:domain agento:WorkflowPattern ;
+    rdfs:range xsd:string .
+
+agento:stepOrder a owl:DatatypeProperty ;
+    rdfs:label "step order"@en ;
+    rdfs:domain agento:WorkflowStep ;
+    rdfs:range xsd:integer .
+
+agento:processType a owl:DatatypeProperty ;
+    rdfs:label "process type"@en ;
+    rdfs:comment "Team coordination process (e.g., sequential, hierarchical)"@en ;
+    rdfs:domain agento:Team ;
+    rdfs:range xsd:string .
+
+### LLM Attributes
+
+agento:modelName a owl:DatatypeProperty ;
+    rdfs:label "model name"@en ;
+    rdfs:domain agento:LLMModel ;
+    rdfs:range xsd:string .
+
+agento:modelVersion a owl:DatatypeProperty ;
+    rdfs:label "model version"@en ;
+    rdfs:domain agento:LLMModel ;
+    rdfs:range xsd:string .
+
+### Provenance Attributes
+
+agento:extractedFrom a owl:DatatypeProperty ;
+    rdfs:label "extracted from"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range xsd:string .
+
+agento:extractionDate a owl:DatatypeProperty ;
+    rdfs:label "extraction date"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range xsd:dateTime .
+
+agento:extractorVersion a owl:DatatypeProperty ;
+    rdfs:label "extractor version"@en ;
+    rdfs:domain agento:Pattern ;
+    rdfs:range xsd:string .
+
+### Resource Attributes
+
+agento:resourceId a owl:DatatypeProperty ;
+    rdfs:label "resource ID"@en ;
+    rdfs:domain agento:Resource ;
+    rdfs:range xsd:string .
+
+agento:resourceName a owl:DatatypeProperty ;
+    rdfs:label "resource name"@en ;
+    rdfs:domain agento:Resource ;
+    rdfs:range xsd:string .
+
+agento:resourceType a owl:DatatypeProperty ;
+    rdfs:label "resource type"@en ;
+    rdfs:comment "Type: database, api, search_engine, filesystem, etc."@en ;
+    rdfs:domain agento:Resource ;
+    rdfs:range xsd:string .
