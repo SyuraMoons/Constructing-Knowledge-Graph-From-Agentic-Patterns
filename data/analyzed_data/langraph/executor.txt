@@ -1,0 +1,135 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+Langraph
+File name
+executor.py
+Pattern Type
+Single-node workflow 
+Deskripsi
+Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama executor_node. Node tersebut dijadikan entry point sekaligus finish point. Tidak ada node lain maupun edge tambahan. Struktur ini merepresentasikan workflow minimal di LangGraph
+
+
+Analisis Struktur Pattern
+Entitas
+Framework API
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+Workflow
+StateGraph()
+-
+-
+Satu graf proses eksekusi
+Node
+add_node(name, fn)
+nama, callable
+"executor_node", lambda x: x
+Node tunggal dengan fungsi identitas
+Entry point
+set_entry_point(name)
+name
+"executor_node"
+titik awal eksekusi workflow
+Finish point
+et_finish_point(name)
+name
+"executorr_node"
+Titik akhir eksekusi (sama dengan entry point)
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+workflow
+agento:workflow
+Proses/graph eksekusi langkah
+StateGraph()
+p-plan:Plan
+node
+agento:node
+Langkah/vertex dalam workflow
+add_node("executorr_node", …)
+p-plan:Step
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+callsNode
+Workflow → Node
+Workflow memiliki node eksekusi
+Dari pemanggilan graph.add_node(...)
+disarankan
+hasStartNode
+Workflow → Node
+Node awal eksekusi.
+Dari set_entry_point("executor_node")
+ditambahkan
+hasEndNode
+Workflow → Node
+Node akhir eksekusi.
+Dari set_finish_point("executor_node")
+ditambahkan
+follows
+Node → Node
+Urutan/edge antar node.
+Tidak ada dipattern ini
+opsional
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+nodeName
+node
+string
+Nama simbolik node
+“executor_node”
+callableLabel
+node
+string
+label fungsi/handler yang dieksekusi
+“lambda x: x" (label/alias)
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+class
+workflow,node
+Struktur graf & simpul eksekusi
+Inti representasi LangGraph.
+object property
+callsNode
+menghubungkan Workflow dengan Node yang dimilikinya
+Diturunkan dari add_node.
+object property
+hasStartNode, 
+Menandai node awal eksekusi
+Dari set_entry_point 
+object property
+hasEndNode
+Menandai node akhir eksekusi
+Dari set_finish_point
+datatype property
+nodeName
+Menyimpan nama node dalam workflow
+executor_node
+datatype property
+callableLabel
+Menyimpan label fungsi handler node
+lambda x: x
+

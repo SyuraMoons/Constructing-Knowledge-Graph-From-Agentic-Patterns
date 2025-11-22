@@ -1,0 +1,132 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+group_chat.py
+Pattern Type
+Multi-Agent Communication Pattern
+Deskripsi
+Pattern ini mendefinisikan dua agent (AssistantAgent dan UserProxyAgent) dalam konteks komunikasi berbasis grup (group chat). Walau strukturnya serupa dengan pattern lain, konteks “group_chat” mengimplikasikan adanya pertukaran pesan (message exchange) antar-agent yang berpartisipasi dalam satu percakapan.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"group_chat_assistant", "You are a helpful AI assistant for group_chat"
+Agen AI utama dalam percakapan grup.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen pengguna dalam grup chat. tidak menerima input manual
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor / partisipan dalam sistem multi-agent.
+AssistantAgent, UserProxyAgent
+align ke prov:Agent
+Message
+agento:Message
+Representasi pesan atau interaksi antar-agent.
+inferred dari konteks”group_chat”
+align ke prov:Entity
+Conversation
+agento:Conversation
+Sesi percakapan grup yang menghubungkan banyak Agent.
+inferred dari “group_chat”.
+align ke p-plan:Plan atau prov:Activity.
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+participatesIn
+Agent → Conversation
+Agent berpartisipasi dalam percakapan.
+inferred dari “group_chat”.
+penting
+sendMessage
+Agent → Message
+Agent mengirim pesan dalam group chat.
+inferred
+penting
+receivesMessage
+Agent → Message
+Agent menerima pesan dari agent lain.
+inferred
+penting
+delegatesTo
+Agent → Agent
+Relasi antar-agent.
+Tidak muncul eksplisit
+opsional
+
+
+Datatype Properties
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+xsd:string
+Nama agent
+"group_chat_assistant", "user"
+SystemMessage
+Agent
+xsd:string
+Pesan sistem yang mendefinisikan peran agent.
+"You are a helpful AI assistant for group_chat"
+HumanInputMode
+Agent
+xsd:string
+Mode input pengguna
+"NEVER"
+
+
+
+
+
+
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+class
+conversation
+Aktivitas percakapan antar-agent.
+Relevan untuk konteks multi-agent communication.
+class
+message
+Representasi pesan yang dikirim dalam percakapan.
+Penting untuk model komunikasi.
+sendsMessage
+useTool
+Menghubungkan agent dengan pesan yang dikirim.
+Esensial untuk group_chat pattern.
+Datatype Property
+receiveMessage
+Menghubungkan agent dengan pesan yang diterima.
+Esensial untuk model komunikasi dua arah.
+

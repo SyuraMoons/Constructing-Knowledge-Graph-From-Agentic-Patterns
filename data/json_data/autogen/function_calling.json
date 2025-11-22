@@ -1,0 +1,69 @@
+{
+    "framework": "AutoGen",
+    "file_name": "function_calling.py",
+    "pattern_type": "AgentCollaboratorPattern(functionInvocationContext)",
+    "description": "Pattern ini mendefinisikan dua agent (AssistantAgent dan UserProxyAgent) untuk skenario pemanggilan fungsi (function calling). Walaupun struktur kodenya sama dengan pattern AutoGen lain, konteks semantiknya berbeda: asisten ini dirancang untuk memanggil fungsi eksternal atau API atas permintaan pengguna.",
+    "entities": [
+        {
+            "id": "assistant",
+            "vendorClass": "AssistantAgent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "function_calling_assistant",
+                "system_message": "You are a helpful AI assistant for function_calling"
+            },
+            "relations": {}
+        },
+        {
+            "id": "userproxy",
+            "vendorClass": "UserProxyAgent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "user",
+                "human_input_mode": "NEVER"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "usesTool",
+            "domain": "agento:Agent",
+            "range": "agento:Evaluation",
+            "definition": "Menunjukkan keterlibatan agent dalam aktivitas evaluasi.",
+            "status_in_pattern": "penting"
+        },
+        {
+            "name": "participatesIn",
+            "domain": "agento:Agent",
+            "range": "agento:Artifact",
+            "definition": "Agent memberi umpan balik terhadap artefak.",
+            "status_in_pattern": "suggested."
+        },
+        {
+            "name": "delegatesTo",
+            "domain": "agento:Agent",
+            "range": "agento:Agent",
+            "definition": "Delegasi antar-agent.",
+            "status_in_pattern": "optional"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:Tool",
+                "definition": "Mewakili fungsi atau API yang dipanggil oleh agent.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "systemMessage",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Konsisten di semua pattern."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

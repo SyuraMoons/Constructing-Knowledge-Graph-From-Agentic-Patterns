@@ -1,0 +1,133 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+Langraph
+File name
+reviewer.py
+Pattern Type
+Single-node StateGraph (entry = finish)
+Deskripsi
+Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama reviewer_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan identitas (lambda x: x). Tidak ada node lain, edge, agent, tool, ataupun LLM yang dimodelkan eksplisit.
+
+
+Analisis Struktur Pattern
+Entitas
+Tipe Framework 
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+Graph
+StateGraph
+graph = StateGraph()
+graph
+Mewakili workflow/graf keadaan.
+Node
+Node di dalam Graph
+graph.add_node("reviewer_node", lambda x: x)
+"reviewer_node"
+Node tunggal dengan fungsi identitas.
+Entry Point
+Properti Graph
+graph.set_entry_point("reviewer_node")
+"reviewer_node"
+Menandai node awal workflow.
+Finish Point
+Properti Graph
+graph.set_finish_point("reviewer_node")
+"reviewer_node"
+Menandai node akhir workflow.
+
+
+
+
+
+
+
+
+kelas (classes)
+Class
+SuperClass (AgentO)
+Definisi
+Bukti/Konteks
+WorkflowGraph
+agento:Workflow / agento:System
+Representasi graf alur eksekusi (StateGraph) di LangGraph.
+graph = StateGraph()
+Node
+agento:ProcessingStep / agento:Node
+Langkah pemrosesan tunggal di dalam workflow.
+add_node("reviewer_node", ...)
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasNode
+WorkflowGraph → Node
+Workflow berisi satu atau lebih node.
+graph.add_node("reviewer_node", ...)
+Ditambahkan
+hasEntryNode
+WorkflowGraph → Node
+Node yang menjadi titik masuk workflow.
+set_entry_point("reviewer_node")
+Ditambahkan
+hasFinishNode
+WorkflowGraph → Node
+Node yang menjadi titik akhir workflow.
+set_finish_point("reviewer_node")
+Ditambahkan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+nodeName
+Node
+string
+Nama simbolik node di dalam graf.
+"reviewer_node"
+
+
+
+
+
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+WorkflowGraph
+Representasi graf workflow berbasis StateGraph.
+Semua pattern LangGraph menggunakan StateGraph() sebagai graf utama.
+Class
+Node
+Unit langkah pemrosesan di dalam workflow.
+Konsisten muncul melalui add_node(...).
+Object Property
+hasNode
+Menghubungkan WorkflowGraph dengan node yang dimilikinya.
+Dibutuhkan untuk merepresentasikan struktur graf.
+Object Property
+hasEntryNode
+Menandai node awal eksekusi workflow.
+Diambil dari set_entry_point.
+Object Property
+hasFinishNode
+Menandai node akhir eksekusi workflow.
+Diambil dari set_finish_point.
+Datatype Property
+nodeName
+Label nama node.
+Nama node selalu string; diperlukan untuk identifikasi.
+

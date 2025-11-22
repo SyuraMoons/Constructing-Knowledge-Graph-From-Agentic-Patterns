@@ -1,0 +1,128 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+Langraph
+File name
+router.py
+Pattern Type
+Single-node StateGraph (entry = finish)
+Deskripsi
+Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama router_node. Node ini dijadikan titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan identitas (lambda x: x). Tidak ada node lain, edge eksplisit, agent, tool, ataupun LLM yang dimodelkan
+
+
+Analisis Struktur Pattern
+Entitas
+Tipe Framework 
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+Graph
+StateGraph
+graph = StateGraph()
+graph
+Mewakili workflow / graf keadaan.
+Node
+Node di dalam Graph
+graph.add_node("router_node", lambda x: x)
+"router_node"
+Node tunggal dengan fungsi identitas.
+Entry Point
+Properti Graph
+graph.set_entry_point("router_node")
+"router_node"
+Menandai node awal eksekusi.
+Finish Point
+Properti Graph
+graph.set_finish_point("router_node")
+"router_node"
+Menandai node akhir eksekusi.
+
+
+
+
+
+
+
+
+kelas (classes)
+Class
+SuperClass (AgentO)
+Definisi
+Bukti/Konteks
+WorkflowGraph
+agento:Workflow / agento:System
+Representasi graf alur eksekusi (StateGraph) dalam LangGraph.
+graph = StateGraph()
+Node
+agento:ProcessingStep / agento:Node
+Langkah pemrosesan di dalam workflow.
+add_node("router_node", ...)
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasNode
+WorkflowGraph → Node
+Menyatakan bahwa sebuah workflow memiliki node tertentu.
+graph.add_node("router_node", ...)
+Ditambahkan
+hasEntryNode
+WorkflowGraph → Node
+Menandai node yang menjadi titik masuk workflow.
+set_entry_point("router_node")
+Ditambahkan
+hasFinishNode
+WorkflowGraph → Node
+Menandai node yang menjadi titik akhir workflow.
+set_finish_point("router_node")
+Ditambahkan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+nodeName
+Node
+string
+Nama simbolik node di dalam graf.
+"router_node"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+WorkflowGraph
+Representasi workflow berbasis StateGraph.
+Semua pattern LangGraph menggunakan StateGraph() sebagai graf utama.
+Class
+Node
+Unit langkah pemrosesan di dalam workflow.
+Konsisten muncul via add_node(...).
+Object Property
+hasNode
+WorkflowGraph memiliki satu atau lebih node.
+Dibutuhkan untuk menghubungkan graph–node.
+Object Property
+hasEntryNode
+Menandai node awal eksekusi workflow.
+Diambil dari set_entry_point.
+Object Property
+hasFinishNode
+Menandai node akhir eksekusi workflow.
+Diambil dari set_finish_point.
+Datatype Property
+nodeName
+Label nama node.
+Nama node selalu string (di sini "router_node").
+

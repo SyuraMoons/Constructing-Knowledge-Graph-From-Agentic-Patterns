@@ -1,0 +1,106 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+two_agent_chat.py
+Pattern Type
+Agent Declaration Pattern
+Deskripsi
+Pattern ini mendefinisikan dua agent: AssistantAgent sebagai AI assistant untuk skenario two_agent_chat, dan UserProxyAgent sebagai representasi user dengan mode input NEVER. Tidak ada task, workflow, atau tool yang diekspresikan di dalam kode; pola ini adalah deklarasi dasar dua agent AutoGen
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut 
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"two_agent_chat_assistant", "You are a helpful AI assistant for two_agent_chat"
+Agent AI utama.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agent proxy user tanpa input manusia langsung.
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor dalam sistem.
+AssistantAgent, UserProxyAgent.
+Align ke prov:Agent.
+
+
+
+
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+delegatesTo
+Agent → Agent
+Relasi delegasi antar agent.
+Tidak muncul eksplisit pada pattern ini.
+Opsional (untuk generalisasi AutoGen)
+participatesIn
+Agent → Workflow
+Relasi agent–workflow.
+Tidak ada workflow di pattern ini.
+Tidak digunakan
+
+
+Datatype Properties
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+string
+Nama agent.
+"two_agent_chat_assistant", "user"
+systemMessage
+Agent
+string
+Pesan sistem yang mendefinisikan peran AssistantAgent.
+"You are a helpful AI assistant for two_agent_chat"
+humanInputMode
+Agent
+string
+Mode input manusia pada UserProxyAgent.
+"NEVER"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Datatype Property
+systemMessage
+Menyimpan pesan sistem untuk agent LLM.
+Konsisten muncul di semua AssistantAgent AutoGen.
+Datatype Property
+humanInputMode
+Menyimpan mode input user (NEVER, ALWAYS, dll.).
+Khas pada UserProxyAgent di AutoGen.
+Object Property
+delegatesTo
+Relasi antar-agent (delegasi kerja).
+Tidak muncul di pattern ini, tetapi relevan untuk pattern AutoGen yang lebih kompleks.
+

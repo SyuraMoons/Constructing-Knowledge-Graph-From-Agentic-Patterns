@@ -1,0 +1,126 @@
+{
+    "framework": "MastraAI",
+    "file_name": "email_automation.yaml",
+    "pattern_type": "Multi-agentconfiguration",
+    "description": "Pattern ini mendefinisikan sistem bernama “Email Automation” dengan dua agent: email_classifier dan responder. Keduanya memiliki peran, instruksi, dan model LLM yang sama (gpt-4). Selain konfigurasi agent, terdapat satu workflow bernama “email_handling” yang dideskripsikan sebagai proses “Classify and respond to emails”",
+    "entities": [
+        {
+            "id": "system name",
+            "vendorClass": "name",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "Email Automation"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#1",
+            "vendorClass": "agents[0]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "email_classifier",
+                "role": "Email Classifier",
+                "instructions": "Classify incoming emails",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#2",
+            "vendorClass": "agents[1]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "responder",
+                "role": "Auto Responder",
+                "instructions": "Generate appropriate email responses",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        },
+        {
+            "id": "workflow #1",
+            "vendorClass": "workflows[0]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "email_handling",
+                "description": "Classify and respond to emails"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "hasAgent",
+            "domain": "agento:MultiAgentSystem",
+            "range": "agento:Agent",
+            "definition": "Menyatakan bahwa suatu sistem multi-agent memiliki sekumpulan agent tertentu.",
+            "status_in_pattern": "ditambahkan / digunakan kembali di agento."
+        },
+        {
+            "name": "configuredBy",
+            "domain": "agento:Agent",
+            "range": "agento:LLMModel",
+            "definition": "Menyatakan bahwa sebuah agent dikonfigurasi untuk menggunakan model LLM tertentu.",
+            "status_in_pattern": "ditambahkan / digunakan kembali di agento."
+        },
+        {
+            "name": "hasWorkflow",
+            "domain": "agento:MultiAgentSystem",
+            "range": "agento:Workflow",
+            "definition": "Menyatakan bahwa sistem tersebut mencakup satu atau lebih workflow yang menggambarkan alur kerja.",
+            "status_in_pattern": "ditambahkan (khusus pola mastraai dengan workflow)."
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:MultiAgentSystem",
+                "definition": "Representasi top-level sistem yang menaungi beberapa agent dan workflow.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:LLMModel",
+                "definition": "Representasi model LLM yang dikonfigurasi untuk agent.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:Workflow",
+                "definition": "Representasi alur kerja konseptual dalam sistem.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "name",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Field name muncul pada root (\"Email Automation\"), pada agent, dan pada workflow."
+            },
+            {
+                "name": "role",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Field role membedakan fungsi Email Classifier dan Auto Responder."
+            },
+            {
+                "name": "instructions",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Field instructions menyimpan deskripsi natural-language untuk operasi masing-masing agent."
+            },
+            {
+                "name": "modelName",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Nilai \"gpt-4\" mengindikasikan model LLM yang digunakan."
+            },
+            {
+                "name": "description",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Field description pada workflows[0] menjelaskan alur “Classify and respond to emails”."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

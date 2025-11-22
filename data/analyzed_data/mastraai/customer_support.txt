@@ -1,0 +1,177 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+customer_support.yaml
+Pattern Type
+Multi-agent configuration + workflow description 
+Deskripsi
+Pattern ini mendefinisikan sistem bernama “Customer Support System” yang terdiri dari dua agent (support_agent, escalation_agent) dan sebuah workflow bernama support_flow. Setiap agent memiliki role, instructions, dan model. Workflow hanya didefinisikan dengan name dan description tanpa rincian langkah
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System
+name
+name
+"Customer Support System"
+Nama sistem multi-agent.
+Agent #1
+agents[0]
+name, role, instructions, model
+"support_agent", "Support Agent", "Handle customer inquiries", "gpt-4"
+Agent frontline support.
+Agent #2
+agents[1]
+name, role, instructions, model
+"escalation_agent", "Escalation Specialist", "Handle complex issues", "gpt-4"
+Agent eskalasi kasus kompleks.
+Workflow #1
+workflows[0]
+name, description
+"support_flow", "Customer support workflow"
+Workflow tingkat tinggi, belum ada langkah/detail node.
+
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Sistem yang berisi beberapa agent dan workflow.
+"Customer Support System"
+Dapat disejajarkan dengan prov:Activity / p-plan:Plan.
+Agent
+agento:Agent
+Unit eksekusi dengan role dan instruksi.
+Elemen agents[ ].
+Align ke prov:Agent.
+LLMModel
+agento:LLMModel
+Model LLM yang digunakan agent.
+Field model: gpt-4.
+Align ke prov:Entity.
+Workflow
+agento:Workflow
+Representasi alur kerja tingkat tinggi.
+Elemen workflows[ ].
+Align ke p-plan:Plan / prov:Activity.
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+Status
+hasAgent
+MultiAgentSystem → Agent
+Sistem berisi agent-agent tertentu.
+Dari array agents[ ].
+Ditambahkan
+configuredBy
+Agent → LLMModel
+Agent dikonfigurasi menggunakan model tertentu.
+Field model.
+Ditambahkan
+hasWorkflow
+MultiAgentSystem → Workflow
+Sistem memiliki satu atau lebih workflow.
+Dari array workflows[ ].
+Ditambahkan
+
+
+
+
+
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+MultiAgentSystem / Agent / Workflow
+string
+Nama sistem, agent, atau workflow.
+"Customer Support System", "support_agent", "support_flow"
+role
+Agent
+string
+Peran fungsional agent.
+"Support Agent", "Escalation Specialist"
+instructions
+Agent
+string
+Instruksi kerja agent.
+"Handle customer inquiries"
+modelName
+LLMModel
+string
+Nama model LLM.
+"gpt-4"
+workflowDescription
+Workflow
+string
+Deskripsi singkat alur kerja.
+"Customer support workflow"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+MultiAgentSystem
+Sistem yang mengelompokkan beberapa agent & workflow.
+MastraAI menyusun konfigurasi berbasis sistem (code review, content creation, customer support).
+Class
+LLMModel
+Representasi model (gpt-4, dll).
+Field model konsisten muncul pada setiap agent.
+Class
+Workflow
+Alur kerja tingkat tinggi.
+Field workflows[ ].name dan description.
+Object Property
+hasAgent
+Menghubungkan sistem dengan agent-agentnya.
+Dari array agents[ ].
+Object Property
+configuredBy
+Menghubungkan agent ke model LLM.
+Dari field model.
+Object Property
+hasWorkflow
+Menghubungkan sistem ke workflow.
+Dari array workflows[ ].
+Datatype Property
+role
+Menyimpan peran agent.
+"Support Agent", "Escalation Specialist".
+Datatype Property
+instructions
+Menyimpan instruksi kerja agent.
+"Handle customer inquiries".
+Datatype Property
+modelName
+Menyimpan nama model LLM.
+"gpt-4".
+Datatype Property
+workflowDescription
+Menyimpan deskripsi workflow.
+"Customer support workflow".
+

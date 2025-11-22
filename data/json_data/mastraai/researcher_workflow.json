@@ -1,0 +1,85 @@
+{
+    "framework": "MastraAI",
+    "file_name": "research_workflow.json",
+    "pattern_type": "Multi-agent+Workflow",
+    "description": "Sistem “Research Workflow” berisi dua agent (researcher & writer) serta satu workflow research_and_write",
+    "entities": [
+        {
+            "id": "system name",
+            "vendorClass": "name",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "Research Workflow"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#1",
+            "vendorClass": "agents[0]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "researcher",
+                "role": "Researcher",
+                "instructions": "Research and gather information",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#2",
+            "vendorClass": "agents[1]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "writer",
+                "role": "Writer",
+                "instructions": "Write comprehensive reports",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        },
+        {
+            "id": "workflow",
+            "vendorClass": "workflows[0]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "research_and_write",
+                "description": "Research a topic and write a report"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "MultiAgentSystem → Agent",
+            "domain": "agento:Sistem memiliki agent–agent tertentu",
+            "range": "",
+            "definition": "Dari agents[]",
+            "status_in_pattern": "multiagentsystem → workflow"
+        },
+        {
+            "name": "Sistem memiliki workflow tertentu",
+            "domain": "agento:Dari workflows[]",
+            "range": "",
+            "definition": "configuredBy",
+            "status_in_pattern": "agent dikonfigurasi menggunakan model tertentu"
+        },
+        {
+            "name": "Dari field model",
+            "domain": "agento:",
+            "range": "",
+            "definition": "",
+            "status_in_pattern": ""
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:Workflow",
+                "definition": "Menampung definisi alur riset–penulisan",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [],
+        "optionalProperties": []
+    }
+}

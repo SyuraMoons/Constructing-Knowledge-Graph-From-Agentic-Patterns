@@ -1,0 +1,151 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+hr_assistant.json
+Pattern Type
+Multi-agent configuration tanpa workflow eksplisit
+Deskripsi
+mendefinisikan sistem “HR Assistant” yang terdiri atas dua agent: recruiter dan onboarding_guide. Keduanya memiliki peran, instruksi, dan model LLM yang sama (gpt-4) untuk membantu proses rekrutmen dan onboarding karyawan baru
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System name
+name
+name
+"HR Assistant"
+Nama sistem multi-agent HR.
+Agent #1
+agents[0]
+name, role, instructions, model
+"recruiter", "Recruitment Assistant", "Help with recruitment tasks", "gpt-4"
+Agent untuk membantu tugas-tugas rekrutmen.
+Agent #2
+agents[1]
+name, role, instructions, model
+"onboarding_guide", "Onboarding Guide", "Guide new employee onboarding", "gpt-4"
+Agent untuk membimbing proses onboarding karyawan.
+
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Representasi sistem HR tingkat atas yang menaungi beberapa agent.
+Field root name: "HR Assistant" dan array agents[].
+Dapat disejajarkan dengan konteks proses HR secara global.
+Agent
+agento:Agent
+Unit eksekusi yang menjalankan fungsi spesifik dalam proses HR.
+Elemen agents[0], agents[1].
+Align ke prov:Agent.
+LLMModel
+agento:LLMModel
+Representasi model LLM yang dikonfigurasi untuk masing-masing agent.
+Field model: "gpt-4" pada tiap agent.
+Align ke prov:Entity.
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+Status
+hasAgent
+MultiAgentSystem → Agent
+Menyatakan bahwa suatu sistem multi-agent memiliki kumpulan agent tertentu.
+Diambil dari array agents[] di bawah sistem HR.
+Digunakan kembali dari pola MastraAI sebelumnya.
+configuredBy
+Agent → LLMModel
+Menyatakan bahwa sebuah agent dikonfigurasi menggunakan model LLM tertentu.
+Dari field model pada tiap elemen agents[].
+Digunakan kembali dari pola MastraAI sebelumnya.
+
+
+
+
+
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+MultiAgentSystem / Agent / LLMModel
+xsd:string
+Nama identitas entitas.
+"HR Assistant", "recruiter", "onboarding_guide", "gpt-4" (sebagai nama model).
+role
+Agent
+xsd:string
+Peran fungsional agent dalam sistem HR.
+"Recruitment Assistant", "Onboarding Guide"
+instructions
+Agent
+xsd:string
+Instruksi kerja tekstual yang menjelaskan tugas agent.
+"Help with recruitment tasks", "Guide new employee onboarding"
+modelName
+LLMModel
+xsd:string
+Nama model LLM yang digunakan oleh agent.
+"gpt-4"
+
+
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+MultiAgentSystem
+Sistem top-level yang menaungi beberapa agent HR.
+Struktur root + agents[] konsisten dengan pola multi-agent MastraAI (seperti email_automation).
+Class
+LLMModel
+Representasi model LLM yang dipakai oleh lebih dari satu agent.
+Nilai model: "gpt-4" pada dua agent menunjukkan shared dependency terhadap model yang sama.
+Object Property
+hasAgent
+Relasi dari sistem menuju agent-agent di dalamnya.
+Dibutuhkan untuk memodelkan bahwa HR Assistant berisi recruiter dan onboarding_guide.
+Object Property
+configuredBy
+Relasi dari agent menuju model LLM yang digunakan.
+Setiap agent memerlukan model untuk menjalankan fungsinya.
+Datatype Property
+name
+Atribut nama generik untuk sistem, agent, maupun model.
+Field name muncul di ketiga tipe entitas.
+Datatype Property
+role
+Atribut peran agent.
+Membedakan fungsi Recruitment Assistant dan Onboarding Guide.
+Datatype Property
+instructions
+Atribut instruksi kerja agent.
+Menjelaskan tugas masing-masing agent dalam bahasa natural.
+Datatype Property
+modelName
+Nama model LLM yang merepresentasikan konfigurasi teknis agent.
+Menyimpan informasi "gpt-4" sebagai model yang dipakai.
+

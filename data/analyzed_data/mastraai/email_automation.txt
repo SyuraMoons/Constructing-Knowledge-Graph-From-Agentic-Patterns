@@ -1,0 +1,183 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+email_automation.yaml
+Pattern Type
+Multi-agent configuration 
+Deskripsi
+Pattern ini mendefinisikan sistem bernama “Email Automation” dengan dua agent: email_classifier dan responder. Keduanya memiliki peran, instruksi, dan model LLM yang sama (gpt-4). Selain konfigurasi agent, terdapat satu workflow bernama “email_handling” yang dideskripsikan sebagai proses “Classify and respond to emails”
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System name
+name
+name
+"Email Automation"
+Nama sistem multi-agent MastraAI.
+Agent #1
+agents[0]
+name, role, instructions, model
+"email_classifier", "Email Classifier", "Classify incoming emails", "gpt-4"
+Agent untuk klasifikasi email masuk.
+Agent #2
+agents[1]
+name, role, instructions, model
+"responder", "Auto Responder", "Generate appropriate email responses", "gpt-4"
+Agent untuk menghasilkan respon email otomatis.
+Workflow #1
+workflows[0]
+name, description
+"email_handling", "Classify and respond to emails"
+Workflow global untuk menangani email (klasifikasi dan respon).
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Representasi sistem tingkat atas yang mengelola beberapa agent dan workflow dalam satu konteks.
+Root-level field name: "Email Automation" dan array agents[], workflows[].
+Dapat di-align ke prov:Activity atau p-plan:Plan sebagai konteks proses.
+Agent
+agento:Agent
+Unit eksekusi dengan peran fungsional dan instruksi kerja spesifik.
+Elemen agents[0], agents[1].
+Align ke prov:Agent.
+LLMModel
+agento:LLMModel
+Model bahasa besar yang dikonfigurasi untuk masing-masing agent.
+Field model: "gpt-4" pada masing-masing agent.
+Align ke prov:Entity.
+Workflow
+agento:Workflow
+Representasi alur kerja konseptual yang menggambarkan proses classify & respond terhadap email.
+Elemen workflows[0] dengan name dan description.
+Dapat di-align ke p-plan:Step atau prov:Activity yang lebih granular.
+
+
+
+
+
+
+
+
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+Status
+hasAgent
+MultiAgentSystem → Agent
+Menyatakan bahwa suatu sistem multi-agent memiliki sekumpulan agent tertentu.
+Dari array agents[] di bawah root sistem.
+Ditambahkan / digunakan kembali di AgentO.
+configuredBy
+Agent → LLMModel
+Menyatakan bahwa sebuah agent dikonfigurasi untuk menggunakan model LLM tertentu.
+Dari field model pada setiap elemen agents[].
+Ditambahkan / digunakan kembali di AgentO.
+hasWorkflow
+MultiAgentSystem → Workflow
+Menyatakan bahwa sistem tersebut mencakup satu atau lebih workflow yang menggambarkan alur kerja.
+Dari array workflows[] di bawah root sistem.
+Ditambahkan (khusus pola MastraAI dengan workflow).
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+MultiAgentSystem / Agent / Workflow
+xsd:string
+Nama identitas entitas (sistem, agent, atau workflow).
+"Email Automation", "email_classifier", "responder", "email_handling"
+role
+Agent
+xsd:string
+Peran fungsional agent dalam sistem.
+"Email Classifier", "Auto Responder"
+instructions
+Agent
+xsd:string
+Instruksi kerja tekstual yang menjelaskan tugas agent.
+"Classify incoming emails", "Generate appropriate email responses"
+modelName
+LLMModel
+xsd:string
+Nama model LLM yang digunakan oleh agent.
+"gpt-4"
+description
+Workflow
+xsd:string
+Deskripsi natural-language singkat mengenai alur kerja workflow.
+"Classify and respond to emails"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+MultiAgentSystem
+Representasi top-level sistem yang menaungi beberapa agent dan workflow.
+Pola MastraAI konsisten menempatkan name di root bersama agents[] dan workflows[].
+Class
+LLMModel
+Representasi model LLM yang dikonfigurasi untuk agent.
+Field model: "gpt-4" muncul sebagai konfigurasi model di tiap agent.
+Class
+Workflow
+Representasi alur kerja konseptual dalam sistem.
+Array workflows[] muncul spesifik pada pattern ini, memuat name dan description.
+Object Property
+hasAgent
+Relasi dari sistem menuju agent-agent yang berada di bawahnya.
+Diambil dari struktur agents[] yang selalu berada di level sistem.
+Object Property
+hasWorkflow
+Relasi dari sistem menuju workflow yang didefinisikan di dalamnya.
+Diambil dari array workflows[] yang mendeskripsikan alur kerja.
+Object Property
+configuredBy
+Relasi dari agent menuju LLMModel yang digunakan.
+Field model pada setiap agent menyatakan ketergantungan langsung pada model LLM tertentu.
+Datatype Property
+name
+Atribut nama untuk sistem, agent, maupun workflow.
+Field name muncul pada root ("Email Automation"), pada agent, dan pada workflow.
+Datatype Property
+role
+Atribut peran fungsional agent.
+Field role membedakan fungsi Email Classifier dan Auto Responder.
+Datatype Property
+instructions
+Atribut instruksi kerja yang menjelaskan tugas agent.
+Field instructions menyimpan deskripsi natural-language untuk operasi masing-masing agent.
+Datatype Property
+modelName
+Nama model LLM yang dipakai oleh agent.
+Nilai "gpt-4" mengindikasikan model LLM yang digunakan.
+Datatype Property
+description
+Atribut deskripsi workflow.
+Field description pada workflows[0] menjelaskan alur “Classify and respond to emails”.
+

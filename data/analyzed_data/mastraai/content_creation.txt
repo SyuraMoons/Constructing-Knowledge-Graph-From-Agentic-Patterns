@@ -1,0 +1,145 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+content_creation.json
+Pattern Type
+Multi-agent configuration 
+Deskripsi
+Pattern ini mendefinisikan sistem bernama “Content Creation Pipeline” yang berisi tiga agent: ideator, writer, dan editor. Setiap agent memiliki role, instructions, dan model. Tidak ada workflow eksplisit, task, atau tools — pattern ini fokus pada konfigurasi agent dalam pipeline pembuatan konten
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+System
+name
+name
+"Content Creation Pipeline"
+Nama konteks multi-agent.
+Agent #1
+agents[0]
+name, role, instructions, model
+"ideator", "Content Ideator", "Generate content ideas", "gpt-4"
+Agent ideation.
+Agent #2
+agents[1]
+name, role, instructions, model
+"writer", "Content Writer", "Write engaging content", "gpt-4"
+Agent penulis.
+Agent #3
+agents[2]
+name, role, instructions, model
+"editor", "Content Editor", "Edit and refine content", "gpt-4"
+Agent editor.
+
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Sistem berisi banyak agent terkoordinasi.
+"Content Creation Pipeline"
+prov:Activity / p-plan:Plan
+Agent
+agento:Agent
+Unit eksekusi yang memiliki role & instruksi.
+Elemen dalam agents[].
+prov:Agent
+LLMModel
+agento:LLMModel
+Model yang digunakan setiap agent.
+Field "model": "gpt-4"
+prov:Entity
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasAgent
+System → Agent
+Sistem memiliki / terdiri dari agent-agent.
+Dari array agents[ ].
+Ditambahkan
+configuredBy
+Agent → LLMModel
+Agent menggunakan model tertentu.
+Field "model".
+Ditambahkan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+Agent/System
+string
+Nama agent atau sistem.
+"writer", "editor", "Content Creation Pipeline"
+role
+Agent
+string
+Peran fungsi agent.
+"Content Writer"
+instructions
+Agent
+string
+Pedoman atau instruksi kerja.
+"Write engaging content"
+modelName
+LLMModel
+string
+Nama model LLM.
+"gpt-4"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+MultiAgentSystem
+Representasi konfigurasi multi-agent.
+MastraAI selalu mengemas beberapa Agent dalam satu sistem.
+Class
+LLMModel
+Representasi model (gpt-4, dll).
+Setiap agent MastraAI memiliki field model.
+Object Property
+hasAgent
+Hubungkan sistem dengan agent-agent di dalamnya.
+Dari array agents[].
+Object Property
+configuredBy
+Hubungkan agent ke model LLM-nya.
+Dari field "model".
+Datatype Property
+role
+Peran agent.
+"Content Ideator", "Content Editor", dll.
+Datatype Property
+instructions
+Instruksi kerja agent.
+"Generate content ideas"
+Datatype Property
+modelName
+Nama model LLM.
+"gpt-4"
+

@@ -1,0 +1,92 @@
+{
+    "framework": "MastraAI",
+    "file_name": "data_analysis.json",
+    "pattern_type": "Multi-agentconfiguration",
+    "description": "Pattern ini mendefinisikan sistem bernama “Data Analysis Team”, yang terdiri dari dua agent: analyst dan visualizer. Masing-masing agent memiliki role, instructions, dan model. Pattern ini tidak menyertakan workflow, tools, atau urutan langkah—hanya struktur konfigurasi agent",
+    "entities": [
+        {
+            "id": "system",
+            "vendorClass": "name",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "Data Analysis Team"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#1",
+            "vendorClass": "agents[0]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "analyst",
+                "role": "Data Analyst",
+                "instructions": "Analyze data and provide insights",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#2",
+            "vendorClass": "agents[1]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "visualizer",
+                "role": "Data Visualizer",
+                "instructions": "Create visualizations from data",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "hasAgent",
+            "domain": "agento:MultiAgentSystem",
+            "range": "agento:Agent",
+            "definition": "Sistem memiliki agent-agent tertentu.",
+            "status_in_pattern": "ditambahkan"
+        },
+        {
+            "name": "configuredBy",
+            "domain": "agento:Agent",
+            "range": "agento:LLMModel",
+            "definition": "Agent menggunakan model tertentu.",
+            "status_in_pattern": "ditambahkan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:MultiAgentSystem",
+                "definition": "Representasi sistem multi-agent MastraAI.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:LLMModel",
+                "definition": "Representasi model yang dipakai agent.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "role",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "\"Data Analyst\", \"Data Visualizer\"."
+            },
+            {
+                "name": "instructions",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Tercantum di setiap agent."
+            },
+            {
+                "name": "modelName",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "\"gpt-4\"."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

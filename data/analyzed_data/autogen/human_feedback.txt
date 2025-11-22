@@ -1,0 +1,107 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+human_feedback.py
+Pattern Type
+Agent Collaboration Pattern (human feedback context)
+Deskripsi
+Pattern ini mendefinisikan dua agent: AssistantAgent dan UserProxyAgent. Konteksnya adalah human feedback, tetapi struktur kodenya tetap berupa deklarasi dua agent tanpa workflow, tool, atau relasi tambahan
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut 
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"human_feedback_assistant", "You are a helpful AI assistant for human_feedback"
+Agen utama yang berperan sebagai AI assistant.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen yang merepresentasikan user tanpa input manual.
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor.
+AssistantAgent, UserProxyAgent
+Align ke prov:Agent.
+
+
+
+
+
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+participatesIn
+Agent → Workflow
+Menghubungkan agent ke workflow.
+Tidak muncul di pattern ini.
+Tidak digunakan
+delegatesTo
+Agent → Agent
+Delegasi antar-agent.
+Tidak muncul.
+Opsional
+
+
+Datatype Properties
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+string
+Nama Agent.
+"human_feedback_assistant", "user"
+systemMessage
+Agent
+string
+Pesan sistem agent.
+"You are a helpful AI assistant for human_feedback"
+humanInputMode
+Agent
+string
+Mode input manusia.
+"NEVER"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Datatype Property
+systemMessage
+Menyimpan pesan sistem untuk AssistantAgent.
+Konsisten di seluruh pattern AutoGen.
+Datatype Property
+humanInputMode
+Mode input user (NEVER, ALWAYS, dll).
+Khusus UserProxyAgent.
+Property
+delegatesTo
+Potensial hubungan antar agent.
+Belum muncul di pattern ini, tapi muncul di AutoGen lain.
+

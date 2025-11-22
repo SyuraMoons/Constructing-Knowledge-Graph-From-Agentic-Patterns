@@ -1,0 +1,134 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+Langraph
+File name
+classifier.py
+Pattern Type
+Single-node workflow (classifier)
+Deskripsi
+Membuat sebuah StateGraph dengan satu node bernama classifier_node. Node yang sama dipakai sebagai entry point dan finish point. Tidak ada edge/transition lain
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+Workflow
+StateGraph()
+-
+-
+Satu graf proses
+Node
+add_node(name, fn)
+nama, callable
+"classifier_node", lambda x: x
+Node tunggal (fungsi identitas)
+Entry point
+set_entry_point(name)
+name
+"classifier_node"
+Titik mulai.
+Finish point
+et_finish_point(name)
+name
+"classifier_node"
+Titik akhir (sama dengan entry)
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+workflow
+agento:workflow
+Proses/graph eksekusi langkah
+StateGraph()
+p-plan:Plan
+node
+agento:node
+Langkah/vertex dalam workflow
+add_node("classifier_node", …)
+p-plan:Step
+
+
+
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+callsNode
+Workflow → Node
+Workflow memiliki nodei
+graph.add_node(...)
+disarankan
+hasStartNode
+Workflow → Node
+Node awal eksekusi.
+set_entry_point("classifier_node")
+ditambahkan
+hasEndNode
+Workflow → Node
+Node akhir eksekusi.
+set_finish_point("classifier_node")
+ditambahkan
+follows
+Node → Node
+Urutan/edge antar node.
+Tidak ada dipattern ini
+opsional
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+nodeName
+node
+string
+Nama simbolik node
+“classifier_node”
+callableLabel
+node
+string
+label fungsi/handler yang dieksekusi
+“lambda x: x" (label/alias)
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+class
+workflo,node
+Struktur graf & simpul
+Esensial untuk merepresentasikan graph-based process
+object property
+callsNode
+Tandai start & end
+Dari add_node
+object property
+hasStartNode, hanEndNode
+Nama node
+Dari set_entry_point/set_finish_point 
+datatype property
+nodeName
+Label fungsi handler
+classifier_node
+datatype property
+callableLabel
+Label fungsi handler node
+lambda x: x
+

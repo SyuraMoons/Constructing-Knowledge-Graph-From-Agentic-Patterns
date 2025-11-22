@@ -1,0 +1,108 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+planning agent.py
+Pattern Type
+Agent Collaboration Pattern (two-agent setup)
+Deskripsi
+Pattern ini mendefinisikan dua agent: satu AssistantAgent yang berperan sebagai AI assistant, dan satu UserProxyAgent yang mewakili user dengan mode input manusia “NEVER”. Ini adalah struktur AutoGen dasar tanpa workflow, tool, atau task
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut 
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"planning_agent_assistant", "You are a helpful AI assistant for planning_agent"
+Agen AI utama.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen proxy user, tanpa input manual.
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor.
+AssistantAgent, UserProxyAgent
+Align ke prov:Agent.
+
+
+
+
+
+
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+participatesIn
+Agent → Workflow
+Agent terlibat dalam proses.
+Tidak ada workflow.
+Tidak digunakan
+delegatesTo
+Agent → Agent
+Delegasi kerja antar-agent.
+Tidak ada relasi eksplisit.
+Opsional
+
+
+Datatype Properties
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+string
+Nama agent.
+"planning_agent_assistant", "user"
+systemMessage
+Agent
+string
+Instruksi sistem untuk AssistantAgent.
+"You are a helpful AI assistant for planning_agent"
+humanInputMode
+Agent
+string
+Mode input manusia pada UserProxyAgent.
+"NEVER"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Datatype Property
+systemMessage
+Pesan sistem untuk agent.
+Ada di semua AutoGen AssistantAgent.
+Datatype Property
+humanInputMode
+Mode input user.
+Atribut utama UserProxyAgent.
+Object Property
+delegatesTo
+Potensi hubungan antar agent.
+Belum muncul tapi muncul di AutoGen lain.
+

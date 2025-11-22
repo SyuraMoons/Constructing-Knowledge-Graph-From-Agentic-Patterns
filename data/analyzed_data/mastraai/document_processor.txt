@@ -1,0 +1,142 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+document_processor.json
+Pattern Type
+Multi-agent configuration 
+Deskripsi
+Pattern ini mendefinisikan sistem bernama “Document Processing” dengan dua agent: parser dan summarizer. Kedua agent memiliki peran, instruksi, dan model LLM yang sama (gpt-4). Tidak ada workflow eksplisit atau struktur proses tambahan  hanya konfigurasi agent
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System
+name
+name
+"Document Processing"
+Nama sistem multi-agent.
+Agent #1
+agents[0]
+name, role, instructions, model
+"parser", "Document Parser", "Extract information from documents", "gpt-4"
+Agent parsing dokumen.
+Agent #2
+agents[1]
+name, role, instructions, model
+"summarizer", "Summarizer", "Summarize document content", "gpt-4"
+Agent ringkasan dokumen.
+
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Sistem yang terdiri dari beberapa agent.
+"Document Processing"
+Align ke prov:Activity / p-plan:Plan.
+Agent
+agento:Agent
+Unit eksekusi dengan role & instruksi.
+agents[]
+Align ke prov:Agent.
+LLMModel
+agento:LLMModel
+Model yang digunakan agent.
+"model": "gpt-4"
+Align ke prov:Entity.
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+Status
+hasAgent
+MultiAgentSystem → Agent
+Sistem memiliki agent-agent tertentu.
+Dari array agents[].
+Ditambahkan
+configuredBy
+Agent → LLMModel
+Menyatakan agent memakai model tertentu.
+Dari "model".
+Ditambahkan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+System/Agent
+string
+Nama entitas.
+"parser", "Document Processing"
+role
+Agent
+string
+Peran fungsional agent.
+"Document Parser"
+instructions
+Agent
+string
+Pedoman kerja.
+"Extract information from documents"
+modelName
+LLMModel
+string
+Nama model LLM.
+"gpt-4"
+
+
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+MultiAgentSystem
+Representasi top-level sistem.
+Muncul di seluruh pattern MastraAI.
+Class
+LLMModel
+Representasi model.
+"gpt-4" muncul pada semua agent.
+Object Property
+hasAgent
+Relasi sistem → agent.
+Dari array agents.
+Object Property
+configuredBy
+Relasi agent → model.
+Field "model".
+Datatype Property
+role
+Atribut peran agent.
+"Document Parser", "Summarizer".
+Datatype Property
+instructions
+Instruksi kerja agent.
+Dua agent memiliki instruksi berbeda.
+Datatype Property
+modelName
+Nama model LLM.
+"gpt-4".
+

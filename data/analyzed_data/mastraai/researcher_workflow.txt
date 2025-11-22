@@ -1,0 +1,143 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+research_workflow.json
+Pattern Type
+Multi-agent + Workflow
+Deskripsi
+Sistem “Research Workflow” berisi dua agent (researcher & writer) serta satu workflow research_and_write
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System name
+name
+name
+"Research Workflow"
+Identitas sistem multi-agent
+Agent #1
+agents[0]
+name, role, instructions, model
+"researcher", "Researcher", "Research and gather information", "gpt-4"
+Melakukan riset dan pengumpulan informasi
+Agent #2
+agents[1]
+name, role, instructions, model
+"writer", "Writer", "Write comprehensive reports", "gpt-4"
+Menulis laporan
+Workflow
+workflows[0]
+name, description
+"research_and_write", "Research a topic and write a report"
+Alur kerja riset & penulisan
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Sistem top-level yang menaungi agent & workflow
+Field root + agents[], workflows[]
+Konsisten dengan pola MastraAI sebelumnya
+Agent
+agento:Agent
+Unit eksekusi berlatar peran & instruksi
+Elemen agents[]
+Sesuai praktik agentic framework
+LLMModel
+agento:LLMModel
+Model LLM backend
+Field model: "gpt-4"
+Digunakan oleh semua agent
+Workflow
+agento:Workflow
+Alur kerja konseptual
+Elemen workflows[]
+Pattern ini eksplisit punya workflow
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+hasAgent
+MultiAgentSystem → Agent
+Sistem memiliki agent–agent tertentu
+Dari agents[]
+hasWorkflow
+MultiAgentSystem → Workflow
+Sistem memiliki workflow tertentu
+Dari workflows[]
+configuredBy
+Agent → LLMModel
+Agent dikonfigurasi menggunakan model tertentu
+Dari field model
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+System / Agent / Workflow / Model
+xsd:string
+Nama entitas
+"Research Workflow", "researcher", "research_and_write"
+role
+Agent
+xsd:string
+Peran agent
+"Researcher", "Writer"
+instructions
+Agent
+xsd:string
+Instruksi kerja
+"Research and gather information"
+modelName
+LLMModel
+xsd:string
+Nama model
+"gpt-4"
+description
+Workflow
+xsd:string
+Deskripsi alur kerja
+"Research a topic and write a report"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+Workflow
+Menampung definisi alur riset–penulisan
+workflows[]
+Property
+hasWorkflow
+Menghubungkan sistem dengan workflow
+workflows[]
+Property
+configuredBy
+Agent → Model
+Field model
+Property
+instructions
+Instruksi tekstual agent
+Field instructions
+

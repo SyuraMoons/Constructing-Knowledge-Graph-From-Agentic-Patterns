@@ -1,0 +1,129 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+translation_service.json
+Pattern Type
+Multi-agent tanpa workflow
+Deskripsi
+Sistem “Translation Service” memiliki dua agent: translator dan localizer, yang masing-masing memiliki peran untuk menerjemahkan dan menyesuaikan konten secara budaya. Keduanya menggunakan model LLM yang sama, yaitu gpt-4.
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System name
+name
+name
+"Translation Service"
+Sistem multi-agent
+Agent 1
+agents[0]
+name, role, instructions, model
+"translator", "Translator", "Translate content accurately", "gpt-4"
+Melakukan penerjemahan
+Agent 2
+agents[1]
+name, role, instructions, model
+"localizer", "Cultural Localizer", "Adapt content for cultural context", "gpt-4"
+Melakukan adaptasi budaya
+
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Sistem induk yang menaungi agent
+Field root + agents[]
+Struktur konsisten
+Agent
+agento:Agent
+Entitas eksekusi berbasis peran
+Elemen agents[]
+Dua agent berbeda
+LLMModel
+agento:LLMModel
+Model LLM yang digunakan oleh agent
+Field "model": "gpt-4"
+Shared dependency
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+hasAgent
+MultiAgentSystem → Agent
+Sistem memiliki agent tertentu
+Dari array agents[]
+configuredBy
+Agent → LLMModel
+Agent menggunakan model tertentu
+Dari field "model": "gpt-4"
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+System / Agent / Model
+xsd:string
+Nama identitas
+"Translation Service", "translator", "gpt-4"
+role
+Agent
+xsd:string
+Peran
+"Translator", "Cultural Localizer"
+instructions
+Agent
+xsd:string
+Instruksi natural-language
+"Translate content accurately"
+modelName
+LLMModel
+xsd:string
+Nama model
+"gpt-4"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Kegunaan
+Dasar Pattern
+Class
+MultiAgentSystem
+Struktur root
+Field root
+Class
+LLMModel
+Representasi GPT-4
+Field "model"
+Property
+hasAgent
+Sistem → Agent
+Dua agent
+Property
+configuredBy
+Agent → Model
+Field "model"
+Datatype Property
+role, instructions, name, modelName
+Atribut dasar
+Sesuai JSON
+

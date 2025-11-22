@@ -1,0 +1,103 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+retrieve_chat.py
+Pattern Type
+Two-Agent Declaration Pattern
+Deskripsi
+Pattern ini mendefinisikan dua agent utama AutoGen: satu AssistantAgent dan satu UserProxyAgent. Tidak ada workflow, tool, task, atau relasi tambahan. Ini merupakan struktur dasar AutoGen yang umum digunakan dalam banyak pattern sederhana
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut 
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"retrieve_chat_assistant", "You are a helpful AI assistant for retrieve_chat"
+Agen AI utama untuk skenario retrieve_chat.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen proxy user, tanpa input manual.
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor (AI atau proxy).
+AssistantAgent, UserProxyAgent
+Align ke prov:Agent
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+participatesIn
+Agent → Workflow
+Relasi agent → workflow.
+Tidak ada workflow.
+Tidak digunakan
+delegatesTo
+Agent → Agent
+Delegasi antar-agent.
+Tidak ada relasi eksplisit.
+Opsional
+
+
+Datatype Properties
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+string
+Nama agent.
+"planning_agent_assistant", "user"
+systemMessage
+Agent
+string
+Pesan sistem AssistantAgent.
+"You are a helpful AI assistant for planning_agent"
+humanInputMode
+Agent
+string
+Mode input manusia.
+"NEVER"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Datatype Property
+systemMessage
+Instruksi sistem internal Agent.
+Muncul di seluruh AssistantAgent AutoGen.
+Datatype Property
+humanInputMode
+Mode input manusia.
+Konsisten di semua UserProxyAgent.
+Object Property
+delegatesTo
+Potensi hubungan antar agent.
+Belum dipakai di pattern ini.
+

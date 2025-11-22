@@ -1,0 +1,123 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+function_calling.py
+Pattern Type
+Agent Collaborator Pattern (function Invocation Context)
+Deskripsi
+Pattern ini mendefinisikan dua agent (AssistantAgent dan UserProxyAgent) untuk skenario pemanggilan fungsi (function calling). Walaupun struktur kodenya sama dengan pattern AutoGen lain, konteks semantiknya berbeda: asisten ini dirancang untuk memanggil fungsi eksternal atau API atas permintaan pengguna.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"function_calling_assistant", "You are a helpful AI assistant for function_calling"
+Agen AI utama yang mengeksekusi fungsi atau tool eksternal.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen perantara pengguna. Tidak ada input manual.
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor.
+AssistantAgent, UserProxyAgent
+align ke prov:Agent
+Tool
+agento:Tool
+Fungsi eksternal atau API yang digunakan agent.
+inferred dari konteks “function_calling”
+align ke schema:Action
+Workflow
+agento:Workflow
+Proses yang menghubungkan agent dan tool.
+inferred
+align ke plan:plan
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+usesTool
+Agent → Evaluation
+Menunjukkan keterlibatan agent dalam aktivitas evaluasi.
+inferred dari konteks “function_calling”
+penting
+participatesIn
+Agent → Artifact
+Agent memberi umpan balik terhadap artefak.
+inferred
+disarankan.
+delegatesTo
+Agent → Agent
+Delegasi antar-agent.
+Tidak muncul
+opsional
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+xsd:string
+Nama agent
+"function_calling_assistant", "user"
+SystemMessage
+Agent
+xsd:string
+Pesan sistem agent.
+"You are a helpful AI assistant for function_calling"
+HumanInputMode
+Agent
+xsd:string
+Mode input manusia.
+"NEVER"
+
+
+
+
+
+
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+class
+Tool
+Mewakili fungsi atau API yang dipanggil oleh agent.
+Diperlukan untuk memodelkan konteks function calling.
+Object Property
+UseTool
+Menghubungkan agent dengan tool yang digunakan.
+Sangat penting untuk function_calling pattern.
+Datatype Property
+systemMessage
+Menyimpan pesan sistem dari AssistantAgent.
+Konsisten di semua pattern.
+

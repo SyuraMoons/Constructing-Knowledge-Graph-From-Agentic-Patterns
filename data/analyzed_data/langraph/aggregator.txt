@@ -1,0 +1,125 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+Langraph
+File name
+agregator.py
+Pattern Type
+Single-node workflow (aggregator)
+Deskripsi
+Membangun sebuah StateGraph dengan satu node bernama aggregator_node. Node ini dijadikan sekaligus entry point dan finish point. Tidak ada edge/transition lain
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+Workflow
+StateGraph()
+-
+-
+Representasi graf eksekusi
+Node
+add_node(name, fn)
+nama, callable
+"aggregator_node", lambda x: x
+Node tunggal bertipe fungsi identitas
+Entry point
+set_entry_point(name)
+name
+“aggregar_node”
+Titik mulai graf
+Finish point
+et_finish_point(name)
+name
+"aggregator_node"
+Titik akhir graf (sama dengan entry)
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+workflow
+agento:workflow
+Proses/graph eksekusi langkah
+StateGraph()
+p-plan:Plan
+node
+agento:node
+Langkah/vertex dalam workflow
+add_node("aggregator_node", …)
+p-plan:Step
+
+
+
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+callsNode
+Workflow → Node
+Workflow memiliki/memanggil node.
+graph.add_node(...)
+disarankan
+hasStartNode
+Workflow → Node
+Node awal eksekusi.
+set_entry_point("aggregator_node")
+ditambahkan
+hasEndNode
+Workflow → Node
+Node akhir eksekusi.
+set_finish_point("aggregator_node")
+ditambahkan
+follows
+Workflow → Node
+Urutan/edge antar node.
+Tidak ada dipattern ini
+opsional
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+nodeName
+node
+string
+Nama simbolik node
+“aggregator_node”
+callableLabel
+node
+string
+label fungsi/handler yang dieksekusi
+“lambda x: x" (label/alias)
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+class
+workflo,node
+Struktur graf dan langkah eksekusi.
+Inti LangGraph adalah graph & node.
+object property
+callsNode
+Hubungkan workflow ke node-node miliknya.
+Dari add_node
+object property
+hasStartNode, hasEndNode
+Tandai node awal & akhir.
+Dari set_entry_point, set_finish_point
+

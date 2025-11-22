@@ -1,0 +1,140 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+data_analysis.json
+Pattern Type
+Multi-agent configuration 
+Deskripsi
+Pattern ini mendefinisikan sistem bernama “Data Analysis Team”, yang terdiri dari dua agent: analyst dan visualizer. Masing-masing agent memiliki role, instructions, dan model. Pattern ini tidak menyertakan workflow, tools, atau urutan langkah—hanya struktur konfigurasi agent
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System
+name
+name
+"Data Analysis Team"
+Nama sistem multi-agent.
+Agent #1
+agents[0]
+name, role, instructions, model
+"analyst", "Data Analyst", "Analyze data and provide insights", "gpt-4"
+Agent analis data.
+Agent #2
+agents[1]
+name, role, instructions, model
+"visualizer", "Data Visualizer", "Create visualizations from data", "gpt-4"
+Agent pembuat visualisasi.
+
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Sistem yang menaungi beberapa agent.
+"Data Analysis Team"
+Align ke prov:Activity / p-plan:Plan.
+Agent
+agento:Agent
+Entitas eksekutor dengan role dan instruksi.
+Elemen agents[ ].
+Align ke prov:Agent.
+LLMModel
+agento:LLMModel
+Model LLM yang digunakan agent.
+"model": "gpt-4"
+Align ke prov:Entity.
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+Status
+hasAgent
+MultiAgentSystem → Agent
+Sistem memiliki agent-agent tertentu.
+Dari array agents[].
+Ditambahkan
+configuredBy
+Agent → LLMModel
+Agent menggunakan model tertentu.
+Field "model".
+Ditambahkan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+System/Agent
+string
+Nama entitas.
+"analyst", "Data Analysis Team"
+role
+Agent
+string
+Peran agent dalam sistem.
+"Data Analyst"
+instructions
+Agent
+string
+Instruksi atau pedoman kerja.
+"Analyze data and provide insights"
+modelName
+LLMModel
+string
+Nama model LLM.
+"gpt-4"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+MultiAgentSystem
+Representasi sistem multi-agent MastraAI.
+Selalu muncul sebagai name dalam pattern MastraAI.
+Class
+LLMModel
+Representasi model yang dipakai agent.
+"model": "gpt-4" muncul pada semua agent.
+Object Property
+hasAgent
+Relasi sistem → agent.
+Dari agents[].
+Object Property
+configuredBy
+Relasi agent → model.
+Dari "model".
+Datatype Property
+role
+Peran agen.
+"Data Analyst", "Data Visualizer".
+Datatype Property
+instructions
+Instruksi kerja.
+Tercantum di setiap agent.
+Datatype Property
+modelName
+Nama model LLM.
+"gpt-4".
+

@@ -1,0 +1,125 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+simple_agent.json
+Pattern Type
+Multi-agent configuration 
+Deskripsi
+Sistem ini hanya berisi satu agent bernama assistant tanpa workflow maupun komponen tambahan. Pattern ini adalah bentuk paling minimal dari konfigurasi MastraAI
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System name
+name
+name
+"Simple Agent"
+Sistem multi-agent dengan 1 agent
+Agent
+agents[0]
+name, role, instructions, model
+"assistant", "AI Assistant", "You are a helpful AI assistant", "gpt-4"
+Agent tunggal dengan LLM default
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Sistem yang memiliki daftar agent
+Field root + agents[]
+Meskipun hanya 1 agent, tetap menggunakan class ini
+Agent
+agento:Agent
+Entitas eksekusi dengan peran + instruksi
+Elemen agents[0]
+Konsisten dengan pola MastraAI
+LLMModel
+agento:LLMModel
+Model backend untuk reasoning
+Field "model": "gpt-4"
+Shared dependency, meskipun hanya satu agent
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+hasAgent
+MultiAgentSystem → Agent
+Sistem memiliki satu agent
+Dari agents[]
+configuredBy
+Agent → LLMModel
+Agent menggunakan model tertentu
+Dari field "model": "gpt-4"
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+System / Agent / Model
+xsd:string
+Nama entitas
+"Simple Agent", "assistant"
+role
+Agent
+xsd:string
+Peran agent
+"AI Assistant"
+instructions
+Agent
+xsd:string
+Instruksi kerja
+"You are a helpful AI assistant"
+modelName
+LLMModel
+xsd:string
+Nama model LLM
+"gpt-4"
+
+
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Dasar Pattern
+Class
+MultiAgentSystem
+Sistem top-level
+Field root "name" + list agents[]
+Class
+LLMModel
+Representasi model LLM
+Field "model": "gpt-4"
+Property
+hasAgent
+Sistem → Agent
+Pattern berisi satu agent
+Property
+configuredBy
+Agent → Model
+Semua agent punya field "model"
+Datatype Property
+role, instructions, name, modelName
+Atribut dasar agentic
+Sesuai field JSON
+

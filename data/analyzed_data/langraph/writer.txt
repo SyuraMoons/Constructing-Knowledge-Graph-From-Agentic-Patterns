@@ -1,0 +1,123 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+Langraph
+File name
+writer.py
+Pattern Type
+Single-node StateGraph (entry = finish)
+Deskripsi
+Pattern ini membangun sebuah StateGraph sederhana dengan satu node bernama writer_node. Node ini berfungsi sebagai entry point sekaligus finish point. Fungsi yang dijalankan node adalah lambda x: x, yang berarti tidak ada pemrosesan aktual maupun integrasi LLM/tool. Tidak ada node tambahan, edge, atau branching
+
+
+Analisis Struktur Pattern
+Entitas
+Tipe Framework 
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+Graph
+StateGraph
+Struktur workflow utama
+StateGraph()
+Dasar workflow LangGraph
+Node
+Node dalam Graph
+add_node("writer_node", lambda x: x)
+"writer_node"
+Node tunggal dengan fungsi identitas
+Entry Point
+Properti Graph
+set_entry_point("writer_node")
+"writer_node"
+Titik awal workflow
+Finish Point
+Properti Graph
+set_finish_point("writer_node")
+"writer_node"
+Titik akhir workflow
+
+
+
+kelas (classes)
+Class
+SuperClass (AgentO)
+Definisi
+Bukti/Konteks
+WorkflowGraph
+agento:Workflow / agento:System
+Representasi graf alur eksekusi workflow
+StateGraph()
+Node
+agento:ProcessingStep / agento:Node
+Unit langkah pemrosesan dalam workflow
+add_node("writer_node")
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasNode
+WorkflowGraph → Node
+Workflow memiliki node
+graph.add_node()
+Ditambahkan
+hasEntryNode
+WorkflowGraph → Node
+Node awal eksekusi
+set_entry_point()
+Ditambahkan
+hasFinishNode
+WorkflowGraph → Node
+Node akhir eksekusi
+set_finish_point()
+Ditambahkan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+nodeName
+Node
+string
+Nama node
+"writer_node"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+WorkflowGraph
+Representasi graf LangGraph
+LangGraph selalu memulai workflow dengan StateGraph
+Class
+Node
+Langkah eksekusi
+Selalu dibuat melalui add_node
+Object Property
+hasNode
+Relasi Workflow–Node
+Struktur graf membutuhkan relasi ini
+Object Property
+hasEntryNode
+Node awal
+Berdasarkan set_entry_point
+Object Property
+hasFinishNode
+Node akhir
+Berdasarkan set_finish_point
+Datatype Property
+nodeName
+Nama node
+Node butuh identitas unik
+

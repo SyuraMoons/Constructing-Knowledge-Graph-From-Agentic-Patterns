@@ -1,0 +1,138 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+code_review.json
+Pattern Type
+Multi-agent configuration (code review system)
+Deskripsi
+Pattern ini mendefinisikan sebuah sistem bernama “Code Review System” yang terdiri dari dua agent: reviewer dan tester. Masing-masing agent memiliki role, instructions, dan model yang digunakan (misalnya gpt-4). Tidak ada definisi eksplisit tentang workflow, task, atau tool; fokus pattern ada pada konfigurasi dan peran agent
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+pattern
+name
+name
+"Code Review System"
+Nama sistem / konfigurasi multi-agent.
+agent#1
+agents[0]
+name, role, instructions, model
+"reviewer", "Code Reviewer", "Review code for quality and best practices", "gpt-4"
+Agent berperan sebagai reviewer.
+agent#2
+agents[1]
+name, role, instructions, model
+"tester", "Test Engineer", "Generate and run tests", "gpt-4"
+Agent berperan sebagai test engineer.
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor yang memiliki peran, instruksi, dan model.
+Elemen dalam array agents[].
+Align ke prov:Agent.
+LLMModel
+agento:LLMModel
+Representasi konfigurasi model LLM yang digunakan Agent.
+Field model = "gpt-4".
+Dapat disejajarkan dengan prov:Entity.
+MultiAgentSystem / Pattern
+agento:Workflow atau agento:System
+Konteks sistem “Code Review System” yang menaungi beberapa Agent.
+Field name = "Code Review System".
+Bisa disejajarkan dengan p-plan:Plan / prov:Activity.
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasAgent
+System → Agent
+Menghubungkan sistem / pattern dengan agent-agen yang dikonfigurasikan di dalamnya.
+Daftar agents[] di bawah "Code Review System".
+Disarankan (baru)
+configuredBy
+Agent → LLMModel
+Menyatakan bahwa suatu Agent dikonfigurasi menggunakan model tertentu.
+Field model per agent.
+Ditambahkan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+Agent / System
+string
+Nama agent atau nama sistem.
+"reviewer", "tester", "Code Review System"
+role
+Agent
+string
+Peran fungsional agent dalam sistem.
+"Code Reviewer", "Test Engineer"
+instructions
+Agent
+string
+Instruksi / pedoman kerja agent.
+"Review code for quality and best practices"
+modelName
+LLMModel
+string
+Nama model LLM yang digunakan.
+"gpt-4"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+MultiAgentSystem (atau reuse Workflow)
+Mewakili konfigurasi sistem yang berisi beberapa Agent (mis. “Code Review System”).
+MastraAI mengelompokkan beberapa agent dalam satu sistem.
+Class
+LLMModel
+Representasi model LLM (gpt-4, dll.).
+Field model muncul di setiap Agent.
+Object Property
+hasAgent
+Menghubungkan sistem/pattern dengan Agent-agen yang termasuk di dalamnya.
+Dari array agents[].
+Object Property
+configuredBy
+Menghubungkan Agent dengan LLMModel yang digunakannya.
+Dari field model.
+Datatype Property
+role
+Label peran Agent.
+"Code Reviewer", "Test Engineer".
+Datatype Property
+instructions
+Instruksi natural language yang membimbing perilaku Agent.
+Dua field instructions pada masing-masing Agent.
+Datatype Property
+modelName
+Nama model LLM.
+"gpt-4".
+

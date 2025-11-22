@@ -1,0 +1,107 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+code_execution.py
+Pattern Type
+Agent Collaborator Pattern
+Deskripsi
+Pattern ini mendefinisikan dua agen — AssistantAgent dan UserProxyAgent — untuk skenario eksekusi kode. Struktur pattern hampir identik dengan chess_game.py, hanya berbeda pada konteks sistem pesan (code execution).
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"code_execution_assistant", "You are a helpful AI assistant for code_execution"
+Agen AI utama yang membantu dalam konteks eksekusi kode.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen perantara yang merepresentasikan pengguna tanpa input manual.
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor dalam sistem multi-agent.
+AssistantAgent, UserProxyAgent
+align ke prov:Agent
+LLMModel
+agento:LLMModel
+Representasi model LLM yang digunakan.
+Tidak muncul di pattern ini
+umum di pattern AutoGen lainnya
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+delegatesTo
+Agent → Agent
+Delegasi antar-agent.
+Tidak muncul
+relevan untuk pattern kompleks.
+participatesIn
+Agent → Workflow
+Menandakan agent dalam workflow tertentu.
+Tidak muncul
+untuk generalisasi framework.
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+xsd:string
+Nama unik agent.
+"code_execution_assistant", "user"
+SystemMessage
+Agent
+xsd:string
+Deskripsi peran agent.
+"You are a helpful AI assistant for code_execution"
+HumanInputMode
+Agent
+xsd:string
+Mode input manusia.
+"NEVER"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Datatype Property
+systemMessage
+Menyimpan pesan sistem dari AssistantAgent.
+Ditemukan secara konsisten di pattern AutoGen.
+Datatype Property
+humanInputMode
+Mode inputi manusia.
+Diperlukan untuk AutoGen Proxy Agent
+Opsional Property
+vendorClass
+Menyimpan nama class framework (contoh: AssistantAgent).
+Untuk kompatibilitas lintas framework.
+

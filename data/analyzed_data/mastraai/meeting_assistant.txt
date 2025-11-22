@@ -1,0 +1,151 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+meeting_assistant.json
+Pattern Type
+Multi-agent configuration 
+Deskripsi
+Pattern ini mendefinisikan sistem “Meeting Assistant” dengan dua agent: scheduler dan note_taker. Keduanya memiliki peran dan instruksi yang berbeda, namun sama-sama menggunakan model LLM gpt-4 untuk membantu penjadwalan pertemuan dan pencatatan notulen
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System name
+name
+name
+"Meeting Assistant"
+Nama sistem multi-agent untuk manajemen meeting.
+Agent #1
+agents[0]
+name, role, instructions, model
+"scheduler", "Meeting Scheduler", "Schedule and organize meetings", "gpt-4"
+Agent untuk menjadwalkan dan mengorganisasi rapat.
+Agent #2
+agents[1]
+name, role, instructions, model
+"note_taker", "Note Taker", "Take meeting notes and action items", "gpt-4"
+Agent untuk mencatat notulen dan action items rapat.
+
+
+
+
+
+
+
+
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Representasi sistem tingkat atas yang mengelola beberapa agent dalam satu konteks aplikasi.
+Field root name: "Meeting Assistant" + array agents[].
+Menggambarkan konteks sistem Meeting Assistant.
+Agent
+agento:Agent
+Unit eksekusi otonom dengan peran spesifik dan instruksi kerja.
+Elemen agents[0], agents[1].
+Dapat disejajarkan dengan prov:Agent.
+LLMModel
+agento:LLMModel
+Representasi model LLM yang dikonfigurasi sebagai backend kecerdasan untuk masing-masing agent.
+Field model: "gpt-4" pada tiap agent.
+Dapat disejajarkan dengan prov:Entity.
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+Status
+hasAgent
+MultiAgentSystem → Agent
+Menyatakan bahwa suatu sistem multi-agent memiliki sekumpulan agent.
+Diambil dari array agents[] di bawah sistem.
+Digunakan kembali dari pattern MastraAI sebelumnya.
+configuredBy
+Agent → LLMModel
+Menyatakan bahwa sebuah agent dikonfigurasi untuk menggunakan model LLM tertentu.
+Field model pada tiap elemen agents[].
+Digunakan kembali.
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+MultiAgentSystem / Agent / LLMModel
+xsd:string
+Nama identitas entitas.
+"Meeting Assistant", "scheduler", "note_taker", "gpt-4" (nama model).
+role
+Agent
+xsd:string
+Peran fungsional agent dalam sistem meeting.
+"Meeting Scheduler", "Note Taker"
+instructions
+Agent
+xsd:string
+Instruksi kerja tekstual yang menjelaskan tugas agent.
+"Schedule and organize meetings", "Take meeting notes and action items"
+modelName
+LLMModel
+xsd:string
+Nama model LLM yang digunakan oleh agent.
+"gpt-4"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+MultiAgentSystem
+Sistem top-level yang menaungi beberapa agent dalam domain meeting.
+Pola root name + agents[] konsisten dengan pattern MastraAI lain (email, HR, dsb.).
+Class
+LLMModel
+Representasi model LLM yang digunakan oleh agent untuk reasoning.
+Kedua agent menggunakan gpt-4, sehingga perlu satu entitas model yang dapat direferensikan ulang.
+Object Property
+hasAgent
+Relasi dari sistem menuju agent-agent di dalamnya.
+Dibutuhkan untuk merepresentasikan bahwa Meeting Assistant terdiri dari scheduler dan note_taker.
+Object Property
+configuredBy
+Relasi dari agent menuju model LLM yang menjadi backend inteligensinya.
+Field model mengindikasikan ketergantungan langsung agent terhadap model tertentu.
+Datatype Property
+name
+Atribut nama generik.
+Field name digunakan konsisten pada sistem, agent, dan model.
+Datatype Property
+role
+Atribut peran agent.
+Membedakan fungsi Meeting Scheduler dan Note Taker dalam sistem.
+Datatype Property
+instructions
+Atribut instruksi kerja agent.
+Menjelaskan fungsi operasional masing-masing agent.
+Datatype Property
+modelName
+Nama model LLM.
+Menyimpan “gpt-4” sebagai identitas model yang digunakan.
+

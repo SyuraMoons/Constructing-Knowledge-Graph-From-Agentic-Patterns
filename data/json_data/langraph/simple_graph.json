@@ -1,0 +1,90 @@
+{
+    "framework": "Langraph",
+    "file_name": "simple_graph.py",
+    "pattern_type": "Single-nodeStateGraph(entry=finish)",
+    "description": "Pattern ini membangun sebuah StateGraph yang berisi satu node bernama simple_graph_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point) dari workflow. Fungsi node hanyalah lambda x: x (fungsi identitas). Tidak ada node lain, edge, agent, proses branching, atau interaksi dengan LLM/tool",
+    "entities": [
+        {
+            "id": "graph",
+            "vendorClass": "StateGraph",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "StateGraph()": "graph"
+            },
+            "relations": {}
+        },
+        {
+            "id": "node",
+            "vendorClass": "Node di dalam Graph",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "add_node(\"simple_graph_node\"": "simple_graph_node"
+            },
+            "relations": {}
+        },
+        {
+            "id": "entry point",
+            "vendorClass": "Properti Graph",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "set_entry_point(\"simple_graph_node\")": "simple_graph_node"
+            },
+            "relations": {}
+        },
+        {
+            "id": "finish point",
+            "vendorClass": "Properti Graph",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "set_finish_point(\"simple_graph_node\")": "simple_graph_node"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "hasNode",
+            "domain": "agento:WorkflowGraph",
+            "range": "agento:Node",
+            "definition": "Workflow memiliki node.",
+            "status_in_pattern": "ditambahkan"
+        },
+        {
+            "name": "hasEntryNode",
+            "domain": "agento:WorkflowGraph",
+            "range": "agento:Node",
+            "definition": "Node awal workflow.",
+            "status_in_pattern": "ditambahkan"
+        },
+        {
+            "name": "hasFinishNode",
+            "domain": "agento:WorkflowGraph",
+            "range": "agento:Node",
+            "definition": "Node akhir workflow.",
+            "status_in_pattern": "ditambahkan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:WorkflowGraph",
+                "definition": "Representasi StateGraph.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:Node",
+                "definition": "Unit langkah pemrosesan.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "nodeName",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Node selalu memiliki nama string."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

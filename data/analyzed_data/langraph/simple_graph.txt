@@ -1,0 +1,128 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+Langraph
+File name
+simple_graph.py
+Pattern Type
+Single-node StateGraph (entry = finish)
+Deskripsi
+Pattern ini membangun sebuah StateGraph yang berisi satu node bernama simple_graph_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point) dari workflow. Fungsi node hanyalah lambda x: x (fungsi identitas). Tidak ada node lain, edge, agent, proses branching, atau interaksi dengan LLM/tool
+
+
+Analisis Struktur Pattern
+Entitas
+Tipe Framework 
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+Graph
+StateGraph
+StateGraph()
+graph
+Struktur workflow utama.
+Node
+Node di dalam Graph
+add_node("simple_graph_node", lambda x: x)
+"simple_graph_node"
+Node tunggal dengan fungsi identitas.
+Entry Point
+Properti Graph
+set_entry_point("simple_graph_node")
+"simple_graph_node"
+Node awal workflow.
+Finish Point
+Properti Graph
+set_finish_point("simple_graph_node")
+"simple_graph_node"
+Node akhir workflow.
+
+
+
+
+
+
+
+
+kelas (classes)
+Class
+SuperClass (AgentO)
+Definisi
+Bukti/Konteks
+WorkflowGraph
+agento:Workflow / agento:System
+Representasi graf alur eksekusi.
+StateGraph()
+Node
+agento:ProcessingStep / agento:Node
+Langkah pemrosesan dalam workflow.
+add_node("simple_graph_node")
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasNode
+WorkflowGraph → Node
+Workflow memiliki node.
+graph.add_node()
+Ditambahkan
+hasEntryNode
+WorkflowGraph → Node
+Node awal workflow.
+set_entry_point()
+Ditambahkan
+hasFinishNode
+WorkflowGraph → Node
+Node akhir workflow.
+set_finish_point()
+Ditambahkan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+nodeName
+Node
+string
+"simple_graph_node"
+"router_node"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+WorkflowGraph
+Representasi StateGraph.
+LangGraph selalu memakai StateGraph sebagai inti workflow.
+Class
+Node
+Unit langkah pemrosesan.
+Node selalu dibuat dengan add_node.
+Object Property
+hasNode
+Relasi Workflow–Node.
+Dibutuhkan untuk memodelkan struktur graf.
+Object Property
+hasEntryNode
+Node awal eksekusi.
+Dari set_entry_point.
+Object Property
+hasFinishNode
+Node akhir.
+Dari set_finish_point.
+Datatype Property
+nodeName
+Nama node.
+Node selalu memiliki nama string.
+

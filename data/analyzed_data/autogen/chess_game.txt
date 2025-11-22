@@ -1,0 +1,113 @@
+﻿Identitas Pattern
+
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+chess_game.py
+Pattern Type
+Agent Collaborator Pattern
+Deskripsi
+Pattern ini mendefinisikan dua agen (user proxy dan assistant) yang berinteraksi dalam konteks permainan catur. Tidak terdapat definisi workflow atau tool, hanya deklarasi agen dan konfigurasi atributnya.
+
+
+Analisis Struktur Pattern
+
+Entitas
+Framework Class
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"chess_game_assistant", "You are a helpful AI assistant for chess_game"
+Agen utama yang berperan sebagai AI asisten dalam konteks permainan catur.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen perantara yang merepresentasikan pengguna manusia tanpa input langsung.
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor yang memiliki kemampuan bertindak dalam sistem multi-agent.
+AssistantAgent, UserProxyAgent
+Sesuai dengan prov:Agent dalam PROV-O.
+LLMModel
+agento:LLMModel
+Representasi konfigurasi model bahasa besar (LLM) yang digunakan oleh agent.
+Tidak muncul di pattern ini
+Dapat muncul di pattern lain (mis. parameter model).
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+delegatesTo
+Agent → Agent
+Menunjukkan agent yang mendelegasikan tugas ke agent lain.
+Tidak muncul
+Relevan di pattern AutoGen lain (cooperation).
+participatesIn
+Agent → Workflow
+Menandakan agent yang terlibat dalam suatu pattern atau proses.
+Tidak muncul
+Umum untuk seluruh framework.
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+xsd:string
+Nama unik agent.
+"chess_game_assistant", "user"
+SystemMessage
+Agent
+xsd:string
+Pesan sistem yang menjelaskan peran agent.
+"You are a helpful AI assistant for chess_game"
+HumanInputMode
+Agent
+xsd:string
+Mode input manusia (NEVER, ALWAYS, TERMINATE).
+"NEVER"
+
+
+
+
+
+Penyesuaian AgentO
+
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Datatype Property
+systemMessage
+Menyimpan pesan sistem dari AssistantAgent.
+Ditemukan secara konsisten di pattern AutoGen.
+Datatype Property
+humanInputMode
+Menyimpan mode interaksi manusia.
+Relevan untuk agen proxy di AutoGen.
+Opsional Property
+vendorClass
+Nama class spesifik framework (contoh: AssistantAgent).
+Membantu interoperabilitas lintas framework.
+

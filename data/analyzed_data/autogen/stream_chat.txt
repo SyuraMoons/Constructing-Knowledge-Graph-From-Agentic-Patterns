@@ -1,0 +1,110 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+stream_chat.py
+Pattern Type
+Agent Declaration Pattern
+Deskripsi
+Pattern ini mendefinisikan dua agent dasar AutoGen: satu AssistantAgent dengan system_message, dan satu UserProxyAgent dengan mode input manusia NEVER. Meskipun namanya mengandung konsep “stream chat”, tidak ada implementasi streaming di level kode yang dianalisis
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut 
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"stream_chat_assistant"
+Agen AI utama.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen representasi user tanpa input manual.
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor dalam sistem AutoGen.
+Keberadaan AssistantAgent dan UserProxyAgent.
+Align ke prov:Agent
+
+
+
+
+
+
+
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+delegatesTo
+Agent → Agent
+Relasi delegasi antar-agent.
+Tidak muncul.
+Opsional
+participatesIn
+Agent → Workflow
+Keterlibatan agent dalam workflow.
+Tidak ada workflow.
+Tidak digunakan
+
+
+Datatype Properties
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+string
+Nama Agent.
+"stream_chat_assistant", "user"
+systemMessage
+Agent
+string
+Pesan sistem untuk AssistantAgent.
+"You are a helpful AI assistant for stream_chat"
+humanInputMode
+Agent
+string
+Mode input user.
+"NEVER"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Datatype Property
+systemMessage
+Pesan sistem AssistantAgent.
+Selalu muncul pada AutoGen AssistantAgent.
+Datatype Property
+humanInputMode
+Mode input user.
+Atribut khas UserProxyAgent.
+Object Property
+delegatesTo
+Relasi antar agent.
+Belum muncul, tapi perlu untuk generalisasi AutoGen.
+

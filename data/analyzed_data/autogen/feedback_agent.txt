@@ -1,0 +1,127 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+AutoGen
+File name
+feedback_agent.py
+Pattern Type
+Agent Collaborator Pattern (feedback Context)
+Deskripsi
+Pattern ini mendefinisikan dua agent (AssistantAgent dan UserProxyAgent) untuk konteks pemberian umpan balik (feedback loop). Agent AI berfungsi sebagai evaluator yang memberi feedback terhadap hasil kerja, sementara UserProxyAgent mewakili pengguna.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut yang ditemukan
+Contoh nilai
+Catatan
+AssistantAgent
+AssistantAgent
+name, system_message
+"feedback_agent_assistant", "You are a helpful AI assistant for chess_game"
+Agen AI utama, berperan memberi evaluasi/feedback terhadap suatu proses.
+UserProxyAgent
+UserProxyAgent
+name, human_input_mode
+"user", "NEVER"
+Agen perantara pengguna, tidak memerlukan input manusia langsung.
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Agent
+agento:Agent
+Entitas eksekutor dalam sistem multi-agent.
+AssistantAgent, UserProxyAgent
+align ke prov:Agent
+Evaluation
+agento:Evaluation
+Aktivitas pemberian umpan balik terhadap hasil kerja agent lain.
+inferred dari konteks “feedback_agent”
+align ke prov:Activity
+Artifact
+agento:Artifact
+Hasil kerja atau keluaran yang dievaluasi
+inferred
+align ke prov:Entity
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+participatesIn
+Agent → Evaluation
+Menunjukkan keterlibatan agent dalam aktivitas evaluasi.
+inferred dari peran asisten
+disarankan
+evaluates
+Agent → Artifact
+Agent memberi umpan balik terhadap artefak.
+inferred dari “feedback”
+disarankan.
+delegatesTo
+Agent → Agent
+Delegasi antar-agent.
+Tidak muncul
+opsional
+hasRole
+Agent → Role
+Peran agent dalam aktivitas feedback.
+AssistantAgent sebagai evaluator
+opsional
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+name
+Agent
+xsd:string
+Nama unik agent.
+"feedback_agent_assistant", "user"
+SystemMessage
+Agent
+xsd:string
+Deskripsi peran agent.
+"You are a helpful AI assistant for feedback_agent"
+HumanInputMode
+Agent
+xsd:string
+Mode input manusia.
+"NEVER"
+
+
+
+
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+class
+evaluation
+Aktivitas pemberian umpan balik terhadap artefak.
+Penting untuk pattern feedback.
+Object Property
+evaluates
+Menghubungkan Agent dengan artefak yang dievaluasi.
+Diperlukan untuk representasi feedback loop.
+Datatype Property
+systemMessage
+Menyimpan pesan sistem.
+Sudah muncul konsisten di semua AutoGen pattern.
+

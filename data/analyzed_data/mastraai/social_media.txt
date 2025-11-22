@@ -1,0 +1,138 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+MastraAI
+File name
+social_media.json
+Pattern Type
+Multi-agent tanpa workflow
+Deskripsi
+Sistem “Social Media Manager” berisi tiga agent berbeda: content_planner, post_creator, dan engagement_monitor. Masing-masing memiliki peran dan instruksi yang berbeda, namun semuanya menggunakan model LLM yang sama 
+
+
+Analisis Struktur Pattern
+Entitas
+Path
+Atribut
+Contoh nilai
+Catatan
+System name
+name
+name
+"Social Media Manager"
+Nama sistem multi-agent
+Agent #1
+agents[0]
+name, role, instructions, model
+"content_planner", "Content Planner", "Plan social media content strategy", "gpt-4"
+Menyusun strategi konten
+Agent #2
+agents[1]
+name, role, instructions, model
+"post_creator", "Post Creator", "Create engaging social media posts", "gpt-4"
+Membuat post
+Agent #3
+agents[2]
+name, role, instructions, model
+"engagement_monitor", "Engagement Monitor", "Monitor and respond to engagement", "gpt-4"
+Memantau dan merespons engagement
+
+
+
+
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+MultiAgentSystem
+agento:System
+Sistem yang menaungi banyak agent
+Root + agents[]
+Digunakan konsisten dalam seluruh pattern MastraAI
+Agent
+agento:Agent
+Unit kerja dengan peran & instruksi
+Elemen agents[]
+Tiga agent berbeda dengan peran jelas
+LLMModel
+agento:LLMModel
+Model backend
+Field "model": "gpt-4" pada semua agent
+Shared dependency → satu entitas model cukup
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Konteks
+hasAgent
+MultiAgentSystem → Agent
+Sistem memiliki kumpulan agent
+Dari agents[]
+configuredBy
+Agent → LLMModel
+Agent menggunakan model tertentu
+Field "model"
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+contoh nilai
+name
+System / Agent / Model
+xsd:string
+Identitas entitas
+"Social Media Manager", "content_planner"
+role
+Agent
+xsd:string
+Peran agent
+"Content Planner", "Post Creator"
+instructions
+Agent
+xsd:string
+Natural-language instructions
+"Monitor and respond to engagement"
+modelName
+LLMModel
+xsd:string
+Nama model LLM
+"gpt-4"
+
+
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Dasar Pattern
+Class
+MultiAgentSystem
+Mewakili struktur root
+Field root + array agents
+Class
+LLMModel
+Mewakili model GPT-4
+Field "model"
+Property
+hasAgent
+Sistem → Agent
+Pattern memiliki 3 agent
+Property
+configuredBy
+Agent → Model
+Model shared oleh semua agent
+Datatype Property
+role, instructions, name, modelName
+Atribut dasar
+Sesuai JSON
+
