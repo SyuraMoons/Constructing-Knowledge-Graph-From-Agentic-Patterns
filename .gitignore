@@ -1,31 +1,38 @@
-# Python
+# -------------------------
+# Python ignores
+# -------------------------
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-env/
-ENV/
+*.pyc
+*.pyo
+*.pyd
 *.egg-info/
-dist/
-build/
+.eggs/
+.env
+.venv
+venv/
+ENV/
+env/
 
-# IDE
+# IDE / Editor
 .vscode/
 .idea/
 *.swp
-*.swo
-*.sublime-*
 
-# OS
+# OS-specific
 .DS_Store
 Thumbs.db
-*.bak
 
 # Logs
+logs/
 *.log
-.pytest_cache/
 
-# Project specific
-.claude_history
+# Backups
+*.bak
+*.old
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Cache
+.cache/

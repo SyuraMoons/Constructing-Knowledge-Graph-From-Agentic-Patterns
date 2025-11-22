@@ -1,4 +1,4 @@
-PyYAML==6.0.3
-rdflib==7.4.0
-jsonschema==4.25.1
-pytest==9.0.0
+pyautogen==0.2.27
+langgraph==0.2.3
+crewai==0.28.8
+

@@ -1,10 +1,19 @@
-# Agentic Knowledge Graph Extractor
+# Constructing Knowledge Graph From Agentic Patterns
 
-Extract agentic AI patterns from multiple frameworks and convert them to RDF knowledge graphs.
+Convert analyzed agent-pattern `.txt` files into normalized JSON structures for downstream ontology and knowledge-graph generation.
 
 ## Overview
 
-This tool automatically extracts agent patterns from CrewAI, LangGraph, AutoGen, and MastraAI frameworks, normalizes them to JSON, and converts them to RDF/Turtle format using the AgentO ontology.
+This tool processes agentic-pattern summaries from frameworks such as AutoGen, LangGraph, CrewAI, and MastraAI.
+Using your standardized text-table pattern format, the parser extracts entities, relationships, and ontology terms, then outputs normalized JSON suitable for RDF/Turtle conversion.
+
+The project uses a clear multi-stage workflow:
+
+* **raw_data/** – Optional original pattern files
+* **analyzed_data/** – Cleaned and structured `.txt` analysis outputs
+* **json_data/** – Final normalized JSON extracted from each pattern
+
+---
 
 ## Quick Start
 
@@ -14,159 +23,104 @@ This tool automatically extracts agent patterns from CrewAI, LangGraph, AutoGen,
 pip install -r requirements.txt
 ```
 
-### 2. Extract Patterns to JSON
+### 2. Prepare Your Input Files
 
-```bash
-cd src/extractors
-py main.py
+Place your analyzed GDocs-table text summaries into:
+
+```
+data/analyzed_data/<framework_name>/*.txt
 ```
 
-This will extract 51 patterns from `data/raw/` and save them to `data/normalized/`.
+Example directory structure:
 
-### 3. Convert JSON to RDF
-
-```bash
-cd ../..
-py scripts/json_to_rdf.py
+```
+data/analyzed_data/
+    autogen/
+    crewai/
+    langgraph/
+    mastra/
 ```
 
-This will convert all JSON patterns to RDF/Turtle format in `data/rdf/`.
+### 3. Convert TXT → JSON
 
-## What You Get
+Run the parser:
 
-After running both steps, you'll have:
+```bash
+py parser.py
+```
 
-- **51 JSON files** with readable names (e.g., `crewai_researcher_team.json`, `autogen_chess_game.json`)
-- **51 RDF/Turtle files** (e.g., `langraph_supervisor.ttl`, `mastraai_code_review.ttl`)
-- **1 merged RDF file** (`agentic-patterns.ttl`) with 1,539 triples
-- **AgentO ontology** in `ontology/agento.ttl`
+The parser will:
+
+* Scan all framework folders under `data/analyzed_data/`
+* Extract structured fields using your section-based logic
+* Generate matching folders under:
+
+```
+data/json_data/<framework_name>/*.json
+```
+
+---
+
+## Output Example
+
+Example generated JSON directory:
+
+```
+data/json_data/
+    autogen/
+        chess_game.json
+    crewai/
+        recruiter_team.json
+```
+
+Example normalized JSON structure:
+
+```json
+{
+  "framework": "AutoGen",
+  "file_name": "chess_game.py",
+  "pattern_type": "AgentCollaboratorPattern",
+  "entities": [...],
+  "ontologyRelationalProperties": [...],
+  "newOntologyTerms": {...}
+}
+```
+
+---
 
 ## Project Structure
 
 ```
-agentic-kg-extractor/
+CONSTRUCTING-KNOWLEDGE-GRAPH/
 ├── data/
-│   ├── raw/                    # 51 source files (4 frameworks)
-│   ├── normalized/             # 51 JSON patterns (output)
-│   └── rdf/                    # 51 TTL files + merged (output)
-├── ontology/
-│   ├── agento.ttl              # AgentO ontology (OWL/RDF)
-│   └── README.md               # Ontology documentation
-├── src/extractors/             # Framework-specific extractors
-│   ├── main.py                 # Extraction pipeline
-│   ├── base_extractor.py       # Base extractor class
-│   ├── crewai_extractor.py     # CrewAI parser
-│   ├── langraph_extractor.py   # LangGraph parser
-│   ├── autogen_extractor.py    # AutoGen parser
-│   └── mastraai_extractor.py   # MastraAI parser
-├── scripts/
-│   └── json_to_rdf.py          # JSON to RDF converter
+│   ├── raw_data/         # Original framework files
+│   ├── analyzed_data/    # Cleaned .txt pattern summaries
+│   └── json_data/        # JSON output from parser
+├── parser.py             # TXT → JSON converter
+├── requirements.txt
 └── README.md
 ```
 
-## Output Examples
+---
 
-### JSON Output (data/normalized/)
-```
-autogen_chess_game.json
-crewai_researcher_team.json
-langraph_supervisor.json
-mastraai_code_review.json
-```
+## Pipeline Summary
 
-**Sample JSON Structure:**
-```json
-{
-  "id": "pattern_abc123",
-  "readable_name": "autogen_chess_game",
-  "framework": "autogen",
-  "source_file": "../../data/raw/autogen/chess_game.py",
-  "agents": [
-    {
-      "id": "agent_xyz789",
-      "name": "chess_game_assistant",
-      "role": "AssistantAgent",
-      "humanInputMode": "NEVER",
-      ...
-    }
-  ],
-  "tasks": [...],
-  "workflow_pattern": {...}
-}
-```
+1. **Pattern Input** – Place analyzed `.txt` files into framework folders
+2. **Pattern Parsing** – The extractor identifies entities, relations, ontology mappings
+3. **Normalization** – JSON is produced in a consistent, ontology-aligned structure
 
-### RDF Output (data/rdf/)
-```
-autogen_chess_game.ttl
-crewai_researcher_team.ttl
-langraph_supervisor.ttl
-mastraai_code_review.ttl
-agentic-patterns.ttl  (merged file)
-```
-
-**Sample RDF/Turtle:**
-```turtle
-@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
-@prefix data: <http://www.w3id.org/agentic-ai/data/> .
-
-data:pattern_abc123 a agento:Pattern ;
-    agento:framework "autogen"^^xsd:string ;
-    agento:hasAgentMember data:agent_xyz789 .
-
-data:agent_xyz789 a agento:Agent ;
-    agento:agentName "chess_game_assistant"^^xsd:string ;
-    agento:humanInputMode "NEVER"^^xsd:string .
-```
-
-## Frameworks Supported
-
-| Framework | Patterns | Input Format |
-|-----------|----------|--------------|
-| CrewAI    | 14       | `.py` files  |
-| LangGraph | 13       | `.py` files  |
-| AutoGen   | 12       | `.py` files  |
-| MastraAI  | 12       | `.json/.yaml` files |
-| **Total** | **51**   | |
-
-## Statistics
-
-- **Total Patterns**: 51
-- **Total RDF Triples**: 1,539
-- **Ontology Classes**: 13
-- **Ontology Properties**: 48 (16 object + 32 datatype)
-- **Extraction Success Rate**: 100%
-
-## Adding New Patterns
-
-1. Add your pattern files to `data/raw/{framework}/`
-   - Use `.py` files for CrewAI, LangGraph, AutoGen
-   - Use `.json` or `.yaml` files for MastraAI
-
-2. Re-run the extraction:
-   ```bash
-   cd src/extractors
-   py main.py
-   ```
-
-3. Re-run the RDF conversion:
-   ```bash
-   cd ../..
-   py scripts/json_to_rdf.py
-   ```
-
-## Documentation
-
-- **Ontology**: See `ontology/README.md` for AgentO ontology specification
-- **Extractors**: See `src/extractors/README.md` for extractor implementation details
-- **Schema**: See `scripts/agentic_pattern.schema.json` for JSON schema
+---
 
 ## Requirements
 
-- Python 3.8+
-- PyYAML 6.0.3
-- rdflib 7.4.0
-- jsonschema 4.25.1
+See `requirements.txt` for all Python dependencies.
+
+---
 
 ## License
 
 MIT
+
+---
+
+If you want a GitHub-badge version, a Mermaid diagram, or an academic version, just tell me.
