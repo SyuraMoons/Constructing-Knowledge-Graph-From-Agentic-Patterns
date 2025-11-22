@@ -1,0 +1,139 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+write_book_flow.py
+Pattern Type
+Parallel Flow Pattern
+Deskripsi
+Pattern ini mengimplementasikan automated book writing system menggunakan parallel chapter generation. Flow membuat outline, generates multiple chapters secara parallel menggunakan multiple crews, kemudian aggregates dan edits hasil final. Demonstrates parallel execution dan result aggregation.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+WriteBookFlow
+Flow
+state, outline_method, chapter_methods, aggregate_method
+outline_crew, chapter_crews[], editor_crew
+Parallel flow orchestrator
+Outline Planner Agent
+Agent
+role, goal
+"Outline Planner", "Create comprehensive book outline with chapter structure"
+Agent untuk structural planning
+Chapter Writer Agents
+Agent
+role, goal, chapter_id
+"Chapter Writer", "Write engaging chapter content", chapter_id=1
+Multiple parallel agents untuk chapter writing
+Editor Agent
+Agent
+role, goal
+"Senior Editor", "Review and harmonize all chapters"
+Agent untuk final editing dan consistency
+Aggregator Agent
+Agent
+role, goal
+"Content Aggregator", "Combine chapters into cohesive book"
+Agent untuk aggregating parallel results
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Flow
+agento:Workflow
+Parallel execution orchestrator.
+Flow dengan parallel chapter generation
+Workflow dengan parallel branches
+ParallelExecution
+agento:ProcessingPattern
+Multiple concurrent operations.
+Chapter writers execute in parallel
+New pattern untuk parallelism
+Aggregation
+agento:ProcessingPattern
+Combine results dari parallel operations.
+Aggregator combines all chapter outputs
+Result combination pattern
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+generatesChapter
+Agent → Chapter
+Chapter writer generates chapter entity.
+Chapter Writer → Chapter 1, 2, 3
+Digunakan
+aggregates
+Agent → Collection
+Aggregator combines multiple outputs.
+Aggregator → All chapter outputs
+Digunakan
+editsContent
+Agent → Content
+Editor modifies aggregated content.
+Editor → Combined book content
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+chapterId
+Chapter
+integer
+Sequential chapter number.
+chapter_id=1, 2, 3
+parallelismDegree
+Flow
+integer
+Number of parallel executions.
+parallel_chapters=5
+aggregationStrategy
+Aggregation
+string
+Method untuk combining results.
+strategy="sequential_merge"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+ParallelExecution
+Multiple concurrent operations pattern.
+Flows dapat execute multiple crews/tasks secara parallel untuk performance optimization.
+Class
+Aggregation
+Result combination pattern.
+Parallel operations require aggregation logic untuk combining outputs into cohesive result.
+Object Property
+aggregates
+Combining multiple outputs.
+Aggregator agents combine results dari parallel operations.
+Datatype Property
+parallelismDegree
+Number of parallel workers.
+Parallel flows configure number of concurrent executions.
+Datatype Property
+chapterId
+Identifier untuk parallel items.
+Parallel agents need unique identifiers untuk coordination.

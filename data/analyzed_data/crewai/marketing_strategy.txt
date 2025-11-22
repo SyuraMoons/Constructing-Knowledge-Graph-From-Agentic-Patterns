@@ -1,0 +1,233 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+marketing_strategy.py
+Pattern Type
+Multi-Agent Crew Pattern
+Deskripsi
+Pattern ini mendefinisikan crew marketing dengan 4 agent specialist: Lead Market Analyst untuk riset, Chief Marketing Strategist untuk strategi, Creative Content Creator untuk konten, dan Chief Creative Director untuk oversight. Crew mengeksekusi 5 task sequential: research, project understanding, strategy formulation, campaign ideation, dan copy creation. Menggunakan SerperDev dan web scraping tools untuk riset.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+MarketingPostsCrew
+Crew
+agents, tasks, process
+Lead Market Analyst, Chief Marketing Strategist, Creative Content Creator
+Crew utama untuk marketing automation dengan sequential processing
+Lead Market Analyst
+Agent
+role, goal, backstory, tools, verbose
+"Lead Market Analyst", "Conduct analysis of products and competitors", SerperDevTool, ScrapeWebsiteTool
+Agent untuk riset pasar dengan akses tools eksternal
+Chief Marketing Strategist
+Agent
+role, goal, backstory, tools, verbose
+"Chief Marketing Strategist", "Synthesize insights to formulate strategies", SerperDevTool, ScrapeWebsiteTool
+Agent untuk formulasi strategi marketing
+Creative Content Creator
+Agent
+role, goal, backstory, verbose
+"Creative Content Creator", "Develop compelling content", "Top-tier creative content creator"
+Agent untuk pembuatan konten tanpa tools eksternal
+Chief Creative Director
+Agent
+role, goal, backstory
+"Chief Creative Director", "Oversee team work", "Chief Content Officer at digital agency"
+Agent supervisor untuk review dan approval
+Research Task
+Task
+description, expected_output, agent
+"Conduct thorough research about customer", "Complete report on customer and competitors"
+Task pertama dalam pipeline
+Marketing Strategy Task
+Task
+description, expected_output, agent, output_pydantic
+"Formulate comprehensive strategy", "Strategy document with goals, KPIs", MarketStrategy
+Task dengan structured output
+Campaign Idea Task
+Task
+description, expected_output, output_pydantic
+"Develop creative campaign ideas", "List of 5 campaign ideas", CampaignIdea
+Task ideasi kampanye marketing
+Copy Creation Task
+Task
+description, expected_output, output_pydantic
+"Create marketing copies", "Marketing copies for campaigns", Copy
+Task akhir dengan context dari task sebelumnya
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+Sistem multi-agent yang mengorkestra kolaborasi agent.
+Crew dengan agents[], tasks[], process="sequential"
+Align ke agento:MultiAgentSystem
+Agent
+agento:Agent
+Entitas autonomous dengan role, goal, dan tools.
+Instances: Lead Market Analyst, Chief Marketing Strategist, Creative Content Creator, Chief Creative Director
+Standard agento:Agent
+Task
+agento:Task
+Unit kerja yang di-assign ke agent dengan expected output.
+research_task, strategy_task, campaign_task, copy_task
+Align ke agento:Task / prov:Activity
+Tool
+agento:Tool
+Capability eksternal yang digunakan agent.
+SerperDevTool, ScrapeWebsiteTool
+Extend agento:Tool
+PydanticModel
+agento:OutputSchema
+Schema terstruktur untuk task output.
+MarketStrategy, CampaignIdea, Copy
+Align ke schema:StructuredValue
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasAgent
+Crew → Agent
+Crew memiliki multiple agents.
+agents=[lead_market_analyst(), chief_marketing_strategist(), creative_content_creator()]
+Digunakan
+hasTask
+Crew → Task
+Crew memiliki sequential tasks.
+tasks=[research_task(), strategy_task(), campaign_task(), copy_task()]
+Digunakan
+assignedTo
+Task → Agent
+Task di-assign ke specific agent.
+Task.agent=self.lead_market_analyst()
+Digunakan
+usesTool
+Agent → Tool
+Agent menggunakan tools untuk eksekusi.
+tools=[SerperDevTool(), ScrapeWebsiteTool()]
+Digunakan
+hasOutput
+Task → PydanticModel
+Task memiliki structured output schema.
+output_pydantic=MarketStrategy
+Digunakan
+dependsOn
+Task → Task
+Task bergantung pada output task sebelumnya.
+copy_creation_task uses context from campaign_idea_task
+Implisit (sequential process)
+supervisedBy
+Agent → Agent
+Agent disupervise oleh agent lain.
+Chief Creative Director oversees team
+Implisit dalam deskripsi
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+role
+Agent
+string
+Peran/jabatan agent dalam crew.
+"Lead Market Analyst", "Chief Marketing Strategist"
+goal
+Agent
+string
+Objektif yang ingin dicapai agent.
+"Conduct amazing analysis", "Synthesize insights"
+backstory
+Agent
+string
+Konteks dan expertise agent.
+"You specialize in dissecting online business landscapes"
+verbose
+Agent
+boolean
+Mode verbose untuk logging.
+verbose=True
+process
+Crew
+string
+Urutan eksekusi tasks.
+process="sequential"
+description
+Task
+string
+Deskripsi detail task.
+"Conduct thorough research about customer"
+expectedOutput
+Task
+string
+Output yang diharapkan dari task.
+"Complete report on customer and competitors"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+Crew
+Sistem orkestrasi multi-agent CrewAI.
+Semua pattern CrewAI menggunakan Crew sebagai container utama untuk agents dan tasks.
+Class
+PydanticModel
+Schema terstruktur untuk output validation.
+CrewAI menggunakan Pydantic untuk structured outputs (MarketStrategy, CampaignIdea, Copy).
+Object Property
+hasAgent
+Crew → Agent relationship.
+Crew memiliki list agents yang diorkestra.
+Object Property
+hasTask
+Crew → Task relationship.
+Crew memiliki list tasks yang dieksekusi.
+Object Property
+usesTool
+Agent → Tool relationship.
+Agents di CrewAI bisa dilengkapi dengan tools seperti SerperDevTool, ScrapeWebsiteTool.
+Object Property
+hasOutput
+Task → PydanticModel.
+Task bisa memiliki output_pydantic untuk structured validation.
+Object Property
+supervisedBy
+Agent → Agent relationship.
+Chief Creative Director acts as supervisor untuk team agents.
+Datatype Property
+role
+Peran agent dalam crew.
+Semua agents di CrewAI harus memiliki role.
+Datatype Property
+goal
+Objektif agent.
+Core attribute untuk agent behavior di CrewAI.
+Datatype Property
+backstory
+Konteks dan personality agent.
+Memberikan context untuk LLM behavior.
+Datatype Property
+process
+Urutan eksekusi crew (sequential/hierarchical).
+CrewAI mendukung berbagai process types.

@@ -1,0 +1,136 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+starter_template.py
+Pattern Type
+Basic Crew Template Pattern
+Deskripsi
+Pattern ini provides minimal boilerplate template untuk new CrewAI projects. Demonstrates basic crew structure dengan single agent dan task, configuration files (agents.yaml, tasks.yaml), dan project setup. Serves sebagai starting point untuk custom crew development.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+StarterCrew
+Crew
+agents, tasks, config
+assistant_agent
+Minimal crew template
+Assistant Agent
+Agent
+role, goal, backstory
+"AI Assistant", "Help users accomplish tasks", "You are a helpful assistant"
+Basic agent definition
+Main Task
+Task
+description, expected_output, agent
+"Complete user request", "Task completion summary"
+Simple task definition
+Agent Config
+YAML Config
+role, goal, backstory
+agents.yaml file
+YAML-based agent configuration
+Task Config
+YAML Config
+description, expected_output
+tasks.yaml file
+YAML-based task configuration
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+Minimal multi-agent system.
+Crew dengan 1 agent dan 1 task
+Simplest agento:MultiAgentSystem
+Agent
+agento:Agent
+Basic agent entity.
+Single assistant agent
+Standard agento:Agent
+Task
+agento:Task
+Basic task unit.
+Single completion task
+Standard agento:Task
+Configuration
+agento:Configuration
+External config files untuk agents/tasks.
+YAML configs untuk agent/task definitions
+Configuration pattern
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasAgent
+Crew → Agent
+Crew contains agent.
+StarterCrew → Assistant Agent
+Digunakan
+hasTask
+Crew → Task
+Crew contains task.
+StarterCrew → Main Task
+Digunakan
+usesConfiguration
+Crew → Configuration
+Crew loads from config files.
+StarterCrew → agents.yaml, tasks.yaml
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+role
+Agent
+string
+Agent role.
+"AI Assistant"
+goal
+Agent
+string
+Agent objective.
+"Help users accomplish tasks"
+configFormat
+Configuration
+string
+Config file format.
+"YAML"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+Configuration
+External configuration files.
+CrewAI supports YAML configs untuk agent dan task definitions.
+Object Property
+usesConfiguration
+Crew → Config files.
+Modern agentic systems separate code dari configuration untuk flexibility.
+Datatype Property
+configFormat
+Configuration file format.
+Config systems specify format (YAML, JSON, TOML).

@@ -1,0 +1,154 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+match_profile_to_positions.py
+Pattern Type
+Matching Algorithm Crew Pattern
+Deskripsi
+Pattern ini implements CV-to-job matching system dengan vector search capabilities. Crew includes profile analyzer untuk CV parsing, job matcher dengan vector embeddings untuk similarity matching, dan recommendation generator. Demonstrates AI-powered matching dengan semantic search.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+MatchingCrew
+Crew
+agents, tasks, tools
+profile_analyzer, job_matcher, recommender
+AI matching crew dengan vector search
+Profile Analyzer Agent
+Agent
+role, goal, tools
+"Profile Analyzer", "Extract skills and experience from CV", CVParserTool, EmbeddingTool
+Agent untuk CV analysis dan embedding generation
+Job Matcher Agent
+Agent
+role, goal, tools
+"Job Matcher", "Find best matching positions using vector similarity", VectorSearchTool
+Agent untuk similarity matching
+Recommendation Generator Agent
+Agent
+role, goal
+"Recommendation Generator", "Generate personalized job recommendations"
+Agent untuk final recommendations
+Profile Analysis Task
+Task
+description, expected_output, output_pydantic
+"Analyze candidate profile", "Structured profile with embeddings", CandidateProfile
+CV parsing and embedding task
+Matching Task
+Task
+description, expected_output, context
+"Find matching positions", "Ranked list of positions with similarity scores", profile_task
+Vector similarity search task
+Recommendation Task
+Task
+description, expected_output, output_pydantic, context
+"Generate recommendations", "Personalized job recommendations with explanations", JobRecommendations, matching_task
+Final recommendation generation
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+AI-powered matching system.
+Crew dengan vector search capabilities
+Standard agento:MultiAgentSystem
+Agent
+agento:Agent
+Matching specialist.
+Profile Analyzer, Job Matcher, Recommender
+Standard agento:Agent
+VectorSearch
+agento:SearchAlgorithm
+Semantic similarity search.
+Vector embeddings untuk job matching
+AI search pattern
+CandidateProfile
+agento:OutputSchema
+Structured profile dengan embeddings.
+Pydantic model dengan skills, experience, embeddings
+Profile representation
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+generates Embedding
+Agent → Vector
+Agent creates vector embeddings.
+Profile Analyzer → Profile embeddings
+Digunakan
+computesSimilarity
+Agent → Match
+Matcher calculates similarity scores.
+Job Matcher → Similarity scores
+Digunakan
+recommends
+Agent → Job
+Recommender suggests jobs.
+Recommendation Generator → Job recommendations
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+embedding
+CandidateProfile
+array
+Vector embedding representation.
+[0.23, 0.45, -0.12, ...]
+similarityScore
+JobMatch
+decimal
+Cosine similarity score 0-1.
+similarity=0.87
+matchReason
+JobRecommendation
+string
+Explanation for recommendation.
+"Strong match based on Python and ML skills"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+VectorSearch
+Semantic search algorithm.
+AI matching systems use vector embeddings dan similarity search untuk intelligent matching.
+Class
+CandidateProfile
+Profile dengan vector embeddings.
+Modern CV matching requires embedding representations untuk semantic similarity.
+Object Property
+generatesEmbedding
+Vector generation relationship.
+AI agents generate vector embeddings dari text content.
+Object Property
+computesSimilarity
+Similarity calculation.
+Matching agents compute similarity scores between embeddings.
+Datatype Property
+similarityScore
+Matching score metric.
+Vector similarity produces numerical scores (typically 0-1).

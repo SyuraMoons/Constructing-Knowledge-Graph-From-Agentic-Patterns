@@ -1,0 +1,145 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+crewai_langgraph.py
+Pattern Type
+Framework Integration Pattern
+Deskripsi
+Pattern ini demonstrates integration antara CrewAI dan LangGraph frameworks. Shows how CrewAI crews dapat di-embed dalam LangGraph StateGraph nodes untuk complex workflow orchestration. Combines CrewAI's agent collaboration dengan LangGraph's graph-based workflow control.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+IntegrationWorkflow
+StateGraph (LangGraph)
+nodes, edges, state
+crew_node, decision_node, output_node
+LangGraph workflow dengan CrewAI crews
+Research Crew
+Crew (CrewAI)
+agents, tasks
+researcher, analyst
+CrewAI crew sebagai graph node
+Analysis Crew
+Crew (CrewAI)
+agents, tasks
+data_analyst, strategist
+Another CrewAI crew dalam workflow
+Crew Execution Node
+Node (LangGraph)
+function, crew
+execute_crew, research_crew
+LangGraph node yang wraps CrewAI crew
+Decision Node
+Node (LangGraph)
+function, condition
+route_based_on_output
+Conditional routing node
+Workflow State
+State (LangGraph)
+current_crew, outputs, metadata
+"research", crew_outputs[], timestamps
+Shared state across crews
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kući)
+catatan Alignment
+StateGraph
+agento:Workflow
+LangGraph workflow orchestrator.
+StateGraph dengan crew nodes
+LangGraph workflow pattern
+Crew
+agento:System
+CrewAI multi-agent system.
+Crews embedded sebagai nodes
+CrewAI system pattern
+HybridNode
+agento:ProcessingStep
+Graph node yang executes crew.
+Node wrapping crew execution
+Integration pattern
+Integration
+agento:SystemIntegration
+Cross-framework integration.
+CrewAI embedded dalam LangGraph
+Framework composition
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+embedsCrew
+Node → Crew
+Graph node wraps crew.
+Crew Execution Node → Research Crew
+Digunakan
+routesTo
+Node → Node
+Conditional workflow routing.
+Decision Node → Next crew node
+Digunakan
+sharesState
+Crew → State
+Crews share LangGraph state.
+All crews access workflow state
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+frameworkType
+Crew
+string
+Source framework identifier.
+framework="CrewAI"
+graphType
+StateGraph
+string
+Graph framework identifier.
+graph_type="LangGraph"
+integrationMode
+Integration
+string
+How frameworks are integrated.
+mode="embedded"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+HybridNode
+Graph node containing multi-agent crew.
+Framework integration requires hybrid entities yang combine graph nodes dengan crews.
+Class
+Integration
+Cross-framework integration pattern.
+Multi-framework systems need integration abstraction untuk composition.
+Object Property
+embedsCrew
+Node embeds crew.
+Integration pattern embeds crews sebagai executable nodes dalam workflows.
+Datatype Property
+integrationMode
+Integration strategy.
+Frameworks dapat integrate via embedding, API calls, atau other modes.

@@ -1,0 +1,139 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+email_auto_responder_flow.py
+Pattern Type
+Event-Driven Flow Pattern
+Deskripsi
+Pattern ini mengimplementasikan automated email response system menggunakan CrewAI Flow. System memonitor inbox, classify emails, generate appropriate responses, dan membutuhkan human approval sebelum sending. Menggunakan event-driven architecture dengan conditional routing.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+EmailResponderFlow
+Flow
+state, monitor_method, classify_method, respond_method
+email_monitor, classifier, responder
+Event-driven flow untuk email automation
+Email Classifier Agent
+Agent
+role, goal, backstory
+"Email Classifier", "Categorize incoming emails by priority and type"
+Agent untuk klasifikasi email
+Response Generator Agent
+Agent
+role, goal, backstory
+"Response Generator", "Generate appropriate email responses"
+Agent untuk generate response drafts
+Human Reviewer Agent
+Agent
+role, goal, backstory, human_input
+"Human Reviewer", "Review and approve responses", human_input=True
+Agent dengan human-in-the-loop capability
+Email Monitoring Task
+Task
+description, expected_output
+"Monitor inbox for new emails", "List of unread emails"
+Continuous monitoring task
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Flow
+agento:Workflow
+Event-driven orchestrator dengan monitoring.
+Flow dengan @listen untuk email events
+Workflow dengan event triggers
+Agent
+agento:Agent
+Autonomous entity dalam email processing.
+Email Classifier, Response Generator, Human Reviewer
+Standard agento:Agent
+HumanInputAgent
+agento:Agent + prov:Person
+Agent yang membutuhkan human intervention.
+Human Reviewer dengan human_input=True
+Hybrid agent-human entity
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+requiresApproval
+Agent → Agent
+Response membutuhkan human approval.
+Response Generator → Human Reviewer
+Digunakan
+classifiesAs
+Task → Category
+Email classification results.
+Classifier task outputs category
+Digunakan
+monitorsSource
+Flow → DataSource
+Flow monitors external data source.
+Flow monitors email inbox
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+emailCategory
+Email
+string
+Kategori hasil klasifikasi.
+"urgent", "routine", "spam"
+requiresHumanInput
+Agent
+boolean
+Flag untuk human intervention requirement.
+human_input=True
+monitoringInterval
+Flow
+integer
+Interval untuk check new emails (seconds).
+interval=60
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+HumanInputAgent
+Agent yang membutuhkan human intervention.
+CrewAI mendukung human_input mode untuk approval workflows.
+Object Property
+requiresApproval
+Response → Human relationship.
+Human-in-the-loop pattern umum untuk sensitive operations seperti email sending.
+Object Property
+monitorsSource
+Flow → External source.
+Event-driven flows monitor external data sources untuk triggering workflows.
+Datatype Property
+emailCategory
+Classification category untuk emails.
+Email classification adalah core functionality pattern ini.
+Datatype Property
+monitoringInterval
+Polling interval untuk monitoring.
+Continuous monitoring requires interval configuration.

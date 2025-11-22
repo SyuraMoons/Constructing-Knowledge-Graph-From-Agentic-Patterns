@@ -1,0 +1,140 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+game_builder.py
+Pattern Type
+Code Generation Crew Pattern
+Deskripsi
+Pattern ini implements game development crew yang designs dan builds Python games. Crew includes game designer untuk game mechanics, developer untuk implementation, dan QA tester untuk testing. Demonstrates code generation dan iterative development dengan testing feedback loop.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+GameBuilderCrew
+Crew
+agents, tasks, process
+designer, developer, qa_tester
+Iterative game development crew
+Game Designer Agent
+Agent
+role, goal
+"Game Designer", "Design engaging game mechanics and user experience"
+Agent untuk game design
+Python Developer Agent
+Agent
+role, goal, tools
+"Python Developer", "Implement game code", CodeExecutionTool
+Agent untuk coding
+QA Tester Agent
+Agent
+role, goal, tools
+"QA Tester", "Test game functionality and report bugs", PythonREPL
+Agent untuk testing dan validation
+Design Task
+Task
+description, expected_output
+"Design game concept", "Game design document with mechanics"
+Game design phase
+Implementation Task
+Task
+description, expected_output, context
+"Implement Python game code", "Working Python game code", design_task
+Coding phase dengan design context
+Testing Task
+Task
+description, expected_output, context
+"Test game and provide feedback", "Bug report and improvement suggestions", implementation_task
+QA testing phase
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+Code generation and testing system.
+Crew dengan designer, developer, tester
+Standard agento:MultiAgentSystem
+Agent
+agento:Agent
+Development specialist.
+Game Designer, Python Developer, QA Tester
+Standard agento:Agent
+FeedbackLoop
+agento:IterativePattern
+Testing feedback untuk improvements.
+QA provides feedback to developer
+Iterative refinement pattern
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+implements
+Agent → Design
+Developer implements design specification.
+Python Developer → Game Design Document
+Digunakan
+tests
+Agent → Code
+Tester validates implementation.
+QA Tester → Python game code
+Digunakan
+providesFeedback
+Agent → Agent
+QA provides feedback ke developer.
+QA Tester → Python Developer
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+gameType
+GameDesign
+string
+Type of game being built.
+"Puzzle Game", "Platformer"
+bugCount
+TestReport
+integer
+Number of bugs found.
+bug_count=3
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+FeedbackLoop
+Iterative testing and refinement pattern.
+Development crews dengan QA agents create feedback loops untuk iterative improvements.
+Object Property
+implements
+Design → Implementation relationship.
+Developer agents implement specifications dari designer agents.
+Object Property
+tests
+Testing relationship.
+QA agents test outputs dari developer agents.
+Object Property
+providesFeedback
+Feedback mechanism.
+QA agents provide structured feedback untuk iterative refinement.

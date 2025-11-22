@@ -1,0 +1,136 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+job_posting.py
+Pattern Type
+Content Generation Crew Pattern
+Deskripsi
+Pattern ini automates job description creation crew. Crew includes HR specialist untuk requirements, copywriter untuk description, dan SEO specialist untuk optimization. Generates complete, optimized job postings dari basic role information.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+JobPostingCrew
+Crew
+agents, tasks, process
+hr_specialist, copywriter, seo_specialist
+Sequential job posting generation
+HR Specialist Agent
+Agent
+role, goal
+"HR Specialist", "Define job requirements and qualifications"
+Agent untuk requirements definition
+Copywriter Agent
+Agent
+role, goal
+"Copywriter", "Write compelling job descriptions"
+Agent untuk description writing
+SEO Specialist Agent
+Agent
+role, goal, tools
+"SEO Specialist", "Optimize job posting for search visibility", KeywordResearchTool
+Agent untuk SEO optimization
+Requirements Task
+Task
+description, expected_output
+"Define job requirements", "Detailed requirements and qualifications"
+Requirements gathering
+Description Task
+Task
+description, expected_output, context
+"Write job description", "Engaging job description", requirements_task
+Description writing
+Optimization Task
+Task
+description, expected_output, output_pydantic, context
+"Optimize posting for SEO", "Optimized job posting with keywords", JobPosting, description_task
+SEO optimization task
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+Job posting generation system.
+Crew dengan HR, copywriting, SEO agents
+Standard agento:MultiAgentSystem
+Agent
+agento:Agent
+Job posting specialist.
+HR Specialist, Copywriter, SEO Specialist
+Standard agento:Agent
+JobPosting
+schema:JobPosting
+Structured job posting output.
+Pydantic model dengan title, description, keywords
+Extends schema:JobPosting
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+defines
+Agent → Requirements
+HR defines requirements.
+HR Specialist → Job requirements
+Digunakan
+optimizes
+Agent → Content
+SEO optimizes content.
+SEO Specialist → Job description
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+title
+JobPosting
+string
+Job title.
+"Senior Software Engineer"
+keywords
+JobPosting
+array
+SEO keywords.
+["Python", "AI", "Machine Learning"]
+salaryRange
+JobPosting
+string
+Salary information.
+"$120k-$150k"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+JobPosting
+Structured job posting entity.
+Job postings have standard schema (title, description, requirements, salary, keywords).
+Object Property
+optimizes
+Content optimization relationship.
+SEO agents optimize content untuk better visibility.
+Datatype Property
+keywords
+SEO keyword collection.
+Job postings require keyword arrays untuk search optimization.

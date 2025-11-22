@@ -1,0 +1,134 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+content_creator_flow.py
+Pattern Type
+Flow Orchestration Pattern
+Deskripsi
+Pattern ini menggunakan CrewAI Flow untuk orkestra multi-crew content generation system. Flow mengkoordinasikan beberapa crew untuk menghasilkan blog posts, LinkedIn content, dan research reports secara parallel dengan state management antar crew.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+ContentCreatorFlow
+Flow
+state, crews, listen_methods
+blog_crew, linkedin_crew, research_crew
+Flow orchestrator untuk multiple crews
+Blog Crew
+Crew
+agents, tasks
+blog_researcher, blog_writer
+Crew khusus untuk blog generation
+LinkedIn Crew
+Crew
+agents, tasks
+linkedin_strategist, linkedin_creator
+Crew untuk LinkedIn content
+Research Crew
+Crew
+agents, tasks
+research_analyst, report_writer
+Crew untuk research reports
+Flow State
+State
+current_topic, outputs, metadata
+"AI trends", generated_blogs[], timestamps
+Shared state object antar crews
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Flow
+agento:Workflow
+Orchestrator untuk multiple crews dengan state management.
+Flow dengan @listen decorators dan state
+Extends agento:Workflow dengan flow semantics
+Crew
+agento:System
+Multi-agent system dalam flow.
+blog_crew, linkedin_crew, research_crew
+Standard agento:MultiAgentSystem
+State
+agento:WorkflowState
+Shared state object untuk flow coordination.
+ContentCreatorState dengan attributes
+New class untuk flow state management
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+hasCrew
+Flow → Crew
+Flow mengorkestra multiple crews.
+Flow contains blog_crew, linkedin_crew, research_crew
+Digunakan
+sharesState
+Crew → State
+Crews berbagi state object.
+All crews access ContentCreatorState
+Digunakan
+triggersNext
+Crew → Crew
+Output crew triggers crew berikutnya.
+@listen decorator defines flow transitions
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+topicName
+State
+string
+Topik konten yang akan digenerate.
+"AI trends in 2024"
+outputCollection
+State
+array
+Collection hasil dari multiple crews.
+generated_blogs[], linkedin_posts[]
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+Flow
+Orchestrator untuk multi-crew workflows.
+CrewAI Flows mengkoordinasikan multiple crews dengan state management dan conditional routing.
+Class
+State
+Shared state object dalam flow.
+Flows membutuhkan state object untuk koordinasi antar crews.
+Object Property
+hasCrew
+Flow → Crew relationship.
+Flows mengorkestra multiple crews secara parallel atau sequential.
+Object Property
+sharesState
+Crew → State relationship.
+Crews dalam flow berbagi state object untuk koordinasi.
+Object Property
+triggersNext
+Crew → Crew workflow transition.
+@listen decorator mendefinisikan flow transitions berdasarkan outputs.

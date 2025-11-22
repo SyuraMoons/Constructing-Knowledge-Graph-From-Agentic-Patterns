@@ -1,0 +1,121 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+instagram_post.py
+Pattern Type
+Content Generation Crew Pattern
+Deskripsi
+Pattern ini menggunakan crew untuk generate Instagram social media content. Crew terdiri dari content strategist agent untuk planning dan creative designer agent untuk visual content creation. Uses image generation tools dan social media best practices.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+InstagramCrew
+Crew
+agents, tasks, tools
+strategist, designer
+Simple crew untuk social media content
+Content Strategist Agent
+Agent
+role, goal, tools
+"Content Strategist", "Plan engaging Instagram content", TrendAnalysisTool
+Agent untuk content planning
+Creative Designer Agent
+Agent
+role, goal, tools
+"Creative Designer", "Design visually appealing posts", ImageGenerationTool
+Agent untuk visual creation
+Content Planning Task
+Task
+description, expected_output
+"Create content calendar", "30-day Instagram content plan"
+Strategic planning task
+Post Creation Task
+Task
+description, expected_output, output_pydantic
+"Generate Instagram post", "Post with caption and hashtags", InstagramPost
+Content generation task
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+Social media content generation system.
+Crew dengan strategist dan designer agents
+Standard agento:MultiAgentSystem
+Agent
+agento:Agent
+Content creation specialist.
+Content Strategist, Creative Designer
+Standard agento:Agent
+Tool
+agento:Tool
+External capability untuk content creation.
+TrendAnalysisTool, ImageGenerationTool
+Standard agento:Tool
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+usesTool
+Agent → Tool
+Agent uses specialized tools.
+Designer uses ImageGenerationTool
+Digunakan
+produces
+Agent → Content
+Agent generates content output.
+Designer → InstagramPost
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+caption
+InstagramPost
+string
+Post caption text.
+"Check out our latest AI insights!"
+hashtags
+InstagramPost
+array
+List of hashtags.
+["#AI", "#TechTrends"]
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+InstagramPost
+Structured social media content.
+Social media content has specific structure (caption, hashtags, image).
+Object Property
+produces
+Agent → Content creation.
+Content generation agents produce structured output entities.
+Datatype Property
+hashtags
+Social media hashtag collection.
+Instagram content requires hashtag array untuk discoverability.

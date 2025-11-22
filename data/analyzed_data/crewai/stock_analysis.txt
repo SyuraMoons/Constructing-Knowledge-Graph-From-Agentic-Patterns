@@ -1,0 +1,145 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+stock_analysis.py
+Pattern Type
+Financial Analysis Crew Pattern
+Deskripsi
+Pattern ini implements financial analysis crew untuk stock research dengan SEC data integration. Crew includes data analyst untuk financial metrics, market researcher untuk trends, dan investment advisor untuk recommendations. Uses external tools untuk SEC filings dan market data.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+StockAnalysisCrew
+Crew
+agents, tasks, tools
+data_analyst, market_researcher, advisor
+Financial analysis crew dengan external data
+Data Analyst Agent
+Agent
+role, goal, tools
+"Financial Data Analyst", "Analyze SEC filings and financial statements", SECTool, YahooFinanceTool
+Agent untuk financial data analysis
+Market Researcher Agent
+Agent
+role, goal, tools
+"Market Researcher", "Research market trends and competitive landscape", SerperDevTool
+Agent untuk market intelligence
+Investment Advisor Agent
+Agent
+role, goal
+"Investment Advisor", "Provide investment recommendations based on analysis"
+Agent untuk advisory output
+Financial Analysis Task
+Task
+description, expected_output
+"Analyze financial statements", "Comprehensive financial metrics report"
+Quantitative analysis task
+Market Research Task
+Task
+description, expected_output
+"Research market conditions", "Market trends and competitor analysis"
+Qualitative research task
+Recommendation Task
+Task
+description, expected_output, output_pydantic, context
+"Generate investment recommendation", "Buy/Hold/Sell recommendation with rationale", InvestmentAdvice, analysis_task, research_task
+Advisory task dengan multiple context inputs
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+Financial analysis multi-agent system.
+Crew dengan analyst, researcher, advisor
+Standard agento:MultiAgentSystem
+Agent
+agento:Agent
+Financial specialist.
+Data Analyst, Market Researcher, Investment Advisor
+Standard agento:Agent
+ExternalDataTool
+agento:Tool
+Tool untuk accessing external financial data.
+SECTool, YahooFinanceTool
+Tool dengan API integration
+InvestmentAdvice
+agento:OutputSchema
+Structured investment recommendation.
+Pydantic model dengan recommendation, rationale, risk_level
+Advisory output schema
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+accessesData
+Agent → DataSource
+Agent retrieves external data.
+Data Analyst → SEC filings via SECTool
+Digunakan
+synthesizes
+Agent → Analysis
+Advisor combines multiple analyses.
+Investment Advisor synthesizes financial + market analysis
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+recommendation
+InvestmentAdvice
+string
+Buy/Hold/Sell recommendation.
+recommendation="Buy"
+riskLevel
+InvestmentAdvice
+string
+Risk assessment.
+risk_level="Moderate"
+targetPrice
+InvestmentAdvice
+decimal
+Price target.
+target_price=150.00
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+ExternalDataTool
+Tool dengan external API integration.
+Financial analysis requires access ke external data sources (SEC, market data APIs).
+Class
+InvestmentAdvice
+Structured advisory output.
+Investment recommendations memiliki specific structure (recommendation, rationale, risk assessment).
+Object Property
+accessesData
+Agent → External data source.
+Financial agents need capability untuk retrieve data dari external sources.
+Object Property
+synthesizes
+Combining multiple analyses.
+Advisory agents synthesize outputs dari multiple specialist agents.

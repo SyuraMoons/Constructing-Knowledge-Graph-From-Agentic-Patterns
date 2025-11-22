@@ -1,0 +1,145 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+recruitment.py
+Pattern Type
+HR Automation Crew Pattern
+Deskripsi
+Pattern ini implements automated recruitment crew untuk candidate sourcing dan evaluation. Crew includes sourcing specialist untuk finding candidates, resume analyzer untuk screening, dan interview coordinator untuk scheduling. Demonstrates HR automation dengan CV parsing dan candidate ranking.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+RecruitmentCrew
+Crew
+agents, tasks
+sourcing_specialist, resume_analyzer, interview_coordinator
+HR automation crew
+Sourcing Specialist Agent
+Agent
+role, goal, tools
+"Sourcing Specialist", "Find qualified candidates", LinkedInScraperTool, JobBoardAPI
+Agent untuk candidate sourcing
+Resume Analyzer Agent
+Agent
+role, goal, tools
+"Resume Analyzer", "Screen and rank candidates", CVParserTool
+Agent untuk CV analysis
+Interview Coordinator Agent
+Agent
+role, goal, tools
+"Interview Coordinator", "Schedule interviews with qualified candidates", CalendarTool
+Agent untuk interview scheduling
+Sourcing Task
+Task
+description, expected_output
+"Source candidates for position", "List of 20+ qualified candidates"
+Candidate finding task
+Screening Task
+Task
+description, expected_output, output_pydantic, context
+"Analyze and rank candidates", "Ranked candidate list with scores", CandidateRanking, sourcing_task
+CV screening task
+Scheduling Task
+Task
+description, expected_output, context
+"Schedule interviews with top candidates", "Interview calendar with confirmed slots", screening_task
+Coordination task
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+HR recruitment automation system.
+Crew dengan sourcing, analysis, coordination
+Standard agento:MultiAgentSystem
+Agent
+agento:Agent
+Recruitment specialist.
+Sourcing Specialist, Resume Analyzer, Interview Coordinator
+Standard agento:Agent
+CandidateRanking
+agento:OutputSchema
+Structured candidate ranking output.
+Pydantic model dengan candidates[], scores[], rationale
+Ranking/scoring schema
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+sources
+Agent → Candidate
+Sourcing agent finds candidates.
+Sourcing Specialist → Candidate pool
+Digunakan
+ranks
+Agent → Candidate
+Analyzer assigns ranking to candidates.
+Resume Analyzer → Ranked candidates
+Digunakan
+schedules
+Agent → Interview
+Coordinator creates interview schedule.
+Interview Coordinator → Interview slots
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+candidateScore
+CandidateRanking
+integer
+Qualification score 0-100.
+score=85
+matchPercentage
+CandidateRanking
+decimal
+Job description match percentage.
+match=92.5
+interviewDate
+Interview
+datetime
+Scheduled interview datetime.
+"2024-12-15T10:00:00"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+CandidateRanking
+Structured ranking system.
+Recruitment requires candidate ranking dengan scores dan match percentages.
+Object Property
+sources
+Candidate sourcing relationship.
+Sourcing agents find dan aggregate candidates dari multiple sources.
+Object Property
+ranks
+Candidate evaluation relationship.
+Analysis agents assign scores/rankings ke candidates.
+Datatype Property
+matchPercentage
+Job match metric.
+Candidate-to-job matching uses percentage-based scoring.

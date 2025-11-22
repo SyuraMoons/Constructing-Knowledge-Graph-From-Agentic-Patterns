@@ -1,0 +1,131 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+landing_page_generator.py
+Pattern Type
+Web Design Crew Pattern
+Deskripsi
+Pattern ini implements landing page generation crew dengan UX researcher, copywriter, dan web designer agents. Crew creates complete landing pages from product concept termasuk hero section, features, testimonials, dan CTAs. Demonstrates multi-specialist collaboration untuk complex output.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+LandingPageCrew
+Crew
+agents, tasks, process
+ux_researcher, copywriter, web_designer
+Sequential crew untuk web design
+UX Researcher Agent
+Agent
+role, goal
+"UX Researcher", "Analyze user needs and design optimal user experience"
+Agent untuk user research
+Copywriter Agent
+Agent
+role, goal
+"Copywriter", "Create compelling landing page copy"
+Agent untuk content writing
+Web Designer Agent
+Agent
+role, goal, tools
+"Web Designer", "Design complete landing page layout", HTMLGeneratorTool
+Agent untuk page assembly
+Research Task
+Task
+description, expected_output
+"Research target audience", "User persona and pain points analysis"
+UX research task
+Copy Creation Task
+Task
+description, expected_output, context
+"Write landing page copy", "Hero, features, CTAs", research_task
+Copywriting dengan research context
+Design Task
+Task
+description, expected_output, output_pydantic, context
+"Create landing page", "Complete HTML landing page", LandingPage, copy_task
+Final assembly task
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Crew
+agento:System
+Multi-specialist web design system.
+Crew dengan researcher, copywriter, designer
+Standard agento:MultiAgentSystem
+Agent
+agento:Agent
+Web design specialist.
+UX Researcher, Copywriter, Web Designer
+Standard agento:Agent
+LandingPage
+schema:WebPage
+Structured landing page output.
+Pydantic model dengan sections
+Extends schema:WebPage
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+informs
+Task → Task
+Research informs copywriting.
+research_task → copy_creation_task via context
+Digunakan
+usesContext
+Task → Task
+Task uses output dari previous task.
+design_task uses copy_creation_task context
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+heroSection
+LandingPage
+string
+Main hero section content.
+"Transform Your Business with AI"
+ctaText
+LandingPage
+string
+Call-to-action text.
+"Get Started Today"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+LandingPage
+Structured web page entity.
+Landing pages have specific structure (hero, features, testimonials, CTA sections).
+Object Property
+informs
+Knowledge transfer antar tasks.
+Research output informs downstream creative tasks.
+Object Property
+usesContext
+Task context dependency.
+CrewAI tasks can reference previous task outputs via context parameter.

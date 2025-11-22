@@ -1,0 +1,149 @@
+Identitas Pattern
+Atribut
+Nilai
+Framework
+CrewAI
+File name
+lead_score_flow.py
+Pattern Type
+Decision Flow Pattern
+Deskripsi
+Pattern ini mengimplementasikan lead qualification system dengan scoring mechanism dan human review. Flow menganalisis lead data, assign scores berdasarkan multiple criteria, dan route high-value leads untuk human review sebelum passing ke sales team.
+
+
+Analisis Struktur Pattern
+Entitas
+Framework Class
+Atribut
+Contoh nilai
+Catatan
+LeadScoreFlow
+Flow
+state, score_method, review_method, route_method
+lead_scorer, human_reviewer, router
+Decision-making flow untuk lead qualification
+Lead Analyzer Agent
+Agent
+role, goal, tools
+"Lead Analyzer", "Analyze lead data and extract insights", CRMTool
+Agent untuk analisis lead dengan CRM integration
+Scoring Agent
+Agent
+role, goal
+"Scoring Agent", "Assign qualification scores to leads"
+Agent untuk calculate lead scores
+Human Reviewer Agent
+Agent
+role, goal, human_input
+"Sales Manager", "Review high-value leads", human_input=True
+Human agent untuk review high-priority leads
+Lead Routing Agent
+Agent
+role, goal
+"Lead Router", "Route qualified leads to appropriate sales teams"
+Agent untuk routing decisions
+Scoring Task
+Task
+description, expected_output, output_pydantic
+"Calculate lead score", "Lead with score 0-100", LeadScore
+Task dengan structured scoring output
+
+kelas (classes)
+class
+SuperClass
+Definisi
+Bukti (path kunci)
+catatan Alignment
+Flow
+agento:Workflow
+Decision flow dengan conditional routing.
+Flow dengan score-based routing logic
+Workflow dengan decision points
+Agent
+agento:Agent
+Autonomous scoring and routing entity.
+Lead Analyzer, Scoring Agent, Lead Router
+Standard agento:Agent
+DecisionPoint
+agento:ControlFlow
+Conditional branch point dalam flow.
+Router decides based on lead score
+New class untuk flow control
+LeadScore
+agento:OutputSchema
+Structured score output.
+Pydantic model dengan score, criteria, recommendation
+Output validation schema
+
+
+Properti relasional
+Property
+Domain ⇒ range
+Definisi
+Bukti
+Status
+assignsScore
+Agent → Lead
+Agent assigns score to lead entity.
+Scoring Agent → Lead with score value
+Digunakan
+routesTo
+DecisionPoint → Team
+Routing decision based on criteria.
+High score → Sales Team A, Low score → Nurture Team
+Digunakan
+requiresReview
+Lead → Agent
+High-value leads require human review.
+Lead with score > 80 → Human Reviewer
+Digunakan
+
+
+Properti atributif
+Property
+Domain
+xsd:type
+definisi
+bukti
+leadScore
+Lead
+integer
+Numerical score 0-100 untuk lead quality.
+score=85
+scoreThreshold
+DecisionPoint
+integer
+Threshold untuk routing decisions.
+high_value_threshold=80
+routingCriteria
+DecisionPoint
+string
+Criteria untuk routing logic.
+"score > 80 AND budget > 10000"
+
+
+Penyesuaian AgentO
+Jenis
+Nama
+Deskripsi
+Justifikasi
+Class
+DecisionPoint
+Conditional branch dalam flow.
+Flows dengan conditional routing membutuhkan decision points untuk branching logic.
+Class
+LeadScore
+Structured scoring output.
+Lead scoring menggunakan Pydantic model untuk validation (score, criteria fields).
+Object Property
+assignsScore
+Agent → Entity scoring relationship.
+Scoring agents assign numerical values ke entities untuk decision-making.
+Object Property
+routesTo
+Routing decision ke teams.
+Decision points route entities ke different destinations berdasarkan criteria.
+Datatype Property
+scoreThreshold
+Threshold untuk decisions.
+Conditional routing requires threshold values untuk branching logic.
