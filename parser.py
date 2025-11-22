@@ -148,6 +148,8 @@ def process_folder(input_root, output_root):
 # Main
 # -------------------------
 if __name__ == "__main__":
-    input_root = r"D:\Projects\Extractor---web-semantik-main\data\analyzed_data"
-    output_root = r"D:\Projects\Extractor---web-semantik-main\data\json_data"
+    import os
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    input_root = os.path.join(script_dir, "data", "analyzed_data")
+    output_root = os.path.join(script_dir, "data", "json_data")
     process_folder(input_root, output_root)
