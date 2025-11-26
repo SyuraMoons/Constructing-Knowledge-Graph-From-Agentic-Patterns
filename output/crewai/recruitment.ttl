@@ -1,0 +1,69 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/interview%20coordinator> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/recruitmentcrew> a agento:Agent;
+  agento:vendorClass "Crew" .
+
+<http://www.ex.org/Agent/resume%20analyzer> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/scheduling%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/screening%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/sourcing%20specialist> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/sourcing%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/DatatypeProperty/matchPercentage> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Candidate-to-job matching uses percentage-based scoring.";
+  agento:name "matchPercentage";
+  agento:range xsd:string .
+
+<http://www.ex.org/NewClass/agento%3ACandidateRanking> a agento:NewClass;
+  agento:definition "Structured ranking system.";
+  agento:name "agento:CandidateRanking";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/ranks> a agento:OntologyRelationalProperty;
+  agento:definition "Analyzer assigns ranking to candidates.";
+  agento:domain agento:Agent;
+  agento:name "ranks";
+  agento:range agento:Candidate;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/schedules> a agento:OntologyRelationalProperty;
+  agento:definition "Coordinator creates interview schedule.";
+  agento:domain agento:Agent;
+  agento:name "schedules";
+  agento:range agento:Interview;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/sources> a agento:OntologyRelationalProperty;
+  agento:definition "Sourcing agent finds candidates.";
+  agento:domain agento:Agent;
+  agento:name "sources";
+  agento:range agento:Candidate;
+  agento:statusInPattern "digunakan" .
+

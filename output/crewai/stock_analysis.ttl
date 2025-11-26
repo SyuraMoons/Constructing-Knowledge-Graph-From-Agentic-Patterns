@@ -1,0 +1,61 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/data%20analyst> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/financial%20analysis%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/investment%20advisor> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/market%20research%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/market%20researcher> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/recommendation%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/stockanalysiscrew> a agento:Agent;
+  agento:vendorClass "Crew" .
+
+<http://www.ex.org/NewClass/agento%3AExternalDataTool> a agento:NewClass;
+  agento:definition "Tool dengan external API integration.";
+  agento:name "agento:ExternalDataTool";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/NewClass/agento%3AInvestmentAdvice> a agento:NewClass;
+  agento:definition "Structured advisory output.";
+  agento:name "agento:InvestmentAdvice";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/accessesData> a agento:OntologyRelationalProperty;
+  agento:definition "Agent retrieves external data.";
+  agento:domain agento:Agent;
+  agento:name "accessesData";
+  agento:range agento:DataSource;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/synthesizes> a agento:OntologyRelationalProperty;
+  agento:definition "Advisor combines multiple analyses.";
+  agento:domain agento:Agent;
+  agento:name "synthesizes";
+  agento:range agento:Analysis;
+  agento:statusInPattern "digunakan" .
+

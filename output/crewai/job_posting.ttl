@@ -1,0 +1,62 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/copywriter> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/description%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/hr%20specialist> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/jobpostingcrew> a agento:Agent;
+  agento:vendorClass "Crew" .
+
+<http://www.ex.org/Agent/optimization%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/requirements%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/seo%20specialist> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/DatatypeProperty/keywords> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Job postings require keyword arrays untuk search optimization.";
+  agento:name "keywords";
+  agento:range xsd:string .
+
+<http://www.ex.org/NewClass/agento%3AJobPosting> a agento:NewClass;
+  agento:definition "Structured job posting entity.";
+  agento:name "agento:JobPosting";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/defines> a agento:OntologyRelationalProperty;
+  agento:definition "HR defines requirements.";
+  agento:domain agento:Agent;
+  agento:name "defines";
+  agento:range agento:Requirements;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/optimizes> a agento:OntologyRelationalProperty;
+  agento:definition "SEO optimizes content.";
+  agento:domain agento:Agent;
+  agento:name "optimizes";
+  agento:range agento:Content;
+  agento:statusInPattern "digunakan" .
+

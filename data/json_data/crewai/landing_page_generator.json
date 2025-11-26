@@ -1,0 +1,110 @@
+{
+    "framework": "CrewAI",
+    "file_name": "landing_page_generator.py",
+    "pattern_type": "WebDesignCrewPattern",
+    "description": "Pattern ini implements landing page generation crew dengan UX researcher, copywriter, dan web designer agents. Crew creates complete landing pages from product concept termasuk hero section, features, testimonials, dan CTAs. Demonstrates multi-specialist collaboration untuk complex output.",
+    "entities": [
+        {
+            "id": "landingpagecrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "ux_researcher",
+                "tasks": "copywriter",
+                "process": "web_designer"
+            },
+            "relations": {}
+        },
+        {
+            "id": "ux researcher",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "UX Researcher",
+                "goal": "Analyze user needs and design optimal user experience"
+            },
+            "relations": {}
+        },
+        {
+            "id": "copywriter",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Copywriter",
+                "goal": "Create compelling landing page copy"
+            },
+            "relations": {}
+        },
+        {
+            "id": "web designer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Web Designer",
+                "goal": "Design complete landing page layout",
+                "tools": "HTMLGeneratorTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "research task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Research target audience",
+                "expected_output": "User persona and pain points analysis"
+            },
+            "relations": {}
+        },
+        {
+            "id": "copy creation task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Write landing page copy",
+                "expected_output": "Hero",
+                "context": "features"
+            },
+            "relations": {}
+        },
+        {
+            "id": "design task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Create landing page",
+                "expected_output": "Complete HTML landing page",
+                "output_pydantic": "LandingPage",
+                "context": "copy_task"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "informs",
+            "domain": "agento:Task",
+            "range": "agento:Task",
+            "definition": "Research informs copywriting.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "usesContext",
+            "domain": "agento:Task",
+            "range": "agento:Task",
+            "definition": "Task uses output dari previous task.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:LandingPage",
+                "definition": "Structured web page entity.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [],
+        "optionalProperties": []
+    }
+}

@@ -1,0 +1,117 @@
+{
+    "framework": "CrewAI",
+    "file_name": "job_posting.py",
+    "pattern_type": "ContentGenerationCrewPattern",
+    "description": "Pattern ini automates job description creation crew. Crew includes HR specialist untuk requirements, copywriter untuk description, dan SEO specialist untuk optimization. Generates complete, optimized job postings dari basic role information.",
+    "entities": [
+        {
+            "id": "jobpostingcrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "hr_specialist",
+                "tasks": "copywriter",
+                "process": "seo_specialist"
+            },
+            "relations": {}
+        },
+        {
+            "id": "hr specialist",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "HR Specialist",
+                "goal": "Define job requirements and qualifications"
+            },
+            "relations": {}
+        },
+        {
+            "id": "copywriter",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Copywriter",
+                "goal": "Write compelling job descriptions"
+            },
+            "relations": {}
+        },
+        {
+            "id": "seo specialist",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "SEO Specialist",
+                "goal": "Optimize job posting for search visibility",
+                "tools": "KeywordResearchTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "requirements task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Define job requirements",
+                "expected_output": "Detailed requirements and qualifications"
+            },
+            "relations": {}
+        },
+        {
+            "id": "description task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Write job description",
+                "expected_output": "Engaging job description",
+                "context": "requirements_task"
+            },
+            "relations": {}
+        },
+        {
+            "id": "optimization task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Optimize posting for SEO",
+                "expected_output": "Optimized job posting with keywords",
+                "output_pydantic": "JobPosting",
+                "context": "description_task"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "defines",
+            "domain": "agento:Agent",
+            "range": "agento:Requirements",
+            "definition": "HR defines requirements.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "optimizes",
+            "domain": "agento:Agent",
+            "range": "agento:Content",
+            "definition": "SEO optimizes content.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:JobPosting",
+                "definition": "Structured job posting entity.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "keywords",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Job postings require keyword arrays untuk search optimization."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

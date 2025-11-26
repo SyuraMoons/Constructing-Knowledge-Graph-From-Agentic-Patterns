@@ -1,0 +1,201 @@
+{
+    "framework": "CrewAI",
+    "file_name": "marketing_strategy.py",
+    "pattern_type": "Multi-AgentCrewPattern",
+    "description": "Pattern ini mendefinisikan crew marketing dengan 4 agent specialist: Lead Market Analyst untuk riset, Chief Marketing Strategist untuk strategi, Creative Content Creator untuk konten, dan Chief Creative Director untuk oversight. Crew mengeksekusi 5 task sequential: research, project understanding, strategy formulation, campaign ideation, dan copy creation. Menggunakan SerperDev dan web scraping tools untuk riset.",
+    "entities": [
+        {
+            "id": "marketingpostscrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "Lead Market Analyst",
+                "tasks": "Chief Marketing Strategist",
+                "process": "Creative Content Creator"
+            },
+            "relations": {}
+        },
+        {
+            "id": "lead market analyst",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Lead Market Analyst",
+                "goal": "Conduct analysis of products and competitors",
+                "backstory": "SerperDevTool",
+                "tools": "ScrapeWebsiteTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "chief marketing strategist",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Chief Marketing Strategist",
+                "goal": "Synthesize insights to formulate strategies",
+                "backstory": "SerperDevTool",
+                "tools": "ScrapeWebsiteTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "creative content creator",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Creative Content Creator",
+                "goal": "Develop compelling content",
+                "backstory": "Top-tier creative content creator"
+            },
+            "relations": {}
+        },
+        {
+            "id": "chief creative director",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Chief Creative Director",
+                "goal": "Oversee team work",
+                "backstory": "Chief Content Officer at digital agency"
+            },
+            "relations": {}
+        },
+        {
+            "id": "research task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Conduct thorough research about customer",
+                "expected_output": "Complete report on customer and competitors"
+            },
+            "relations": {}
+        },
+        {
+            "id": "marketing strategy task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Formulate comprehensive strategy",
+                "expected_output": "Strategy document with goals",
+                "agent": "KPIs",
+                "output_pydantic": "MarketStrategy"
+            },
+            "relations": {}
+        },
+        {
+            "id": "campaign idea task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Develop creative campaign ideas",
+                "expected_output": "List of 5 campaign ideas",
+                "output_pydantic": "CampaignIdea"
+            },
+            "relations": {}
+        },
+        {
+            "id": "copy creation task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Create marketing copies",
+                "expected_output": "Marketing copies for campaigns",
+                "output_pydantic": "Copy"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "hasAgent",
+            "domain": "agento:Crew",
+            "range": "agento:Agent",
+            "definition": "Crew memiliki multiple agents.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "hasTask",
+            "domain": "agento:Crew",
+            "range": "agento:Task",
+            "definition": "Crew memiliki sequential tasks.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "assignedTo",
+            "domain": "agento:Task",
+            "range": "agento:Agent",
+            "definition": "Task di-assign ke specific agent.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "usesTool",
+            "domain": "agento:Agent",
+            "range": "agento:Tool",
+            "definition": "Agent menggunakan tools untuk eksekusi.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "hasOutput",
+            "domain": "agento:Task",
+            "range": "agento:PydanticModel",
+            "definition": "Task memiliki structured output schema.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "dependsOn",
+            "domain": "agento:Task",
+            "range": "agento:Task",
+            "definition": "Task bergantung pada output task sebelumnya.",
+            "status_in_pattern": "implisit (sequential process)"
+        },
+        {
+            "name": "supervisedBy",
+            "domain": "agento:Agent",
+            "range": "agento:Agent",
+            "definition": "Agent disupervise oleh agent lain.",
+            "status_in_pattern": "implisit dalam deskripsi"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:Crew",
+                "definition": "Sistem orkestrasi multi-agent CrewAI.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:PydanticModel",
+                "definition": "Schema terstruktur untuk output validation.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "role",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Semua agents di CrewAI harus memiliki role."
+            },
+            {
+                "name": "goal",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Core attribute untuk agent behavior di CrewAI."
+            },
+            {
+                "name": "backstory",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Memberikan context untuk LLM behavior."
+            },
+            {
+                "name": "process",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "CrewAI mendukung berbagai process types."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

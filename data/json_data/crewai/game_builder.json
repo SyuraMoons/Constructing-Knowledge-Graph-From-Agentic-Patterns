@@ -1,0 +1,117 @@
+{
+    "framework": "CrewAI",
+    "file_name": "game_builder.py",
+    "pattern_type": "CodeGenerationCrewPattern",
+    "description": "Pattern ini implements game development crew yang designs dan builds Python games. Crew includes game designer untuk game mechanics, developer untuk implementation, dan QA tester untuk testing. Demonstrates code generation dan iterative development dengan testing feedback loop.",
+    "entities": [
+        {
+            "id": "gamebuildercrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "designer",
+                "tasks": "developer",
+                "process": "qa_tester"
+            },
+            "relations": {}
+        },
+        {
+            "id": "game designer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Game Designer",
+                "goal": "Design engaging game mechanics and user experience"
+            },
+            "relations": {}
+        },
+        {
+            "id": "python developer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Python Developer",
+                "goal": "Implement game code",
+                "tools": "CodeExecutionTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "qa tester",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "QA Tester",
+                "goal": "Test game functionality and report bugs",
+                "tools": "PythonREPL"
+            },
+            "relations": {}
+        },
+        {
+            "id": "design task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Design game concept",
+                "expected_output": "Game design document with mechanics"
+            },
+            "relations": {}
+        },
+        {
+            "id": "implementation task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Implement Python game code",
+                "expected_output": "Working Python game code",
+                "context": "design_task"
+            },
+            "relations": {}
+        },
+        {
+            "id": "testing task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Test game and provide feedback",
+                "expected_output": "Bug report and improvement suggestions",
+                "context": "implementation_task"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "implements",
+            "domain": "agento:Agent",
+            "range": "agento:Design",
+            "definition": "Developer implements design specification.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "tests",
+            "domain": "agento:Agent",
+            "range": "agento:Code",
+            "definition": "Tester validates implementation.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "providesFeedback",
+            "domain": "agento:Agent",
+            "range": "agento:Agent",
+            "definition": "QA provides feedback ke developer.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:FeedbackLoop",
+                "definition": "Iterative testing and refinement pattern.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [],
+        "optionalProperties": []
+    }
+}

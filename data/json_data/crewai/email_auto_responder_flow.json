@@ -1,0 +1,107 @@
+{
+    "framework": "CrewAI",
+    "file_name": "email_auto_responder_flow.py",
+    "pattern_type": "Event-DrivenFlowPattern",
+    "description": "Pattern ini mengimplementasikan automated email response system menggunakan CrewAI Flow. System memonitor inbox, classify emails, generate appropriate responses, dan membutuhkan human approval sebelum sending. Menggunakan event-driven architecture dengan conditional routing.",
+    "entities": [
+        {
+            "id": "emailresponderflow",
+            "vendorClass": "Flow",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "state": "email_monitor",
+                "monitor_method": "classifier",
+                "classify_method": "responder"
+            },
+            "relations": {}
+        },
+        {
+            "id": "email classifier",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Email Classifier",
+                "goal": "Categorize incoming emails by priority and type"
+            },
+            "relations": {}
+        },
+        {
+            "id": "response generator",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Response Generator",
+                "goal": "Generate appropriate email responses"
+            },
+            "relations": {}
+        },
+        {
+            "id": "human reviewer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Human Reviewer",
+                "goal": "Review and approve responses",
+                "backstory": "human_input=True"
+            },
+            "relations": {}
+        },
+        {
+            "id": "email monitoring task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Monitor inbox for new emails",
+                "expected_output": "List of unread emails"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "requiresApproval",
+            "domain": "agento:Agent",
+            "range": "agento:Agent",
+            "definition": "Response membutuhkan human approval.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "classifiesAs",
+            "domain": "agento:Task",
+            "range": "agento:Category",
+            "definition": "Email classification results.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "monitorsSource",
+            "domain": "agento:Flow",
+            "range": "agento:DataSource",
+            "definition": "Flow monitors external data source.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:HumanInputAgent",
+                "definition": "Agent yang membutuhkan human intervention.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "emailCategory",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Email classification adalah core functionality pattern ini."
+            },
+            {
+                "name": "monitoringInterval",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Continuous monitoring requires interval configuration."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

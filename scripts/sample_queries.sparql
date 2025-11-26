@@ -1,0 +1,8 @@
+PREFIX agento: <http://example.org/agento#>
+
+SELECT ?agent
+WHERE {
+    ?agent a agento:Agent .
+}
+
+

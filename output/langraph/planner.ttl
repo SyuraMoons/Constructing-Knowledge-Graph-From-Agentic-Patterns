@@ -1,0 +1,65 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/entry%20point> a agento:Agent;
+  agento:vendorClass "Graph property" .
+
+<http://www.ex.org/Agent/finish%20point> a agento:Agent;
+  agento:vendorClass "Graph property" .
+
+<http://www.ex.org/Agent/graph> a agento:Agent;
+  agento:vendorClass "StateGraph" .
+
+<http://www.ex.org/Agent/node> a agento:Agent;
+  agento:vendorClass "Node dalam Graph" .
+
+<http://www.ex.org/DatatypeProperty/nodeName> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Nama node selalu string (\"planner_node\").";
+  agento:name "nodeName";
+  agento:range xsd:string .
+
+<http://www.ex.org/NewClass/agento%3ANode> a agento:NewClass;
+  agento:definition "Unit langkah pemrosesan di dalam workflow.";
+  agento:name "agento:Node";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/NewClass/agento%3AWorkflowGraph> a agento:NewClass;
+  agento:definition "Representasi graf workflow berbasis StateGraph.";
+  agento:name "agento:WorkflowGraph";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/hasEntryNode> a agento:OntologyRelationalProperty;
+  agento:definition "Node yang menjadi titik masuk eksekusi.";
+  agento:domain agento:WorkflowGraph;
+  agento:name "hasEntryNode";
+  agento:range agento:Node;
+  agento:statusInPattern "ditambahkan" .
+
+<http://www.ex.org/OntologyRelProp/hasFinishNode> a agento:OntologyRelationalProperty;
+  agento:definition "Node yang menjadi titik akhir eksekusi.";
+  agento:domain agento:WorkflowGraph;
+  agento:name "hasFinishNode";
+  agento:range agento:Node;
+  agento:statusInPattern "ditambahkan" .
+
+<http://www.ex.org/OntologyRelProp/hasNode> a agento:OntologyRelationalProperty;
+  agento:definition "Workflow berisi satu atau lebih node.";
+  agento:domain agento:WorkflowGraph;
+  agento:name "hasNode";
+  agento:range agento:Node;
+  agento:statusInPattern "ditambahkan" .
+

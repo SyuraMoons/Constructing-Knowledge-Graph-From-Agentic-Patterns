@@ -1,0 +1,92 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/%231> a agento:Agent;
+  agento:name "support_agent";
+  agento:vendorClass "agents[0]" .
+
+<http://www.ex.org/Agent/%232> a agento:Agent;
+  agento:name "escalation_agent";
+  agento:vendorClass "agents[1]" .
+
+<http://www.ex.org/Agent/system> a agento:Agent;
+  agento:name "Customer Support System";
+  agento:vendorClass "name" .
+
+<http://www.ex.org/Agent/workflow%20%231> a agento:Agent;
+  agento:name "support_flow";
+  agento:vendorClass "workflows[0]" .
+
+<http://www.ex.org/DatatypeProperty/instructions> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "\"Handle customer inquiries\".";
+  agento:name "instructions";
+  agento:range xsd:string .
+
+<http://www.ex.org/DatatypeProperty/modelName> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "\"gpt-4\".";
+  agento:name "modelName";
+  agento:range xsd:string .
+
+<http://www.ex.org/DatatypeProperty/role> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "\"Support Agent\", \"Escalation Specialist\".";
+  agento:name "role";
+  agento:range xsd:string .
+
+<http://www.ex.org/DatatypeProperty/workflowDescription> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "\"Customer support workflow\".";
+  agento:name "workflowDescription";
+  agento:range xsd:string .
+
+<http://www.ex.org/NewClass/agento%3ALLMModel> a agento:NewClass;
+  agento:definition "Representasi model (gpt-4, dll).";
+  agento:name "agento:LLMModel";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/NewClass/agento%3AMultiAgentSystem> a agento:NewClass;
+  agento:definition "Sistem yang mengelompokkan beberapa agent & workflow.";
+  agento:name "agento:MultiAgentSystem";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/NewClass/agento%3AWorkflow> a agento:NewClass;
+  agento:definition "Alur kerja tingkat tinggi.";
+  agento:name "agento:Workflow";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/configuredBy> a agento:OntologyRelationalProperty;
+  agento:definition "Agent dikonfigurasi menggunakan model tertentu.";
+  agento:domain agento:Agent;
+  agento:name "configuredBy";
+  agento:range agento:LLMModel;
+  agento:statusInPattern "ditambahkan" .
+
+<http://www.ex.org/OntologyRelProp/hasAgent> a agento:OntologyRelationalProperty;
+  agento:definition "Sistem berisi agent-agent tertentu.";
+  agento:domain agento:MultiAgentSystem;
+  agento:name "hasAgent";
+  agento:range agento:Agent;
+  agento:statusInPattern "ditambahkan" .
+
+<http://www.ex.org/OntologyRelProp/hasWorkflow> a agento:OntologyRelationalProperty;
+  agento:definition "Sistem memiliki satu atau lebih workflow.";
+  agento:domain agento:MultiAgentSystem;
+  agento:name "hasWorkflow";
+  agento:range agento:Workflow;
+  agento:statusInPattern "ditambahkan" .
+

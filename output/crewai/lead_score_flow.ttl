@@ -1,0 +1,71 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/human%20reviewer> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/lead%20analyzer> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/lead%20routing> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/leadscoreflow> a agento:Agent;
+  agento:vendorClass "Flow" .
+
+<http://www.ex.org/Agent/scoring> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/scoring%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/DatatypeProperty/scoreThreshold> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Conditional routing requires threshold values untuk branching logic.";
+  agento:name "scoreThreshold";
+  agento:range xsd:string .
+
+<http://www.ex.org/NewClass/agento%3ADecisionPoint> a agento:NewClass;
+  agento:definition "Conditional branch dalam flow.";
+  agento:name "agento:DecisionPoint";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/NewClass/agento%3ALeadScore> a agento:NewClass;
+  agento:definition "Structured scoring output.";
+  agento:name "agento:LeadScore";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/assignsScore> a agento:OntologyRelationalProperty;
+  agento:definition "Agent assigns score to lead entity.";
+  agento:domain agento:Agent;
+  agento:name "assignsScore";
+  agento:range agento:Lead;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/requiresReview> a agento:OntologyRelationalProperty;
+  agento:definition "High-value leads require human review.";
+  agento:domain agento:Lead;
+  agento:name "requiresReview";
+  agento:range agento:Agent;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/routesTo> a agento:OntologyRelationalProperty;
+  agento:definition "Routing decision based on criteria.";
+  agento:domain agento:DecisionPoint;
+  agento:name "routesTo";
+  agento:range agento:Team;
+  agento:statusInPattern "digunakan" .
+

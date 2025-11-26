@@ -1,0 +1,97 @@
+{
+    "framework": "CrewAI",
+    "file_name": "starter_template.py",
+    "pattern_type": "BasicCrewTemplatePattern",
+    "description": "Pattern ini provides minimal boilerplate template untuk new CrewAI projects. Demonstrates basic crew structure dengan single agent dan task, configuration files (agents.yaml, tasks.yaml), dan project setup. Serves sebagai starting point untuk custom crew development.",
+    "entities": [
+        {
+            "id": "startercrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "assistant_agent"
+            },
+            "relations": {}
+        },
+        {
+            "id": "assistant",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "AI Assistant",
+                "goal": "Help users accomplish tasks",
+                "backstory": "You are a helpful assistant"
+            },
+            "relations": {}
+        },
+        {
+            "id": "main task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Complete user request",
+                "expected_output": "Task completion summary"
+            },
+            "relations": {}
+        },
+        {
+            "id": "config",
+            "vendorClass": "YAML Config",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "agents.yaml file"
+            },
+            "relations": {}
+        },
+        {
+            "id": "task config",
+            "vendorClass": "YAML Config",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "tasks.yaml file"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "hasAgent",
+            "domain": "agento:Crew",
+            "range": "agento:Agent",
+            "definition": "Crew contains agent.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "hasTask",
+            "domain": "agento:Crew",
+            "range": "agento:Task",
+            "definition": "Crew contains task.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "usesConfiguration",
+            "domain": "agento:Crew",
+            "range": "agento:Configuration",
+            "definition": "Crew loads from config files.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:Configuration",
+                "definition": "External configuration files.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "configFormat",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Config systems specify format (YAML, JSON, TOML)."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

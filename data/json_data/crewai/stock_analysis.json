@@ -1,0 +1,115 @@
+{
+    "framework": "CrewAI",
+    "file_name": "stock_analysis.py",
+    "pattern_type": "FinancialAnalysisCrewPattern",
+    "description": "Pattern ini implements financial analysis crew untuk stock research dengan SEC data integration. Crew includes data analyst untuk financial metrics, market researcher untuk trends, dan investment advisor untuk recommendations. Uses external tools untuk SEC filings dan market data.",
+    "entities": [
+        {
+            "id": "stockanalysiscrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "data_analyst",
+                "tasks": "market_researcher",
+                "tools": "advisor"
+            },
+            "relations": {}
+        },
+        {
+            "id": "data analyst",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Financial Data Analyst",
+                "goal": "Analyze SEC filings and financial statements",
+                "tools": "SECTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "market researcher",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Market Researcher",
+                "goal": "Research market trends and competitive landscape",
+                "tools": "SerperDevTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "investment advisor",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Investment Advisor",
+                "goal": "Provide investment recommendations based on analysis"
+            },
+            "relations": {}
+        },
+        {
+            "id": "financial analysis task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Analyze financial statements",
+                "expected_output": "Comprehensive financial metrics report"
+            },
+            "relations": {}
+        },
+        {
+            "id": "market research task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Research market conditions",
+                "expected_output": "Market trends and competitor analysis"
+            },
+            "relations": {}
+        },
+        {
+            "id": "recommendation task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Generate investment recommendation",
+                "expected_output": "Buy/Hold/Sell recommendation with rationale",
+                "output_pydantic": "InvestmentAdvice",
+                "context": "analysis_task"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "accessesData",
+            "domain": "agento:Agent",
+            "range": "agento:DataSource",
+            "definition": "Agent retrieves external data.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "synthesizes",
+            "domain": "agento:Agent",
+            "range": "agento:Analysis",
+            "definition": "Advisor combines multiple analyses.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:ExternalDataTool",
+                "definition": "Tool dengan external API integration.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:InvestmentAdvice",
+                "definition": "Structured advisory output.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [],
+        "optionalProperties": []
+    }
+}

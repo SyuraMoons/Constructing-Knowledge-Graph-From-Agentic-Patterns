@@ -1,0 +1,95 @@
+{
+    "framework": "CrewAI",
+    "file_name": "instagram_post.py",
+    "pattern_type": "ContentGenerationCrewPattern",
+    "description": "Pattern ini menggunakan crew untuk generate Instagram social media content. Crew terdiri dari content strategist agent untuk planning dan creative designer agent untuk visual content creation. Uses image generation tools dan social media best practices.",
+    "entities": [
+        {
+            "id": "instagramcrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "strategist",
+                "tasks": "designer"
+            },
+            "relations": {}
+        },
+        {
+            "id": "content strategist",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Content Strategist",
+                "goal": "Plan engaging Instagram content",
+                "tools": "TrendAnalysisTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "creative designer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Creative Designer",
+                "goal": "Design visually appealing posts",
+                "tools": "ImageGenerationTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "content planning task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Create content calendar",
+                "expected_output": "30-day Instagram content plan"
+            },
+            "relations": {}
+        },
+        {
+            "id": "post creation task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Generate Instagram post",
+                "expected_output": "Post with caption and hashtags",
+                "output_pydantic": "InstagramPost"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "usesTool",
+            "domain": "agento:Agent",
+            "range": "agento:Tool",
+            "definition": "Agent uses specialized tools.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "produces",
+            "domain": "agento:Agent",
+            "range": "agento:Content",
+            "definition": "Agent generates content output.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:InstagramPost",
+                "definition": "Structured social media content.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "hashtags",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Instagram content requires hashtag array untuk discoverability."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

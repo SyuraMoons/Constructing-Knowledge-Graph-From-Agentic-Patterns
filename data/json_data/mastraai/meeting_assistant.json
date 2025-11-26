@@ -1,0 +1,98 @@
+{
+    "framework": "MastraAI",
+    "file_name": "meeting_assistant.json",
+    "pattern_type": "Multi-agentconfiguration",
+    "description": "Pattern ini mendefinisikan sistem “Meeting Assistant” dengan dua agent: scheduler dan note_taker. Keduanya memiliki peran dan instruksi yang berbeda, namun sama-sama menggunakan model LLM gpt-4 untuk membantu penjadwalan pertemuan dan pencatatan notulen",
+    "entities": [
+        {
+            "id": "system name",
+            "vendorClass": "name",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "Meeting Assistant"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#1",
+            "vendorClass": "agents[0]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "scheduler",
+                "role": "Meeting Scheduler",
+                "instructions": "Schedule and organize meetings",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#2",
+            "vendorClass": "agents[1]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "note_taker",
+                "role": "Note Taker",
+                "instructions": "Take meeting notes and action items",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "hasAgent",
+            "domain": "agento:MultiAgentSystem",
+            "range": "agento:Agent",
+            "definition": "Menyatakan bahwa suatu sistem multi-agent memiliki sekumpulan agent.",
+            "status_in_pattern": "digunakan kembali dari pattern mastraai sebelumnya."
+        },
+        {
+            "name": "configuredBy",
+            "domain": "agento:Agent",
+            "range": "agento:LLMModel",
+            "definition": "Menyatakan bahwa sebuah agent dikonfigurasi untuk menggunakan model LLM tertentu.",
+            "status_in_pattern": "digunakan kembali."
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:MultiAgentSystem",
+                "definition": "Sistem top-level yang menaungi beberapa agent dalam domain meeting.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:LLMModel",
+                "definition": "Representasi model LLM yang digunakan oleh agent untuk reasoning.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "name",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Field name digunakan konsisten pada sistem, agent, dan model."
+            },
+            {
+                "name": "role",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Membedakan fungsi Meeting Scheduler dan Note Taker dalam sistem."
+            },
+            {
+                "name": "instructions",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Menjelaskan fungsi operasional masing-masing agent."
+            },
+            {
+                "name": "modelName",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Menyimpan “gpt-4” sebagai identitas model yang digunakan."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

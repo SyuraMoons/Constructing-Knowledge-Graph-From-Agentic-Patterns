@@ -1,0 +1,126 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/campaign%20idea%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/chief%20creative%20director> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/chief%20marketing%20strategist> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/copy%20creation%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/creative%20content%20creator> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/lead%20market%20analyst> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/marketing%20strategy%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/Agent/marketingpostscrew> a agento:Agent;
+  agento:vendorClass "Crew" .
+
+<http://www.ex.org/Agent/research%20task> a agento:Agent;
+  agento:vendorClass "Task" .
+
+<http://www.ex.org/DatatypeProperty/backstory> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Memberikan context untuk LLM behavior.";
+  agento:name "backstory";
+  agento:range xsd:string .
+
+<http://www.ex.org/DatatypeProperty/goal> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Core attribute untuk agent behavior di CrewAI.";
+  agento:name "goal";
+  agento:range xsd:string .
+
+<http://www.ex.org/DatatypeProperty/process> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "CrewAI mendukung berbagai process types.";
+  agento:name "process";
+  agento:range xsd:string .
+
+<http://www.ex.org/DatatypeProperty/role> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Semua agents di CrewAI harus memiliki role.";
+  agento:name "role";
+  agento:range xsd:string .
+
+<http://www.ex.org/NewClass/agento%3ACrew> a agento:NewClass;
+  agento:definition "Sistem orkestrasi multi-agent CrewAI.";
+  agento:name "agento:Crew";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/NewClass/agento%3APydanticModel> a agento:NewClass;
+  agento:definition "Schema terstruktur untuk output validation.";
+  agento:name "agento:PydanticModel";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/assignedTo> a agento:OntologyRelationalProperty;
+  agento:definition "Task di-assign ke specific agent.";
+  agento:domain agento:Task;
+  agento:name "assignedTo";
+  agento:range agento:Agent;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/dependsOn> a agento:OntologyRelationalProperty;
+  agento:definition "Task bergantung pada output task sebelumnya.";
+  agento:domain agento:Task;
+  agento:name "dependsOn";
+  agento:range agento:Task;
+  agento:statusInPattern "implisit (sequential process)" .
+
+<http://www.ex.org/OntologyRelProp/hasAgent> a agento:OntologyRelationalProperty;
+  agento:definition "Crew memiliki multiple agents.";
+  agento:domain agento:Crew;
+  agento:name "hasAgent";
+  agento:range agento:Agent;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/hasOutput> a agento:OntologyRelationalProperty;
+  agento:definition "Task memiliki structured output schema.";
+  agento:domain agento:Task;
+  agento:name "hasOutput";
+  agento:range agento:PydanticModel;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/hasTask> a agento:OntologyRelationalProperty;
+  agento:definition "Crew memiliki sequential tasks.";
+  agento:domain agento:Crew;
+  agento:name "hasTask";
+  agento:range agento:Task;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/supervisedBy> a agento:OntologyRelationalProperty;
+  agento:definition "Agent disupervise oleh agent lain.";
+  agento:domain agento:Agent;
+  agento:name "supervisedBy";
+  agento:range agento:Agent;
+  agento:statusInPattern "implisit dalam deskripsi" .
+
+<http://www.ex.org/OntologyRelProp/usesTool> a agento:OntologyRelationalProperty;
+  agento:definition "Agent menggunakan tools untuk eksekusi.";
+  agento:domain agento:Agent;
+  agento:name "usesTool";
+  agento:range agento:Tool;
+  agento:statusInPattern "digunakan" .
+

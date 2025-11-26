@@ -1,0 +1,89 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/assistant> a agento:Agent;
+  agento:name "teaching_agent_assistant";
+  agento:systemMessage "You are a helpful AI assistant for teaching_agent";
+  agento:vendorClass "AssistantAgent" .
+
+<http://www.ex.org/Agent/userproxy> a agento:Agent;
+  agento:humanInputMode "NEVER";
+  agento:name "user";
+  agento:vendorClass "UserProxyAgent" .
+
+<http://www.ex.org/DatatypeProperty/humanInputMode> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Khas pada UserProxyAgent di AutoGen.";
+  agento:name "humanInputMode";
+  agento:range xsd:string .
+
+<http://www.ex.org/DatatypeProperty/systemMessage> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Konsisten muncul di semua AssistantAgent AutoGen.";
+  agento:name "systemMessage";
+  agento:range xsd:string .
+
+<http://www.ex.org/OntologyRelProp/%22NEVER%22> a agento:OntologyRelationalProperty;
+  agento:definition "";
+  agento:domain agento:;
+  agento:name "\"NEVER\"";
+  agento:range "";
+  agento:statusInPattern "" .
+
+<http://www.ex.org/OntologyRelProp/%22You%20are%20a%20helpful%20AI%20assistant%20for%20teaching_agent%22>
+  a agento:OntologyRelationalProperty;
+  agento:definition "Agent";
+  agento:domain agento:humanInputMode;
+  agento:name "\"You are a helpful AI assistant for teaching_agent\"";
+  agento:range "";
+  agento:statusInPattern "mode input manusia untuk userproxyagent." .
+
+<http://www.ex.org/OntologyRelProp/%22teaching_agent_assistant%22%2C%20%22user%22>
+  a agento:OntologyRelationalProperty;
+  agento:definition "Agent";
+  agento:domain agento:systemMessage;
+  agento:name "\"teaching_agent_assistant\", \"user\"";
+  agento:range "";
+  agento:statusInPattern "pesan sistem yang mendefinisikan peran assistantagent." .
+
+<http://www.ex.org/OntologyRelProp/Datatype%20Properties> a agento:OntologyRelationalProperty;
+  agento:definition "Domain";
+  agento:domain agento:Property;
+  agento:name "Datatype Properties";
+  agento:range "";
+  agento:statusInPattern "definisi" .
+
+<http://www.ex.org/OntologyRelProp/bukti> a agento:OntologyRelationalProperty;
+  agento:definition "Agent";
+  agento:domain agento:name;
+  agento:name "bukti";
+  agento:range "";
+  agento:statusInPattern "nama agent." .
+
+<http://www.ex.org/OntologyRelProp/delegatesTo> a agento:OntologyRelationalProperty;
+  agento:definition "Relasi delegasi antar-agent.";
+  agento:domain agento:Agent;
+  agento:name "delegatesTo";
+  agento:range agento:Agent;
+  agento:statusInPattern "optional (untuk generalisasi autogen)" .
+
+<http://www.ex.org/OntologyRelProp/participatesIn> a agento:OntologyRelationalProperty;
+  agento:definition "Relasi partisipasi agent pada workflow.";
+  agento:domain agento:Agent;
+  agento:name "participatesIn";
+  agento:range agento:Workflow;
+  agento:statusInPattern "tidak digunakan" .
+

@@ -1,0 +1,58 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/assistant> a agento:Agent;
+  agento:name "function_calling_assistant";
+  agento:systemMessage "You are a helpful AI assistant for function_calling";
+  agento:vendorClass "AssistantAgent" .
+
+<http://www.ex.org/Agent/userproxy> a agento:Agent;
+  agento:humanInputMode "NEVER";
+  agento:name "user";
+  agento:vendorClass "UserProxyAgent" .
+
+<http://www.ex.org/DatatypeProperty/systemMessage> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Konsisten di semua pattern.";
+  agento:name "systemMessage";
+  agento:range xsd:string .
+
+<http://www.ex.org/NewClass/agento%3ATool> a agento:NewClass;
+  agento:definition "Mewakili fungsi atau API yang dipanggil oleh agent.";
+  agento:name "agento:Tool";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/delegatesTo> a agento:OntologyRelationalProperty;
+  agento:definition "Delegasi antar-agent.";
+  agento:domain agento:Agent;
+  agento:name "delegatesTo";
+  agento:range agento:Agent;
+  agento:statusInPattern "optional" .
+
+<http://www.ex.org/OntologyRelProp/participatesIn> a agento:OntologyRelationalProperty;
+  agento:definition "Agent memberi umpan balik terhadap artefak.";
+  agento:domain agento:Agent;
+  agento:name "participatesIn";
+  agento:range agento:Artifact;
+  agento:statusInPattern "suggested." .
+
+<http://www.ex.org/OntologyRelProp/usesTool> a agento:OntologyRelationalProperty;
+  agento:definition "Menunjukkan keterlibatan agent dalam aktivitas evaluasi.";
+  agento:domain agento:Agent;
+  agento:name "usesTool";
+  agento:range agento:Evaluation;
+  agento:statusInPattern "penting" .
+

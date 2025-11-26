@@ -1,0 +1,99 @@
+{
+    "framework": "Langraph",
+    "file_name": "analyzer.py",
+    "pattern_type": "Single-nodeworkflow(analyzer)",
+    "description": "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama analyzer_node. Node tersebut berfungsi sebagai entry point sekaligus finish point. Tidak terdapat edge lain atau node tambahan. Struktur ini menggambarkan pola standalone node workflow khas LangGraph",
+    "entities": [
+        {
+            "id": "workflow",
+            "vendorClass": "StateGraph()",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "-": "-"
+            },
+            "relations": {}
+        },
+        {
+            "id": "node",
+            "vendorClass": "add_node(name, fn)",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "nama": "analyzer_node",
+                "callable": "lambda x: x"
+            },
+            "relations": {}
+        },
+        {
+            "id": "entry point",
+            "vendorClass": "set_entry_point(name)",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "“analyzer_node”"
+            },
+            "relations": {}
+        },
+        {
+            "id": "finish point",
+            "vendorClass": "et_finish_point(name)",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "analyze_node"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "callsNode",
+            "domain": "agento:Workflow",
+            "range": "agento:Node",
+            "definition": "Workflow memiliki node-node eksekusi",
+            "status_in_pattern": "suggested"
+        },
+        {
+            "name": "hasStartNode",
+            "domain": "agento:Workflow",
+            "range": "agento:Node",
+            "definition": "Node awal eksekusi.",
+            "status_in_pattern": "ditambahkan"
+        },
+        {
+            "name": "hasEndNode",
+            "domain": "agento:Workflow",
+            "range": "agento:Node",
+            "definition": "Node akhir eksekusi.",
+            "status_in_pattern": "ditambahkan"
+        },
+        {
+            "name": "follows",
+            "domain": "agento:Node",
+            "range": "agento:Node",
+            "definition": "Urutan/edge antar node.",
+            "status_in_pattern": "optional"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:workflo,node",
+                "definition": "Hubungkan Workflow dengan Node yang dimilikinya",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "nodeName",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "analyzer_node"
+            },
+            {
+                "name": "callableLabel",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "lambda x: x"
+            }
+        ],
+        "optionalProperties": []
+    }
+}

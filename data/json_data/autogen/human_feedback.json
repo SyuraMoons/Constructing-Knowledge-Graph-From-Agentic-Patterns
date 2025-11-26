@@ -1,0 +1,97 @@
+{
+    "framework": "AutoGen",
+    "file_name": "human_feedback.py",
+    "pattern_type": "AgentCollaborationPattern(humanfeedbackcontext)",
+    "description": "Pattern ini mendefinisikan dua agent: AssistantAgent dan UserProxyAgent. Konteksnya adalah human feedback, tetapi struktur kodenya tetap berupa deklarasi dua agent tanpa workflow, tool, atau relasi tambahan",
+    "entities": [
+        {
+            "id": "assistant",
+            "vendorClass": "AssistantAgent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "human_feedback_assistant",
+                "system_message": "You are a helpful AI assistant for human_feedback"
+            },
+            "relations": {}
+        },
+        {
+            "id": "userproxy",
+            "vendorClass": "UserProxyAgent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "user",
+                "human_input_mode": "NEVER"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "participatesIn",
+            "domain": "agento:Agent",
+            "range": "agento:Workflow",
+            "definition": "Menghubungkan agent ke workflow.",
+            "status_in_pattern": "tidak digunakan"
+        },
+        {
+            "name": "delegatesTo",
+            "domain": "agento:Agent",
+            "range": "agento:Agent",
+            "definition": "Delegasi antar-agent.",
+            "status_in_pattern": "optional"
+        },
+        {
+            "name": "Datatype Properties",
+            "domain": "agento:Property",
+            "range": "",
+            "definition": "Domain",
+            "status_in_pattern": "definisi"
+        },
+        {
+            "name": "bukti",
+            "domain": "agento:name",
+            "range": "",
+            "definition": "Agent",
+            "status_in_pattern": "nama agent."
+        },
+        {
+            "name": "\"human_feedback_assistant\", \"user\"",
+            "domain": "agento:systemMessage",
+            "range": "",
+            "definition": "Agent",
+            "status_in_pattern": "pesan sistem agent."
+        },
+        {
+            "name": "\"You are a helpful AI assistant for human_feedback\"",
+            "domain": "agento:humanInputMode",
+            "range": "",
+            "definition": "Agent",
+            "status_in_pattern": "mode input manusia."
+        },
+        {
+            "name": "\"NEVER\"",
+            "domain": "agento:",
+            "range": "",
+            "definition": "",
+            "status_in_pattern": ""
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [],
+        "datatypeProperties": [
+            {
+                "name": "systemMessage",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Konsisten di seluruh pattern AutoGen."
+            },
+            {
+                "name": "humanInputMode",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Khusus UserProxyAgent."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

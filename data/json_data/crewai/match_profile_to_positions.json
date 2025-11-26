@@ -1,0 +1,131 @@
+{
+    "framework": "CrewAI",
+    "file_name": "match_profile_to_positions.py",
+    "pattern_type": "MatchingAlgorithmCrewPattern",
+    "description": "Pattern ini implements CV-to-job matching system dengan vector search capabilities. Crew includes profile analyzer untuk CV parsing, job matcher dengan vector embeddings untuk similarity matching, dan recommendation generator. Demonstrates AI-powered matching dengan semantic search.",
+    "entities": [
+        {
+            "id": "matchingcrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "profile_analyzer",
+                "tasks": "job_matcher",
+                "tools": "recommender"
+            },
+            "relations": {}
+        },
+        {
+            "id": "profile analyzer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Profile Analyzer",
+                "goal": "Extract skills and experience from CV",
+                "tools": "CVParserTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "job matcher",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Job Matcher",
+                "goal": "Find best matching positions using vector similarity",
+                "tools": "VectorSearchTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "recommendation generator",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Recommendation Generator",
+                "goal": "Generate personalized job recommendations"
+            },
+            "relations": {}
+        },
+        {
+            "id": "profile analysis task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Analyze candidate profile",
+                "expected_output": "Structured profile with embeddings",
+                "output_pydantic": "CandidateProfile"
+            },
+            "relations": {}
+        },
+        {
+            "id": "matching task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Find matching positions",
+                "expected_output": "Ranked list of positions with similarity scores",
+                "context": "profile_task"
+            },
+            "relations": {}
+        },
+        {
+            "id": "recommendation task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Generate recommendations",
+                "expected_output": "Personalized job recommendations with explanations",
+                "output_pydantic": "JobRecommendations",
+                "context": "matching_task"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "generates Embedding",
+            "domain": "agento:Agent",
+            "range": "agento:Vector",
+            "definition": "Agent creates vector embeddings.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "computesSimilarity",
+            "domain": "agento:Agent",
+            "range": "agento:Match",
+            "definition": "Matcher calculates similarity scores.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "recommends",
+            "domain": "agento:Agent",
+            "range": "agento:Job",
+            "definition": "Recommender suggests jobs.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:VectorSearch",
+                "definition": "Semantic search algorithm.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:CandidateProfile",
+                "definition": "Profile dengan vector embeddings.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "similarityScore",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Vector similarity produces numerical scores (typically 0-1)."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

@@ -1,0 +1,125 @@
+{
+    "framework": "CrewAI",
+    "file_name": "recruitment.py",
+    "pattern_type": "HRAutomationCrewPattern",
+    "description": "Pattern ini implements automated recruitment crew untuk candidate sourcing dan evaluation. Crew includes sourcing specialist untuk finding candidates, resume analyzer untuk screening, dan interview coordinator untuk scheduling. Demonstrates HR automation dengan CV parsing dan candidate ranking.",
+    "entities": [
+        {
+            "id": "recruitmentcrew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "sourcing_specialist",
+                "tasks": "resume_analyzer"
+            },
+            "relations": {}
+        },
+        {
+            "id": "sourcing specialist",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Sourcing Specialist",
+                "goal": "Find qualified candidates",
+                "tools": "LinkedInScraperTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "resume analyzer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Resume Analyzer",
+                "goal": "Screen and rank candidates",
+                "tools": "CVParserTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "interview coordinator",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Interview Coordinator",
+                "goal": "Schedule interviews with qualified candidates",
+                "tools": "CalendarTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "sourcing task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Source candidates for position",
+                "expected_output": "List of 20+ qualified candidates"
+            },
+            "relations": {}
+        },
+        {
+            "id": "screening task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Analyze and rank candidates",
+                "expected_output": "Ranked candidate list with scores",
+                "output_pydantic": "CandidateRanking",
+                "context": "sourcing_task"
+            },
+            "relations": {}
+        },
+        {
+            "id": "scheduling task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Schedule interviews with top candidates",
+                "expected_output": "Interview calendar with confirmed slots",
+                "context": "screening_task"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "sources",
+            "domain": "agento:Agent",
+            "range": "agento:Candidate",
+            "definition": "Sourcing agent finds candidates.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "ranks",
+            "domain": "agento:Agent",
+            "range": "agento:Candidate",
+            "definition": "Analyzer assigns ranking to candidates.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "schedules",
+            "domain": "agento:Agent",
+            "range": "agento:Interview",
+            "definition": "Coordinator creates interview schedule.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:CandidateRanking",
+                "definition": "Structured ranking system.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "matchPercentage",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Candidate-to-job matching uses percentage-based scoring."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "framework": "MastraAI",
+    "file_name": "simple_agent.json",
+    "pattern_type": "Multi-agentconfiguration",
+    "description": "Sistem ini hanya berisi satu agent bernama assistant tanpa workflow maupun komponen tambahan. Pattern ini adalah bentuk paling minimal dari konfigurasi MastraAI",
+    "entities": [
+        {
+            "id": "system name",
+            "vendorClass": "name",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "Simple Agent"
+            },
+            "relations": {}
+        },
+        {
+            "id": "Agent",
+            "vendorClass": "agents[0]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "assistant",
+                "role": "AI Assistant",
+                "instructions": "You are a helpful AI assistant",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "MultiAgentSystem → Agent",
+            "domain": "agento:Sistem memiliki satu agent",
+            "range": "",
+            "definition": "Dari agents[]",
+            "status_in_pattern": "agent → llmmodel"
+        },
+        {
+            "name": "Agent menggunakan model tertentu",
+            "domain": "agento:Dari field \"model\": \"gpt-4\"",
+            "range": "",
+            "definition": "",
+            "status_in_pattern": ""
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:MultiAgentSystem",
+                "definition": "Sistem top-level",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:LLMModel",
+                "definition": "Representasi model LLM",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "role, instructions, name, modelName",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Sesuai field JSON"
+            }
+        ],
+        "optionalProperties": []
+    }
+}

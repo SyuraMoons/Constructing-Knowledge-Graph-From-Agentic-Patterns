@@ -1,0 +1,74 @@
+@prefix : <http://mapping.example.com/> .
+@prefix agento: <http://example.org/agento#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://www.ex.org/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+@prefix ontology: <http://data.sfgov.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.ex.org/Agent/aggregator> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/chapter%20writer%20s> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/editor> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/outline%20planner> a agento:Agent;
+  agento:vendorClass "Agent" .
+
+<http://www.ex.org/Agent/writebookflow> a agento:Agent;
+  agento:vendorClass "Flow" .
+
+<http://www.ex.org/DatatypeProperty/chapterId> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Parallel agents need unique identifiers untuk coordination.";
+  agento:name "chapterId";
+  agento:range xsd:string .
+
+<http://www.ex.org/DatatypeProperty/parallelismDegree> a agento:DatatypeProperty;
+  agento:domain agento:Agent;
+  agento:justification "Parallel flows configure number of concurrent executions.";
+  agento:name "parallelismDegree";
+  agento:range xsd:string .
+
+<http://www.ex.org/NewClass/agento%3AAggregation> a agento:NewClass;
+  agento:definition "Result combination pattern.";
+  agento:name "agento:Aggregation";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/NewClass/agento%3AParallelExecution> a agento:NewClass;
+  agento:definition "Multiple concurrent operations pattern.";
+  agento:name "agento:ParallelExecution";
+  agento:statusInPattern "used" .
+
+<http://www.ex.org/OntologyRelProp/aggregates> a agento:OntologyRelationalProperty;
+  agento:definition "Aggregator combines multiple outputs.";
+  agento:domain agento:Agent;
+  agento:name "aggregates";
+  agento:range agento:Collection;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/editsContent> a agento:OntologyRelationalProperty;
+  agento:definition "Editor modifies aggregated content.";
+  agento:domain agento:Agent;
+  agento:name "editsContent";
+  agento:range agento:Content;
+  agento:statusInPattern "digunakan" .
+
+<http://www.ex.org/OntologyRelProp/generatesChapter> a agento:OntologyRelationalProperty;
+  agento:definition "Chapter writer generates chapter entity.";
+  agento:domain agento:Agent;
+  agento:name "generatesChapter";
+  agento:range agento:Chapter;
+  agento:statusInPattern "digunakan" .
+

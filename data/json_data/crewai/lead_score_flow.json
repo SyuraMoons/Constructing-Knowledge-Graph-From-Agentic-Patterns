@@ -1,0 +1,118 @@
+{
+    "framework": "CrewAI",
+    "file_name": "lead_score_flow.py",
+    "pattern_type": "DecisionFlowPattern",
+    "description": "Pattern ini mengimplementasikan lead qualification system dengan scoring mechanism dan human review. Flow menganalisis lead data, assign scores berdasarkan multiple criteria, dan route high-value leads untuk human review sebelum passing ke sales team.",
+    "entities": [
+        {
+            "id": "leadscoreflow",
+            "vendorClass": "Flow",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "state": "lead_scorer",
+                "score_method": "human_reviewer",
+                "review_method": "router"
+            },
+            "relations": {}
+        },
+        {
+            "id": "lead analyzer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Lead Analyzer",
+                "goal": "Analyze lead data and extract insights",
+                "tools": "CRMTool"
+            },
+            "relations": {}
+        },
+        {
+            "id": "scoring",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Scoring Agent",
+                "goal": "Assign qualification scores to leads"
+            },
+            "relations": {}
+        },
+        {
+            "id": "human reviewer",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Sales Manager",
+                "goal": "Review high-value leads",
+                "human_input": "human_input=True"
+            },
+            "relations": {}
+        },
+        {
+            "id": "lead routing",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Lead Router",
+                "goal": "Route qualified leads to appropriate sales teams"
+            },
+            "relations": {}
+        },
+        {
+            "id": "scoring task",
+            "vendorClass": "Task",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "description": "Calculate lead score",
+                "expected_output": "Lead with score 0-100",
+                "output_pydantic": "LeadScore"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "assignsScore",
+            "domain": "agento:Agent",
+            "range": "agento:Lead",
+            "definition": "Agent assigns score to lead entity.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "routesTo",
+            "domain": "agento:DecisionPoint",
+            "range": "agento:Team",
+            "definition": "Routing decision based on criteria.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "requiresReview",
+            "domain": "agento:Lead",
+            "range": "agento:Agent",
+            "definition": "High-value leads require human review.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:DecisionPoint",
+                "definition": "Conditional branch dalam flow.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:LeadScore",
+                "definition": "Structured scoring output.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "scoreThreshold",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Conditional routing requires threshold values untuk branching logic."
+            }
+        ],
+        "optionalProperties": []
+    }
+}

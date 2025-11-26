@@ -1,0 +1,104 @@
+{
+    "framework": "MastraAI",
+    "file_name": "content_creation.json",
+    "pattern_type": "Multi-agentconfiguration",
+    "description": "Pattern ini mendefinisikan sistem bernama “Content Creation Pipeline” yang berisi tiga agent: ideator, writer, dan editor. Setiap agent memiliki role, instructions, dan model. Tidak ada workflow eksplisit, task, atau tools — pattern ini fokus pada konfigurasi agent dalam pipeline pembuatan konten",
+    "entities": [
+        {
+            "id": "system",
+            "vendorClass": "name",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "Content Creation Pipeline"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#1",
+            "vendorClass": "agents[0]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "ideator",
+                "role": "Content Ideator",
+                "instructions": "Generate content ideas",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#2",
+            "vendorClass": "agents[1]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "writer",
+                "role": "Content Writer",
+                "instructions": "Write engaging content",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        },
+        {
+            "id": "#3",
+            "vendorClass": "agents[2]",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "name": "editor",
+                "role": "Content Editor",
+                "instructions": "Edit and refine content",
+                "model": "gpt-4"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "hasAgent",
+            "domain": "agento:System",
+            "range": "agento:Agent",
+            "definition": "Sistem memiliki / terdiri dari agent-agent.",
+            "status_in_pattern": "ditambahkan"
+        },
+        {
+            "name": "configuredBy",
+            "domain": "agento:Agent",
+            "range": "agento:LLMModel",
+            "definition": "Agent menggunakan model tertentu.",
+            "status_in_pattern": "ditambahkan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:MultiAgentSystem",
+                "definition": "Representasi konfigurasi multi-agent.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:LLMModel",
+                "definition": "Representasi model (gpt-4, dll).",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "role",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "\"Content Ideator\", \"Content Editor\", dll."
+            },
+            {
+                "name": "instructions",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "\"Generate content ideas\""
+            },
+            {
+                "name": "modelName",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "\"gpt-4\""
+            }
+        ],
+        "optionalProperties": []
+    }
+}

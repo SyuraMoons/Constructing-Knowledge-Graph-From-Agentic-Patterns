@@ -1,0 +1,99 @@
+{
+    "framework": "CrewAI",
+    "file_name": "content_creator_flow.py",
+    "pattern_type": "FlowOrchestrationPattern",
+    "description": "Pattern ini menggunakan CrewAI Flow untuk orkestra multi-crew content generation system. Flow mengkoordinasikan beberapa crew untuk menghasilkan blog posts, LinkedIn content, dan research reports secara parallel dengan state management antar crew.",
+    "entities": [
+        {
+            "id": "contentcreatorflow",
+            "vendorClass": "Flow",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "state": "blog_crew",
+                "crews": "linkedin_crew",
+                "listen_methods": "research_crew"
+            },
+            "relations": {}
+        },
+        {
+            "id": "blog crew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "blog_researcher",
+                "tasks": "blog_writer"
+            },
+            "relations": {}
+        },
+        {
+            "id": "linkedin crew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "linkedin_strategist",
+                "tasks": "linkedin_creator"
+            },
+            "relations": {}
+        },
+        {
+            "id": "research crew",
+            "vendorClass": "Crew",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "agents": "research_analyst",
+                "tasks": "report_writer"
+            },
+            "relations": {}
+        },
+        {
+            "id": "flow state",
+            "vendorClass": "State",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "current_topic": "AI trends",
+                "outputs": "generated_blogs[]",
+                "metadata": "timestamps"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "hasCrew",
+            "domain": "agento:Flow",
+            "range": "agento:Crew",
+            "definition": "Flow mengorkestra multiple crews.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "sharesState",
+            "domain": "agento:Crew",
+            "range": "agento:State",
+            "definition": "Crews berbagi state object.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "triggersNext",
+            "domain": "agento:Crew",
+            "range": "agento:Crew",
+            "definition": "Output crew triggers crew berikutnya.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:Flow",
+                "definition": "Orchestrator untuk multi-crew workflows.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:State",
+                "definition": "Shared state object dalam flow.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [],
+        "optionalProperties": []
+    }
+}

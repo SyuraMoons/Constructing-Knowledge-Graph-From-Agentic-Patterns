@@ -1,0 +1,112 @@
+{
+    "framework": "CrewAI",
+    "file_name": "write_book_flow.py",
+    "pattern_type": "ParallelFlowPattern",
+    "description": "Pattern ini mengimplementasikan automated book writing system menggunakan parallel chapter generation. Flow membuat outline, generates multiple chapters secara parallel menggunakan multiple crews, kemudian aggregates dan edits hasil final. Demonstrates parallel execution dan result aggregation.",
+    "entities": [
+        {
+            "id": "writebookflow",
+            "vendorClass": "Flow",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "state": "outline_crew",
+                "outline_method": "chapter_crews[]",
+                "chapter_methods": "editor_crew"
+            },
+            "relations": {}
+        },
+        {
+            "id": "outline planner",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Outline Planner",
+                "goal": "Create comprehensive book outline with chapter structure"
+            },
+            "relations": {}
+        },
+        {
+            "id": "chapter writer s",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Chapter Writer",
+                "goal": "Write engaging chapter content",
+                "chapter_id": "chapter_id=1"
+            },
+            "relations": {}
+        },
+        {
+            "id": "editor",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Senior Editor",
+                "goal": "Review and harmonize all chapters"
+            },
+            "relations": {}
+        },
+        {
+            "id": "aggregator",
+            "vendorClass": "Agent",
+            "mapsTo": "agento:Agent",
+            "attributes": {
+                "role": "Content Aggregator",
+                "goal": "Combine chapters into cohesive book"
+            },
+            "relations": {}
+        }
+    ],
+    "ontologyRelationalProperties": [
+        {
+            "name": "generatesChapter",
+            "domain": "agento:Agent",
+            "range": "agento:Chapter",
+            "definition": "Chapter writer generates chapter entity.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "aggregates",
+            "domain": "agento:Agent",
+            "range": "agento:Collection",
+            "definition": "Aggregator combines multiple outputs.",
+            "status_in_pattern": "digunakan"
+        },
+        {
+            "name": "editsContent",
+            "domain": "agento:Agent",
+            "range": "agento:Content",
+            "definition": "Editor modifies aggregated content.",
+            "status_in_pattern": "digunakan"
+        }
+    ],
+    "newOntologyTerms": {
+        "newClasses": [
+            {
+                "name": "agento:ParallelExecution",
+                "definition": "Multiple concurrent operations pattern.",
+                "status_in_pattern": "used"
+            },
+            {
+                "name": "agento:Aggregation",
+                "definition": "Result combination pattern.",
+                "status_in_pattern": "used"
+            }
+        ],
+        "datatypeProperties": [
+            {
+                "name": "parallelismDegree",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Parallel flows configure number of concurrent executions."
+            },
+            {
+                "name": "chapterId",
+                "domain": "agento:Agent",
+                "range": "xsd:string",
+                "justification": "Parallel agents need unique identifiers untuk coordination."
+            }
+        ],
+        "optionalProperties": []
+    }
+}
