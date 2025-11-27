@@ -1,97 +1,73 @@
 {
-    "framework": "AutoGen",
-    "file_name": "two_agent_chat.py",
-    "pattern_type": "AgentDeclarationPattern",
-    "description": "Pattern ini mendefinisikan dua agent: AssistantAgent sebagai AI assistant untuk skenario two_agent_chat, dan UserProxyAgent sebagai representasi user dengan mode input NEVER. Tidak ada task, workflow, atau tool yang diekspresikan di dalam kode; pola ini adalah deklarasi dasar dua agent AutoGen",
-    "entities": [
-        {
-            "id": "assistant",
-            "vendorClass": "AssistantAgent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "two_agent_chat_assistant",
-                "system_message": "You are a helpful AI assistant for two_agent_chat"
-            },
-            "relations": {}
-        },
-        {
-            "id": "userproxy",
-            "vendorClass": "UserProxyAgent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "user",
-                "human_input_mode": "NEVER"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "delegatesTo",
-            "domain": "agento:Agent",
-            "range": "agento:Agent",
-            "definition": "Relasi delegasi antar agent.",
-            "status_in_pattern": "optional (untuk generalisasi autogen)"
-        },
-        {
-            "name": "participatesIn",
-            "domain": "agento:Agent",
-            "range": "agento:Workflow",
-            "definition": "Relasi agent–workflow.",
-            "status_in_pattern": "tidak digunakan"
-        },
-        {
-            "name": "Datatype Properties",
-            "domain": "agento:Property",
-            "range": "",
-            "definition": "Domain",
-            "status_in_pattern": "definisi"
-        },
-        {
-            "name": "bukti",
-            "domain": "agento:name",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "nama agent."
-        },
-        {
-            "name": "\"two_agent_chat_assistant\", \"user\"",
-            "domain": "agento:systemMessage",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "pesan sistem yang mendefinisikan peran assistantagent."
-        },
-        {
-            "name": "\"You are a helpful AI assistant for two_agent_chat\"",
-            "domain": "agento:humanInputMode",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "mode input manusia pada userproxyagent."
-        },
-        {
-            "name": "\"NEVER\"",
-            "domain": "agento:",
-            "range": "",
-            "definition": "",
-            "status_in_pattern": ""
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [],
-        "datatypeProperties": [
-            {
-                "name": "systemMessage",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Konsisten muncul di semua AssistantAgent AutoGen."
-            },
-            {
-                "name": "humanInputMode",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Khas pada UserProxyAgent di AutoGen."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:assistant": {
+      "rdf:type": ":Agent",
+      ":agentID": "two_agent_chat_assistant",
+      ":agentRole": "Assistant Agent",
+      "dcterms:title": "two_agent_chat_assistant Assistant",
+      "dcterms:description": "You are a helpful AI assistant for two_agent_chat",
+      ":hasGoal": "ex:goal_assistant",
+      ":hasTask": "ex:task_assistant"
+    },
+    "ex:goal_assistant": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for two_agent_chat_assistant",
+      "dcterms:description": "Automatically generated goal for two_agent_chat_assistant"
+    },
+    "ex:task_assistant": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for two_agent_chat_assistant",
+      "dcterms:description": "Automatically generated task for two_agent_chat_assistant",
+      ":taskExpectedOutput": "Automatically generated expected output for two_agent_chat_assistant"
+    },
+    "ex:userproxy": {
+      "rdf:type": ":Agent",
+      ":agentID": "user",
+      ":agentRole": "User Proxy Agent",
+      "dcterms:title": "User Proxy",
+      "dcterms:description": "Human input proxy with NEVER mode",
+      ":hasGoal": "ex:goal_userproxy",
+      ":hasTask": "ex:task_userproxy"
+    },
+    "ex:goal_userproxy": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for user",
+      "dcterms:description": "Automatically generated goal for user"
+    },
+    "ex:task_userproxy": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for user",
+      "dcterms:description": "Automatically generated task for user",
+      ":taskExpectedOutput": "Automatically generated expected output for user"
+    },
+    "ex:two_agent_chat_assistant_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "two_agent_chat_assistant Workflow",
+      "dcterms:description": "Pattern ini mendefinisikan dua agent: AssistantAgent sebagai AI assistant untuk skenario two_agent_chat, dan UserProxyAgent sebagai representasi user dengan mode input NEVER. Tidak ada task, workflow, atau tool yang diekspresikan di dalam kode; pola ini adalah deklarasi dasar dua agent AutoGen"
+    },
+    "ex:DatatypeProperty_systemmessage": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Konsisten muncul di semua AssistantAgent AutoGen.",
+      "agento:name": "systemMessage",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_humaninputmode": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Khas pada UserProxyAgent di AutoGen.",
+      "agento:name": "humanInputMode",
+      "agento:range": "xsd:string"
     }
+  }
 }

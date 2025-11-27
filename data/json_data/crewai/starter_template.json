@@ -1,97 +1,54 @@
 {
-    "framework": "CrewAI",
-    "file_name": "starter_template.py",
-    "pattern_type": "BasicCrewTemplatePattern",
-    "description": "Pattern ini provides minimal boilerplate template untuk new CrewAI projects. Demonstrates basic crew structure dengan single agent dan task, configuration files (agents.yaml, tasks.yaml), dan project setup. Serves sebagai starting point untuk custom crew development.",
-    "entities": [
-        {
-            "id": "startercrew",
-            "vendorClass": "Crew",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "agents": "assistant_agent"
-            },
-            "relations": {}
-        },
-        {
-            "id": "assistant",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "AI Assistant",
-                "goal": "Help users accomplish tasks",
-                "backstory": "You are a helpful assistant"
-            },
-            "relations": {}
-        },
-        {
-            "id": "main task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Complete user request",
-                "expected_output": "Task completion summary"
-            },
-            "relations": {}
-        },
-        {
-            "id": "config",
-            "vendorClass": "YAML Config",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "agents.yaml file"
-            },
-            "relations": {}
-        },
-        {
-            "id": "task config",
-            "vendorClass": "YAML Config",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "tasks.yaml file"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "hasAgent",
-            "domain": "agento:Crew",
-            "range": "agento:Agent",
-            "definition": "Crew contains agent.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "hasTask",
-            "domain": "agento:Crew",
-            "range": "agento:Task",
-            "definition": "Crew contains task.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "usesConfiguration",
-            "domain": "agento:Crew",
-            "range": "agento:Configuration",
-            "definition": "Crew loads from config files.",
-            "status_in_pattern": "digunakan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:Configuration",
-                "definition": "External configuration files.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "configFormat",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Config systems specify format (YAML, JSON, TOML)."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:startercrew": {
+      "rdf:type": ":System",
+      "dcterms:title": "startercrew"
+    },
+    "ex:starter_template_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Starter Template Flow",
+      "dcterms:description": "Pattern ini provides minimal boilerplate template untuk new CrewAI projects. Demonstrates basic crew structure dengan single agent dan task, configuration files (agents.yaml, tasks.yaml), dan project setup. Serves sebagai starting point untuk custom crew development."
+    },
+    "ex:DatatypeProperty_configformat": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Config systems specify format (YAML, JSON, TOML).",
+      "agento:name": "configFormat",
+      "agento:range": "xsd:string"
+    },
+    "ex:configuration": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "Configuration",
+      "dcterms:description": "External configuration files."
+    },
+    "ex:assistant_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "assistant_agent",
+      ":agentRole": "AI Assistant",
+      "dcterms:title": "assistant_agent",
+      ":hasGoal": "ex:goal_assistant_agent",
+      ":hasTask": "ex:task_assistant_agent"
+    },
+    "ex:goal_assistant_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for assistant_agent",
+      "dcterms:description": "Automatically generated goal for assistant_agent"
+    },
+    "ex:task_assistant_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for assistant_agent",
+      "dcterms:description": "Automatically generated task for assistant_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for assistant_agent"
     }
+  }
 }

@@ -1,95 +1,73 @@
 {
-    "framework": "CrewAI",
-    "file_name": "instagram_post.py",
-    "pattern_type": "ContentGenerationCrewPattern",
-    "description": "Pattern ini menggunakan crew untuk generate Instagram social media content. Crew terdiri dari content strategist agent untuk planning dan creative designer agent untuk visual content creation. Uses image generation tools dan social media best practices.",
-    "entities": [
-        {
-            "id": "instagramcrew",
-            "vendorClass": "Crew",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "agents": "strategist",
-                "tasks": "designer"
-            },
-            "relations": {}
-        },
-        {
-            "id": "content strategist",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Content Strategist",
-                "goal": "Plan engaging Instagram content",
-                "tools": "TrendAnalysisTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "creative designer",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Creative Designer",
-                "goal": "Design visually appealing posts",
-                "tools": "ImageGenerationTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "content planning task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Create content calendar",
-                "expected_output": "30-day Instagram content plan"
-            },
-            "relations": {}
-        },
-        {
-            "id": "post creation task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Generate Instagram post",
-                "expected_output": "Post with caption and hashtags",
-                "output_pydantic": "InstagramPost"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "usesTool",
-            "domain": "agento:Agent",
-            "range": "agento:Tool",
-            "definition": "Agent uses specialized tools.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "produces",
-            "domain": "agento:Agent",
-            "range": "agento:Content",
-            "definition": "Agent generates content output.",
-            "status_in_pattern": "digunakan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:InstagramPost",
-                "definition": "Structured social media content.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "hashtags",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Instagram content requires hashtag array untuk discoverability."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:instagramcrew": {
+      "rdf:type": ":System",
+      "dcterms:title": "instagramcrew"
+    },
+    "ex:instagram_post_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Instagram Post Flow",
+      "dcterms:description": "Pattern ini menggunakan crew untuk generate Instagram social media content. Crew terdiri dari content strategist agent untuk planning dan creative designer agent untuk visual content creation. Uses image generation tools dan social media best practices."
+    },
+    "ex:DatatypeProperty_hashtags": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Instagram content requires hashtag array untuk discoverability.",
+      "agento:name": "hashtags",
+      "agento:range": "xsd:string"
+    },
+    "ex:instagrampost": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "InstagramPost",
+      "dcterms:description": "Structured social media content."
+    },
+    "ex:content_strategist_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "content_strategist_agent",
+      ":agentRole": "Content Strategist",
+      "dcterms:title": "content_strategist_agent",
+      ":hasGoal": "ex:goal_content_strategist_agent",
+      ":hasTask": "ex:task_content_strategist_agent"
+    },
+    "ex:goal_content_strategist_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for content_strategist_agent",
+      "dcterms:description": "Automatically generated goal for content_strategist_agent"
+    },
+    "ex:task_content_strategist_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for content_strategist_agent",
+      "dcterms:description": "Automatically generated task for content_strategist_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for content_strategist_agent"
+    },
+    "ex:creative_designer_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "creative_designer_agent",
+      ":agentRole": "Creative Designer",
+      "dcterms:title": "creative_designer_agent",
+      ":hasGoal": "ex:goal_creative_designer_agent",
+      ":hasTask": "ex:task_creative_designer_agent"
+    },
+    "ex:goal_creative_designer_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for creative_designer_agent",
+      "dcterms:description": "Automatically generated goal for creative_designer_agent"
+    },
+    "ex:task_creative_designer_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for creative_designer_agent",
+      "dcterms:description": "Automatically generated task for creative_designer_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for creative_designer_agent"
     }
+  }
 }

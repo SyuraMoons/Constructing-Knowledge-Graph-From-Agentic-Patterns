@@ -1,0 +1,28 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:aggregar_node_workflow
+    a :WorkflowPattern ;
+    dcterms:title "aggregar_node Graph" ;
+    dcterms:description "Membangun sebuah StateGraph dengan satu node bernama aggregator_node. Node ini dijadikan sekaligus entry point dan finish point. Tidak ada edge/transition lain" .
+
+
+ex:node
+    a :Node ;
+    :callableLabel lambda x: x .
+
+
+ex:workflownode
+    a owl:Class ;
+    dcterms:title "workflowNode" ;
+    dcterms:description "Struktur graf dan langkah eksekusi." .

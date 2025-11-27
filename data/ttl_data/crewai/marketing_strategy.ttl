@@ -1,0 +1,154 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:marketingpostscrew
+    a :System ;
+    dcterms:title "marketingpostscrew" .
+
+
+ex:marketing_strategy_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Marketing Strategy Flow" ;
+    dcterms:description Pattern ini mendefinisikan crew marketing dengan 4 agent specialist: Lead Market Analyst untuk riset, Chief Marketing Strategist untuk strategi, Creative Content Creator untuk konten, dan Chief Creative Director untuk oversight. Crew mengeksekusi 5 task sequential: research, project understanding, strategy formulation, campaign ideation, dan copy creation. Menggunakan SerperDev dan web scraping tools untuk riset. .
+
+
+ex:DatatypeProperty_role
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Semua agents di CrewAI harus memiliki role." ;
+    agento:name "role" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_goal
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Core attribute untuk agent behavior di CrewAI." ;
+    agento:name "goal" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_backstory
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Memberikan context untuk LLM behavior." ;
+    agento:name "backstory" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_process
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "CrewAI mendukung berbagai process types." ;
+    agento:name "process" ;
+    agento:range xsd:string .
+
+
+ex:crew
+    a owl:Class ;
+    dcterms:title "Crew" ;
+    dcterms:description "Sistem orkestrasi multi-agent CrewAI." .
+
+
+ex:pydanticmodel
+    a owl:Class ;
+    dcterms:title "PydanticModel" ;
+    dcterms:description "Schema terstruktur untuk output validation." .
+
+
+ex:lead_market_analyst
+    a :Agent ;
+    :agentID "lead_market_analyst" ;
+    :agentRole "Lead Market Analyst" ;
+    dcterms:title "lead_market_analyst" ;
+    :hasGoal ex:goal_lead_market_analyst ;
+    :hasTask ex:task_lead_market_analyst .
+
+
+ex:goal_lead_market_analyst
+    a :Goal ;
+    dcterms:title "Goal for lead_market_analyst" ;
+    dcterms:description "Automatically generated goal for lead_market_analyst" .
+
+
+ex:task_lead_market_analyst
+    a :Task ;
+    dcterms:title "Task for lead_market_analyst" ;
+    dcterms:description "Automatically generated task for lead_market_analyst" ;
+    :taskExpectedOutput "Automatically generated expected output for lead_market_analyst" .
+
+
+ex:chief_marketing_strategist
+    a :Agent ;
+    :agentID "chief_marketing_strategist" ;
+    :agentRole "Chief Marketing Strategist" ;
+    dcterms:title "chief_marketing_strategist" ;
+    :hasGoal ex:goal_chief_marketing_strategist ;
+    :hasTask ex:task_chief_marketing_strategist .
+
+
+ex:goal_chief_marketing_strategist
+    a :Goal ;
+    dcterms:title "Goal for chief_marketing_strategist" ;
+    dcterms:description "Automatically generated goal for chief_marketing_strategist" .
+
+
+ex:task_chief_marketing_strategist
+    a :Task ;
+    dcterms:title "Task for chief_marketing_strategist" ;
+    dcterms:description "Automatically generated task for chief_marketing_strategist" ;
+    :taskExpectedOutput "Automatically generated expected output for chief_marketing_strategist" .
+
+
+ex:creative_content_creator
+    a :Agent ;
+    :agentID "creative_content_creator" ;
+    :agentRole "Creative Content Creator" ;
+    dcterms:title "creative_content_creator" ;
+    :hasGoal ex:goal_creative_content_creator ;
+    :hasTask ex:task_creative_content_creator .
+
+
+ex:goal_creative_content_creator
+    a :Goal ;
+    dcterms:title "Goal for creative_content_creator" ;
+    dcterms:description "Automatically generated goal for creative_content_creator" .
+
+
+ex:task_creative_content_creator
+    a :Task ;
+    dcterms:title "Task for creative_content_creator" ;
+    dcterms:description "Automatically generated task for creative_content_creator" ;
+    :taskExpectedOutput "Automatically generated expected output for creative_content_creator" .
+
+
+ex:chief_creative_director
+    a :Agent ;
+    :agentID "chief_creative_director" ;
+    :agentRole "Chief Creative Director" ;
+    dcterms:title "chief_creative_director" ;
+    :hasGoal ex:goal_chief_creative_director ;
+    :hasTask ex:task_chief_creative_director .
+
+
+ex:goal_chief_creative_director
+    a :Goal ;
+    dcterms:title "Goal for chief_creative_director" ;
+    dcterms:description "Automatically generated goal for chief_creative_director" .
+
+
+ex:task_chief_creative_director
+    a :Task ;
+    dcterms:title "Task for chief_creative_director" ;
+    dcterms:description "Automatically generated task for chief_creative_director" ;
+    :taskExpectedOutput "Automatically generated expected output for chief_creative_director" .

@@ -1,85 +1,98 @@
 {
-    "framework": "MastraAI",
-    "file_name": "research_workflow.json",
-    "pattern_type": "Multi-agent+Workflow",
-    "description": "Sistem “Research Workflow” berisi dua agent (researcher & writer) serta satu workflow research_and_write",
-    "entities": [
-        {
-            "id": "system name",
-            "vendorClass": "name",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "Research Workflow"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#1",
-            "vendorClass": "agents[0]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "researcher",
-                "role": "Researcher",
-                "instructions": "Research and gather information",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#2",
-            "vendorClass": "agents[1]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "writer",
-                "role": "Writer",
-                "instructions": "Write comprehensive reports",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "workflow",
-            "vendorClass": "workflows[0]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "research_and_write",
-                "description": "Research a topic and write a report"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "MultiAgentSystem → Agent",
-            "domain": "agento:Sistem memiliki agent–agent tertentu",
-            "range": "",
-            "definition": "Dari agents[]",
-            "status_in_pattern": "multiagentsystem → workflow"
-        },
-        {
-            "name": "Sistem memiliki workflow tertentu",
-            "domain": "agento:Dari workflows[]",
-            "range": "",
-            "definition": "configuredBy",
-            "status_in_pattern": "agent dikonfigurasi menggunakan model tertentu"
-        },
-        {
-            "name": "Dari field model",
-            "domain": "agento:",
-            "range": "",
-            "definition": "",
-            "status_in_pattern": ""
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:Workflow",
-                "definition": "Menampung definisi alur riset–penulisan",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:research_workflow": {
+      "rdf:type": ":Agent",
+      ":agentID": "Research Workflow",
+      ":hasGoal": "ex:goal_research_workflow",
+      ":hasTask": "ex:task_research_workflow"
+    },
+    "ex:goal_research_workflow": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for Research Workflow",
+      "dcterms:description": "Automatically generated goal for Research Workflow"
+    },
+    "ex:task_research_workflow": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for Research Workflow",
+      "dcterms:description": "Automatically generated task for Research Workflow",
+      ":taskExpectedOutput": "Automatically generated expected output for Research Workflow"
+    },
+    "ex:researcher": {
+      "rdf:type": ":Agent",
+      ":agentID": "researcher",
+      ":agentRole": "Researcher",
+      ":hasGoal": "ex:goal_researcher",
+      ":hasTask": "ex:task_researcher"
+    },
+    "ex:goal_researcher": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for researcher",
+      "dcterms:description": "Automatically generated goal for researcher"
+    },
+    "ex:task_researcher": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for researcher",
+      "dcterms:description": "Automatically generated task for researcher",
+      ":taskExpectedOutput": "Automatically generated expected output for researcher"
+    },
+    "ex:writer": {
+      "rdf:type": ":Agent",
+      ":agentID": "writer",
+      ":agentRole": "Writer",
+      ":hasGoal": "ex:goal_writer",
+      ":hasTask": "ex:task_writer"
+    },
+    "ex:goal_writer": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for writer",
+      "dcterms:description": "Automatically generated goal for writer"
+    },
+    "ex:task_writer": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for writer",
+      "dcterms:description": "Automatically generated task for writer",
+      ":taskExpectedOutput": "Automatically generated expected output for writer"
+    },
+    "ex:research_and_write": {
+      "rdf:type": ":Agent",
+      ":agentID": "research_and_write",
+      ":hasGoal": "ex:goal_research_and_write",
+      ":hasTask": "ex:task_research_and_write"
+    },
+    "ex:goal_research_and_write": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for research_and_write",
+      "dcterms:description": "Automatically generated goal for research_and_write"
+    },
+    "ex:task_research_and_write": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for research_and_write",
+      "dcterms:description": "Automatically generated task for research_and_write",
+      ":taskExpectedOutput": "Automatically generated expected output for research_and_write"
+    },
+    "ex:research_workflow.json": {
+      "rdf:type": ":System",
+      "dcterms:title": "research_workflow.json",
+      "dcterms:description": "Sistem “Research Workflow” berisi dua agent (researcher & writer) serta satu workflow research_and_write"
+    },
+    "ex:llm_gpt-4": {
+      "rdf:type": ":LanguageModel",
+      "dcterms:title": "gpt-4"
+    },
+    "ex:workflow": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "Workflow",
+      "dcterms:description": "Menampung definisi alur riset–penulisan"
     }
+  }
 }

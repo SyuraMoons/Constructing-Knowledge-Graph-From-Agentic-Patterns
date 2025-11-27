@@ -1,0 +1,100 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:stockanalysiscrew
+    a :System ;
+    dcterms:title "stockanalysiscrew" .
+
+
+ex:stock_analysis_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Stock Analysis Flow" ;
+    dcterms:description "Pattern ini implements financial analysis crew untuk stock research dengan SEC data integration. Crew includes data analyst untuk financial metrics, market researcher untuk trends, dan investment advisor untuk recommendations. Uses external tools untuk SEC filings dan market data." .
+
+
+ex:externaldatatool
+    a owl:Class ;
+    dcterms:title "ExternalDataTool" ;
+    dcterms:description "Tool dengan external API integration." .
+
+
+ex:investmentadvice
+    a owl:Class ;
+    dcterms:title "InvestmentAdvice" ;
+    dcterms:description "Structured advisory output." .
+
+
+ex:data_analyst_agent
+    a :Agent ;
+    :agentID "data_analyst_agent" ;
+    :agentRole "Financial Data Analyst" ;
+    dcterms:title "data_analyst_agent" ;
+    :hasGoal ex:goal_data_analyst_agent ;
+    :hasTask ex:task_data_analyst_agent .
+
+
+ex:goal_data_analyst_agent
+    a :Goal ;
+    dcterms:title "Goal for data_analyst_agent" ;
+    dcterms:description "Automatically generated goal for data_analyst_agent" .
+
+
+ex:task_data_analyst_agent
+    a :Task ;
+    dcterms:title "Task for data_analyst_agent" ;
+    dcterms:description "Automatically generated task for data_analyst_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for data_analyst_agent" .
+
+
+ex:market_researcher_agent
+    a :Agent ;
+    :agentID "market_researcher_agent" ;
+    :agentRole "Market Researcher" ;
+    dcterms:title "market_researcher_agent" ;
+    :hasGoal ex:goal_market_researcher_agent ;
+    :hasTask ex:task_market_researcher_agent .
+
+
+ex:goal_market_researcher_agent
+    a :Goal ;
+    dcterms:title "Goal for market_researcher_agent" ;
+    dcterms:description "Automatically generated goal for market_researcher_agent" .
+
+
+ex:task_market_researcher_agent
+    a :Task ;
+    dcterms:title "Task for market_researcher_agent" ;
+    dcterms:description "Automatically generated task for market_researcher_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for market_researcher_agent" .
+
+
+ex:investment_advisor_agent
+    a :Agent ;
+    :agentID "investment_advisor_agent" ;
+    :agentRole "Investment Advisor" ;
+    dcterms:title "investment_advisor_agent" ;
+    :hasGoal ex:goal_investment_advisor_agent ;
+    :hasTask ex:task_investment_advisor_agent .
+
+
+ex:goal_investment_advisor_agent
+    a :Goal ;
+    dcterms:title "Goal for investment_advisor_agent" ;
+    dcterms:description "Automatically generated goal for investment_advisor_agent" .
+
+
+ex:task_investment_advisor_agent
+    a :Task ;
+    dcterms:title "Task for investment_advisor_agent" ;
+    dcterms:description "Automatically generated task for investment_advisor_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for investment_advisor_agent" .

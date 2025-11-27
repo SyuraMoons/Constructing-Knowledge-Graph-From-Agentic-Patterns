@@ -1,118 +1,116 @@
 {
-    "framework": "CrewAI",
-    "file_name": "lead_score_flow.py",
-    "pattern_type": "DecisionFlowPattern",
-    "description": "Pattern ini mengimplementasikan lead qualification system dengan scoring mechanism dan human review. Flow menganalisis lead data, assign scores berdasarkan multiple criteria, dan route high-value leads untuk human review sebelum passing ke sales team.",
-    "entities": [
-        {
-            "id": "leadscoreflow",
-            "vendorClass": "Flow",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "state": "lead_scorer",
-                "score_method": "human_reviewer",
-                "review_method": "router"
-            },
-            "relations": {}
-        },
-        {
-            "id": "lead analyzer",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Lead Analyzer",
-                "goal": "Analyze lead data and extract insights",
-                "tools": "CRMTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "scoring",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Scoring Agent",
-                "goal": "Assign qualification scores to leads"
-            },
-            "relations": {}
-        },
-        {
-            "id": "human reviewer",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Sales Manager",
-                "goal": "Review high-value leads",
-                "human_input": "human_input=True"
-            },
-            "relations": {}
-        },
-        {
-            "id": "lead routing",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Lead Router",
-                "goal": "Route qualified leads to appropriate sales teams"
-            },
-            "relations": {}
-        },
-        {
-            "id": "scoring task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Calculate lead score",
-                "expected_output": "Lead with score 0-100",
-                "output_pydantic": "LeadScore"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "assignsScore",
-            "domain": "agento:Agent",
-            "range": "agento:Lead",
-            "definition": "Agent assigns score to lead entity.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "routesTo",
-            "domain": "agento:DecisionPoint",
-            "range": "agento:Team",
-            "definition": "Routing decision based on criteria.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "requiresReview",
-            "domain": "agento:Lead",
-            "range": "agento:Agent",
-            "definition": "High-value leads require human review.",
-            "status_in_pattern": "digunakan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:DecisionPoint",
-                "definition": "Conditional branch dalam flow.",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:LeadScore",
-                "definition": "Structured scoring output.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "scoreThreshold",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Conditional routing requires threshold values untuk branching logic."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:leadscoreflow": {
+      "rdf:type": ":System",
+      "dcterms:title": "leadscoreflow"
+    },
+    "ex:lead_score_flow_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Lead Score Flow Flow",
+      "dcterms:description": "Pattern ini mengimplementasikan lead qualification system dengan scoring mechanism dan human review. Flow menganalisis lead data, assign scores berdasarkan multiple criteria, dan route high-value leads untuk human review sebelum passing ke sales team."
+    },
+    "ex:DatatypeProperty_scorethreshold": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Conditional routing requires threshold values untuk branching logic.",
+      "agento:name": "scoreThreshold",
+      "agento:range": "xsd:string"
+    },
+    "ex:decisionpoint": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "DecisionPoint",
+      "dcterms:description": "Conditional branch dalam flow."
+    },
+    "ex:leadscore": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "LeadScore",
+      "dcterms:description": "Structured scoring output."
+    },
+    "ex:lead_analyzer_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "lead_analyzer_agent",
+      ":agentRole": "Lead Analyzer",
+      "dcterms:title": "lead_analyzer_agent",
+      ":hasGoal": "ex:goal_lead_analyzer_agent",
+      ":hasTask": "ex:task_lead_analyzer_agent"
+    },
+    "ex:goal_lead_analyzer_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for lead_analyzer_agent",
+      "dcterms:description": "Automatically generated goal for lead_analyzer_agent"
+    },
+    "ex:task_lead_analyzer_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for lead_analyzer_agent",
+      "dcterms:description": "Automatically generated task for lead_analyzer_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for lead_analyzer_agent"
+    },
+    "ex:scoring_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "scoring_agent",
+      ":agentRole": "Scoring Agent",
+      "dcterms:title": "scoring_agent",
+      ":hasGoal": "ex:goal_scoring_agent",
+      ":hasTask": "ex:task_scoring_agent"
+    },
+    "ex:goal_scoring_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for scoring_agent",
+      "dcterms:description": "Automatically generated goal for scoring_agent"
+    },
+    "ex:task_scoring_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for scoring_agent",
+      "dcterms:description": "Automatically generated task for scoring_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for scoring_agent"
+    },
+    "ex:human_reviewer_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "human_reviewer_agent",
+      ":agentRole": "Sales Manager",
+      "dcterms:title": "human_reviewer_agent",
+      ":hasGoal": "ex:goal_human_reviewer_agent",
+      ":hasTask": "ex:task_human_reviewer_agent"
+    },
+    "ex:goal_human_reviewer_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for human_reviewer_agent",
+      "dcterms:description": "Automatically generated goal for human_reviewer_agent"
+    },
+    "ex:task_human_reviewer_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for human_reviewer_agent",
+      "dcterms:description": "Automatically generated task for human_reviewer_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for human_reviewer_agent"
+    },
+    "ex:lead_routing_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "lead_routing_agent",
+      ":agentRole": "Lead Router",
+      "dcterms:title": "lead_routing_agent",
+      ":hasGoal": "ex:goal_lead_routing_agent",
+      ":hasTask": "ex:task_lead_routing_agent"
+    },
+    "ex:goal_lead_routing_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for lead_routing_agent",
+      "dcterms:description": "Automatically generated goal for lead_routing_agent"
+    },
+    "ex:task_lead_routing_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for lead_routing_agent",
+      "dcterms:description": "Automatically generated task for lead_routing_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for lead_routing_agent"
     }
+  }
 }

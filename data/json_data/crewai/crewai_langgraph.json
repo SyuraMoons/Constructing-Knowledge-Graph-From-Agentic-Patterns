@@ -1,115 +1,56 @@
 {
-    "framework": "CrewAI",
-    "file_name": "crewai_langgraph.py",
-    "pattern_type": "FrameworkIntegrationPattern",
-    "description": "Pattern ini demonstrates integration antara CrewAI dan LangGraph frameworks. Shows how CrewAI crews dapat di-embed dalam LangGraph StateGraph nodes untuk complex workflow orchestration. Combines CrewAI's agent collaboration dengan LangGraph's graph-based workflow control.",
-    "entities": [
-        {
-            "id": "integrationworkflow",
-            "vendorClass": "StateGraph (LangGraph)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "nodes": "crew_node",
-                "edges": "decision_node",
-                "state": "output_node"
-            },
-            "relations": {}
-        },
-        {
-            "id": "research crew",
-            "vendorClass": "Crew (CrewAI)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "agents": "researcher",
-                "tasks": "analyst"
-            },
-            "relations": {}
-        },
-        {
-            "id": "analysis crew",
-            "vendorClass": "Crew (CrewAI)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "agents": "data_analyst",
-                "tasks": "strategist"
-            },
-            "relations": {}
-        },
-        {
-            "id": "crew execution node",
-            "vendorClass": "Node (LangGraph)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "function": "execute_crew",
-                "crew": "research_crew"
-            },
-            "relations": {}
-        },
-        {
-            "id": "decision node",
-            "vendorClass": "Node (LangGraph)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "function": "route_based_on_output"
-            },
-            "relations": {}
-        },
-        {
-            "id": "workflow state",
-            "vendorClass": "State (LangGraph)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "current_crew": "research",
-                "outputs": "crew_outputs[]",
-                "metadata": "timestamps"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "embedsCrew",
-            "domain": "agento:Node",
-            "range": "agento:Crew",
-            "definition": "Graph node wraps crew.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "routesTo",
-            "domain": "agento:Node",
-            "range": "agento:Node",
-            "definition": "Conditional workflow routing.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "sharesState",
-            "domain": "agento:Crew",
-            "range": "agento:State",
-            "definition": "Crews share LangGraph state.",
-            "status_in_pattern": "digunakan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:HybridNode",
-                "definition": "Graph node containing multi-agent crew.",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:Integration",
-                "definition": "Cross-framework integration pattern.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "integrationMode",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Frameworks dapat integrate via embedding, API calls, atau other modes."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:integrationworkflow": {
+      "rdf:type": ":System",
+      "dcterms:title": "integrationworkflow"
+    },
+    "ex:research_crew": {
+      "rdf:type": ":System",
+      "dcterms:title": "research_crew"
+    },
+    "ex:analysis_crew": {
+      "rdf:type": ":System",
+      "dcterms:title": "analysis_crew"
+    },
+    "ex:crew_execution_node": {
+      "rdf:type": ":System",
+      "dcterms:title": "crew_execution_node"
+    },
+    "ex:workflow_state": {
+      "rdf:type": ":System",
+      "dcterms:title": "workflow_state"
+    },
+    "ex:crewai_langgraph_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Crewai Langgraph Flow",
+      "dcterms:description": "Pattern ini demonstrates integration antara CrewAI dan LangGraph frameworks. Shows how CrewAI crews dapat di-embed dalam LangGraph StateGraph nodes untuk complex workflow orchestration. Combines CrewAI's agent collaboration dengan LangGraph's graph-based workflow control."
+    },
+    "ex:DatatypeProperty_integrationmode": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Frameworks dapat integrate via embedding, API calls, atau other modes.",
+      "agento:name": "integrationMode",
+      "agento:range": "xsd:string"
+    },
+    "ex:hybridnode": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "HybridNode",
+      "dcterms:description": "Graph node containing multi-agent crew."
+    },
+    "ex:integration": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "Integration",
+      "dcterms:description": "Cross-framework integration pattern."
     }
+  }
 }

@@ -1,112 +1,123 @@
 {
-    "framework": "CrewAI",
-    "file_name": "write_book_flow.py",
-    "pattern_type": "ParallelFlowPattern",
-    "description": "Pattern ini mengimplementasikan automated book writing system menggunakan parallel chapter generation. Flow membuat outline, generates multiple chapters secara parallel menggunakan multiple crews, kemudian aggregates dan edits hasil final. Demonstrates parallel execution dan result aggregation.",
-    "entities": [
-        {
-            "id": "writebookflow",
-            "vendorClass": "Flow",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "state": "outline_crew",
-                "outline_method": "chapter_crews[]",
-                "chapter_methods": "editor_crew"
-            },
-            "relations": {}
-        },
-        {
-            "id": "outline planner",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Outline Planner",
-                "goal": "Create comprehensive book outline with chapter structure"
-            },
-            "relations": {}
-        },
-        {
-            "id": "chapter writer s",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Chapter Writer",
-                "goal": "Write engaging chapter content",
-                "chapter_id": "chapter_id=1"
-            },
-            "relations": {}
-        },
-        {
-            "id": "editor",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Senior Editor",
-                "goal": "Review and harmonize all chapters"
-            },
-            "relations": {}
-        },
-        {
-            "id": "aggregator",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Content Aggregator",
-                "goal": "Combine chapters into cohesive book"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "generatesChapter",
-            "domain": "agento:Agent",
-            "range": "agento:Chapter",
-            "definition": "Chapter writer generates chapter entity.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "aggregates",
-            "domain": "agento:Agent",
-            "range": "agento:Collection",
-            "definition": "Aggregator combines multiple outputs.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "editsContent",
-            "domain": "agento:Agent",
-            "range": "agento:Content",
-            "definition": "Editor modifies aggregated content.",
-            "status_in_pattern": "digunakan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:ParallelExecution",
-                "definition": "Multiple concurrent operations pattern.",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:Aggregation",
-                "definition": "Result combination pattern.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "parallelismDegree",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Parallel flows configure number of concurrent executions."
-            },
-            {
-                "name": "chapterId",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Parallel agents need unique identifiers untuk coordination."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:writebookflow": {
+      "rdf:type": ":System",
+      "dcterms:title": "writebookflow"
+    },
+    "ex:write_book_flow_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Write Book Flow Flow",
+      "dcterms:description": "Pattern ini mengimplementasikan automated book writing system menggunakan parallel chapter generation. Flow membuat outline, generates multiple chapters secara parallel menggunakan multiple crews, kemudian aggregates dan edits hasil final. Demonstrates parallel execution dan result aggregation."
+    },
+    "ex:DatatypeProperty_parallelismdegree": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Parallel flows configure number of concurrent executions.",
+      "agento:name": "parallelismDegree",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_chapterid": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Parallel agents need unique identifiers untuk coordination.",
+      "agento:name": "chapterId",
+      "agento:range": "xsd:string"
+    },
+    "ex:parallelexecution": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "ParallelExecution",
+      "dcterms:description": "Multiple concurrent operations pattern."
+    },
+    "ex:aggregation": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "Aggregation",
+      "dcterms:description": "Result combination pattern."
+    },
+    "ex:outline_planner_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "outline_planner_agent",
+      ":agentRole": "Outline Planner",
+      "dcterms:title": "outline_planner_agent",
+      ":hasGoal": "ex:goal_outline_planner_agent",
+      ":hasTask": "ex:task_outline_planner_agent"
+    },
+    "ex:goal_outline_planner_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for outline_planner_agent",
+      "dcterms:description": "Automatically generated goal for outline_planner_agent"
+    },
+    "ex:task_outline_planner_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for outline_planner_agent",
+      "dcterms:description": "Automatically generated task for outline_planner_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for outline_planner_agent"
+    },
+    "ex:chapter_writer_agents": {
+      "rdf:type": ":Agent",
+      ":agentID": "chapter_writer_agents",
+      ":agentRole": "Chapter Writer",
+      "dcterms:title": "chapter_writer_agents",
+      ":hasGoal": "ex:goal_chapter_writer_agents",
+      ":hasTask": "ex:task_chapter_writer_agents"
+    },
+    "ex:goal_chapter_writer_agents": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for chapter_writer_agents",
+      "dcterms:description": "Automatically generated goal for chapter_writer_agents"
+    },
+    "ex:task_chapter_writer_agents": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for chapter_writer_agents",
+      "dcterms:description": "Automatically generated task for chapter_writer_agents",
+      ":taskExpectedOutput": "Automatically generated expected output for chapter_writer_agents"
+    },
+    "ex:editor_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "editor_agent",
+      ":agentRole": "Senior Editor",
+      "dcterms:title": "editor_agent",
+      ":hasGoal": "ex:goal_editor_agent",
+      ":hasTask": "ex:task_editor_agent"
+    },
+    "ex:goal_editor_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for editor_agent",
+      "dcterms:description": "Automatically generated goal for editor_agent"
+    },
+    "ex:task_editor_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for editor_agent",
+      "dcterms:description": "Automatically generated task for editor_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for editor_agent"
+    },
+    "ex:aggregator_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "aggregator_agent",
+      ":agentRole": "Content Aggregator",
+      "dcterms:title": "aggregator_agent",
+      ":hasGoal": "ex:goal_aggregator_agent",
+      ":hasTask": "ex:task_aggregator_agent"
+    },
+    "ex:goal_aggregator_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for aggregator_agent",
+      "dcterms:description": "Automatically generated goal for aggregator_agent"
+    },
+    "ex:task_aggregator_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for aggregator_agent",
+      "dcterms:description": "Automatically generated task for aggregator_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for aggregator_agent"
     }
+  }
 }

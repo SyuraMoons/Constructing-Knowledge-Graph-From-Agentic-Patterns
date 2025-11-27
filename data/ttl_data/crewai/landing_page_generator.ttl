@@ -1,0 +1,94 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:landingpagecrew
+    a :System ;
+    dcterms:title "landingpagecrew" .
+
+
+ex:landing_page_generator_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Landing Page Generator Flow" ;
+    dcterms:description "Pattern ini implements landing page generation crew dengan UX researcher, copywriter, dan web designer agents. Crew creates complete landing pages from product concept termasuk hero section, features, testimonials, dan CTAs. Demonstrates multi-specialist collaboration untuk complex output." .
+
+
+ex:landingpage
+    a owl:Class ;
+    dcterms:title "LandingPage" ;
+    dcterms:description "Structured web page entity." .
+
+
+ex:ux_researcher_agent
+    a :Agent ;
+    :agentID "ux_researcher_agent" ;
+    :agentRole "UX Researcher" ;
+    dcterms:title "ux_researcher_agent" ;
+    :hasGoal ex:goal_ux_researcher_agent ;
+    :hasTask ex:task_ux_researcher_agent .
+
+
+ex:goal_ux_researcher_agent
+    a :Goal ;
+    dcterms:title "Goal for ux_researcher_agent" ;
+    dcterms:description "Automatically generated goal for ux_researcher_agent" .
+
+
+ex:task_ux_researcher_agent
+    a :Task ;
+    dcterms:title "Task for ux_researcher_agent" ;
+    dcterms:description "Automatically generated task for ux_researcher_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for ux_researcher_agent" .
+
+
+ex:copywriter_agent
+    a :Agent ;
+    :agentID "copywriter_agent" ;
+    :agentRole "Copywriter" ;
+    dcterms:title "copywriter_agent" ;
+    :hasGoal ex:goal_copywriter_agent ;
+    :hasTask ex:task_copywriter_agent .
+
+
+ex:goal_copywriter_agent
+    a :Goal ;
+    dcterms:title "Goal for copywriter_agent" ;
+    dcterms:description "Automatically generated goal for copywriter_agent" .
+
+
+ex:task_copywriter_agent
+    a :Task ;
+    dcterms:title "Task for copywriter_agent" ;
+    dcterms:description "Automatically generated task for copywriter_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for copywriter_agent" .
+
+
+ex:web_designer_agent
+    a :Agent ;
+    :agentID "web_designer_agent" ;
+    :agentRole "Web Designer" ;
+    dcterms:title "web_designer_agent" ;
+    :hasGoal ex:goal_web_designer_agent ;
+    :hasTask ex:task_web_designer_agent .
+
+
+ex:goal_web_designer_agent
+    a :Goal ;
+    dcterms:title "Goal for web_designer_agent" ;
+    dcterms:description "Automatically generated goal for web_designer_agent" .
+
+
+ex:task_web_designer_agent
+    a :Task ;
+    dcterms:title "Task for web_designer_agent" ;
+    dcterms:description "Automatically generated task for web_designer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for web_designer_agent" .

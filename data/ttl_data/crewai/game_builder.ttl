@@ -1,0 +1,94 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:gamebuildercrew
+    a :System ;
+    dcterms:title "gamebuildercrew" .
+
+
+ex:game_builder_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Game Builder Flow" ;
+    dcterms:description "Pattern ini implements game development crew yang designs dan builds Python games. Crew includes game designer untuk game mechanics, developer untuk implementation, dan QA tester untuk testing. Demonstrates code generation dan iterative development dengan testing feedback loop." .
+
+
+ex:feedbackloop
+    a owl:Class ;
+    dcterms:title "FeedbackLoop" ;
+    dcterms:description "Iterative testing and refinement pattern." .
+
+
+ex:game_designer_agent
+    a :Agent ;
+    :agentID "game_designer_agent" ;
+    :agentRole "Game Designer" ;
+    dcterms:title "game_designer_agent" ;
+    :hasGoal ex:goal_game_designer_agent ;
+    :hasTask ex:task_game_designer_agent .
+
+
+ex:goal_game_designer_agent
+    a :Goal ;
+    dcterms:title "Goal for game_designer_agent" ;
+    dcterms:description "Automatically generated goal for game_designer_agent" .
+
+
+ex:task_game_designer_agent
+    a :Task ;
+    dcterms:title "Task for game_designer_agent" ;
+    dcterms:description "Automatically generated task for game_designer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for game_designer_agent" .
+
+
+ex:python_developer_agent
+    a :Agent ;
+    :agentID "python_developer_agent" ;
+    :agentRole "Python Developer" ;
+    dcterms:title "python_developer_agent" ;
+    :hasGoal ex:goal_python_developer_agent ;
+    :hasTask ex:task_python_developer_agent .
+
+
+ex:goal_python_developer_agent
+    a :Goal ;
+    dcterms:title "Goal for python_developer_agent" ;
+    dcterms:description "Automatically generated goal for python_developer_agent" .
+
+
+ex:task_python_developer_agent
+    a :Task ;
+    dcterms:title "Task for python_developer_agent" ;
+    dcterms:description "Automatically generated task for python_developer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for python_developer_agent" .
+
+
+ex:qa_tester_agent
+    a :Agent ;
+    :agentID "qa_tester_agent" ;
+    :agentRole "QA Tester" ;
+    dcterms:title "qa_tester_agent" ;
+    :hasGoal ex:goal_qa_tester_agent ;
+    :hasTask ex:task_qa_tester_agent .
+
+
+ex:goal_qa_tester_agent
+    a :Goal ;
+    dcterms:title "Goal for qa_tester_agent" ;
+    dcterms:description "Automatically generated goal for qa_tester_agent" .
+
+
+ex:task_qa_tester_agent
+    a :Task ;
+    dcterms:title "Task for qa_tester_agent" ;
+    dcterms:description "Automatically generated task for qa_tester_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for qa_tester_agent" .

@@ -1,0 +1,37 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:reviewer_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Reviewer Graph" ;
+    dcterms:description Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama reviewer_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan identitas (lambda x: x). Tidak ada node lain, edge, agent, tool, ataupun LLM yang dimodelkan eksplisit. .
+
+
+ex:node
+    a owl:Class ;
+    dcterms:title "Node" ;
+    dcterms:description "Unit langkah pemrosesan di dalam workflow." .
+
+
+ex:DatatypeProperty_nodename
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Nama node selalu string; diperlukan untuk identifikasi." ;
+    agento:name "nodeName" ;
+    agento:range xsd:string .
+
+
+ex:workflowgraph
+    a owl:Class ;
+    dcterms:title "WorkflowGraph" ;
+    dcterms:description "Representasi graf workflow berbasis StateGraph." .

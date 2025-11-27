@@ -1,92 +1,107 @@
 {
-    "framework": "MastraAI",
-    "file_name": "document_processor.json",
-    "pattern_type": "Multi-agentconfiguration",
-    "description": "Pattern ini mendefinisikan sistem bernama “Document Processing” dengan dua agent: parser dan summarizer. Kedua agent memiliki peran, instruksi, dan model LLM yang sama (gpt-4). Tidak ada workflow eksplisit atau struktur proses tambahan  hanya konfigurasi agent",
-    "entities": [
-        {
-            "id": "system",
-            "vendorClass": "name",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "Document Processing"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#1",
-            "vendorClass": "agents[0]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "parser",
-                "role": "Document Parser",
-                "instructions": "Extract information from documents",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#2",
-            "vendorClass": "agents[1]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "summarizer",
-                "role": "Summarizer",
-                "instructions": "Summarize document content",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "hasAgent",
-            "domain": "agento:MultiAgentSystem",
-            "range": "agento:Agent",
-            "definition": "Sistem memiliki agent-agent tertentu.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "configuredBy",
-            "domain": "agento:Agent",
-            "range": "agento:LLMModel",
-            "definition": "Menyatakan agent memakai model tertentu.",
-            "status_in_pattern": "ditambahkan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:MultiAgentSystem",
-                "definition": "Representasi top-level sistem.",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:LLMModel",
-                "definition": "Representasi model.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "role",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"Document Parser\", \"Summarizer\"."
-            },
-            {
-                "name": "instructions",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Dua agent memiliki instruksi berbeda."
-            },
-            {
-                "name": "modelName",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"gpt-4\"."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:document_processing": {
+      "rdf:type": ":Agent",
+      ":agentID": "Document Processing",
+      ":hasGoal": "ex:goal_document_processing",
+      ":hasTask": "ex:task_document_processing"
+    },
+    "ex:goal_document_processing": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for Document Processing",
+      "dcterms:description": "Automatically generated goal for Document Processing"
+    },
+    "ex:task_document_processing": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for Document Processing",
+      "dcterms:description": "Automatically generated task for Document Processing",
+      ":taskExpectedOutput": "Automatically generated expected output for Document Processing"
+    },
+    "ex:parser": {
+      "rdf:type": ":Agent",
+      ":agentID": "parser",
+      ":agentRole": "Document Parser",
+      ":hasGoal": "ex:goal_parser",
+      ":hasTask": "ex:task_parser"
+    },
+    "ex:goal_parser": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for parser",
+      "dcterms:description": "Automatically generated goal for parser"
+    },
+    "ex:task_parser": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for parser",
+      "dcterms:description": "Automatically generated task for parser",
+      ":taskExpectedOutput": "Automatically generated expected output for parser"
+    },
+    "ex:summarizer": {
+      "rdf:type": ":Agent",
+      ":agentID": "summarizer",
+      ":agentRole": "Summarizer",
+      ":hasGoal": "ex:goal_summarizer",
+      ":hasTask": "ex:task_summarizer"
+    },
+    "ex:goal_summarizer": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for summarizer",
+      "dcterms:description": "Automatically generated goal for summarizer"
+    },
+    "ex:task_summarizer": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for summarizer",
+      "dcterms:description": "Automatically generated task for summarizer",
+      ":taskExpectedOutput": "Automatically generated expected output for summarizer"
+    },
+    "ex:document_processor.json": {
+      "rdf:type": ":System",
+      "dcterms:title": "document_processor.json",
+      "dcterms:description": "Pattern ini mendefinisikan sistem bernama “Document Processing” dengan dua agent: parser dan summarizer. Kedua agent memiliki peran, instruksi, dan model LLM yang sama (gpt-4). Tidak ada workflow eksplisit atau struktur proses tambahan  hanya konfigurasi agent"
+    },
+    "ex:llm_gpt-4": {
+      "rdf:type": ":LanguageModel",
+      "dcterms:title": "gpt-4"
+    },
+    "ex:DatatypeProperty_role": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"Document Parser\", \"Summarizer\".",
+      "agento:name": "role",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_instructions": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Dua agent memiliki instruksi berbeda.",
+      "agento:name": "instructions",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_modelname": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"gpt-4\".",
+      "agento:name": "modelName",
+      "agento:range": "xsd:string"
+    },
+    "ex:multiagentsystem": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "MultiAgentSystem",
+      "dcterms:description": "Representasi top-level sistem."
+    },
+    "ex:llmmodel": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "LLMModel",
+      "dcterms:description": "Representasi model."
     }
+  }
 }

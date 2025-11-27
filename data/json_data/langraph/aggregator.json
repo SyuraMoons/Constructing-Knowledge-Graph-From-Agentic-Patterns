@@ -1,86 +1,28 @@
 {
-    "framework": "Langraph",
-    "file_name": "agregator.py",
-    "pattern_type": "Single-nodeworkflow(aggregator)",
-    "description": "Membangun sebuah StateGraph dengan satu node bernama aggregator_node. Node ini dijadikan sekaligus entry point dan finish point. Tidak ada edge/transition lain",
-    "entities": [
-        {
-            "id": "workflow",
-            "vendorClass": "StateGraph()",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "-": "-"
-            },
-            "relations": {}
-        },
-        {
-            "id": "node",
-            "vendorClass": "add_node(name, fn)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "nama": "aggregator_node",
-                "callable": "lambda x: x"
-            },
-            "relations": {}
-        },
-        {
-            "id": "entry point",
-            "vendorClass": "set_entry_point(name)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "“aggregar_node”"
-            },
-            "relations": {}
-        },
-        {
-            "id": "finish point",
-            "vendorClass": "et_finish_point(name)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "aggregator_node"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "callsNode",
-            "domain": "agento:Workflow",
-            "range": "agento:Node",
-            "definition": "Workflow memiliki/memanggil node.",
-            "status_in_pattern": "suggested"
-        },
-        {
-            "name": "hasStartNode",
-            "domain": "agento:Workflow",
-            "range": "agento:Node",
-            "definition": "Node awal eksekusi.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "hasEndNode",
-            "domain": "agento:Workflow",
-            "range": "agento:Node",
-            "definition": "Node akhir eksekusi.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "follows",
-            "domain": "agento:Workflow",
-            "range": "agento:Node",
-            "definition": "Urutan/edge antar node.",
-            "status_in_pattern": "optional"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:workflo,node",
-                "definition": "Struktur graf dan langkah eksekusi.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:aggregar_node_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "aggregar_node Graph",
+      "dcterms:description": "Membangun sebuah StateGraph dengan satu node bernama aggregator_node. Node ini dijadikan sekaligus entry point dan finish point. Tidak ada edge/transition lain"
+    },
+    "ex:node": {
+      "rdf:type": ":Node",
+      ":callableLabel": "lambda x: x"
+    },
+    "ex:workflownode": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "workflowNode",
+      "dcterms:description": "Struktur graf dan langkah eksekusi."
     }
+  }
 }

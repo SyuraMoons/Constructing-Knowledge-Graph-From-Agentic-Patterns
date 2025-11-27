@@ -112,7 +112,7 @@ Nama
 Deskripsi
 Justifikasi
 class
-workflo,node
+workflowNode
 Hubungkan Workflow dengan Node yang dimilikinya
 Esensial untuk merepresentasikan graph-based process
 object property

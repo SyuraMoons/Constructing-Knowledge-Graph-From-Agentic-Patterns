@@ -1,0 +1,141 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:content_creation_pipeline
+    a :Agent ;
+    :agentID "Content Creation Pipeline" ;
+    :hasGoal ex:goal_content_creation_pipeline ;
+    :hasTask ex:task_content_creation_pipeline .
+
+
+ex:goal_content_creation_pipeline
+    a :Goal ;
+    dcterms:title "Goal for Content Creation Pipeline" ;
+    dcterms:description "Automatically generated goal for Content Creation Pipeline" .
+
+
+ex:task_content_creation_pipeline
+    a :Task ;
+    dcterms:title "Task for Content Creation Pipeline" ;
+    dcterms:description "Automatically generated task for Content Creation Pipeline" ;
+    :taskExpectedOutput "Automatically generated expected output for Content Creation Pipeline" .
+
+
+ex:ideator
+    a :Agent ;
+    :agentID "ideator" ;
+    :agentRole "Content Ideator" ;
+    :hasGoal ex:goal_ideator ;
+    :hasTask ex:task_ideator .
+
+
+ex:goal_ideator
+    a :Goal ;
+    dcterms:title "Goal for ideator" ;
+    dcterms:description "Automatically generated goal for ideator" .
+
+
+ex:task_ideator
+    a :Task ;
+    dcterms:title "Task for ideator" ;
+    dcterms:description "Automatically generated task for ideator" ;
+    :taskExpectedOutput "Automatically generated expected output for ideator" .
+
+
+ex:writer
+    a :Agent ;
+    :agentID "writer" ;
+    :agentRole "Content Writer" ;
+    :hasGoal ex:goal_writer ;
+    :hasTask ex:task_writer .
+
+
+ex:goal_writer
+    a :Goal ;
+    dcterms:title "Goal for writer" ;
+    dcterms:description "Automatically generated goal for writer" .
+
+
+ex:task_writer
+    a :Task ;
+    dcterms:title "Task for writer" ;
+    dcterms:description "Automatically generated task for writer" ;
+    :taskExpectedOutput "Automatically generated expected output for writer" .
+
+
+ex:editor
+    a :Agent ;
+    :agentID "editor" ;
+    :agentRole "Content Editor" ;
+    :hasGoal ex:goal_editor ;
+    :hasTask ex:task_editor .
+
+
+ex:goal_editor
+    a :Goal ;
+    dcterms:title "Goal for editor" ;
+    dcterms:description "Automatically generated goal for editor" .
+
+
+ex:task_editor
+    a :Task ;
+    dcterms:title "Task for editor" ;
+    dcterms:description "Automatically generated task for editor" ;
+    :taskExpectedOutput "Automatically generated expected output for editor" .
+
+
+ex:content_creation.json
+    a :System ;
+    dcterms:title "content_creation.json" ;
+    dcterms:description Pattern ini mendefinisikan sistem bernama “Content Creation Pipeline” yang berisi tiga agent: ideator, writer, dan editor. Setiap agent memiliki role, instructions, dan model. Tidak ada workflow eksplisit, task, atau tools — pattern ini fokus pada konfigurasi agent dalam pipeline pembuatan konten .
+
+
+ex:llm_gpt-4
+    a :LanguageModel ;
+    dcterms:title "gpt-4" .
+
+
+ex:DatatypeProperty_role
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification ""Content Ideator", "Content Editor", dll." ;
+    agento:name "role" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_instructions
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification ""Generate content ideas"" ;
+    agento:name "instructions" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_modelname
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification ""gpt-4"" ;
+    agento:name "modelName" ;
+    agento:range xsd:string .
+
+
+ex:multiagentsystem
+    a owl:Class ;
+    dcterms:title "MultiAgentSystem" ;
+    dcterms:description "Representasi konfigurasi multi-agent." .
+
+
+ex:llmmodel
+    a owl:Class ;
+    dcterms:title "LLMModel" ;
+    dcterms:description "Representasi model (gpt-4, dll)." .

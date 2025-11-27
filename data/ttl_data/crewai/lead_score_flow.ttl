@@ -1,0 +1,130 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:leadscoreflow
+    a :System ;
+    dcterms:title "leadscoreflow" .
+
+
+ex:lead_score_flow_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Lead Score Flow Flow" ;
+    dcterms:description "Pattern ini mengimplementasikan lead qualification system dengan scoring mechanism dan human review. Flow menganalisis lead data, assign scores berdasarkan multiple criteria, dan route high-value leads untuk human review sebelum passing ke sales team." .
+
+
+ex:DatatypeProperty_scorethreshold
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Conditional routing requires threshold values untuk branching logic." ;
+    agento:name "scoreThreshold" ;
+    agento:range xsd:string .
+
+
+ex:decisionpoint
+    a owl:Class ;
+    dcterms:title "DecisionPoint" ;
+    dcterms:description "Conditional branch dalam flow." .
+
+
+ex:leadscore
+    a owl:Class ;
+    dcterms:title "LeadScore" ;
+    dcterms:description "Structured scoring output." .
+
+
+ex:lead_analyzer_agent
+    a :Agent ;
+    :agentID "lead_analyzer_agent" ;
+    :agentRole "Lead Analyzer" ;
+    dcterms:title "lead_analyzer_agent" ;
+    :hasGoal ex:goal_lead_analyzer_agent ;
+    :hasTask ex:task_lead_analyzer_agent .
+
+
+ex:goal_lead_analyzer_agent
+    a :Goal ;
+    dcterms:title "Goal for lead_analyzer_agent" ;
+    dcterms:description "Automatically generated goal for lead_analyzer_agent" .
+
+
+ex:task_lead_analyzer_agent
+    a :Task ;
+    dcterms:title "Task for lead_analyzer_agent" ;
+    dcterms:description "Automatically generated task for lead_analyzer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for lead_analyzer_agent" .
+
+
+ex:scoring_agent
+    a :Agent ;
+    :agentID "scoring_agent" ;
+    :agentRole "Scoring Agent" ;
+    dcterms:title "scoring_agent" ;
+    :hasGoal ex:goal_scoring_agent ;
+    :hasTask ex:task_scoring_agent .
+
+
+ex:goal_scoring_agent
+    a :Goal ;
+    dcterms:title "Goal for scoring_agent" ;
+    dcterms:description "Automatically generated goal for scoring_agent" .
+
+
+ex:task_scoring_agent
+    a :Task ;
+    dcterms:title "Task for scoring_agent" ;
+    dcterms:description "Automatically generated task for scoring_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for scoring_agent" .
+
+
+ex:human_reviewer_agent
+    a :Agent ;
+    :agentID "human_reviewer_agent" ;
+    :agentRole "Sales Manager" ;
+    dcterms:title "human_reviewer_agent" ;
+    :hasGoal ex:goal_human_reviewer_agent ;
+    :hasTask ex:task_human_reviewer_agent .
+
+
+ex:goal_human_reviewer_agent
+    a :Goal ;
+    dcterms:title "Goal for human_reviewer_agent" ;
+    dcterms:description "Automatically generated goal for human_reviewer_agent" .
+
+
+ex:task_human_reviewer_agent
+    a :Task ;
+    dcterms:title "Task for human_reviewer_agent" ;
+    dcterms:description "Automatically generated task for human_reviewer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for human_reviewer_agent" .
+
+
+ex:lead_routing_agent
+    a :Agent ;
+    :agentID "lead_routing_agent" ;
+    :agentRole "Lead Router" ;
+    dcterms:title "lead_routing_agent" ;
+    :hasGoal ex:goal_lead_routing_agent ;
+    :hasTask ex:task_lead_routing_agent .
+
+
+ex:goal_lead_routing_agent
+    a :Goal ;
+    dcterms:title "Goal for lead_routing_agent" ;
+    dcterms:description "Automatically generated goal for lead_routing_agent" .
+
+
+ex:task_lead_routing_agent
+    a :Task ;
+    dcterms:title "Task for lead_routing_agent" ;
+    dcterms:description "Automatically generated task for lead_routing_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for lead_routing_agent" .

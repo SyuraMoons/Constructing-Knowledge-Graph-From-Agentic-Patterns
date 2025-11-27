@@ -1,90 +1,36 @@
 {
-    "framework": "Langraph",
-    "file_name": "planner.py",
-    "pattern_type": "Single-nodeStateGraph(entry=finish)",
-    "description": "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama planner_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan yang bersifat identitas (lambda x: x). Tidak ada node lain, tidak ada edge eksplisit, dan tidak ada integrasi agent, tool, ataupun LLM",
-    "entities": [
-        {
-            "id": "graph",
-            "vendorClass": "StateGraph",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "konstruktor StateGraph()": "graph"
-            },
-            "relations": {}
-        },
-        {
-            "id": "node",
-            "vendorClass": "Node dalam Graph",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "add_node(\"planner_node\"": "planner_node"
-            },
-            "relations": {}
-        },
-        {
-            "id": "entry point",
-            "vendorClass": "Graph property",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "set_entry_point(\"planner_node\")": "planner_node"
-            },
-            "relations": {}
-        },
-        {
-            "id": "finish point",
-            "vendorClass": "Graph property",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "set_finish_point(\"planner_node\")": "planner_node"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "hasNode",
-            "domain": "agento:WorkflowGraph",
-            "range": "agento:Node",
-            "definition": "Workflow berisi satu atau lebih node.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "hasEntryNode",
-            "domain": "agento:WorkflowGraph",
-            "range": "agento:Node",
-            "definition": "Node yang menjadi titik masuk eksekusi.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "hasFinishNode",
-            "domain": "agento:WorkflowGraph",
-            "range": "agento:Node",
-            "definition": "Node yang menjadi titik akhir eksekusi.",
-            "status_in_pattern": "ditambahkan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:WorkflowGraph",
-                "definition": "Representasi graf workflow berbasis StateGraph.",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:Node",
-                "definition": "Unit langkah pemrosesan di dalam workflow.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "nodeName",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Nama node selalu string (\"planner_node\")."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:planner_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Planner Graph",
+      "dcterms:description": "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama planner_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan yang bersifat identitas (lambda x: x). Tidak ada node lain, tidak ada edge eksplisit, dan tidak ada integrasi agent, tool, ataupun LLM"
+    },
+    "ex:node": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "Node",
+      "dcterms:description": "Unit langkah pemrosesan di dalam workflow."
+    },
+    "ex:DatatypeProperty_nodename": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Nama node selalu string (\"planner_node\").",
+      "agento:name": "nodeName",
+      "agento:range": "xsd:string"
+    },
+    "ex:workflowgraph": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "WorkflowGraph",
+      "dcterms:description": "Representasi graf workflow berbasis StateGraph."
     }
+  }
 }

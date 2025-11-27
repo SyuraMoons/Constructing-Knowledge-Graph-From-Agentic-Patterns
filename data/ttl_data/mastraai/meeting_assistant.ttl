@@ -1,0 +1,128 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:meeting_assistant
+    a :Agent ;
+    :agentID "Meeting Assistant" ;
+    :hasGoal ex:goal_meeting_assistant ;
+    :hasTask ex:task_meeting_assistant .
+
+
+ex:goal_meeting_assistant
+    a :Goal ;
+    dcterms:title "Goal for Meeting Assistant" ;
+    dcterms:description "Automatically generated goal for Meeting Assistant" .
+
+
+ex:task_meeting_assistant
+    a :Task ;
+    dcterms:title "Task for Meeting Assistant" ;
+    dcterms:description "Automatically generated task for Meeting Assistant" ;
+    :taskExpectedOutput "Automatically generated expected output for Meeting Assistant" .
+
+
+ex:scheduler
+    a :Agent ;
+    :agentID "scheduler" ;
+    :agentRole "Meeting Scheduler" ;
+    :hasGoal ex:goal_scheduler ;
+    :hasTask ex:task_scheduler .
+
+
+ex:goal_scheduler
+    a :Goal ;
+    dcterms:title "Goal for scheduler" ;
+    dcterms:description "Automatically generated goal for scheduler" .
+
+
+ex:task_scheduler
+    a :Task ;
+    dcterms:title "Task for scheduler" ;
+    dcterms:description "Automatically generated task for scheduler" ;
+    :taskExpectedOutput "Automatically generated expected output for scheduler" .
+
+
+ex:note_taker
+    a :Agent ;
+    :agentID "note_taker" ;
+    :agentRole "Note Taker" ;
+    :hasGoal ex:goal_note_taker ;
+    :hasTask ex:task_note_taker .
+
+
+ex:goal_note_taker
+    a :Goal ;
+    dcterms:title "Goal for note_taker" ;
+    dcterms:description "Automatically generated goal for note_taker" .
+
+
+ex:task_note_taker
+    a :Task ;
+    dcterms:title "Task for note_taker" ;
+    dcterms:description "Automatically generated task for note_taker" ;
+    :taskExpectedOutput "Automatically generated expected output for note_taker" .
+
+
+ex:meeting_assistant.json
+    a :System ;
+    dcterms:title "meeting_assistant.json" ;
+    dcterms:description Pattern ini mendefinisikan sistem “Meeting Assistant” dengan dua agent: scheduler dan note_taker. Keduanya memiliki peran dan instruksi yang berbeda, namun sama-sama menggunakan model LLM gpt-4 untuk membantu penjadwalan pertemuan dan pencatatan notulen .
+
+
+ex:llm_gpt-4
+    a :LanguageModel ;
+    dcterms:title "gpt-4" .
+
+
+ex:DatatypeProperty_name
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Field name digunakan konsisten pada sistem, agent, dan model." ;
+    agento:name "name" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_role
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Membedakan fungsi Meeting Scheduler dan Note Taker dalam sistem." ;
+    agento:name "role" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_instructions
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Menjelaskan fungsi operasional masing-masing agent." ;
+    agento:name "instructions" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_modelname
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Menyimpan “gpt-4” sebagai identitas model yang digunakan." ;
+    agento:name "modelName" ;
+    agento:range xsd:string .
+
+
+ex:multiagentsystem
+    a owl:Class ;
+    dcterms:title "MultiAgentSystem" ;
+    dcterms:description "Sistem top-level yang menaungi beberapa agent dalam domain meeting." .
+
+
+ex:llmmodel
+    a owl:Class ;
+    dcterms:title "LLMModel" ;
+    dcterms:description "Representasi model LLM yang digunakan oleh agent untuk reasoning." .

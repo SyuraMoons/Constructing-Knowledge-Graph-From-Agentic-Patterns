@@ -1,0 +1,80 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:instagramcrew
+    a :System ;
+    dcterms:title "instagramcrew" .
+
+
+ex:instagram_post_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Instagram Post Flow" ;
+    dcterms:description "Pattern ini menggunakan crew untuk generate Instagram social media content. Crew terdiri dari content strategist agent untuk planning dan creative designer agent untuk visual content creation. Uses image generation tools dan social media best practices." .
+
+
+ex:DatatypeProperty_hashtags
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Instagram content requires hashtag array untuk discoverability." ;
+    agento:name "hashtags" ;
+    agento:range xsd:string .
+
+
+ex:instagrampost
+    a owl:Class ;
+    dcterms:title "InstagramPost" ;
+    dcterms:description "Structured social media content." .
+
+
+ex:content_strategist_agent
+    a :Agent ;
+    :agentID "content_strategist_agent" ;
+    :agentRole "Content Strategist" ;
+    dcterms:title "content_strategist_agent" ;
+    :hasGoal ex:goal_content_strategist_agent ;
+    :hasTask ex:task_content_strategist_agent .
+
+
+ex:goal_content_strategist_agent
+    a :Goal ;
+    dcterms:title "Goal for content_strategist_agent" ;
+    dcterms:description "Automatically generated goal for content_strategist_agent" .
+
+
+ex:task_content_strategist_agent
+    a :Task ;
+    dcterms:title "Task for content_strategist_agent" ;
+    dcterms:description "Automatically generated task for content_strategist_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for content_strategist_agent" .
+
+
+ex:creative_designer_agent
+    a :Agent ;
+    :agentID "creative_designer_agent" ;
+    :agentRole "Creative Designer" ;
+    dcterms:title "creative_designer_agent" ;
+    :hasGoal ex:goal_creative_designer_agent ;
+    :hasTask ex:task_creative_designer_agent .
+
+
+ex:goal_creative_designer_agent
+    a :Goal ;
+    dcterms:title "Goal for creative_designer_agent" ;
+    dcterms:description "Automatically generated goal for creative_designer_agent" .
+
+
+ex:task_creative_designer_agent
+    a :Task ;
+    dcterms:title "Task for creative_designer_agent" ;
+    dcterms:description "Automatically generated task for creative_designer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for creative_designer_agent" .

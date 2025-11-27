@@ -1,96 +1,73 @@
 {
-    "framework": "AutoGen",
-    "file_name": "stream_chat.py",
-    "pattern_type": "AgentDeclarationPattern",
-    "description": "Pattern ini mendefinisikan dua agent dasar AutoGen: satu AssistantAgent dengan system_message, dan satu UserProxyAgent dengan mode input manusia NEVER. Meskipun namanya mengandung konsep “stream chat”, tidak ada implementasi streaming di level kode yang dianalisis",
-    "entities": [
-        {
-            "id": "assistant",
-            "vendorClass": "AssistantAgent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "stream_chat_assistant"
-            },
-            "relations": {}
-        },
-        {
-            "id": "userproxy",
-            "vendorClass": "UserProxyAgent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "user",
-                "human_input_mode": "NEVER"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "delegatesTo",
-            "domain": "agento:Agent",
-            "range": "agento:Agent",
-            "definition": "Relasi delegasi antar-agent.",
-            "status_in_pattern": "optional"
-        },
-        {
-            "name": "participatesIn",
-            "domain": "agento:Agent",
-            "range": "agento:Workflow",
-            "definition": "Keterlibatan agent dalam workflow.",
-            "status_in_pattern": "tidak digunakan"
-        },
-        {
-            "name": "Datatype Properties",
-            "domain": "agento:Property",
-            "range": "",
-            "definition": "Domain",
-            "status_in_pattern": "definisi"
-        },
-        {
-            "name": "bukti",
-            "domain": "agento:name",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "nama agent."
-        },
-        {
-            "name": "\"stream_chat_assistant\", \"user\"",
-            "domain": "agento:systemMessage",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "pesan sistem untuk assistantagent."
-        },
-        {
-            "name": "\"You are a helpful AI assistant for stream_chat\"",
-            "domain": "agento:humanInputMode",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "mode input user."
-        },
-        {
-            "name": "\"NEVER\"",
-            "domain": "agento:",
-            "range": "",
-            "definition": "",
-            "status_in_pattern": ""
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [],
-        "datatypeProperties": [
-            {
-                "name": "systemMessage",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Selalu muncul pada AutoGen AssistantAgent."
-            },
-            {
-                "name": "humanInputMode",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Atribut khas UserProxyAgent."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:assistant": {
+      "rdf:type": ":Agent",
+      ":agentID": "stream_chat_assistant",
+      ":agentRole": "Assistant Agent",
+      "dcterms:title": "stream_chat_assistant Assistant",
+      "dcterms:description": "You are a helpful AI assistant for stream_chat_assistant",
+      ":hasGoal": "ex:goal_assistant",
+      ":hasTask": "ex:task_assistant"
+    },
+    "ex:goal_assistant": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for stream_chat_assistant",
+      "dcterms:description": "Automatically generated goal for stream_chat_assistant"
+    },
+    "ex:task_assistant": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for stream_chat_assistant",
+      "dcterms:description": "Automatically generated task for stream_chat_assistant",
+      ":taskExpectedOutput": "Automatically generated expected output for stream_chat_assistant"
+    },
+    "ex:userproxy": {
+      "rdf:type": ":Agent",
+      ":agentID": "user",
+      ":agentRole": "User Proxy Agent",
+      "dcterms:title": "User Proxy",
+      "dcterms:description": "Human input proxy with NEVER mode",
+      ":hasGoal": "ex:goal_userproxy",
+      ":hasTask": "ex:task_userproxy"
+    },
+    "ex:goal_userproxy": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for user",
+      "dcterms:description": "Automatically generated goal for user"
+    },
+    "ex:task_userproxy": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for user",
+      "dcterms:description": "Automatically generated task for user",
+      ":taskExpectedOutput": "Automatically generated expected output for user"
+    },
+    "ex:stream_chat_assistant_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "stream_chat_assistant Workflow",
+      "dcterms:description": "Pattern ini mendefinisikan dua agent dasar AutoGen: satu AssistantAgent dengan system_message, dan satu UserProxyAgent dengan mode input manusia NEVER. Meskipun namanya mengandung konsep “stream chat”, tidak ada implementasi streaming di level kode yang dianalisis"
+    },
+    "ex:DatatypeProperty_systemmessage": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Selalu muncul pada AutoGen AssistantAgent.",
+      "agento:name": "systemMessage",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_humaninputmode": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Atribut khas UserProxyAgent.",
+      "agento:name": "humanInputMode",
+      "agento:range": "xsd:string"
     }
+  }
 }

@@ -1,92 +1,111 @@
 {
-    "framework": "MastraAI",
-    "file_name": "social_media.json",
-    "pattern_type": "Multi-agenttanpaworkflow",
-    "description": "Sistem “Social Media Manager” berisi tiga agent berbeda: content_planner, post_creator, dan engagement_monitor. Masing-masing memiliki peran dan instruksi yang berbeda, namun semuanya menggunakan model LLM yang sama",
-    "entities": [
-        {
-            "id": "system name",
-            "vendorClass": "name",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "Social Media Manager"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#1",
-            "vendorClass": "agents[0]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "content_planner",
-                "role": "Content Planner",
-                "instructions": "Plan social media content strategy",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#2",
-            "vendorClass": "agents[1]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "post_creator",
-                "role": "Post Creator",
-                "instructions": "Create engaging social media posts",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#3",
-            "vendorClass": "agents[2]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "engagement_monitor",
-                "role": "Engagement Monitor",
-                "instructions": "Monitor and respond to engagement",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "MultiAgentSystem → Agent",
-            "domain": "agento:Sistem memiliki kumpulan agent",
-            "range": "",
-            "definition": "Dari agents[]",
-            "status_in_pattern": "agent → llmmodel"
-        },
-        {
-            "name": "Agent menggunakan model tertentu",
-            "domain": "agento:Field \"model\"",
-            "range": "",
-            "definition": "",
-            "status_in_pattern": ""
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:MultiAgentSystem",
-                "definition": "Mewakili struktur root",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:LLMModel",
-                "definition": "Mewakili model GPT-4",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "role, instructions, name, modelName",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Sesuai JSON"
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:social_media_manager": {
+      "rdf:type": ":Agent",
+      ":agentID": "Social Media Manager",
+      ":hasGoal": "ex:goal_social_media_manager",
+      ":hasTask": "ex:task_social_media_manager"
+    },
+    "ex:goal_social_media_manager": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for Social Media Manager",
+      "dcterms:description": "Automatically generated goal for Social Media Manager"
+    },
+    "ex:task_social_media_manager": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for Social Media Manager",
+      "dcterms:description": "Automatically generated task for Social Media Manager",
+      ":taskExpectedOutput": "Automatically generated expected output for Social Media Manager"
+    },
+    "ex:content_planner": {
+      "rdf:type": ":Agent",
+      ":agentID": "content_planner",
+      ":agentRole": "Content Planner",
+      ":hasGoal": "ex:goal_content_planner",
+      ":hasTask": "ex:task_content_planner"
+    },
+    "ex:goal_content_planner": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for content_planner",
+      "dcterms:description": "Automatically generated goal for content_planner"
+    },
+    "ex:task_content_planner": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for content_planner",
+      "dcterms:description": "Automatically generated task for content_planner",
+      ":taskExpectedOutput": "Automatically generated expected output for content_planner"
+    },
+    "ex:post_creator": {
+      "rdf:type": ":Agent",
+      ":agentID": "post_creator",
+      ":agentRole": "Post Creator",
+      ":hasGoal": "ex:goal_post_creator",
+      ":hasTask": "ex:task_post_creator"
+    },
+    "ex:goal_post_creator": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for post_creator",
+      "dcterms:description": "Automatically generated goal for post_creator"
+    },
+    "ex:task_post_creator": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for post_creator",
+      "dcterms:description": "Automatically generated task for post_creator",
+      ":taskExpectedOutput": "Automatically generated expected output for post_creator"
+    },
+    "ex:engagement_monitor": {
+      "rdf:type": ":Agent",
+      ":agentID": "engagement_monitor",
+      ":agentRole": "Engagement Monitor",
+      ":hasGoal": "ex:goal_engagement_monitor",
+      ":hasTask": "ex:task_engagement_monitor"
+    },
+    "ex:goal_engagement_monitor": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for engagement_monitor",
+      "dcterms:description": "Automatically generated goal for engagement_monitor"
+    },
+    "ex:task_engagement_monitor": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for engagement_monitor",
+      "dcterms:description": "Automatically generated task for engagement_monitor",
+      ":taskExpectedOutput": "Automatically generated expected output for engagement_monitor"
+    },
+    "ex:social_media.json": {
+      "rdf:type": ":System",
+      "dcterms:title": "social_media.json",
+      "dcterms:description": "Sistem “Social Media Manager” berisi tiga agent berbeda: content_planner, post_creator, dan engagement_monitor. Masing-masing memiliki peran dan instruksi yang berbeda, namun semuanya menggunakan model LLM yang sama"
+    },
+    "ex:llm_gpt-4": {
+      "rdf:type": ":LanguageModel",
+      "dcterms:title": "gpt-4"
+    },
+    "ex:DatatypeProperty_role__instructions__name__modelname": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Sesuai JSON",
+      "agento:name": "role, instructions, name, modelName",
+      "agento:range": "xsd:string"
+    },
+    "ex:multiagentsystem": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "MultiAgentSystem",
+      "dcterms:description": "Mewakili struktur root"
+    },
+    "ex:llmmodel": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "LLMModel",
+      "dcterms:description": "Mewakili model GPT-4"
     }
+  }
 }

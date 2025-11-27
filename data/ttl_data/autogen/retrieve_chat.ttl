@@ -1,0 +1,79 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:assistant
+    a :Agent ;
+    :agentID "retrieve_chat_assistant" ;
+    :agentRole "Assistant Agent" ;
+    dcterms:title "retrieve_chat_assistant Assistant" ;
+    dcterms:description "You are a helpful AI assistant for retrieve_chat" ;
+    :hasGoal ex:goal_assistant ;
+    :hasTask ex:task_assistant .
+
+
+ex:goal_assistant
+    a :Goal ;
+    dcterms:title "Goal for retrieve_chat_assistant" ;
+    dcterms:description "Automatically generated goal for retrieve_chat_assistant" .
+
+
+ex:task_assistant
+    a :Task ;
+    dcterms:title "Task for retrieve_chat_assistant" ;
+    dcterms:description "Automatically generated task for retrieve_chat_assistant" ;
+    :taskExpectedOutput "Automatically generated expected output for retrieve_chat_assistant" .
+
+
+ex:userproxy
+    a :Agent ;
+    :agentID "user" ;
+    :agentRole "User Proxy Agent" ;
+    dcterms:title "User Proxy" ;
+    dcterms:description "Human input proxy with NEVER mode" ;
+    :hasGoal ex:goal_userproxy ;
+    :hasTask ex:task_userproxy .
+
+
+ex:goal_userproxy
+    a :Goal ;
+    dcterms:title "Goal for user" ;
+    dcterms:description "Automatically generated goal for user" .
+
+
+ex:task_userproxy
+    a :Task ;
+    dcterms:title "Task for user" ;
+    dcterms:description "Automatically generated task for user" ;
+    :taskExpectedOutput "Automatically generated expected output for user" .
+
+
+ex:retrieve_chat_assistant_workflow
+    a :WorkflowPattern ;
+    dcterms:title "retrieve_chat_assistant Workflow" ;
+    dcterms:description Pattern ini mendefinisikan dua agent utama AutoGen: satu AssistantAgent dan satu UserProxyAgent. Tidak ada workflow, tool, task, atau relasi tambahan. Ini merupakan struktur dasar AutoGen yang umum digunakan dalam banyak pattern sederhana .
+
+
+ex:DatatypeProperty_systemmessage
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Muncul di seluruh AssistantAgent AutoGen." ;
+    agento:name "systemMessage" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_humaninputmode
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Konsisten di semua UserProxyAgent." ;
+    agento:name "humanInputMode" ;
+    agento:range xsd:string .

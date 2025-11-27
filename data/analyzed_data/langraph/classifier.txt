@@ -39,6 +39,7 @@ name
 Titik akhir (sama dengan entry)
 
 
+Analisis Ontology (Mapping ke AgentO)
 kelas (classes)
 class
 SuperClass
@@ -112,7 +113,7 @@ Nama
 Deskripsi
 Justifikasi
 class
-workflo,node
+workflowNode
 Struktur graf & simpul
 Esensial untuk merepresentasikan graph-based process
 object property

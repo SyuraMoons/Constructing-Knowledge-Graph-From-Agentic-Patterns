@@ -1,0 +1,110 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:emailresponderflow
+    a :System ;
+    dcterms:title "emailresponderflow" .
+
+
+ex:email_auto_responder_flow_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Email Auto Responder Flow Flow" ;
+    dcterms:description "Pattern ini mengimplementasikan automated email response system menggunakan CrewAI Flow. System memonitor inbox, classify emails, generate appropriate responses, dan membutuhkan human approval sebelum sending. Menggunakan event-driven architecture dengan conditional routing." .
+
+
+ex:DatatypeProperty_emailcategory
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Email classification adalah core functionality pattern ini." ;
+    agento:name "emailCategory" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_monitoringinterval
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Continuous monitoring requires interval configuration." ;
+    agento:name "monitoringInterval" ;
+    agento:range xsd:string .
+
+
+ex:humaninputagent
+    a owl:Class ;
+    dcterms:title "HumanInputAgent" ;
+    dcterms:description "Agent yang membutuhkan human intervention." .
+
+
+ex:email_classifier_agent
+    a :Agent ;
+    :agentID "email_classifier_agent" ;
+    :agentRole "Email Classifier" ;
+    dcterms:title "email_classifier_agent" ;
+    :hasGoal ex:goal_email_classifier_agent ;
+    :hasTask ex:task_email_classifier_agent .
+
+
+ex:goal_email_classifier_agent
+    a :Goal ;
+    dcterms:title "Goal for email_classifier_agent" ;
+    dcterms:description "Automatically generated goal for email_classifier_agent" .
+
+
+ex:task_email_classifier_agent
+    a :Task ;
+    dcterms:title "Task for email_classifier_agent" ;
+    dcterms:description "Automatically generated task for email_classifier_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for email_classifier_agent" .
+
+
+ex:response_generator_agent
+    a :Agent ;
+    :agentID "response_generator_agent" ;
+    :agentRole "Response Generator" ;
+    dcterms:title "response_generator_agent" ;
+    :hasGoal ex:goal_response_generator_agent ;
+    :hasTask ex:task_response_generator_agent .
+
+
+ex:goal_response_generator_agent
+    a :Goal ;
+    dcterms:title "Goal for response_generator_agent" ;
+    dcterms:description "Automatically generated goal for response_generator_agent" .
+
+
+ex:task_response_generator_agent
+    a :Task ;
+    dcterms:title "Task for response_generator_agent" ;
+    dcterms:description "Automatically generated task for response_generator_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for response_generator_agent" .
+
+
+ex:human_reviewer_agent
+    a :Agent ;
+    :agentID "human_reviewer_agent" ;
+    :agentRole "Human Reviewer" ;
+    dcterms:title "human_reviewer_agent" ;
+    :hasGoal ex:goal_human_reviewer_agent ;
+    :hasTask ex:task_human_reviewer_agent .
+
+
+ex:goal_human_reviewer_agent
+    a :Goal ;
+    dcterms:title "Goal for human_reviewer_agent" ;
+    dcterms:description "Automatically generated goal for human_reviewer_agent" .
+
+
+ex:task_human_reviewer_agent
+    a :Task ;
+    dcterms:title "Task for human_reviewer_agent" ;
+    dcterms:description "Automatically generated task for human_reviewer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for human_reviewer_agent" .

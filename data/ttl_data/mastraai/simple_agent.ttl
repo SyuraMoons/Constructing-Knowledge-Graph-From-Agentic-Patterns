@@ -1,0 +1,83 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:simple_agent
+    a :Agent ;
+    :agentID "Simple Agent" ;
+    :hasGoal ex:goal_simple_agent ;
+    :hasTask ex:task_simple_agent .
+
+
+ex:goal_simple_agent
+    a :Goal ;
+    dcterms:title "Goal for Simple Agent" ;
+    dcterms:description "Automatically generated goal for Simple Agent" .
+
+
+ex:task_simple_agent
+    a :Task ;
+    dcterms:title "Task for Simple Agent" ;
+    dcterms:description "Automatically generated task for Simple Agent" ;
+    :taskExpectedOutput "Automatically generated expected output for Simple Agent" .
+
+
+ex:assistant
+    a :Agent ;
+    :agentID "assistant" ;
+    :agentRole "AI Assistant" ;
+    :hasGoal ex:goal_assistant ;
+    :hasTask ex:task_assistant .
+
+
+ex:goal_assistant
+    a :Goal ;
+    dcterms:title "Goal for assistant" ;
+    dcterms:description "Automatically generated goal for assistant" .
+
+
+ex:task_assistant
+    a :Task ;
+    dcterms:title "Task for assistant" ;
+    dcterms:description "Automatically generated task for assistant" ;
+    :taskExpectedOutput "Automatically generated expected output for assistant" .
+
+
+ex:simple_agent.json
+    a :System ;
+    dcterms:title "simple_agent.json" ;
+    dcterms:description "Sistem ini hanya berisi satu agent bernama assistant tanpa workflow maupun komponen tambahan. Pattern ini adalah bentuk paling minimal dari konfigurasi MastraAI" .
+
+
+ex:llm_gpt-4
+    a :LanguageModel ;
+    dcterms:title "gpt-4" .
+
+
+ex:DatatypeProperty_role__instructions__name__modelname
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Sesuai field JSON" ;
+    agento:name "role, instructions, name, modelName" ;
+    agento:range xsd:string .
+
+
+ex:multiagentsystem
+    a owl:Class ;
+    dcterms:title "MultiAgentSystem" ;
+    dcterms:description "Sistem top-level" .
+
+
+ex:llmmodel
+    a owl:Class ;
+    dcterms:title "LLMModel" ;
+    dcterms:description "Representasi model LLM" .

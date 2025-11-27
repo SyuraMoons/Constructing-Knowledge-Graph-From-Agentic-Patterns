@@ -1,0 +1,120 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:document_processing
+    a :Agent ;
+    :agentID "Document Processing" ;
+    :hasGoal ex:goal_document_processing ;
+    :hasTask ex:task_document_processing .
+
+
+ex:goal_document_processing
+    a :Goal ;
+    dcterms:title "Goal for Document Processing" ;
+    dcterms:description "Automatically generated goal for Document Processing" .
+
+
+ex:task_document_processing
+    a :Task ;
+    dcterms:title "Task for Document Processing" ;
+    dcterms:description "Automatically generated task for Document Processing" ;
+    :taskExpectedOutput "Automatically generated expected output for Document Processing" .
+
+
+ex:parser
+    a :Agent ;
+    :agentID "parser" ;
+    :agentRole "Document Parser" ;
+    :hasGoal ex:goal_parser ;
+    :hasTask ex:task_parser .
+
+
+ex:goal_parser
+    a :Goal ;
+    dcterms:title "Goal for parser" ;
+    dcterms:description "Automatically generated goal for parser" .
+
+
+ex:task_parser
+    a :Task ;
+    dcterms:title "Task for parser" ;
+    dcterms:description "Automatically generated task for parser" ;
+    :taskExpectedOutput "Automatically generated expected output for parser" .
+
+
+ex:summarizer
+    a :Agent ;
+    :agentID "summarizer" ;
+    :agentRole "Summarizer" ;
+    :hasGoal ex:goal_summarizer ;
+    :hasTask ex:task_summarizer .
+
+
+ex:goal_summarizer
+    a :Goal ;
+    dcterms:title "Goal for summarizer" ;
+    dcterms:description "Automatically generated goal for summarizer" .
+
+
+ex:task_summarizer
+    a :Task ;
+    dcterms:title "Task for summarizer" ;
+    dcterms:description "Automatically generated task for summarizer" ;
+    :taskExpectedOutput "Automatically generated expected output for summarizer" .
+
+
+ex:document_processor.json
+    a :System ;
+    dcterms:title "document_processor.json" ;
+    dcterms:description Pattern ini mendefinisikan sistem bernama “Document Processing” dengan dua agent: parser dan summarizer. Kedua agent memiliki peran, instruksi, dan model LLM yang sama (gpt-4). Tidak ada workflow eksplisit atau struktur proses tambahan  hanya konfigurasi agent .
+
+
+ex:llm_gpt-4
+    a :LanguageModel ;
+    dcterms:title "gpt-4" .
+
+
+ex:DatatypeProperty_role
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification ""Document Parser", "Summarizer"." ;
+    agento:name "role" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_instructions
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Dua agent memiliki instruksi berbeda." ;
+    agento:name "instructions" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_modelname
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification ""gpt-4"." ;
+    agento:name "modelName" ;
+    agento:range xsd:string .
+
+
+ex:multiagentsystem
+    a owl:Class ;
+    dcterms:title "MultiAgentSystem" ;
+    dcterms:description "Representasi top-level sistem." .
+
+
+ex:llmmodel
+    a owl:Class ;
+    dcterms:title "LLMModel" ;
+    dcterms:description "Representasi model." .

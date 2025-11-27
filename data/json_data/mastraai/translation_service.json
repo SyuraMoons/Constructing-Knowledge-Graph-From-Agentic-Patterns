@@ -1,80 +1,93 @@
 {
-    "framework": "MastraAI",
-    "file_name": "translation_service.json",
-    "pattern_type": "Multi-agenttanpaworkflow",
-    "description": "Sistem “Translation Service” memiliki dua agent: translator dan localizer, yang masing-masing memiliki peran untuk menerjemahkan dan menyesuaikan konten secara budaya. Keduanya menggunakan model LLM yang sama, yaitu gpt-4.",
-    "entities": [
-        {
-            "id": "system name",
-            "vendorClass": "name",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "Translation Service"
-            },
-            "relations": {}
-        },
-        {
-            "id": "1",
-            "vendorClass": "agents[0]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "translator",
-                "role": "Translator",
-                "instructions": "Translate content accurately",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "2",
-            "vendorClass": "agents[1]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "localizer",
-                "role": "Cultural Localizer",
-                "instructions": "Adapt content for cultural context",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "MultiAgentSystem → Agent",
-            "domain": "agento:Sistem memiliki agent tertentu",
-            "range": "",
-            "definition": "Dari array agents[]",
-            "status_in_pattern": "agent → llmmodel"
-        },
-        {
-            "name": "Agent menggunakan model tertentu",
-            "domain": "agento:Dari field \"model\": \"gpt-4\"",
-            "range": "",
-            "definition": "",
-            "status_in_pattern": ""
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:MultiAgentSystem",
-                "definition": "Struktur root",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:LLMModel",
-                "definition": "Representasi GPT-4",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "role, instructions, name, modelName",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Sesuai JSON"
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:translation_service": {
+      "rdf:type": ":Agent",
+      ":agentID": "Translation Service",
+      ":hasGoal": "ex:goal_translation_service",
+      ":hasTask": "ex:task_translation_service"
+    },
+    "ex:goal_translation_service": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for Translation Service",
+      "dcterms:description": "Automatically generated goal for Translation Service"
+    },
+    "ex:task_translation_service": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for Translation Service",
+      "dcterms:description": "Automatically generated task for Translation Service",
+      ":taskExpectedOutput": "Automatically generated expected output for Translation Service"
+    },
+    "ex:translator": {
+      "rdf:type": ":Agent",
+      ":agentID": "translator",
+      ":agentRole": "Translator",
+      ":hasGoal": "ex:goal_translator",
+      ":hasTask": "ex:task_translator"
+    },
+    "ex:goal_translator": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for translator",
+      "dcterms:description": "Automatically generated goal for translator"
+    },
+    "ex:task_translator": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for translator",
+      "dcterms:description": "Automatically generated task for translator",
+      ":taskExpectedOutput": "Automatically generated expected output for translator"
+    },
+    "ex:localizer": {
+      "rdf:type": ":Agent",
+      ":agentID": "localizer",
+      ":agentRole": "Cultural Localizer",
+      ":hasGoal": "ex:goal_localizer",
+      ":hasTask": "ex:task_localizer"
+    },
+    "ex:goal_localizer": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for localizer",
+      "dcterms:description": "Automatically generated goal for localizer"
+    },
+    "ex:task_localizer": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for localizer",
+      "dcterms:description": "Automatically generated task for localizer",
+      ":taskExpectedOutput": "Automatically generated expected output for localizer"
+    },
+    "ex:translation_service.json": {
+      "rdf:type": ":System",
+      "dcterms:title": "translation_service.json",
+      "dcterms:description": "Sistem “Translation Service” memiliki dua agent: translator dan localizer, yang masing-masing memiliki peran untuk menerjemahkan dan menyesuaikan konten secara budaya. Keduanya menggunakan model LLM yang sama, yaitu gpt-4."
+    },
+    "ex:llm_gpt-4": {
+      "rdf:type": ":LanguageModel",
+      "dcterms:title": "gpt-4"
+    },
+    "ex:DatatypeProperty_role__instructions__name__modelname": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Sesuai JSON",
+      "agento:name": "role, instructions, name, modelName",
+      "agento:range": "xsd:string"
+    },
+    "ex:multiagentsystem": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "MultiAgentSystem",
+      "dcterms:description": "Struktur root"
+    },
+    "ex:llmmodel": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "LLMModel",
+      "dcterms:description": "Representasi GPT-4"
     }
+  }
 }

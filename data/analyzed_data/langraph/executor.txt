@@ -109,7 +109,7 @@ Nama
 Deskripsi
 Justifikasi
 class
-workflow,node
+workflowNode
 Struktur graf & simpul eksekusi
 Inti representasi LangGraph.
 object property

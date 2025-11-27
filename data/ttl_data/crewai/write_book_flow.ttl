@@ -1,0 +1,138 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:writebookflow
+    a :System ;
+    dcterms:title "writebookflow" .
+
+
+ex:write_book_flow_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Write Book Flow Flow" ;
+    dcterms:description "Pattern ini mengimplementasikan automated book writing system menggunakan parallel chapter generation. Flow membuat outline, generates multiple chapters secara parallel menggunakan multiple crews, kemudian aggregates dan edits hasil final. Demonstrates parallel execution dan result aggregation." .
+
+
+ex:DatatypeProperty_parallelismdegree
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Parallel flows configure number of concurrent executions." ;
+    agento:name "parallelismDegree" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_chapterid
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Parallel agents need unique identifiers untuk coordination." ;
+    agento:name "chapterId" ;
+    agento:range xsd:string .
+
+
+ex:parallelexecution
+    a owl:Class ;
+    dcterms:title "ParallelExecution" ;
+    dcterms:description "Multiple concurrent operations pattern." .
+
+
+ex:aggregation
+    a owl:Class ;
+    dcterms:title "Aggregation" ;
+    dcterms:description "Result combination pattern." .
+
+
+ex:outline_planner_agent
+    a :Agent ;
+    :agentID "outline_planner_agent" ;
+    :agentRole "Outline Planner" ;
+    dcterms:title "outline_planner_agent" ;
+    :hasGoal ex:goal_outline_planner_agent ;
+    :hasTask ex:task_outline_planner_agent .
+
+
+ex:goal_outline_planner_agent
+    a :Goal ;
+    dcterms:title "Goal for outline_planner_agent" ;
+    dcterms:description "Automatically generated goal for outline_planner_agent" .
+
+
+ex:task_outline_planner_agent
+    a :Task ;
+    dcterms:title "Task for outline_planner_agent" ;
+    dcterms:description "Automatically generated task for outline_planner_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for outline_planner_agent" .
+
+
+ex:chapter_writer_agents
+    a :Agent ;
+    :agentID "chapter_writer_agents" ;
+    :agentRole "Chapter Writer" ;
+    dcterms:title "chapter_writer_agents" ;
+    :hasGoal ex:goal_chapter_writer_agents ;
+    :hasTask ex:task_chapter_writer_agents .
+
+
+ex:goal_chapter_writer_agents
+    a :Goal ;
+    dcterms:title "Goal for chapter_writer_agents" ;
+    dcterms:description "Automatically generated goal for chapter_writer_agents" .
+
+
+ex:task_chapter_writer_agents
+    a :Task ;
+    dcterms:title "Task for chapter_writer_agents" ;
+    dcterms:description "Automatically generated task for chapter_writer_agents" ;
+    :taskExpectedOutput "Automatically generated expected output for chapter_writer_agents" .
+
+
+ex:editor_agent
+    a :Agent ;
+    :agentID "editor_agent" ;
+    :agentRole "Senior Editor" ;
+    dcterms:title "editor_agent" ;
+    :hasGoal ex:goal_editor_agent ;
+    :hasTask ex:task_editor_agent .
+
+
+ex:goal_editor_agent
+    a :Goal ;
+    dcterms:title "Goal for editor_agent" ;
+    dcterms:description "Automatically generated goal for editor_agent" .
+
+
+ex:task_editor_agent
+    a :Task ;
+    dcterms:title "Task for editor_agent" ;
+    dcterms:description "Automatically generated task for editor_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for editor_agent" .
+
+
+ex:aggregator_agent
+    a :Agent ;
+    :agentID "aggregator_agent" ;
+    :agentRole "Content Aggregator" ;
+    dcterms:title "aggregator_agent" ;
+    :hasGoal ex:goal_aggregator_agent ;
+    :hasTask ex:task_aggregator_agent .
+
+
+ex:goal_aggregator_agent
+    a :Goal ;
+    dcterms:title "Goal for aggregator_agent" ;
+    dcterms:description "Automatically generated goal for aggregator_agent" .
+
+
+ex:task_aggregator_agent
+    a :Task ;
+    dcterms:title "Task for aggregator_agent" ;
+    dcterms:description "Automatically generated task for aggregator_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for aggregator_agent" .

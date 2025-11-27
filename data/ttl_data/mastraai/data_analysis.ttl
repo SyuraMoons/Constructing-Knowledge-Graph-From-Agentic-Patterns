@@ -1,0 +1,120 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:data_analysis_team
+    a :Agent ;
+    :agentID "Data Analysis Team" ;
+    :hasGoal ex:goal_data_analysis_team ;
+    :hasTask ex:task_data_analysis_team .
+
+
+ex:goal_data_analysis_team
+    a :Goal ;
+    dcterms:title "Goal for Data Analysis Team" ;
+    dcterms:description "Automatically generated goal for Data Analysis Team" .
+
+
+ex:task_data_analysis_team
+    a :Task ;
+    dcterms:title "Task for Data Analysis Team" ;
+    dcterms:description "Automatically generated task for Data Analysis Team" ;
+    :taskExpectedOutput "Automatically generated expected output for Data Analysis Team" .
+
+
+ex:analyst
+    a :Agent ;
+    :agentID "analyst" ;
+    :agentRole "Data Analyst" ;
+    :hasGoal ex:goal_analyst ;
+    :hasTask ex:task_analyst .
+
+
+ex:goal_analyst
+    a :Goal ;
+    dcterms:title "Goal for analyst" ;
+    dcterms:description "Automatically generated goal for analyst" .
+
+
+ex:task_analyst
+    a :Task ;
+    dcterms:title "Task for analyst" ;
+    dcterms:description "Automatically generated task for analyst" ;
+    :taskExpectedOutput "Automatically generated expected output for analyst" .
+
+
+ex:visualizer
+    a :Agent ;
+    :agentID "visualizer" ;
+    :agentRole "Data Visualizer" ;
+    :hasGoal ex:goal_visualizer ;
+    :hasTask ex:task_visualizer .
+
+
+ex:goal_visualizer
+    a :Goal ;
+    dcterms:title "Goal for visualizer" ;
+    dcterms:description "Automatically generated goal for visualizer" .
+
+
+ex:task_visualizer
+    a :Task ;
+    dcterms:title "Task for visualizer" ;
+    dcterms:description "Automatically generated task for visualizer" ;
+    :taskExpectedOutput "Automatically generated expected output for visualizer" .
+
+
+ex:data_analysis.json
+    a :System ;
+    dcterms:title "data_analysis.json" ;
+    dcterms:description Pattern ini mendefinisikan sistem bernama “Data Analysis Team”, yang terdiri dari dua agent: analyst dan visualizer. Masing-masing agent memiliki role, instructions, dan model. Pattern ini tidak menyertakan workflow, tools, atau urutan langkah—hanya struktur konfigurasi agent .
+
+
+ex:llm_gpt-4
+    a :LanguageModel ;
+    dcterms:title "gpt-4" .
+
+
+ex:DatatypeProperty_role
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification ""Data Analyst", "Data Visualizer"." ;
+    agento:name "role" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_instructions
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Tercantum di setiap agent." ;
+    agento:name "instructions" ;
+    agento:range xsd:string .
+
+
+ex:DatatypeProperty_modelname
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification ""gpt-4"." ;
+    agento:name "modelName" ;
+    agento:range xsd:string .
+
+
+ex:multiagentsystem
+    a owl:Class ;
+    dcterms:title "MultiAgentSystem" ;
+    dcterms:description "Representasi sistem multi-agent MastraAI." .
+
+
+ex:llmmodel
+    a owl:Class ;
+    dcterms:title "LLMModel" ;
+    dcterms:description "Representasi model yang dipakai agent." .

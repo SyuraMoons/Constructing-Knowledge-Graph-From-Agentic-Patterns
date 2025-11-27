@@ -1,97 +1,73 @@
 {
-    "framework": "AutoGen",
-    "file_name": "human_feedback.py",
-    "pattern_type": "AgentCollaborationPattern(humanfeedbackcontext)",
-    "description": "Pattern ini mendefinisikan dua agent: AssistantAgent dan UserProxyAgent. Konteksnya adalah human feedback, tetapi struktur kodenya tetap berupa deklarasi dua agent tanpa workflow, tool, atau relasi tambahan",
-    "entities": [
-        {
-            "id": "assistant",
-            "vendorClass": "AssistantAgent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "human_feedback_assistant",
-                "system_message": "You are a helpful AI assistant for human_feedback"
-            },
-            "relations": {}
-        },
-        {
-            "id": "userproxy",
-            "vendorClass": "UserProxyAgent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "user",
-                "human_input_mode": "NEVER"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "participatesIn",
-            "domain": "agento:Agent",
-            "range": "agento:Workflow",
-            "definition": "Menghubungkan agent ke workflow.",
-            "status_in_pattern": "tidak digunakan"
-        },
-        {
-            "name": "delegatesTo",
-            "domain": "agento:Agent",
-            "range": "agento:Agent",
-            "definition": "Delegasi antar-agent.",
-            "status_in_pattern": "optional"
-        },
-        {
-            "name": "Datatype Properties",
-            "domain": "agento:Property",
-            "range": "",
-            "definition": "Domain",
-            "status_in_pattern": "definisi"
-        },
-        {
-            "name": "bukti",
-            "domain": "agento:name",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "nama agent."
-        },
-        {
-            "name": "\"human_feedback_assistant\", \"user\"",
-            "domain": "agento:systemMessage",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "pesan sistem agent."
-        },
-        {
-            "name": "\"You are a helpful AI assistant for human_feedback\"",
-            "domain": "agento:humanInputMode",
-            "range": "",
-            "definition": "Agent",
-            "status_in_pattern": "mode input manusia."
-        },
-        {
-            "name": "\"NEVER\"",
-            "domain": "agento:",
-            "range": "",
-            "definition": "",
-            "status_in_pattern": ""
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [],
-        "datatypeProperties": [
-            {
-                "name": "systemMessage",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Konsisten di seluruh pattern AutoGen."
-            },
-            {
-                "name": "humanInputMode",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Khusus UserProxyAgent."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:assistant": {
+      "rdf:type": ":Agent",
+      ":agentID": "human_feedback_assistant",
+      ":agentRole": "Assistant Agent",
+      "dcterms:title": "human_feedback_assistant Assistant",
+      "dcterms:description": "You are a helpful AI assistant for human_feedback",
+      ":hasGoal": "ex:goal_assistant",
+      ":hasTask": "ex:task_assistant"
+    },
+    "ex:goal_assistant": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for human_feedback_assistant",
+      "dcterms:description": "Automatically generated goal for human_feedback_assistant"
+    },
+    "ex:task_assistant": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for human_feedback_assistant",
+      "dcterms:description": "Automatically generated task for human_feedback_assistant",
+      ":taskExpectedOutput": "Automatically generated expected output for human_feedback_assistant"
+    },
+    "ex:userproxy": {
+      "rdf:type": ":Agent",
+      ":agentID": "user",
+      ":agentRole": "User Proxy Agent",
+      "dcterms:title": "User Proxy",
+      "dcterms:description": "Human input proxy with NEVER mode",
+      ":hasGoal": "ex:goal_userproxy",
+      ":hasTask": "ex:task_userproxy"
+    },
+    "ex:goal_userproxy": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for user",
+      "dcterms:description": "Automatically generated goal for user"
+    },
+    "ex:task_userproxy": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for user",
+      "dcterms:description": "Automatically generated task for user",
+      ":taskExpectedOutput": "Automatically generated expected output for user"
+    },
+    "ex:human_feedback_assistant_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "human_feedback_assistant Workflow",
+      "dcterms:description": "Pattern ini mendefinisikan dua agent: AssistantAgent dan UserProxyAgent. Konteksnya adalah human feedback, tetapi struktur kodenya tetap berupa deklarasi dua agent tanpa workflow, tool, atau relasi tambahan"
+    },
+    "ex:DatatypeProperty_systemmessage": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Konsisten di seluruh pattern AutoGen.",
+      "agento:name": "systemMessage",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_humaninputmode": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Khusus UserProxyAgent.",
+      "agento:name": "humanInputMode",
+      "agento:range": "xsd:string"
     }
+  }
 }

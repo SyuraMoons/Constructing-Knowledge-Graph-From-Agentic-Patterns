@@ -1,0 +1,122 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ===========================
+### Instances (Entities)
+### ===========================
+
+### Blog Researcher Agent
+ex:blog_researcher a :Agent ;
+    :agentID "blog_researcher_001" ;
+    :agentRole "Blog Researcher" ;
+    dcterms:title "Blog Content Researcher" ;
+    dcterms:description "You are an expert researcher for blog content" ;
+    :hasGoal ex:goal_research ;
+    :hasTask ex:task_research .
+
+### Blog Writer Agent
+ex:blog_writer a :Agent ;
+    :agentID "blog_writer_001" ;
+    :agentRole "Blog Writer" ;
+    dcterms:title "Blog Content Writer" ;
+    dcterms:description "You are a skilled blog writer" ;
+    :hasGoal ex:goal_write_blog ;
+    :hasTask ex:task_write_blog .
+
+### LinkedIn Strategist Agent
+ex:linkedin_strategist a :Agent ;
+    :agentID "linkedin_strategist_001" ;
+    :agentRole "LinkedIn Strategist" ;
+    dcterms:title "LinkedIn Content Strategist" ;
+    dcterms:description "You are an expert in LinkedIn content strategy" ;
+    :hasGoal ex:goal_linkedin_strategy ;
+    :hasTask ex:task_linkedin_strategy .
+
+### LinkedIn Creator Agent
+ex:linkedin_creator a :Agent ;
+    :agentID "linkedin_creator_001" ;
+    :agentRole "LinkedIn Creator" ;
+    dcterms:title "LinkedIn Post Creator" ;
+    dcterms:description "You create engaging LinkedIn posts" ;
+    :hasGoal ex:goal_linkedin_create ;
+    :hasTask ex:task_linkedin_create .
+
+### Research Analyst Agent
+ex:research_analyst a :Agent ;
+    :agentID "research_analyst_001" ;
+    :agentRole "Research Analyst" ;
+    dcterms:title "Research Analyst" ;
+    dcterms:description "You analyze research data and trends" ;
+    :hasGoal ex:goal_analyze ;
+    :hasTask ex:task_analyze .
+
+### Report Writer Agent
+ex:report_writer a :Agent ;
+    :agentID "report_writer_001" ;
+    :agentRole "Report Writer" ;
+    dcterms:title "Report Writer" ;
+    dcterms:description "You write comprehensive research reports" ;
+    :hasGoal ex:goal_report ;
+    :hasTask ex:task_report .
+
+### Goals
+ex:goal_research a :Goal ;
+    dcterms:title "Research Blog Topics" ;
+    dcterms:description "Research and gather information for blog content" .
+
+ex:goal_write_blog a :Goal ;
+    dcterms:title "Write Blog Content" ;
+    dcterms:description "Create engaging blog articles" .
+
+ex:goal_linkedin_strategy a :Goal ;
+    dcterms:title "LinkedIn Strategy" ;
+    dcterms:description "Develop LinkedIn content strategy" .
+
+ex:goal_linkedin_create a :Goal ;
+    dcterms:title "Create LinkedIn Posts" ;
+    dcterms:description "Create LinkedIn posts from content" .
+
+ex:goal_analyze a :Goal ;
+    dcterms:title "Analyze Research Data" ;
+    dcterms:description "Analyze trends and research findings" .
+
+ex:goal_report a :Goal ;
+    dcterms:title "Write Research Reports" ;
+    dcterms:description "Compile research into comprehensive reports" .
+
+### Tasks
+ex:task_research a :Task ;
+    dcterms:description "Research AI trends and gather relevant information" ;
+    :taskExpectedOutput "Research findings and key insights" .
+
+ex:task_write_blog a :Task ;
+    dcterms:description "Write blog article based on research" ;
+    :taskExpectedOutput "Complete blog article draft" .
+
+ex:task_linkedin_strategy a :Task ;
+    dcterms:description "Develop LinkedIn content distribution strategy" ;
+    :taskExpectedOutput "LinkedIn content strategy plan" .
+
+ex:task_linkedin_create a :Task ;
+    dcterms:description "Create LinkedIn post from blog content" ;
+    :taskExpectedOutput "LinkedIn post ready to publish" .
+
+ex:task_analyze a :Task ;
+    dcterms:description "Analyze research data and identify trends" ;
+    :taskExpectedOutput "Analysis report with key findings" .
+
+ex:task_report a :Task ;
+    dcterms:description "Write comprehensive research report" ;
+    :taskExpectedOutput "Final research report document" .
+
+### Workflow Pattern
+ex:content_creator_workflow a :WorkflowPattern ;
+    dcterms:title "Content Creator Flow" ;
+    dcterms:description "Multi-crew workflow for content creation and distribution" .
+

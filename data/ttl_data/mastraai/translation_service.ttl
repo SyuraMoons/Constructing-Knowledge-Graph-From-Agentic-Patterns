@@ -1,0 +1,104 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:translation_service
+    a :Agent ;
+    :agentID "Translation Service" ;
+    :hasGoal ex:goal_translation_service ;
+    :hasTask ex:task_translation_service .
+
+
+ex:goal_translation_service
+    a :Goal ;
+    dcterms:title "Goal for Translation Service" ;
+    dcterms:description "Automatically generated goal for Translation Service" .
+
+
+ex:task_translation_service
+    a :Task ;
+    dcterms:title "Task for Translation Service" ;
+    dcterms:description "Automatically generated task for Translation Service" ;
+    :taskExpectedOutput "Automatically generated expected output for Translation Service" .
+
+
+ex:translator
+    a :Agent ;
+    :agentID "translator" ;
+    :agentRole "Translator" ;
+    :hasGoal ex:goal_translator ;
+    :hasTask ex:task_translator .
+
+
+ex:goal_translator
+    a :Goal ;
+    dcterms:title "Goal for translator" ;
+    dcterms:description "Automatically generated goal for translator" .
+
+
+ex:task_translator
+    a :Task ;
+    dcterms:title "Task for translator" ;
+    dcterms:description "Automatically generated task for translator" ;
+    :taskExpectedOutput "Automatically generated expected output for translator" .
+
+
+ex:localizer
+    a :Agent ;
+    :agentID "localizer" ;
+    :agentRole "Cultural Localizer" ;
+    :hasGoal ex:goal_localizer ;
+    :hasTask ex:task_localizer .
+
+
+ex:goal_localizer
+    a :Goal ;
+    dcterms:title "Goal for localizer" ;
+    dcterms:description "Automatically generated goal for localizer" .
+
+
+ex:task_localizer
+    a :Task ;
+    dcterms:title "Task for localizer" ;
+    dcterms:description "Automatically generated task for localizer" ;
+    :taskExpectedOutput "Automatically generated expected output for localizer" .
+
+
+ex:translation_service.json
+    a :System ;
+    dcterms:title "translation_service.json" ;
+    dcterms:description Sistem “Translation Service” memiliki dua agent: translator dan localizer, yang masing-masing memiliki peran untuk menerjemahkan dan menyesuaikan konten secara budaya. Keduanya menggunakan model LLM yang sama, yaitu gpt-4. .
+
+
+ex:llm_gpt-4
+    a :LanguageModel ;
+    dcterms:title "gpt-4" .
+
+
+ex:DatatypeProperty_role__instructions__name__modelname
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Sesuai JSON" ;
+    agento:name "role, instructions, name, modelName" ;
+    agento:range xsd:string .
+
+
+ex:multiagentsystem
+    a owl:Class ;
+    dcterms:title "MultiAgentSystem" ;
+    dcterms:description "Struktur root" .
+
+
+ex:llmmodel
+    a owl:Class ;
+    dcterms:title "LLMModel" ;
+    dcterms:description "Representasi GPT-4" .

@@ -1,125 +1,92 @@
 {
-    "framework": "CrewAI",
-    "file_name": "recruitment.py",
-    "pattern_type": "HRAutomationCrewPattern",
-    "description": "Pattern ini implements automated recruitment crew untuk candidate sourcing dan evaluation. Crew includes sourcing specialist untuk finding candidates, resume analyzer untuk screening, dan interview coordinator untuk scheduling. Demonstrates HR automation dengan CV parsing dan candidate ranking.",
-    "entities": [
-        {
-            "id": "recruitmentcrew",
-            "vendorClass": "Crew",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "agents": "sourcing_specialist",
-                "tasks": "resume_analyzer"
-            },
-            "relations": {}
-        },
-        {
-            "id": "sourcing specialist",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Sourcing Specialist",
-                "goal": "Find qualified candidates",
-                "tools": "LinkedInScraperTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "resume analyzer",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Resume Analyzer",
-                "goal": "Screen and rank candidates",
-                "tools": "CVParserTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "interview coordinator",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Interview Coordinator",
-                "goal": "Schedule interviews with qualified candidates",
-                "tools": "CalendarTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "sourcing task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Source candidates for position",
-                "expected_output": "List of 20+ qualified candidates"
-            },
-            "relations": {}
-        },
-        {
-            "id": "screening task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Analyze and rank candidates",
-                "expected_output": "Ranked candidate list with scores",
-                "output_pydantic": "CandidateRanking",
-                "context": "sourcing_task"
-            },
-            "relations": {}
-        },
-        {
-            "id": "scheduling task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Schedule interviews with top candidates",
-                "expected_output": "Interview calendar with confirmed slots",
-                "context": "screening_task"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "sources",
-            "domain": "agento:Agent",
-            "range": "agento:Candidate",
-            "definition": "Sourcing agent finds candidates.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "ranks",
-            "domain": "agento:Agent",
-            "range": "agento:Candidate",
-            "definition": "Analyzer assigns ranking to candidates.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "schedules",
-            "domain": "agento:Agent",
-            "range": "agento:Interview",
-            "definition": "Coordinator creates interview schedule.",
-            "status_in_pattern": "digunakan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:CandidateRanking",
-                "definition": "Structured ranking system.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "matchPercentage",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Candidate-to-job matching uses percentage-based scoring."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:recruitmentcrew": {
+      "rdf:type": ":System",
+      "dcterms:title": "recruitmentcrew"
+    },
+    "ex:recruitment_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Recruitment Flow",
+      "dcterms:description": "Pattern ini implements automated recruitment crew untuk candidate sourcing dan evaluation. Crew includes sourcing specialist untuk finding candidates, resume analyzer untuk screening, dan interview coordinator untuk scheduling. Demonstrates HR automation dengan CV parsing dan candidate ranking."
+    },
+    "ex:DatatypeProperty_matchpercentage": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Candidate-to-job matching uses percentage-based scoring.",
+      "agento:name": "matchPercentage",
+      "agento:range": "xsd:string"
+    },
+    "ex:candidateranking": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "CandidateRanking",
+      "dcterms:description": "Structured ranking system."
+    },
+    "ex:sourcing_specialist_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "sourcing_specialist_agent",
+      ":agentRole": "Sourcing Specialist",
+      "dcterms:title": "sourcing_specialist_agent",
+      ":hasGoal": "ex:goal_sourcing_specialist_agent",
+      ":hasTask": "ex:task_sourcing_specialist_agent"
+    },
+    "ex:goal_sourcing_specialist_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for sourcing_specialist_agent",
+      "dcterms:description": "Automatically generated goal for sourcing_specialist_agent"
+    },
+    "ex:task_sourcing_specialist_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for sourcing_specialist_agent",
+      "dcterms:description": "Automatically generated task for sourcing_specialist_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for sourcing_specialist_agent"
+    },
+    "ex:resume_analyzer_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "resume_analyzer_agent",
+      ":agentRole": "Resume Analyzer",
+      "dcterms:title": "resume_analyzer_agent",
+      ":hasGoal": "ex:goal_resume_analyzer_agent",
+      ":hasTask": "ex:task_resume_analyzer_agent"
+    },
+    "ex:goal_resume_analyzer_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for resume_analyzer_agent",
+      "dcterms:description": "Automatically generated goal for resume_analyzer_agent"
+    },
+    "ex:task_resume_analyzer_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for resume_analyzer_agent",
+      "dcterms:description": "Automatically generated task for resume_analyzer_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for resume_analyzer_agent"
+    },
+    "ex:interview_coordinator_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "interview_coordinator_agent",
+      ":agentRole": "Interview Coordinator",
+      "dcterms:title": "interview_coordinator_agent",
+      ":hasGoal": "ex:goal_interview_coordinator_agent",
+      ":hasTask": "ex:task_interview_coordinator_agent"
+    },
+    "ex:goal_interview_coordinator_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for interview_coordinator_agent",
+      "dcterms:description": "Automatically generated goal for interview_coordinator_agent"
+    },
+    "ex:task_interview_coordinator_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for interview_coordinator_agent",
+      "dcterms:description": "Automatically generated task for interview_coordinator_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for interview_coordinator_agent"
     }
+  }
 }

@@ -1,107 +1,99 @@
 {
-    "framework": "CrewAI",
-    "file_name": "email_auto_responder_flow.py",
-    "pattern_type": "Event-DrivenFlowPattern",
-    "description": "Pattern ini mengimplementasikan automated email response system menggunakan CrewAI Flow. System memonitor inbox, classify emails, generate appropriate responses, dan membutuhkan human approval sebelum sending. Menggunakan event-driven architecture dengan conditional routing.",
-    "entities": [
-        {
-            "id": "emailresponderflow",
-            "vendorClass": "Flow",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "state": "email_monitor",
-                "monitor_method": "classifier",
-                "classify_method": "responder"
-            },
-            "relations": {}
-        },
-        {
-            "id": "email classifier",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Email Classifier",
-                "goal": "Categorize incoming emails by priority and type"
-            },
-            "relations": {}
-        },
-        {
-            "id": "response generator",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Response Generator",
-                "goal": "Generate appropriate email responses"
-            },
-            "relations": {}
-        },
-        {
-            "id": "human reviewer",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Human Reviewer",
-                "goal": "Review and approve responses",
-                "backstory": "human_input=True"
-            },
-            "relations": {}
-        },
-        {
-            "id": "email monitoring task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Monitor inbox for new emails",
-                "expected_output": "List of unread emails"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "requiresApproval",
-            "domain": "agento:Agent",
-            "range": "agento:Agent",
-            "definition": "Response membutuhkan human approval.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "classifiesAs",
-            "domain": "agento:Task",
-            "range": "agento:Category",
-            "definition": "Email classification results.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "monitorsSource",
-            "domain": "agento:Flow",
-            "range": "agento:DataSource",
-            "definition": "Flow monitors external data source.",
-            "status_in_pattern": "digunakan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:HumanInputAgent",
-                "definition": "Agent yang membutuhkan human intervention.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "emailCategory",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Email classification adalah core functionality pattern ini."
-            },
-            {
-                "name": "monitoringInterval",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Continuous monitoring requires interval configuration."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:emailresponderflow": {
+      "rdf:type": ":System",
+      "dcterms:title": "emailresponderflow"
+    },
+    "ex:email_auto_responder_flow_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Email Auto Responder Flow Flow",
+      "dcterms:description": "Pattern ini mengimplementasikan automated email response system menggunakan CrewAI Flow. System memonitor inbox, classify emails, generate appropriate responses, dan membutuhkan human approval sebelum sending. Menggunakan event-driven architecture dengan conditional routing."
+    },
+    "ex:DatatypeProperty_emailcategory": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Email classification adalah core functionality pattern ini.",
+      "agento:name": "emailCategory",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_monitoringinterval": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Continuous monitoring requires interval configuration.",
+      "agento:name": "monitoringInterval",
+      "agento:range": "xsd:string"
+    },
+    "ex:humaninputagent": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "HumanInputAgent",
+      "dcterms:description": "Agent yang membutuhkan human intervention."
+    },
+    "ex:email_classifier_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "email_classifier_agent",
+      ":agentRole": "Email Classifier",
+      "dcterms:title": "email_classifier_agent",
+      ":hasGoal": "ex:goal_email_classifier_agent",
+      ":hasTask": "ex:task_email_classifier_agent"
+    },
+    "ex:goal_email_classifier_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for email_classifier_agent",
+      "dcterms:description": "Automatically generated goal for email_classifier_agent"
+    },
+    "ex:task_email_classifier_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for email_classifier_agent",
+      "dcterms:description": "Automatically generated task for email_classifier_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for email_classifier_agent"
+    },
+    "ex:response_generator_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "response_generator_agent",
+      ":agentRole": "Response Generator",
+      "dcterms:title": "response_generator_agent",
+      ":hasGoal": "ex:goal_response_generator_agent",
+      ":hasTask": "ex:task_response_generator_agent"
+    },
+    "ex:goal_response_generator_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for response_generator_agent",
+      "dcterms:description": "Automatically generated goal for response_generator_agent"
+    },
+    "ex:task_response_generator_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for response_generator_agent",
+      "dcterms:description": "Automatically generated task for response_generator_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for response_generator_agent"
+    },
+    "ex:human_reviewer_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "human_reviewer_agent",
+      ":agentRole": "Human Reviewer",
+      "dcterms:title": "human_reviewer_agent",
+      ":hasGoal": "ex:goal_human_reviewer_agent",
+      ":hasTask": "ex:task_human_reviewer_agent"
+    },
+    "ex:goal_human_reviewer_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for human_reviewer_agent",
+      "dcterms:description": "Automatically generated goal for human_reviewer_agent"
+    },
+    "ex:task_human_reviewer_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for human_reviewer_agent",
+      "dcterms:description": "Automatically generated task for human_reviewer_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for human_reviewer_agent"
     }
+  }
 }

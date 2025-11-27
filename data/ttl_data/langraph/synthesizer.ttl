@@ -1,0 +1,37 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:synthesizer_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Synthesizer Graph" ;
+    dcterms:description membangun sebuah StateGraph dengan satu node bernama synthesizer_node. Node ini bertindak sebagai entry point dan finish point secara bersamaan, sama seperti pola minimalis lainnya. Fungsi node adalah lambda x: x (fungsi identitas). Tidak ada node tambahan, edge, tool, agent, atau proses branching .
+
+
+ex:node
+    a owl:Class ;
+    dcterms:title "Node" ;
+    dcterms:description "Unit langkah eksekusi" .
+
+
+ex:DatatypeProperty_nodename
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Node selalu memiliki nama string unik" ;
+    agento:name "nodeName" ;
+    agento:range xsd:string .
+
+
+ex:workflowgraph
+    a owl:Class ;
+    dcterms:title "WorkflowGraph" ;
+    dcterms:description "Representasi graf LangGraph" .

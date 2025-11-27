@@ -1,0 +1,58 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:startercrew
+    a :System ;
+    dcterms:title "startercrew" .
+
+
+ex:starter_template_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Starter Template Flow" ;
+    dcterms:description "Pattern ini provides minimal boilerplate template untuk new CrewAI projects. Demonstrates basic crew structure dengan single agent dan task, configuration files (agents.yaml, tasks.yaml), dan project setup. Serves sebagai starting point untuk custom crew development." .
+
+
+ex:DatatypeProperty_configformat
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Config systems specify format (YAML, JSON, TOML)." ;
+    agento:name "configFormat" ;
+    agento:range xsd:string .
+
+
+ex:configuration
+    a owl:Class ;
+    dcterms:title "Configuration" ;
+    dcterms:description "External configuration files." .
+
+
+ex:assistant_agent
+    a :Agent ;
+    :agentID "assistant_agent" ;
+    :agentRole "AI Assistant" ;
+    dcterms:title "assistant_agent" ;
+    :hasGoal ex:goal_assistant_agent ;
+    :hasTask ex:task_assistant_agent .
+
+
+ex:goal_assistant_agent
+    a :Goal ;
+    dcterms:title "Goal for assistant_agent" ;
+    dcterms:description "Automatically generated goal for assistant_agent" .
+
+
+ex:task_assistant_agent
+    a :Task ;
+    dcterms:title "Task for assistant_agent" ;
+    dcterms:description "Automatically generated task for assistant_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for assistant_agent" .

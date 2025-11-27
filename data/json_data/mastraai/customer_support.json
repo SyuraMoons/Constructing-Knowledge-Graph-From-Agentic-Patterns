@@ -1,120 +1,136 @@
 {
-    "framework": "MastraAI",
-    "file_name": "customer_support.yaml",
-    "pattern_type": "Multi-agentconfiguration+workflowdescription",
-    "description": "Pattern ini mendefinisikan sistem bernama “Customer Support System” yang terdiri dari dua agent (support_agent, escalation_agent) dan sebuah workflow bernama support_flow. Setiap agent memiliki role, instructions, dan model. Workflow hanya didefinisikan dengan name dan description tanpa rincian langkah",
-    "entities": [
-        {
-            "id": "system",
-            "vendorClass": "name",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "Customer Support System"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#1",
-            "vendorClass": "agents[0]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "support_agent",
-                "role": "Support Agent",
-                "instructions": "Handle customer inquiries",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#2",
-            "vendorClass": "agents[1]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "escalation_agent",
-                "role": "Escalation Specialist",
-                "instructions": "Handle complex issues",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "workflow #1",
-            "vendorClass": "workflows[0]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "support_flow",
-                "description": "Customer support workflow"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "hasAgent",
-            "domain": "agento:MultiAgentSystem",
-            "range": "agento:Agent",
-            "definition": "Sistem berisi agent-agent tertentu.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "configuredBy",
-            "domain": "agento:Agent",
-            "range": "agento:LLMModel",
-            "definition": "Agent dikonfigurasi menggunakan model tertentu.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "hasWorkflow",
-            "domain": "agento:MultiAgentSystem",
-            "range": "agento:Workflow",
-            "definition": "Sistem memiliki satu atau lebih workflow.",
-            "status_in_pattern": "ditambahkan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:MultiAgentSystem",
-                "definition": "Sistem yang mengelompokkan beberapa agent & workflow.",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:LLMModel",
-                "definition": "Representasi model (gpt-4, dll).",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:Workflow",
-                "definition": "Alur kerja tingkat tinggi.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "role",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"Support Agent\", \"Escalation Specialist\"."
-            },
-            {
-                "name": "instructions",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"Handle customer inquiries\"."
-            },
-            {
-                "name": "modelName",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"gpt-4\"."
-            },
-            {
-                "name": "workflowDescription",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"Customer support workflow\"."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:customer_support_system": {
+      "rdf:type": ":Agent",
+      ":agentID": "Customer Support System",
+      ":hasGoal": "ex:goal_customer_support_system",
+      ":hasTask": "ex:task_customer_support_system"
+    },
+    "ex:goal_customer_support_system": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for Customer Support System",
+      "dcterms:description": "Automatically generated goal for Customer Support System"
+    },
+    "ex:task_customer_support_system": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for Customer Support System",
+      "dcterms:description": "Automatically generated task for Customer Support System",
+      ":taskExpectedOutput": "Automatically generated expected output for Customer Support System"
+    },
+    "ex:support_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "support_agent",
+      ":agentRole": "Support Agent",
+      ":hasGoal": "ex:goal_support_agent",
+      ":hasTask": "ex:task_support_agent"
+    },
+    "ex:goal_support_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for support_agent",
+      "dcterms:description": "Automatically generated goal for support_agent"
+    },
+    "ex:task_support_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for support_agent",
+      "dcterms:description": "Automatically generated task for support_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for support_agent"
+    },
+    "ex:escalation_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "escalation_agent",
+      ":agentRole": "Escalation Specialist",
+      ":hasGoal": "ex:goal_escalation_agent",
+      ":hasTask": "ex:task_escalation_agent"
+    },
+    "ex:goal_escalation_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for escalation_agent",
+      "dcterms:description": "Automatically generated goal for escalation_agent"
+    },
+    "ex:task_escalation_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for escalation_agent",
+      "dcterms:description": "Automatically generated task for escalation_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for escalation_agent"
+    },
+    "ex:support_flow": {
+      "rdf:type": ":Agent",
+      ":agentID": "support_flow",
+      ":hasGoal": "ex:goal_support_flow",
+      ":hasTask": "ex:task_support_flow"
+    },
+    "ex:goal_support_flow": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for support_flow",
+      "dcterms:description": "Automatically generated goal for support_flow"
+    },
+    "ex:task_support_flow": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for support_flow",
+      "dcterms:description": "Automatically generated task for support_flow",
+      ":taskExpectedOutput": "Automatically generated expected output for support_flow"
+    },
+    "ex:customer_support.yaml": {
+      "rdf:type": ":System",
+      "dcterms:title": "customer_support.yaml",
+      "dcterms:description": "Pattern ini mendefinisikan sistem bernama “Customer Support System” yang terdiri dari dua agent (support_agent, escalation_agent) dan sebuah workflow bernama support_flow. Setiap agent memiliki role, instructions, dan model. Workflow hanya didefinisikan dengan name dan description tanpa rincian langkah"
+    },
+    "ex:llm_gpt-4": {
+      "rdf:type": ":LanguageModel",
+      "dcterms:title": "gpt-4"
+    },
+    "ex:DatatypeProperty_role": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"Support Agent\", \"Escalation Specialist\".",
+      "agento:name": "role",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_instructions": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"Handle customer inquiries\".",
+      "agento:name": "instructions",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_modelname": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"gpt-4\".",
+      "agento:name": "modelName",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_workflowdescription": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"Customer support workflow\".",
+      "agento:name": "workflowDescription",
+      "agento:range": "xsd:string"
+    },
+    "ex:multiagentsystem": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "MultiAgentSystem",
+      "dcterms:description": "Sistem yang mengelompokkan beberapa agent & workflow."
+    },
+    "ex:llmmodel": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "LLMModel",
+      "dcterms:description": "Representasi model (gpt-4, dll)."
+    },
+    "ex:workflow": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "Workflow",
+      "dcterms:description": "Alur kerja tingkat tinggi."
     }
+  }
 }

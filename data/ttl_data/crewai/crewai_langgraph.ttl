@@ -1,0 +1,62 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:integrationworkflow
+    a :System ;
+    dcterms:title "integrationworkflow" .
+
+
+ex:research_crew
+    a :System ;
+    dcterms:title "research_crew" .
+
+
+ex:analysis_crew
+    a :System ;
+    dcterms:title "analysis_crew" .
+
+
+ex:crew_execution_node
+    a :System ;
+    dcterms:title "crew_execution_node" .
+
+
+ex:workflow_state
+    a :System ;
+    dcterms:title "workflow_state" .
+
+
+ex:crewai_langgraph_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Crewai Langgraph Flow" ;
+    dcterms:description "Pattern ini demonstrates integration antara CrewAI dan LangGraph frameworks. Shows how CrewAI crews dapat di-embed dalam LangGraph StateGraph nodes untuk complex workflow orchestration. Combines CrewAI's agent collaboration dengan LangGraph's graph-based workflow control." .
+
+
+ex:DatatypeProperty_integrationmode
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Frameworks dapat integrate via embedding, API calls, atau other modes." ;
+    agento:name "integrationMode" ;
+    agento:range xsd:string .
+
+
+ex:hybridnode
+    a owl:Class ;
+    dcterms:title "HybridNode" ;
+    dcterms:description "Graph node containing multi-agent crew." .
+
+
+ex:integration
+    a owl:Class ;
+    dcterms:title "Integration" ;
+    dcterms:description "Cross-framework integration pattern." .

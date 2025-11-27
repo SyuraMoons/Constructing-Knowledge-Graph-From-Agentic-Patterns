@@ -1,117 +1,92 @@
 {
-    "framework": "CrewAI",
-    "file_name": "job_posting.py",
-    "pattern_type": "ContentGenerationCrewPattern",
-    "description": "Pattern ini automates job description creation crew. Crew includes HR specialist untuk requirements, copywriter untuk description, dan SEO specialist untuk optimization. Generates complete, optimized job postings dari basic role information.",
-    "entities": [
-        {
-            "id": "jobpostingcrew",
-            "vendorClass": "Crew",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "agents": "hr_specialist",
-                "tasks": "copywriter",
-                "process": "seo_specialist"
-            },
-            "relations": {}
-        },
-        {
-            "id": "hr specialist",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "HR Specialist",
-                "goal": "Define job requirements and qualifications"
-            },
-            "relations": {}
-        },
-        {
-            "id": "copywriter",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Copywriter",
-                "goal": "Write compelling job descriptions"
-            },
-            "relations": {}
-        },
-        {
-            "id": "seo specialist",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "SEO Specialist",
-                "goal": "Optimize job posting for search visibility",
-                "tools": "KeywordResearchTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "requirements task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Define job requirements",
-                "expected_output": "Detailed requirements and qualifications"
-            },
-            "relations": {}
-        },
-        {
-            "id": "description task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Write job description",
-                "expected_output": "Engaging job description",
-                "context": "requirements_task"
-            },
-            "relations": {}
-        },
-        {
-            "id": "optimization task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Optimize posting for SEO",
-                "expected_output": "Optimized job posting with keywords",
-                "output_pydantic": "JobPosting",
-                "context": "description_task"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "defines",
-            "domain": "agento:Agent",
-            "range": "agento:Requirements",
-            "definition": "HR defines requirements.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "optimizes",
-            "domain": "agento:Agent",
-            "range": "agento:Content",
-            "definition": "SEO optimizes content.",
-            "status_in_pattern": "digunakan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:JobPosting",
-                "definition": "Structured job posting entity.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "keywords",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Job postings require keyword arrays untuk search optimization."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:jobpostingcrew": {
+      "rdf:type": ":System",
+      "dcterms:title": "jobpostingcrew"
+    },
+    "ex:job_posting_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Job Posting Flow",
+      "dcterms:description": "Pattern ini automates job description creation crew. Crew includes HR specialist untuk requirements, copywriter untuk description, dan SEO specialist untuk optimization. Generates complete, optimized job postings dari basic role information."
+    },
+    "ex:DatatypeProperty_keywords": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Job postings require keyword arrays untuk search optimization.",
+      "agento:name": "keywords",
+      "agento:range": "xsd:string"
+    },
+    "ex:jobposting": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "JobPosting",
+      "dcterms:description": "Structured job posting entity."
+    },
+    "ex:hr_specialist_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "hr_specialist_agent",
+      ":agentRole": "HR Specialist",
+      "dcterms:title": "hr_specialist_agent",
+      ":hasGoal": "ex:goal_hr_specialist_agent",
+      ":hasTask": "ex:task_hr_specialist_agent"
+    },
+    "ex:goal_hr_specialist_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for hr_specialist_agent",
+      "dcterms:description": "Automatically generated goal for hr_specialist_agent"
+    },
+    "ex:task_hr_specialist_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for hr_specialist_agent",
+      "dcterms:description": "Automatically generated task for hr_specialist_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for hr_specialist_agent"
+    },
+    "ex:copywriter_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "copywriter_agent",
+      ":agentRole": "Copywriter",
+      "dcterms:title": "copywriter_agent",
+      ":hasGoal": "ex:goal_copywriter_agent",
+      ":hasTask": "ex:task_copywriter_agent"
+    },
+    "ex:goal_copywriter_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for copywriter_agent",
+      "dcterms:description": "Automatically generated goal for copywriter_agent"
+    },
+    "ex:task_copywriter_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for copywriter_agent",
+      "dcterms:description": "Automatically generated task for copywriter_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for copywriter_agent"
+    },
+    "ex:seo_specialist_agent": {
+      "rdf:type": ":Agent",
+      ":agentID": "seo_specialist_agent",
+      ":agentRole": "SEO Specialist",
+      "dcterms:title": "seo_specialist_agent",
+      ":hasGoal": "ex:goal_seo_specialist_agent",
+      ":hasTask": "ex:task_seo_specialist_agent"
+    },
+    "ex:goal_seo_specialist_agent": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for seo_specialist_agent",
+      "dcterms:description": "Automatically generated goal for seo_specialist_agent"
+    },
+    "ex:task_seo_specialist_agent": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for seo_specialist_agent",
+      "dcterms:description": "Automatically generated task for seo_specialist_agent",
+      ":taskExpectedOutput": "Automatically generated expected output for seo_specialist_agent"
     }
+  }
 }

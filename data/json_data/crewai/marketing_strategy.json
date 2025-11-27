@@ -1,201 +1,137 @@
 {
-    "framework": "CrewAI",
-    "file_name": "marketing_strategy.py",
-    "pattern_type": "Multi-AgentCrewPattern",
-    "description": "Pattern ini mendefinisikan crew marketing dengan 4 agent specialist: Lead Market Analyst untuk riset, Chief Marketing Strategist untuk strategi, Creative Content Creator untuk konten, dan Chief Creative Director untuk oversight. Crew mengeksekusi 5 task sequential: research, project understanding, strategy formulation, campaign ideation, dan copy creation. Menggunakan SerperDev dan web scraping tools untuk riset.",
-    "entities": [
-        {
-            "id": "marketingpostscrew",
-            "vendorClass": "Crew",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "agents": "Lead Market Analyst",
-                "tasks": "Chief Marketing Strategist",
-                "process": "Creative Content Creator"
-            },
-            "relations": {}
-        },
-        {
-            "id": "lead market analyst",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Lead Market Analyst",
-                "goal": "Conduct analysis of products and competitors",
-                "backstory": "SerperDevTool",
-                "tools": "ScrapeWebsiteTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "chief marketing strategist",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Chief Marketing Strategist",
-                "goal": "Synthesize insights to formulate strategies",
-                "backstory": "SerperDevTool",
-                "tools": "ScrapeWebsiteTool"
-            },
-            "relations": {}
-        },
-        {
-            "id": "creative content creator",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Creative Content Creator",
-                "goal": "Develop compelling content",
-                "backstory": "Top-tier creative content creator"
-            },
-            "relations": {}
-        },
-        {
-            "id": "chief creative director",
-            "vendorClass": "Agent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "role": "Chief Creative Director",
-                "goal": "Oversee team work",
-                "backstory": "Chief Content Officer at digital agency"
-            },
-            "relations": {}
-        },
-        {
-            "id": "research task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Conduct thorough research about customer",
-                "expected_output": "Complete report on customer and competitors"
-            },
-            "relations": {}
-        },
-        {
-            "id": "marketing strategy task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Formulate comprehensive strategy",
-                "expected_output": "Strategy document with goals",
-                "agent": "KPIs",
-                "output_pydantic": "MarketStrategy"
-            },
-            "relations": {}
-        },
-        {
-            "id": "campaign idea task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Develop creative campaign ideas",
-                "expected_output": "List of 5 campaign ideas",
-                "output_pydantic": "CampaignIdea"
-            },
-            "relations": {}
-        },
-        {
-            "id": "copy creation task",
-            "vendorClass": "Task",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "description": "Create marketing copies",
-                "expected_output": "Marketing copies for campaigns",
-                "output_pydantic": "Copy"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "hasAgent",
-            "domain": "agento:Crew",
-            "range": "agento:Agent",
-            "definition": "Crew memiliki multiple agents.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "hasTask",
-            "domain": "agento:Crew",
-            "range": "agento:Task",
-            "definition": "Crew memiliki sequential tasks.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "assignedTo",
-            "domain": "agento:Task",
-            "range": "agento:Agent",
-            "definition": "Task di-assign ke specific agent.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "usesTool",
-            "domain": "agento:Agent",
-            "range": "agento:Tool",
-            "definition": "Agent menggunakan tools untuk eksekusi.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "hasOutput",
-            "domain": "agento:Task",
-            "range": "agento:PydanticModel",
-            "definition": "Task memiliki structured output schema.",
-            "status_in_pattern": "digunakan"
-        },
-        {
-            "name": "dependsOn",
-            "domain": "agento:Task",
-            "range": "agento:Task",
-            "definition": "Task bergantung pada output task sebelumnya.",
-            "status_in_pattern": "implisit (sequential process)"
-        },
-        {
-            "name": "supervisedBy",
-            "domain": "agento:Agent",
-            "range": "agento:Agent",
-            "definition": "Agent disupervise oleh agent lain.",
-            "status_in_pattern": "implisit dalam deskripsi"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:Crew",
-                "definition": "Sistem orkestrasi multi-agent CrewAI.",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:PydanticModel",
-                "definition": "Schema terstruktur untuk output validation.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "role",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Semua agents di CrewAI harus memiliki role."
-            },
-            {
-                "name": "goal",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Core attribute untuk agent behavior di CrewAI."
-            },
-            {
-                "name": "backstory",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Memberikan context untuk LLM behavior."
-            },
-            {
-                "name": "process",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "CrewAI mendukung berbagai process types."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:marketingpostscrew": {
+      "rdf:type": ":System",
+      "dcterms:title": "marketingpostscrew"
+    },
+    "ex:marketing_strategy_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "Marketing Strategy Flow",
+      "dcterms:description": "Pattern ini mendefinisikan crew marketing dengan 4 agent specialist: Lead Market Analyst untuk riset, Chief Marketing Strategist untuk strategi, Creative Content Creator untuk konten, dan Chief Creative Director untuk oversight. Crew mengeksekusi 5 task sequential: research, project understanding, strategy formulation, campaign ideation, dan copy creation. Menggunakan SerperDev dan web scraping tools untuk riset."
+    },
+    "ex:DatatypeProperty_role": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Semua agents di CrewAI harus memiliki role.",
+      "agento:name": "role",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_goal": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Core attribute untuk agent behavior di CrewAI.",
+      "agento:name": "goal",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_backstory": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Memberikan context untuk LLM behavior.",
+      "agento:name": "backstory",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_process": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "CrewAI mendukung berbagai process types.",
+      "agento:name": "process",
+      "agento:range": "xsd:string"
+    },
+    "ex:crew": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "Crew",
+      "dcterms:description": "Sistem orkestrasi multi-agent CrewAI."
+    },
+    "ex:pydanticmodel": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "PydanticModel",
+      "dcterms:description": "Schema terstruktur untuk output validation."
+    },
+    "ex:lead_market_analyst": {
+      "rdf:type": ":Agent",
+      ":agentID": "lead_market_analyst",
+      ":agentRole": "Lead Market Analyst",
+      "dcterms:title": "lead_market_analyst",
+      ":hasGoal": "ex:goal_lead_market_analyst",
+      ":hasTask": "ex:task_lead_market_analyst"
+    },
+    "ex:goal_lead_market_analyst": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for lead_market_analyst",
+      "dcterms:description": "Automatically generated goal for lead_market_analyst"
+    },
+    "ex:task_lead_market_analyst": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for lead_market_analyst",
+      "dcterms:description": "Automatically generated task for lead_market_analyst",
+      ":taskExpectedOutput": "Automatically generated expected output for lead_market_analyst"
+    },
+    "ex:chief_marketing_strategist": {
+      "rdf:type": ":Agent",
+      ":agentID": "chief_marketing_strategist",
+      ":agentRole": "Chief Marketing Strategist",
+      "dcterms:title": "chief_marketing_strategist",
+      ":hasGoal": "ex:goal_chief_marketing_strategist",
+      ":hasTask": "ex:task_chief_marketing_strategist"
+    },
+    "ex:goal_chief_marketing_strategist": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for chief_marketing_strategist",
+      "dcterms:description": "Automatically generated goal for chief_marketing_strategist"
+    },
+    "ex:task_chief_marketing_strategist": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for chief_marketing_strategist",
+      "dcterms:description": "Automatically generated task for chief_marketing_strategist",
+      ":taskExpectedOutput": "Automatically generated expected output for chief_marketing_strategist"
+    },
+    "ex:creative_content_creator": {
+      "rdf:type": ":Agent",
+      ":agentID": "creative_content_creator",
+      ":agentRole": "Creative Content Creator",
+      "dcterms:title": "creative_content_creator",
+      ":hasGoal": "ex:goal_creative_content_creator",
+      ":hasTask": "ex:task_creative_content_creator"
+    },
+    "ex:goal_creative_content_creator": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for creative_content_creator",
+      "dcterms:description": "Automatically generated goal for creative_content_creator"
+    },
+    "ex:task_creative_content_creator": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for creative_content_creator",
+      "dcterms:description": "Automatically generated task for creative_content_creator",
+      ":taskExpectedOutput": "Automatically generated expected output for creative_content_creator"
+    },
+    "ex:chief_creative_director": {
+      "rdf:type": ":Agent",
+      ":agentID": "chief_creative_director",
+      ":agentRole": "Chief Creative Director",
+      "dcterms:title": "chief_creative_director",
+      ":hasGoal": "ex:goal_chief_creative_director",
+      ":hasTask": "ex:task_chief_creative_director"
+    },
+    "ex:goal_chief_creative_director": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for chief_creative_director",
+      "dcterms:description": "Automatically generated goal for chief_creative_director"
+    },
+    "ex:task_chief_creative_director": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for chief_creative_director",
+      "dcterms:description": "Automatically generated task for chief_creative_director",
+      ":taskExpectedOutput": "Automatically generated expected output for chief_creative_director"
     }
+  }
 }

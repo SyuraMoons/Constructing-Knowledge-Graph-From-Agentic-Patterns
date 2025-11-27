@@ -1,99 +1,42 @@
 {
-    "framework": "Langraph",
-    "file_name": "multi_agent.py",
-    "pattern_type": "Single-nodeworkflow",
-    "description": "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama multi_agent_node. Node ini dijadikan entry point sekaligus finish point. Secara struktur, workflow masih single-node (belum benar-benar multi-node), namun penamaan multi_agent_node mengisyaratkan bahwa node ini berada dalam konteks skenario multi-agent",
-    "entities": [
-        {
-            "id": "workflow",
-            "vendorClass": "StateGraph()",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "-": "-"
-            },
-            "relations": {}
-        },
-        {
-            "id": "node",
-            "vendorClass": "graph.add_node(name, fn)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "nama": "multi_agent_node",
-                "callable": "lambda x: x"
-            },
-            "relations": {}
-        },
-        {
-            "id": "entry point",
-            "vendorClass": "graph.set_entry_point(name)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "multi_agent_node"
-            },
-            "relations": {}
-        },
-        {
-            "id": "finish point",
-            "vendorClass": "graph.set_finish_point(name)",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "multi_agent_node”"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "callsNode",
-            "domain": "agento:Workflow",
-            "range": "agento:Node",
-            "definition": "Workflow memiliki / memanggil node sebagai bagian dari proses",
-            "status_in_pattern": "suggested"
-        },
-        {
-            "name": "hasStartNode",
-            "domain": "agento:Workflow",
-            "range": "agento:Node",
-            "definition": "Node yang ditetapkan sebagai titik awal eksekusi.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "hasEndNode",
-            "domain": "agento:Workflow",
-            "range": "agento:Node",
-            "definition": "Node akhir eksekusi.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "follows",
-            "domain": "agento:Node",
-            "range": "agento:Node",
-            "definition": "Urutan/edge antar node.",
-            "status_in_pattern": "optional"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:workflow,node",
-                "definition": "Struktur graf & simpul eksekusi",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "nodeName",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "multi_agent_node"
-            },
-            {
-                "name": "callableLabel",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "lambda x: x"
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:multi_agent_node_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "multi_agent_node Graph",
+      "dcterms:description": "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama multi_agent_node. Node ini dijadikan entry point sekaligus finish point. Secara struktur, workflow masih single-node (belum benar-benar multi-node), namun penamaan multi_agent_node mengisyaratkan bahwa node ini berada dalam konteks skenario multi-agent"
+    },
+    "ex:node": {
+      "rdf:type": ":Node",
+      ":callableLabel": "lambda x: x"
+    },
+    "ex:DatatypeProperty_nodename": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "multi_agent_node",
+      "agento:name": "nodeName",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_callablelabel": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "lambda x: x",
+      "agento:name": "callableLabel",
+      "agento:range": "xsd:string"
+    },
+    "ex:workflownode": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "workflowNode",
+      "dcterms:description": "Struktur graf & simpul eksekusi"
     }
+  }
 }

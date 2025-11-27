@@ -1,0 +1,110 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:research_workflow
+    a :Agent ;
+    :agentID "Research Workflow" ;
+    :hasGoal ex:goal_research_workflow ;
+    :hasTask ex:task_research_workflow .
+
+
+ex:goal_research_workflow
+    a :Goal ;
+    dcterms:title "Goal for Research Workflow" ;
+    dcterms:description "Automatically generated goal for Research Workflow" .
+
+
+ex:task_research_workflow
+    a :Task ;
+    dcterms:title "Task for Research Workflow" ;
+    dcterms:description "Automatically generated task for Research Workflow" ;
+    :taskExpectedOutput "Automatically generated expected output for Research Workflow" .
+
+
+ex:researcher
+    a :Agent ;
+    :agentID "researcher" ;
+    :agentRole "Researcher" ;
+    :hasGoal ex:goal_researcher ;
+    :hasTask ex:task_researcher .
+
+
+ex:goal_researcher
+    a :Goal ;
+    dcterms:title "Goal for researcher" ;
+    dcterms:description "Automatically generated goal for researcher" .
+
+
+ex:task_researcher
+    a :Task ;
+    dcterms:title "Task for researcher" ;
+    dcterms:description "Automatically generated task for researcher" ;
+    :taskExpectedOutput "Automatically generated expected output for researcher" .
+
+
+ex:writer
+    a :Agent ;
+    :agentID "writer" ;
+    :agentRole "Writer" ;
+    :hasGoal ex:goal_writer ;
+    :hasTask ex:task_writer .
+
+
+ex:goal_writer
+    a :Goal ;
+    dcterms:title "Goal for writer" ;
+    dcterms:description "Automatically generated goal for writer" .
+
+
+ex:task_writer
+    a :Task ;
+    dcterms:title "Task for writer" ;
+    dcterms:description "Automatically generated task for writer" ;
+    :taskExpectedOutput "Automatically generated expected output for writer" .
+
+
+ex:research_and_write
+    a :Agent ;
+    :agentID "research_and_write" ;
+    :hasGoal ex:goal_research_and_write ;
+    :hasTask ex:task_research_and_write .
+
+
+ex:goal_research_and_write
+    a :Goal ;
+    dcterms:title "Goal for research_and_write" ;
+    dcterms:description "Automatically generated goal for research_and_write" .
+
+
+ex:task_research_and_write
+    a :Task ;
+    dcterms:title "Task for research_and_write" ;
+    dcterms:description "Automatically generated task for research_and_write" ;
+    :taskExpectedOutput "Automatically generated expected output for research_and_write" .
+
+
+ex:research_workflow.json
+    a :System ;
+    dcterms:title "research_workflow.json" ;
+    dcterms:description "Sistem “Research Workflow” berisi dua agent (researcher & writer) serta satu workflow research_and_write" .
+
+
+ex:llm_gpt-4
+    a :LanguageModel ;
+    dcterms:title "gpt-4" .
+
+
+ex:workflow
+    a owl:Class ;
+    dcterms:title "Workflow" ;
+    dcterms:description "Menampung definisi alur riset–penulisan" .

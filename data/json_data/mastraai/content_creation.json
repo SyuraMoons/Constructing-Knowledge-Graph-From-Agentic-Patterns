@@ -1,104 +1,125 @@
 {
-    "framework": "MastraAI",
-    "file_name": "content_creation.json",
-    "pattern_type": "Multi-agentconfiguration",
-    "description": "Pattern ini mendefinisikan sistem bernama “Content Creation Pipeline” yang berisi tiga agent: ideator, writer, dan editor. Setiap agent memiliki role, instructions, dan model. Tidak ada workflow eksplisit, task, atau tools — pattern ini fokus pada konfigurasi agent dalam pipeline pembuatan konten",
-    "entities": [
-        {
-            "id": "system",
-            "vendorClass": "name",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "Content Creation Pipeline"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#1",
-            "vendorClass": "agents[0]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "ideator",
-                "role": "Content Ideator",
-                "instructions": "Generate content ideas",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#2",
-            "vendorClass": "agents[1]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "writer",
-                "role": "Content Writer",
-                "instructions": "Write engaging content",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        },
-        {
-            "id": "#3",
-            "vendorClass": "agents[2]",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "editor",
-                "role": "Content Editor",
-                "instructions": "Edit and refine content",
-                "model": "gpt-4"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "hasAgent",
-            "domain": "agento:System",
-            "range": "agento:Agent",
-            "definition": "Sistem memiliki / terdiri dari agent-agent.",
-            "status_in_pattern": "ditambahkan"
-        },
-        {
-            "name": "configuredBy",
-            "domain": "agento:Agent",
-            "range": "agento:LLMModel",
-            "definition": "Agent menggunakan model tertentu.",
-            "status_in_pattern": "ditambahkan"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:MultiAgentSystem",
-                "definition": "Representasi konfigurasi multi-agent.",
-                "status_in_pattern": "used"
-            },
-            {
-                "name": "agento:LLMModel",
-                "definition": "Representasi model (gpt-4, dll).",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "role",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"Content Ideator\", \"Content Editor\", dll."
-            },
-            {
-                "name": "instructions",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"Generate content ideas\""
-            },
-            {
-                "name": "modelName",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "\"gpt-4\""
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:content_creation_pipeline": {
+      "rdf:type": ":Agent",
+      ":agentID": "Content Creation Pipeline",
+      ":hasGoal": "ex:goal_content_creation_pipeline",
+      ":hasTask": "ex:task_content_creation_pipeline"
+    },
+    "ex:goal_content_creation_pipeline": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for Content Creation Pipeline",
+      "dcterms:description": "Automatically generated goal for Content Creation Pipeline"
+    },
+    "ex:task_content_creation_pipeline": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for Content Creation Pipeline",
+      "dcterms:description": "Automatically generated task for Content Creation Pipeline",
+      ":taskExpectedOutput": "Automatically generated expected output for Content Creation Pipeline"
+    },
+    "ex:ideator": {
+      "rdf:type": ":Agent",
+      ":agentID": "ideator",
+      ":agentRole": "Content Ideator",
+      ":hasGoal": "ex:goal_ideator",
+      ":hasTask": "ex:task_ideator"
+    },
+    "ex:goal_ideator": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for ideator",
+      "dcterms:description": "Automatically generated goal for ideator"
+    },
+    "ex:task_ideator": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for ideator",
+      "dcterms:description": "Automatically generated task for ideator",
+      ":taskExpectedOutput": "Automatically generated expected output for ideator"
+    },
+    "ex:writer": {
+      "rdf:type": ":Agent",
+      ":agentID": "writer",
+      ":agentRole": "Content Writer",
+      ":hasGoal": "ex:goal_writer",
+      ":hasTask": "ex:task_writer"
+    },
+    "ex:goal_writer": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for writer",
+      "dcterms:description": "Automatically generated goal for writer"
+    },
+    "ex:task_writer": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for writer",
+      "dcterms:description": "Automatically generated task for writer",
+      ":taskExpectedOutput": "Automatically generated expected output for writer"
+    },
+    "ex:editor": {
+      "rdf:type": ":Agent",
+      ":agentID": "editor",
+      ":agentRole": "Content Editor",
+      ":hasGoal": "ex:goal_editor",
+      ":hasTask": "ex:task_editor"
+    },
+    "ex:goal_editor": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for editor",
+      "dcterms:description": "Automatically generated goal for editor"
+    },
+    "ex:task_editor": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for editor",
+      "dcterms:description": "Automatically generated task for editor",
+      ":taskExpectedOutput": "Automatically generated expected output for editor"
+    },
+    "ex:content_creation.json": {
+      "rdf:type": ":System",
+      "dcterms:title": "content_creation.json",
+      "dcterms:description": "Pattern ini mendefinisikan sistem bernama “Content Creation Pipeline” yang berisi tiga agent: ideator, writer, dan editor. Setiap agent memiliki role, instructions, dan model. Tidak ada workflow eksplisit, task, atau tools — pattern ini fokus pada konfigurasi agent dalam pipeline pembuatan konten"
+    },
+    "ex:llm_gpt-4": {
+      "rdf:type": ":LanguageModel",
+      "dcterms:title": "gpt-4"
+    },
+    "ex:DatatypeProperty_role": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"Content Ideator\", \"Content Editor\", dll.",
+      "agento:name": "role",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_instructions": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"Generate content ideas\"",
+      "agento:name": "instructions",
+      "agento:range": "xsd:string"
+    },
+    "ex:DatatypeProperty_modelname": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "\"gpt-4\"",
+      "agento:name": "modelName",
+      "agento:range": "xsd:string"
+    },
+    "ex:multiagentsystem": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "MultiAgentSystem",
+      "dcterms:description": "Representasi konfigurasi multi-agent."
+    },
+    "ex:llmmodel": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "LLMModel",
+      "dcterms:description": "Representasi model (gpt-4, dll)."
     }
+  }
 }

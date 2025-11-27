@@ -111,7 +111,7 @@ Nama
 Deskripsi
 Justifikasi
 class
-workflo,node
+workflowNode
 Struktur graf dan langkah eksekusi.
 Inti LangGraph adalah graph & node.
 object property

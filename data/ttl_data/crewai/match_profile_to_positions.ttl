@@ -1,0 +1,108 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:matchingcrew
+    a :System ;
+    dcterms:title "matchingcrew" .
+
+
+ex:match_profile_to_positions_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Match Profile To Positions Flow" ;
+    dcterms:description "Pattern ini implements CV-to-job matching system dengan vector search capabilities. Crew includes profile analyzer untuk CV parsing, job matcher dengan vector embeddings untuk similarity matching, dan recommendation generator. Demonstrates AI-powered matching dengan semantic search." .
+
+
+ex:DatatypeProperty_similarityscore
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Vector similarity produces numerical scores (typically 0-1)." ;
+    agento:name "similarityScore" ;
+    agento:range xsd:string .
+
+
+ex:vectorsearch
+    a owl:Class ;
+    dcterms:title "VectorSearch" ;
+    dcterms:description "Semantic search algorithm." .
+
+
+ex:candidateprofile
+    a owl:Class ;
+    dcterms:title "CandidateProfile" ;
+    dcterms:description "Profile dengan vector embeddings." .
+
+
+ex:profile_analyzer_agent
+    a :Agent ;
+    :agentID "profile_analyzer_agent" ;
+    :agentRole "Profile Analyzer" ;
+    dcterms:title "profile_analyzer_agent" ;
+    :hasGoal ex:goal_profile_analyzer_agent ;
+    :hasTask ex:task_profile_analyzer_agent .
+
+
+ex:goal_profile_analyzer_agent
+    a :Goal ;
+    dcterms:title "Goal for profile_analyzer_agent" ;
+    dcterms:description "Automatically generated goal for profile_analyzer_agent" .
+
+
+ex:task_profile_analyzer_agent
+    a :Task ;
+    dcterms:title "Task for profile_analyzer_agent" ;
+    dcterms:description "Automatically generated task for profile_analyzer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for profile_analyzer_agent" .
+
+
+ex:job_matcher_agent
+    a :Agent ;
+    :agentID "job_matcher_agent" ;
+    :agentRole "Job Matcher" ;
+    dcterms:title "job_matcher_agent" ;
+    :hasGoal ex:goal_job_matcher_agent ;
+    :hasTask ex:task_job_matcher_agent .
+
+
+ex:goal_job_matcher_agent
+    a :Goal ;
+    dcterms:title "Goal for job_matcher_agent" ;
+    dcterms:description "Automatically generated goal for job_matcher_agent" .
+
+
+ex:task_job_matcher_agent
+    a :Task ;
+    dcterms:title "Task for job_matcher_agent" ;
+    dcterms:description "Automatically generated task for job_matcher_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for job_matcher_agent" .
+
+
+ex:recommendation_generator_agent
+    a :Agent ;
+    :agentID "recommendation_generator_agent" ;
+    :agentRole "Recommendation Generator" ;
+    dcterms:title "recommendation_generator_agent" ;
+    :hasGoal ex:goal_recommendation_generator_agent ;
+    :hasTask ex:task_recommendation_generator_agent .
+
+
+ex:goal_recommendation_generator_agent
+    a :Goal ;
+    dcterms:title "Goal for recommendation_generator_agent" ;
+    dcterms:description "Automatically generated goal for recommendation_generator_agent" .
+
+
+ex:task_recommendation_generator_agent
+    a :Task ;
+    dcterms:title "Task for recommendation_generator_agent" ;
+    dcterms:description "Automatically generated task for recommendation_generator_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for recommendation_generator_agent" .

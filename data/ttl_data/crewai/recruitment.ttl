@@ -1,0 +1,102 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:recruitmentcrew
+    a :System ;
+    dcterms:title "recruitmentcrew" .
+
+
+ex:recruitment_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Recruitment Flow" ;
+    dcterms:description "Pattern ini implements automated recruitment crew untuk candidate sourcing dan evaluation. Crew includes sourcing specialist untuk finding candidates, resume analyzer untuk screening, dan interview coordinator untuk scheduling. Demonstrates HR automation dengan CV parsing dan candidate ranking." .
+
+
+ex:DatatypeProperty_matchpercentage
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Candidate-to-job matching uses percentage-based scoring." ;
+    agento:name "matchPercentage" ;
+    agento:range xsd:string .
+
+
+ex:candidateranking
+    a owl:Class ;
+    dcterms:title "CandidateRanking" ;
+    dcterms:description "Structured ranking system." .
+
+
+ex:sourcing_specialist_agent
+    a :Agent ;
+    :agentID "sourcing_specialist_agent" ;
+    :agentRole "Sourcing Specialist" ;
+    dcterms:title "sourcing_specialist_agent" ;
+    :hasGoal ex:goal_sourcing_specialist_agent ;
+    :hasTask ex:task_sourcing_specialist_agent .
+
+
+ex:goal_sourcing_specialist_agent
+    a :Goal ;
+    dcterms:title "Goal for sourcing_specialist_agent" ;
+    dcterms:description "Automatically generated goal for sourcing_specialist_agent" .
+
+
+ex:task_sourcing_specialist_agent
+    a :Task ;
+    dcterms:title "Task for sourcing_specialist_agent" ;
+    dcterms:description "Automatically generated task for sourcing_specialist_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for sourcing_specialist_agent" .
+
+
+ex:resume_analyzer_agent
+    a :Agent ;
+    :agentID "resume_analyzer_agent" ;
+    :agentRole "Resume Analyzer" ;
+    dcterms:title "resume_analyzer_agent" ;
+    :hasGoal ex:goal_resume_analyzer_agent ;
+    :hasTask ex:task_resume_analyzer_agent .
+
+
+ex:goal_resume_analyzer_agent
+    a :Goal ;
+    dcterms:title "Goal for resume_analyzer_agent" ;
+    dcterms:description "Automatically generated goal for resume_analyzer_agent" .
+
+
+ex:task_resume_analyzer_agent
+    a :Task ;
+    dcterms:title "Task for resume_analyzer_agent" ;
+    dcterms:description "Automatically generated task for resume_analyzer_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for resume_analyzer_agent" .
+
+
+ex:interview_coordinator_agent
+    a :Agent ;
+    :agentID "interview_coordinator_agent" ;
+    :agentRole "Interview Coordinator" ;
+    dcterms:title "interview_coordinator_agent" ;
+    :hasGoal ex:goal_interview_coordinator_agent ;
+    :hasTask ex:task_interview_coordinator_agent .
+
+
+ex:goal_interview_coordinator_agent
+    a :Goal ;
+    dcterms:title "Goal for interview_coordinator_agent" ;
+    dcterms:description "Automatically generated goal for interview_coordinator_agent" .
+
+
+ex:task_interview_coordinator_agent
+    a :Task ;
+    dcterms:title "Task for interview_coordinator_agent" ;
+    dcterms:description "Automatically generated task for interview_coordinator_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for interview_coordinator_agent" .

@@ -1,0 +1,54 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:contentcreatorflow
+    a :System ;
+    dcterms:title "contentcreatorflow" .
+
+
+ex:blog_crew
+    a :System ;
+    dcterms:title "blog_crew" .
+
+
+ex:linkedin_crew
+    a :System ;
+    dcterms:title "linkedin_crew" .
+
+
+ex:research_crew
+    a :System ;
+    dcterms:title "research_crew" .
+
+
+ex:flow_state
+    a :System ;
+    dcterms:title "flow_state" .
+
+
+ex:content_creator_flow_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Content Creator Flow Flow" ;
+    dcterms:description "Pattern ini menggunakan CrewAI Flow untuk orkestra multi-crew content generation system. Flow mengkoordinasikan beberapa crew untuk menghasilkan blog posts, LinkedIn content, dan research reports secara parallel dengan state management antar crew." .
+
+
+ex:flow
+    a owl:Class ;
+    dcterms:title "Flow" ;
+    dcterms:description "Orchestrator untuk multi-crew workflows." .
+
+
+ex:state
+    a owl:Class ;
+    dcterms:title "State" ;
+    dcterms:description "Shared state object dalam flow." .

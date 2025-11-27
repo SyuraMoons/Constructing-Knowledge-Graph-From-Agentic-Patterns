@@ -1,0 +1,102 @@
+@prefix : <http://www.w3id.org/agentic-ai/onto#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+@prefix ex: <http://www.w3id.org/agentic-ai/instances#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### ================================
+### Resources
+### ================================
+
+ex:jobpostingcrew
+    a :System ;
+    dcterms:title "jobpostingcrew" .
+
+
+ex:job_posting_workflow
+    a :WorkflowPattern ;
+    dcterms:title "Job Posting Flow" ;
+    dcterms:description "Pattern ini automates job description creation crew. Crew includes HR specialist untuk requirements, copywriter untuk description, dan SEO specialist untuk optimization. Generates complete, optimized job postings dari basic role information." .
+
+
+ex:DatatypeProperty_keywords
+    a agento:DatatypeProperty ;
+    agento:domain agento:Agent ;
+    agento:justification "Job postings require keyword arrays untuk search optimization." ;
+    agento:name "keywords" ;
+    agento:range xsd:string .
+
+
+ex:jobposting
+    a owl:Class ;
+    dcterms:title "JobPosting" ;
+    dcterms:description "Structured job posting entity." .
+
+
+ex:hr_specialist_agent
+    a :Agent ;
+    :agentID "hr_specialist_agent" ;
+    :agentRole "HR Specialist" ;
+    dcterms:title "hr_specialist_agent" ;
+    :hasGoal ex:goal_hr_specialist_agent ;
+    :hasTask ex:task_hr_specialist_agent .
+
+
+ex:goal_hr_specialist_agent
+    a :Goal ;
+    dcterms:title "Goal for hr_specialist_agent" ;
+    dcterms:description "Automatically generated goal for hr_specialist_agent" .
+
+
+ex:task_hr_specialist_agent
+    a :Task ;
+    dcterms:title "Task for hr_specialist_agent" ;
+    dcterms:description "Automatically generated task for hr_specialist_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for hr_specialist_agent" .
+
+
+ex:copywriter_agent
+    a :Agent ;
+    :agentID "copywriter_agent" ;
+    :agentRole "Copywriter" ;
+    dcterms:title "copywriter_agent" ;
+    :hasGoal ex:goal_copywriter_agent ;
+    :hasTask ex:task_copywriter_agent .
+
+
+ex:goal_copywriter_agent
+    a :Goal ;
+    dcterms:title "Goal for copywriter_agent" ;
+    dcterms:description "Automatically generated goal for copywriter_agent" .
+
+
+ex:task_copywriter_agent
+    a :Task ;
+    dcterms:title "Task for copywriter_agent" ;
+    dcterms:description "Automatically generated task for copywriter_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for copywriter_agent" .
+
+
+ex:seo_specialist_agent
+    a :Agent ;
+    :agentID "seo_specialist_agent" ;
+    :agentRole "SEO Specialist" ;
+    dcterms:title "seo_specialist_agent" ;
+    :hasGoal ex:goal_seo_specialist_agent ;
+    :hasTask ex:task_seo_specialist_agent .
+
+
+ex:goal_seo_specialist_agent
+    a :Goal ;
+    dcterms:title "Goal for seo_specialist_agent" ;
+    dcterms:description "Automatically generated goal for seo_specialist_agent" .
+
+
+ex:task_seo_specialist_agent
+    a :Task ;
+    dcterms:title "Task for seo_specialist_agent" ;
+    dcterms:description "Automatically generated task for seo_specialist_agent" ;
+    :taskExpectedOutput "Automatically generated expected output for seo_specialist_agent" .

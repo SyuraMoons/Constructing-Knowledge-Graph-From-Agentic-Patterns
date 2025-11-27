@@ -1,76 +1,71 @@
 {
-    "framework": "AutoGen",
-    "file_name": "feedback_agent.py",
-    "pattern_type": "AgentCollaboratorPattern(feedbackContext)",
-    "description": "Pattern ini mendefinisikan dua agent (AssistantAgent dan UserProxyAgent) untuk konteks pemberian umpan balik (feedback loop). Agent AI berfungsi sebagai evaluator yang memberi feedback terhadap hasil kerja, sementara UserProxyAgent mewakili pengguna.",
-    "entities": [
-        {
-            "id": "assistant",
-            "vendorClass": "AssistantAgent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "feedback_agent_assistant",
-                "system_message": "You are a helpful AI assistant for chess_game"
-            },
-            "relations": {}
-        },
-        {
-            "id": "userproxy",
-            "vendorClass": "UserProxyAgent",
-            "mapsTo": "agento:Agent",
-            "attributes": {
-                "name": "user",
-                "human_input_mode": "NEVER"
-            },
-            "relations": {}
-        }
-    ],
-    "ontologyRelationalProperties": [
-        {
-            "name": "participatesIn",
-            "domain": "agento:Agent",
-            "range": "agento:Evaluation",
-            "definition": "Menunjukkan keterlibatan agent dalam aktivitas evaluasi.",
-            "status_in_pattern": "suggested"
-        },
-        {
-            "name": "evaluates",
-            "domain": "agento:Agent",
-            "range": "agento:Artifact",
-            "definition": "Agent memberi umpan balik terhadap artefak.",
-            "status_in_pattern": "suggested."
-        },
-        {
-            "name": "delegatesTo",
-            "domain": "agento:Agent",
-            "range": "agento:Agent",
-            "definition": "Delegasi antar-agent.",
-            "status_in_pattern": "optional"
-        },
-        {
-            "name": "hasRole",
-            "domain": "agento:Agent",
-            "range": "agento:Role",
-            "definition": "Peran agent dalam aktivitas feedback.",
-            "status_in_pattern": "optional"
-        }
-    ],
-    "newOntologyTerms": {
-        "newClasses": [
-            {
-                "name": "agento:evaluation",
-                "definition": "Aktivitas pemberian umpan balik terhadap artefak.",
-                "status_in_pattern": "used"
-            }
-        ],
-        "datatypeProperties": [
-            {
-                "name": "systemMessage",
-                "domain": "agento:Agent",
-                "range": "xsd:string",
-                "justification": "Sudah muncul konsisten di semua AutoGen pattern."
-            }
-        ],
-        "optionalProperties": []
+  "prefixes": {
+    "": "http://www.w3id.org/agentic-ai/onto#",
+    "agento": "http://www.w3id.org/agentic-ai/onto#",
+    "ex": "http://www.w3id.org/agentic-ai/instances#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "resources": {
+    "ex:assistant": {
+      "rdf:type": ":Agent",
+      ":agentID": "feedback_agent_assistant",
+      ":agentRole": "Assistant Agent",
+      "dcterms:title": "feedback_agent_assistant Assistant",
+      "dcterms:description": "You are a helpful AI assistant for chess_game",
+      ":hasGoal": "ex:goal_assistant",
+      ":hasTask": "ex:task_assistant"
+    },
+    "ex:goal_assistant": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for feedback_agent_assistant",
+      "dcterms:description": "Automatically generated goal for feedback_agent_assistant"
+    },
+    "ex:task_assistant": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for feedback_agent_assistant",
+      "dcterms:description": "Automatically generated task for feedback_agent_assistant",
+      ":taskExpectedOutput": "Automatically generated expected output for feedback_agent_assistant"
+    },
+    "ex:userproxy": {
+      "rdf:type": ":Agent",
+      ":agentID": "user",
+      ":agentRole": "User Proxy Agent",
+      "dcterms:title": "User Proxy",
+      "dcterms:description": "Human input proxy with NEVER mode",
+      ":hasGoal": "ex:goal_userproxy",
+      ":hasTask": "ex:task_userproxy"
+    },
+    "ex:goal_userproxy": {
+      "rdf:type": ":Goal",
+      "dcterms:title": "Goal for user",
+      "dcterms:description": "Automatically generated goal for user"
+    },
+    "ex:task_userproxy": {
+      "rdf:type": ":Task",
+      "dcterms:title": "Task for user",
+      "dcterms:description": "Automatically generated task for user",
+      ":taskExpectedOutput": "Automatically generated expected output for user"
+    },
+    "ex:feedback_agent_assistant_workflow": {
+      "rdf:type": ":WorkflowPattern",
+      "dcterms:title": "feedback_agent_assistant Workflow",
+      "dcterms:description": "Pattern ini mendefinisikan dua agent (AssistantAgent dan UserProxyAgent) untuk konteks pemberian umpan balik (feedback loop). Agent AI berfungsi sebagai evaluator yang memberi feedback terhadap hasil kerja, sementara UserProxyAgent mewakili pengguna."
+    },
+    "ex:DatatypeProperty_systemmessage": {
+      "rdf:type": "agento:DatatypeProperty",
+      "agento:domain": "agento:Agent",
+      "agento:justification": "Sudah muncul konsisten di semua AutoGen pattern.",
+      "agento:name": "systemMessage",
+      "agento:range": "xsd:string"
+    },
+    "ex:evaluation": {
+      "rdf:type": "owl:Class",
+      "dcterms:title": "evaluation",
+      "dcterms:description": "Aktivitas pemberian umpan balik terhadap artefak."
     }
+  }
 }
