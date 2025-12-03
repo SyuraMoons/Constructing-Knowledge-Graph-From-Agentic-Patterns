@@ -14,7 +14,7 @@
 ex:writer_workflow
     a :WorkflowPattern ;
     dcterms:title "Writer Graph" ;
-    dcterms:description Pattern ini membangun sebuah StateGraph sederhana dengan satu node bernama writer_node. Node ini berfungsi sebagai entry point sekaligus finish point. Fungsi yang dijalankan node adalah lambda x: x, yang berarti tidak ada pemrosesan aktual maupun integrasi LLM/tool. Tidak ada node tambahan, edge, atau branching .
+    dcterms:description "Pattern ini membangun sebuah StateGraph sederhana dengan satu node bernama writer_node. Node ini berfungsi sebagai entry point sekaligus finish point. Fungsi yang dijalankan node adalah lambda x: x, yang berarti tidak ada pemrosesan aktual maupun integrasi LLM/tool. Tidak ada node tambahan, edge, atau branching" .
 
 
 ex:node

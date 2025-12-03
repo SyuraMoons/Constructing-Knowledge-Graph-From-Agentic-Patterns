@@ -96,7 +96,7 @@ ex:task_research_and_write
 ex:research_workflow.json
     a :System ;
     dcterms:title "research_workflow.json" ;
-    dcterms:description "Sistem “Research Workflow” berisi dua agent (researcher & writer) serta satu workflow research_and_write" .
+    dcterms:description "Sistem \u201cResearch Workflow\u201d berisi dua agent (researcher & writer) serta satu workflow research_and_write" .
 
 
 ex:llm_gpt-4
@@ -107,4 +107,4 @@ ex:llm_gpt-4
 ex:workflow
     a owl:Class ;
     dcterms:title "Workflow" ;
-    dcterms:description "Menampung definisi alur riset–penulisan" .
+    dcterms:description "Menampung definisi alur riset\u2013penulisan" .

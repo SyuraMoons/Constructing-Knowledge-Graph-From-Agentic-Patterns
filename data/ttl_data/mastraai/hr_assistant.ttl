@@ -76,7 +76,7 @@ ex:task_onboarding_guide
 ex:hr_assistant.json
     a :System ;
     dcterms:title "hr_assistant.json" ;
-    dcterms:description mendefinisikan sistem “HR Assistant” yang terdiri atas dua agent: recruiter dan onboarding_guide. Keduanya memiliki peran, instruksi, dan model LLM yang sama (gpt-4) untuk membantu proses rekrutmen dan onboarding karyawan baru .
+    dcterms:description "mendefinisikan sistem \u201cHR Assistant\u201d yang terdiri atas dua agent: recruiter dan onboarding_guide. Keduanya memiliki peran, instruksi, dan model LLM yang sama (gpt-4) untuk membantu proses rekrutmen dan onboarding karyawan baru" .
 
 
 ex:llm_gpt-4
@@ -111,7 +111,7 @@ ex:DatatypeProperty_instructions
 ex:DatatypeProperty_modelname
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification "Menyimpan informasi "gpt-4" sebagai model yang dipakai." ;
+    agento:justification "Menyimpan informasi \"gpt-4\" sebagai model yang dipakai." ;
     agento:name "modelName" ;
     agento:range xsd:string .
 

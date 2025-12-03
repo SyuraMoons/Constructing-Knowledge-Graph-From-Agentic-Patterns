@@ -19,7 +19,7 @@ ex:analyzer_node_workflow
 
 ex:node
     a :Node ;
-    :callableLabel lambda x: x .
+    :callableLabel "lambda x: x" .
 
 
 ex:DatatypeProperty_nodename
@@ -33,7 +33,7 @@ ex:DatatypeProperty_nodename
 ex:DatatypeProperty_callablelabel
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification lambda x: x ;
+    agento:justification "lambda x: x" ;
     agento:name "callableLabel" ;
     agento:range xsd:string .
 

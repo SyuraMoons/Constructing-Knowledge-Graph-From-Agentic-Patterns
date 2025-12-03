@@ -96,7 +96,7 @@ ex:task_support_flow
 ex:customer_support.yaml
     a :System ;
     dcterms:title "customer_support.yaml" ;
-    dcterms:description "Pattern ini mendefinisikan sistem bernama “Customer Support System” yang terdiri dari dua agent (support_agent, escalation_agent) dan sebuah workflow bernama support_flow. Setiap agent memiliki role, instructions, dan model. Workflow hanya didefinisikan dengan name dan description tanpa rincian langkah" .
+    dcterms:description "Pattern ini mendefinisikan sistem bernama \u201cCustomer Support System\u201d yang terdiri dari dua agent (support_agent, escalation_agent) dan sebuah workflow bernama support_flow. Setiap agent memiliki role, instructions, dan model. Workflow hanya didefinisikan dengan name dan description tanpa rincian langkah" .
 
 
 ex:llm_gpt-4
@@ -107,7 +107,7 @@ ex:llm_gpt-4
 ex:DatatypeProperty_role
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification ""Support Agent", "Escalation Specialist"." ;
+    agento:justification "\"Support Agent\", \"Escalation Specialist\"." ;
     agento:name "role" ;
     agento:range xsd:string .
 
@@ -115,7 +115,7 @@ ex:DatatypeProperty_role
 ex:DatatypeProperty_instructions
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification ""Handle customer inquiries"." ;
+    agento:justification "\"Handle customer inquiries\"." ;
     agento:name "instructions" ;
     agento:range xsd:string .
 
@@ -123,7 +123,7 @@ ex:DatatypeProperty_instructions
 ex:DatatypeProperty_modelname
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification ""gpt-4"." ;
+    agento:justification "\"gpt-4\"." ;
     agento:name "modelName" ;
     agento:range xsd:string .
 
@@ -131,7 +131,7 @@ ex:DatatypeProperty_modelname
 ex:DatatypeProperty_workflowdescription
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification ""Customer support workflow"." ;
+    agento:justification "\"Customer support workflow\"." ;
     agento:name "workflowDescription" ;
     agento:range xsd:string .
 

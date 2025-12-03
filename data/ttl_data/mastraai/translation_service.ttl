@@ -76,7 +76,7 @@ ex:task_localizer
 ex:translation_service.json
     a :System ;
     dcterms:title "translation_service.json" ;
-    dcterms:description Sistem “Translation Service” memiliki dua agent: translator dan localizer, yang masing-masing memiliki peran untuk menerjemahkan dan menyesuaikan konten secara budaya. Keduanya menggunakan model LLM yang sama, yaitu gpt-4. .
+    dcterms:description "Sistem \u201cTranslation Service\u201d memiliki dua agent: translator dan localizer, yang masing-masing memiliki peran untuk menerjemahkan dan menyesuaikan konten secara budaya. Keduanya menggunakan model LLM yang sama, yaitu gpt-4." .
 
 
 ex:llm_gpt-4

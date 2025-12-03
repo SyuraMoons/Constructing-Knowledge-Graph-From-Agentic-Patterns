@@ -60,7 +60,7 @@ ex:task_userproxy
 ex:human_feedback_assistant_workflow
     a :WorkflowPattern ;
     dcterms:title "human_feedback_assistant Workflow" ;
-    dcterms:description Pattern ini mendefinisikan dua agent: AssistantAgent dan UserProxyAgent. Konteksnya adalah human feedback, tetapi struktur kodenya tetap berupa deklarasi dua agent tanpa workflow, tool, atau relasi tambahan .
+    dcterms:description "Pattern ini mendefinisikan dua agent: AssistantAgent dan UserProxyAgent. Konteksnya adalah human feedback, tetapi struktur kodenya tetap berupa deklarasi dua agent tanpa workflow, tool, atau relasi tambahan" .
 
 
 ex:DatatypeProperty_systemmessage

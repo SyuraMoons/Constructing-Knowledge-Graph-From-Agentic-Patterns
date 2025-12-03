@@ -14,7 +14,7 @@
 ex:synthesizer_workflow
     a :WorkflowPattern ;
     dcterms:title "Synthesizer Graph" ;
-    dcterms:description membangun sebuah StateGraph dengan satu node bernama synthesizer_node. Node ini bertindak sebagai entry point dan finish point secara bersamaan, sama seperti pola minimalis lainnya. Fungsi node adalah lambda x: x (fungsi identitas). Tidak ada node tambahan, edge, tool, agent, atau proses branching .
+    dcterms:description "membangun sebuah StateGraph dengan satu node bernama synthesizer_node. Node ini bertindak sebagai entry point dan finish point secara bersamaan, sama seperti pola minimalis lainnya. Fungsi node adalah lambda x: x (fungsi identitas). Tidak ada node tambahan, edge, tool, agent, atau proses branching" .
 
 
 ex:node

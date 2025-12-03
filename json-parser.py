@@ -6,12 +6,11 @@ def to_turtle_value(value):
     Decide whether a value is a URI (prefix:value) or string literal.
     """
     if isinstance(value, str):
-        if ":" in value and not value.startswith("http"):
+        if not value.startswith("http") and ":" in value and " " not in value:
             # likely CURIE (prefix:value)
             return value
-        else:
-            return f"\"{value}\""
-    return f"\"{value}\""
+
+    return json.dumps(str(value))
 
 
 def convert_json_to_ttl(json_data):

@@ -19,7 +19,7 @@ ex:aggregar_node_workflow
 
 ex:node
     a :Node ;
-    :callableLabel lambda x: x .
+    :callableLabel "lambda x: x" .
 
 
 ex:workflownode

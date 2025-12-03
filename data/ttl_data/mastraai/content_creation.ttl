@@ -97,7 +97,7 @@ ex:task_editor
 ex:content_creation.json
     a :System ;
     dcterms:title "content_creation.json" ;
-    dcterms:description Pattern ini mendefinisikan sistem bernama “Content Creation Pipeline” yang berisi tiga agent: ideator, writer, dan editor. Setiap agent memiliki role, instructions, dan model. Tidak ada workflow eksplisit, task, atau tools — pattern ini fokus pada konfigurasi agent dalam pipeline pembuatan konten .
+    dcterms:description "Pattern ini mendefinisikan sistem bernama \u201cContent Creation Pipeline\u201d yang berisi tiga agent: ideator, writer, dan editor. Setiap agent memiliki role, instructions, dan model. Tidak ada workflow eksplisit, task, atau tools \u2014 pattern ini fokus pada konfigurasi agent dalam pipeline pembuatan konten" .
 
 
 ex:llm_gpt-4
@@ -108,7 +108,7 @@ ex:llm_gpt-4
 ex:DatatypeProperty_role
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification ""Content Ideator", "Content Editor", dll." ;
+    agento:justification "\"Content Ideator\", \"Content Editor\", dll." ;
     agento:name "role" ;
     agento:range xsd:string .
 
@@ -116,7 +116,7 @@ ex:DatatypeProperty_role
 ex:DatatypeProperty_instructions
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification ""Generate content ideas"" ;
+    agento:justification "\"Generate content ideas\"" ;
     agento:name "instructions" ;
     agento:range xsd:string .
 
@@ -124,7 +124,7 @@ ex:DatatypeProperty_instructions
 ex:DatatypeProperty_modelname
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification ""gpt-4"" ;
+    agento:justification "\"gpt-4\"" ;
     agento:name "modelName" ;
     agento:range xsd:string .
 

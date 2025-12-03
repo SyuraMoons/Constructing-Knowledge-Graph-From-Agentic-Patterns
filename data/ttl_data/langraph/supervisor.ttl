@@ -14,7 +14,7 @@
 ex:supervisor_workflow
     a :WorkflowPattern ;
     dcterms:title "Supervisor Graph" ;
-    dcterms:description mendefinisikan sebuah StateGraph dengan satu node bernama supervisor_node. Node ini menjadi titik masuk (entry point) sekaligus titik akhir (finish point) dari workflow, dengan fungsi pemrosesan identitas (lambda x: x). Tidak ada node lain, edge tambahan, agent, tool, maupun LLM yang dimodelkan eksplisit .
+    dcterms:description "mendefinisikan sebuah StateGraph dengan satu node bernama supervisor_node. Node ini menjadi titik masuk (entry point) sekaligus titik akhir (finish point) dari workflow, dengan fungsi pemrosesan identitas (lambda x: x). Tidak ada node lain, edge tambahan, agent, tool, maupun LLM yang dimodelkan eksplisit" .
 
 
 ex:node

@@ -60,7 +60,7 @@ ex:task_userproxy
 ex:teaching_agent_assistant_workflow
     a :WorkflowPattern ;
     dcterms:title "teaching_agent_assistant Workflow" ;
-    dcterms:description Pattern ini mendefinisikan dua agent: satu AssistantAgent yang berperan sebagai AI assistant untuk konteks teaching_agent, dan satu UserProxyAgent yang merepresentasikan user dengan mode input NEVER. Tidak ada task, workflow, atau tool yang diekspresikan di dalam kode .
+    dcterms:description "Pattern ini mendefinisikan dua agent: satu AssistantAgent yang berperan sebagai AI assistant untuk konteks teaching_agent, dan satu UserProxyAgent yang merepresentasikan user dengan mode input NEVER. Tidak ada task, workflow, atau tool yang diekspresikan di dalam kode" .
 
 
 ex:DatatypeProperty_systemmessage

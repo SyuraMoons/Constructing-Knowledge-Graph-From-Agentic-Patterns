@@ -60,7 +60,7 @@ ex:task_userproxy
 ex:retrieve_chat_assistant_workflow
     a :WorkflowPattern ;
     dcterms:title "retrieve_chat_assistant Workflow" ;
-    dcterms:description Pattern ini mendefinisikan dua agent utama AutoGen: satu AssistantAgent dan satu UserProxyAgent. Tidak ada workflow, tool, task, atau relasi tambahan. Ini merupakan struktur dasar AutoGen yang umum digunakan dalam banyak pattern sederhana .
+    dcterms:description "Pattern ini mendefinisikan dua agent utama AutoGen: satu AssistantAgent dan satu UserProxyAgent. Tidak ada workflow, tool, task, atau relasi tambahan. Ini merupakan struktur dasar AutoGen yang umum digunakan dalam banyak pattern sederhana" .
 
 
 ex:DatatypeProperty_systemmessage

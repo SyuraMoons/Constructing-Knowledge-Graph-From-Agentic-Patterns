@@ -19,7 +19,7 @@ ex:marketingpostscrew
 ex:marketing_strategy_workflow
     a :WorkflowPattern ;
     dcterms:title "Marketing Strategy Flow" ;
-    dcterms:description Pattern ini mendefinisikan crew marketing dengan 4 agent specialist: Lead Market Analyst untuk riset, Chief Marketing Strategist untuk strategi, Creative Content Creator untuk konten, dan Chief Creative Director untuk oversight. Crew mengeksekusi 5 task sequential: research, project understanding, strategy formulation, campaign ideation, dan copy creation. Menggunakan SerperDev dan web scraping tools untuk riset. .
+    dcterms:description "Pattern ini mendefinisikan crew marketing dengan 4 agent specialist: Lead Market Analyst untuk riset, Chief Marketing Strategist untuk strategi, Creative Content Creator untuk konten, dan Chief Creative Director untuk oversight. Crew mengeksekusi 5 task sequential: research, project understanding, strategy formulation, campaign ideation, dan copy creation. Menggunakan SerperDev dan web scraping tools untuk riset." .
 
 
 ex:DatatypeProperty_role

@@ -60,7 +60,7 @@ ex:task_userproxy
 ex:group_chat_assistant_workflow
     a :WorkflowPattern ;
     dcterms:title "group_chat_assistant Workflow" ;
-    dcterms:description "Pattern ini mendefinisikan dua agent (AssistantAgent dan UserProxyAgent) dalam konteks komunikasi berbasis grup (group chat). Walau strukturnya serupa dengan pattern lain, konteks “group_chat” mengimplikasikan adanya pertukaran pesan (message exchange) antar-agent yang berpartisipasi dalam satu percakapan." .
+    dcterms:description "Pattern ini mendefinisikan dua agent (AssistantAgent dan UserProxyAgent) dalam konteks komunikasi berbasis grup (group chat). Walau strukturnya serupa dengan pattern lain, konteks \u201cgroup_chat\u201d mengimplikasikan adanya pertukaran pesan (message exchange) antar-agent yang berpartisipasi dalam satu percakapan." .
 
 
 ex:DatatypeProperty_receivemessage

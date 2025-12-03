@@ -97,7 +97,7 @@ ex:task_engagement_monitor
 ex:social_media.json
     a :System ;
     dcterms:title "social_media.json" ;
-    dcterms:description Sistem “Social Media Manager” berisi tiga agent berbeda: content_planner, post_creator, dan engagement_monitor. Masing-masing memiliki peran dan instruksi yang berbeda, namun semuanya menggunakan model LLM yang sama .
+    dcterms:description "Sistem \u201cSocial Media Manager\u201d berisi tiga agent berbeda: content_planner, post_creator, dan engagement_monitor. Masing-masing memiliki peran dan instruksi yang berbeda, namun semuanya menggunakan model LLM yang sama" .
 
 
 ex:llm_gpt-4

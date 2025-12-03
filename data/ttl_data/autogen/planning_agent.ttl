@@ -60,7 +60,7 @@ ex:task_userproxy
 ex:planning_agent_assistant_workflow
     a :WorkflowPattern ;
     dcterms:title "planning_agent_assistant Workflow" ;
-    dcterms:description Pattern ini mendefinisikan dua agent: satu AssistantAgent yang berperan sebagai AI assistant, dan satu UserProxyAgent yang mewakili user dengan mode input manusia “NEVER”. Ini adalah struktur AutoGen dasar tanpa workflow, tool, atau task .
+    dcterms:description "Pattern ini mendefinisikan dua agent: satu AssistantAgent yang berperan sebagai AI assistant, dan satu UserProxyAgent yang mewakili user dengan mode input manusia \u201cNEVER\u201d. Ini adalah struktur AutoGen dasar tanpa workflow, tool, atau task" .
 
 
 ex:DatatypeProperty_systemmessage

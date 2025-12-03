@@ -14,7 +14,7 @@
 ex:planner_workflow
     a :WorkflowPattern ;
     dcterms:title "Planner Graph" ;
-    dcterms:description Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama planner_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan yang bersifat identitas (lambda x: x). Tidak ada node lain, tidak ada edge eksplisit, dan tidak ada integrasi agent, tool, ataupun LLM .
+    dcterms:description "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama planner_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan yang bersifat identitas (lambda x: x). Tidak ada node lain, tidak ada edge eksplisit, dan tidak ada integrasi agent, tool, ataupun LLM" .
 
 
 ex:node
@@ -26,7 +26,7 @@ ex:node
 ex:DatatypeProperty_nodename
     a agento:DatatypeProperty ;
     agento:domain agento:Agent ;
-    agento:justification "Nama node selalu string ("planner_node")." ;
+    agento:justification "Nama node selalu string (\"planner_node\")." ;
     agento:name "nodeName" ;
     agento:range xsd:string .
 

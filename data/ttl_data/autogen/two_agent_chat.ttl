@@ -60,7 +60,7 @@ ex:task_userproxy
 ex:two_agent_chat_assistant_workflow
     a :WorkflowPattern ;
     dcterms:title "two_agent_chat_assistant Workflow" ;
-    dcterms:description Pattern ini mendefinisikan dua agent: AssistantAgent sebagai AI assistant untuk skenario two_agent_chat, dan UserProxyAgent sebagai representasi user dengan mode input NEVER. Tidak ada task, workflow, atau tool yang diekspresikan di dalam kode; pola ini adalah deklarasi dasar dua agent AutoGen .
+    dcterms:description "Pattern ini mendefinisikan dua agent: AssistantAgent sebagai AI assistant untuk skenario two_agent_chat, dan UserProxyAgent sebagai representasi user dengan mode input NEVER. Tidak ada task, workflow, atau tool yang diekspresikan di dalam kode; pola ini adalah deklarasi dasar dua agent AutoGen" .
 
 
 ex:DatatypeProperty_systemmessage

@@ -60,7 +60,7 @@ ex:task_userproxy
 ex:stream_chat_assistant_workflow
     a :WorkflowPattern ;
     dcterms:title "stream_chat_assistant Workflow" ;
-    dcterms:description Pattern ini mendefinisikan dua agent dasar AutoGen: satu AssistantAgent dengan system_message, dan satu UserProxyAgent dengan mode input manusia NEVER. Meskipun namanya mengandung konsep “stream chat”, tidak ada implementasi streaming di level kode yang dianalisis .
+    dcterms:description "Pattern ini mendefinisikan dua agent dasar AutoGen: satu AssistantAgent dengan system_message, dan satu UserProxyAgent dengan mode input manusia NEVER. Meskipun namanya mengandung konsep \u201cstream chat\u201d, tidak ada implementasi streaming di level kode yang dianalisis" .
 
 
 ex:DatatypeProperty_systemmessage

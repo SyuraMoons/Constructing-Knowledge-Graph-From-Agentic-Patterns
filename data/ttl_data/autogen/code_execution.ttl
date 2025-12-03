@@ -60,7 +60,7 @@ ex:task_userproxy
 ex:code_execution_assistant_workflow
     a :WorkflowPattern ;
     dcterms:title "code_execution_assistant Workflow" ;
-    dcterms:description "Pattern ini mendefinisikan dua agen — AssistantAgent dan UserProxyAgent — untuk skenario eksekusi kode. Struktur pattern hampir identik dengan chess_game.py, hanya berbeda pada konteks sistem pesan (code execution)." .
+    dcterms:description "Pattern ini mendefinisikan dua agen \u2014 AssistantAgent dan UserProxyAgent \u2014 untuk skenario eksekusi kode. Struktur pattern hampir identik dengan chess_game.py, hanya berbeda pada konteks sistem pesan (code execution)." .
 
 
 ex:DatatypeProperty_systemmessage
