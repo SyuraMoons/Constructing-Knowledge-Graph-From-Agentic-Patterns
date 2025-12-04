@@ -1,0 +1,1883 @@
+PREFIX :        <http://www.w3id.org/agentic-ai/onto#>
+PREFIX agento:  <http://www.w3id.org/agentic-ai/onto#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX ex:      <http://www.w3id.org/agentic-ai/instances#>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+ex:assistant  rdf:type    agento:Agent;
+        agento:agentID    "assistant";
+        agento:agentRole  "AI Assistant";
+        agento:hasGoal    ex:goal_assistant;
+        agento:hasTask    ex:task_assistant .
+
+ex:goal_assistant  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for assistant";
+        dcterms:title        "Goal for assistant" .
+
+ex:task_assistant  rdf:type        agento:Task;
+        dcterms:description        "Automatically generated task for assistant";
+        dcterms:title              "Task for assistant";
+        agento:taskExpectedOutput  "Automatically generated expected output for assistant" .
+
+ex:blog_researcher  rdf:type  agento:Agent;
+        dcterms:description  "You are an expert researcher for blog content";
+        dcterms:title        "Blog Content Researcher";
+        agento:agentID       "blog_researcher_001";
+        agento:agentRole     "Blog Researcher";
+        agento:hasGoal       ex:goal_research;
+        agento:hasTask       ex:task_research .
+
+ex:goal_research  rdf:type   agento:Goal;
+        dcterms:description  "Research and gather information for blog content";
+        dcterms:title        "Research Blog Topics" .
+
+ex:task_research  rdf:type         agento:Task;
+        dcterms:description        "Research AI trends and gather relevant information";
+        agento:taskExpectedOutput  "Research findings and key insights" .
+
+ex:blog_writer  rdf:type     agento:Agent;
+        dcterms:description  "You are a skilled blog writer";
+        dcterms:title        "Blog Content Writer";
+        agento:agentID       "blog_writer_001";
+        agento:agentRole     "Blog Writer";
+        agento:hasGoal       ex:goal_write_blog;
+        agento:hasTask       ex:task_write_blog .
+
+ex:goal_write_blog  rdf:type  agento:Goal;
+        dcterms:description  "Create engaging blog articles";
+        dcterms:title        "Write Blog Content" .
+
+ex:task_write_blog  rdf:type       agento:Task;
+        dcterms:description        "Write blog article based on research";
+        agento:taskExpectedOutput  "Complete blog article draft" .
+
+ex:linkedin_strategist
+        rdf:type             agento:Agent;
+        dcterms:description  "You are an expert in LinkedIn content strategy";
+        dcterms:title        "LinkedIn Content Strategist";
+        agento:agentID       "linkedin_strategist_001";
+        agento:agentRole     "LinkedIn Strategist";
+        agento:hasGoal       ex:goal_linkedin_strategy;
+        agento:hasTask       ex:task_linkedin_strategy .
+
+ex:goal_linkedin_strategy
+        rdf:type             agento:Goal;
+        dcterms:description  "Develop LinkedIn content strategy";
+        dcterms:title        "LinkedIn Strategy" .
+
+ex:task_linkedin_strategy
+        rdf:type                   agento:Task;
+        dcterms:description        "Develop LinkedIn content distribution strategy";
+        agento:taskExpectedOutput  "LinkedIn content strategy plan" .
+
+ex:linkedin_creator  rdf:type  agento:Agent;
+        dcterms:description  "You create engaging LinkedIn posts";
+        dcterms:title        "LinkedIn Post Creator";
+        agento:agentID       "linkedin_creator_001";
+        agento:agentRole     "LinkedIn Creator";
+        agento:hasGoal       ex:goal_linkedin_create;
+        agento:hasTask       ex:task_linkedin_create .
+
+ex:goal_linkedin_create
+        rdf:type             agento:Goal;
+        dcterms:description  "Create LinkedIn posts from content";
+        dcterms:title        "Create LinkedIn Posts" .
+
+ex:task_linkedin_create
+        rdf:type                   agento:Task;
+        dcterms:description        "Create LinkedIn post from blog content";
+        agento:taskExpectedOutput  "LinkedIn post ready to publish" .
+
+ex:research_analyst  rdf:type  agento:Agent;
+        dcterms:description  "You analyze research data and trends";
+        dcterms:title        "Research Analyst";
+        agento:agentID       "research_analyst_001";
+        agento:agentRole     "Research Analyst";
+        agento:hasGoal       ex:goal_analyze;
+        agento:hasTask       ex:task_analyze .
+
+ex:goal_analyze  rdf:type    agento:Goal;
+        dcterms:description  "Analyze trends and research findings";
+        dcterms:title        "Analyze Research Data" .
+
+ex:task_analyze  rdf:type          agento:Task;
+        dcterms:description        "Analyze research data and identify trends";
+        agento:taskExpectedOutput  "Analysis report with key findings" .
+
+ex:report_writer  rdf:type   agento:Agent;
+        dcterms:description  "You write comprehensive research reports";
+        dcterms:title        "Report Writer";
+        agento:agentID       "report_writer_001";
+        agento:agentRole     "Report Writer";
+        agento:hasGoal       ex:goal_report;
+        agento:hasTask       ex:task_report .
+
+ex:goal_report  rdf:type     agento:Goal;
+        dcterms:description  "Compile research into comprehensive reports";
+        dcterms:title        "Write Research Reports" .
+
+ex:task_report  rdf:type           agento:Task;
+        dcterms:description        "Write comprehensive research report";
+        agento:taskExpectedOutput  "Final research report document" .
+
+ex:content_creator_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Multi-crew workflow for content creation and distribution";
+        dcterms:title        "Content Creator Flow" .
+
+ex:contentcreatorflow
+        rdf:type       agento:System;
+        dcterms:title  "contentcreatorflow" .
+
+ex:blog_crew  rdf:type  agento:System;
+        dcterms:title  "blog_crew" .
+
+ex:linkedin_crew  rdf:type  agento:System;
+        dcterms:title  "linkedin_crew" .
+
+ex:research_crew  rdf:type  agento:System;
+        dcterms:title  "research_crew" .
+
+ex:flow_state  rdf:type  agento:System;
+        dcterms:title  "flow_state" .
+
+ex:content_creator_flow_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini menggunakan CrewAI Flow untuk orkestra multi-crew content generation system. Flow mengkoordinasikan beberapa crew untuk menghasilkan blog posts, LinkedIn content, dan research reports secara parallel dengan state management antar crew.";
+        dcterms:title        "Content Creator Flow Flow" .
+
+ex:flow  rdf:type            owl:Class;
+        dcterms:description  "Orchestrator untuk multi-crew workflows.";
+        dcterms:title        "Flow" .
+
+ex:state  rdf:type           owl:Class;
+        dcterms:description  "Shared state object dalam flow.";
+        dcterms:title        "State" .
+
+ex:integrationworkflow
+        rdf:type       agento:System;
+        dcterms:title  "integrationworkflow" .
+
+ex:analysis_crew  rdf:type  agento:System;
+        dcterms:title  "analysis_crew" .
+
+ex:crew_execution_node
+        rdf:type       agento:System;
+        dcterms:title  "crew_execution_node" .
+
+ex:workflow_state  rdf:type  agento:System;
+        dcterms:title  "workflow_state" .
+
+ex:crewai_langgraph_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini demonstrates integration antara CrewAI dan LangGraph frameworks. Shows how CrewAI crews dapat di-embed dalam LangGraph StateGraph nodes untuk complex workflow orchestration. Combines CrewAI's agent collaboration dengan LangGraph's graph-based workflow control.";
+        dcterms:title        "Crewai Langgraph Flow" .
+
+ex:DatatypeProperty_integrationmode
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Frameworks dapat integrate via embedding, API calls, atau other modes.";
+        agento:name           "integrationMode";
+        agento:range          xsd:string .
+
+ex:hybridnode  rdf:type      owl:Class;
+        dcterms:description  "Graph node containing multi-agent crew.";
+        dcterms:title        "HybridNode" .
+
+ex:integration  rdf:type     owl:Class;
+        dcterms:description  "Cross-framework integration pattern.";
+        dcterms:title        "Integration" .
+
+ex:emailresponderflow
+        rdf:type       agento:System;
+        dcterms:title  "emailresponderflow" .
+
+ex:email_auto_responder_flow_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mengimplementasikan automated email response system menggunakan CrewAI Flow. System memonitor inbox, classify emails, generate appropriate responses, dan membutuhkan human approval sebelum sending. Menggunakan event-driven architecture dengan conditional routing.";
+        dcterms:title        "Email Auto Responder Flow Flow" .
+
+ex:DatatypeProperty_emailcategory
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Email classification adalah core functionality pattern ini.";
+        agento:name           "emailCategory";
+        agento:range          xsd:string .
+
+ex:DatatypeProperty_monitoringinterval
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Continuous monitoring requires interval configuration.";
+        agento:name           "monitoringInterval";
+        agento:range          xsd:string .
+
+ex:humaninputagent  rdf:type  owl:Class;
+        dcterms:description  "Agent yang membutuhkan human intervention.";
+        dcterms:title        "HumanInputAgent" .
+
+ex:email_classifier_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "email_classifier_agent";
+        agento:agentID    "email_classifier_agent";
+        agento:agentRole  "Email Classifier";
+        agento:hasGoal    ex:goal_email_classifier_agent;
+        agento:hasTask    ex:task_email_classifier_agent .
+
+ex:goal_email_classifier_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for email_classifier_agent";
+        dcterms:title        "Goal for email_classifier_agent" .
+
+ex:task_email_classifier_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for email_classifier_agent";
+        dcterms:title              "Task for email_classifier_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for email_classifier_agent" .
+
+ex:response_generator_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "response_generator_agent";
+        agento:agentID    "response_generator_agent";
+        agento:agentRole  "Response Generator";
+        agento:hasGoal    ex:goal_response_generator_agent;
+        agento:hasTask    ex:task_response_generator_agent .
+
+ex:goal_response_generator_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for response_generator_agent";
+        dcterms:title        "Goal for response_generator_agent" .
+
+ex:task_response_generator_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for response_generator_agent";
+        dcterms:title              "Task for response_generator_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for response_generator_agent" .
+
+ex:human_reviewer_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "human_reviewer_agent";
+        agento:agentID    "human_reviewer_agent";
+        agento:agentRole  "Human Reviewer" , "Sales Manager";
+        agento:hasGoal    ex:goal_human_reviewer_agent;
+        agento:hasTask    ex:task_human_reviewer_agent .
+
+ex:goal_human_reviewer_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for human_reviewer_agent";
+        dcterms:title        "Goal for human_reviewer_agent" .
+
+ex:task_human_reviewer_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for human_reviewer_agent";
+        dcterms:title              "Task for human_reviewer_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for human_reviewer_agent" .
+
+ex:gamebuildercrew  rdf:type  agento:System;
+        dcterms:title  "gamebuildercrew" .
+
+ex:game_builder_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini implements game development crew yang designs dan builds Python games. Crew includes game designer untuk game mechanics, developer untuk implementation, dan QA tester untuk testing. Demonstrates code generation dan iterative development dengan testing feedback loop.";
+        dcterms:title        "Game Builder Flow" .
+
+ex:feedbackloop  rdf:type    owl:Class;
+        dcterms:description  "Iterative testing and refinement pattern.";
+        dcterms:title        "FeedbackLoop" .
+
+ex:game_designer_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "game_designer_agent";
+        agento:agentID    "game_designer_agent";
+        agento:agentRole  "Game Designer";
+        agento:hasGoal    ex:goal_game_designer_agent;
+        agento:hasTask    ex:task_game_designer_agent .
+
+ex:goal_game_designer_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for game_designer_agent";
+        dcterms:title        "Goal for game_designer_agent" .
+
+ex:task_game_designer_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for game_designer_agent";
+        dcterms:title              "Task for game_designer_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for game_designer_agent" .
+
+ex:python_developer_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "python_developer_agent";
+        agento:agentID    "python_developer_agent";
+        agento:agentRole  "Python Developer";
+        agento:hasGoal    ex:goal_python_developer_agent;
+        agento:hasTask    ex:task_python_developer_agent .
+
+ex:goal_python_developer_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for python_developer_agent";
+        dcterms:title        "Goal for python_developer_agent" .
+
+ex:task_python_developer_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for python_developer_agent";
+        dcterms:title              "Task for python_developer_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for python_developer_agent" .
+
+ex:qa_tester_agent  rdf:type  agento:Agent;
+        dcterms:title     "qa_tester_agent";
+        agento:agentID    "qa_tester_agent";
+        agento:agentRole  "QA Tester";
+        agento:hasGoal    ex:goal_qa_tester_agent;
+        agento:hasTask    ex:task_qa_tester_agent .
+
+ex:goal_qa_tester_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for qa_tester_agent";
+        dcterms:title        "Goal for qa_tester_agent" .
+
+ex:task_qa_tester_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for qa_tester_agent";
+        dcterms:title              "Task for qa_tester_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for qa_tester_agent" .
+
+ex:instagramcrew  rdf:type  agento:System;
+        dcterms:title  "instagramcrew" .
+
+ex:instagram_post_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini menggunakan crew untuk generate Instagram social media content. Crew terdiri dari content strategist agent untuk planning dan creative designer agent untuk visual content creation. Uses image generation tools dan social media best practices.";
+        dcterms:title        "Instagram Post Flow" .
+
+ex:DatatypeProperty_hashtags
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Instagram content requires hashtag array untuk discoverability.";
+        agento:name           "hashtags";
+        agento:range          xsd:string .
+
+ex:instagrampost  rdf:type   owl:Class;
+        dcterms:description  "Structured social media content.";
+        dcterms:title        "InstagramPost" .
+
+ex:content_strategist_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "content_strategist_agent";
+        agento:agentID    "content_strategist_agent";
+        agento:agentRole  "Content Strategist";
+        agento:hasGoal    ex:goal_content_strategist_agent;
+        agento:hasTask    ex:task_content_strategist_agent .
+
+ex:goal_content_strategist_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for content_strategist_agent";
+        dcterms:title        "Goal for content_strategist_agent" .
+
+ex:task_content_strategist_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for content_strategist_agent";
+        dcterms:title              "Task for content_strategist_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for content_strategist_agent" .
+
+ex:creative_designer_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "creative_designer_agent";
+        agento:agentID    "creative_designer_agent";
+        agento:agentRole  "Creative Designer";
+        agento:hasGoal    ex:goal_creative_designer_agent;
+        agento:hasTask    ex:task_creative_designer_agent .
+
+ex:goal_creative_designer_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for creative_designer_agent";
+        dcterms:title        "Goal for creative_designer_agent" .
+
+ex:task_creative_designer_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for creative_designer_agent";
+        dcterms:title              "Task for creative_designer_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for creative_designer_agent" .
+
+ex:jobpostingcrew  rdf:type  agento:System;
+        dcterms:title  "jobpostingcrew" .
+
+ex:job_posting_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini automates job description creation crew. Crew includes HR specialist untuk requirements, copywriter untuk description, dan SEO specialist untuk optimization. Generates complete, optimized job postings dari basic role information.";
+        dcterms:title        "Job Posting Flow" .
+
+ex:DatatypeProperty_keywords
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Job postings require keyword arrays untuk search optimization.";
+        agento:name           "keywords";
+        agento:range          xsd:string .
+
+ex:jobposting  rdf:type      owl:Class;
+        dcterms:description  "Structured job posting entity.";
+        dcterms:title        "JobPosting" .
+
+ex:hr_specialist_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "hr_specialist_agent";
+        agento:agentID    "hr_specialist_agent";
+        agento:agentRole  "HR Specialist";
+        agento:hasGoal    ex:goal_hr_specialist_agent;
+        agento:hasTask    ex:task_hr_specialist_agent .
+
+ex:goal_hr_specialist_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for hr_specialist_agent";
+        dcterms:title        "Goal for hr_specialist_agent" .
+
+ex:task_hr_specialist_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for hr_specialist_agent";
+        dcterms:title              "Task for hr_specialist_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for hr_specialist_agent" .
+
+ex:copywriter_agent  rdf:type  agento:Agent;
+        dcterms:title     "copywriter_agent";
+        agento:agentID    "copywriter_agent";
+        agento:agentRole  "Copywriter";
+        agento:hasGoal    ex:goal_copywriter_agent;
+        agento:hasTask    ex:task_copywriter_agent .
+
+ex:goal_copywriter_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for copywriter_agent";
+        dcterms:title        "Goal for copywriter_agent" .
+
+ex:task_copywriter_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for copywriter_agent";
+        dcterms:title              "Task for copywriter_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for copywriter_agent" .
+
+ex:seo_specialist_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "seo_specialist_agent";
+        agento:agentID    "seo_specialist_agent";
+        agento:agentRole  "SEO Specialist";
+        agento:hasGoal    ex:goal_seo_specialist_agent;
+        agento:hasTask    ex:task_seo_specialist_agent .
+
+ex:goal_seo_specialist_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for seo_specialist_agent";
+        dcterms:title        "Goal for seo_specialist_agent" .
+
+ex:task_seo_specialist_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for seo_specialist_agent";
+        dcterms:title              "Task for seo_specialist_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for seo_specialist_agent" .
+
+ex:landingpagecrew  rdf:type  agento:System;
+        dcterms:title  "landingpagecrew" .
+
+ex:landing_page_generator_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini implements landing page generation crew dengan UX researcher, copywriter, dan web designer agents. Crew creates complete landing pages from product concept termasuk hero section, features, testimonials, dan CTAs. Demonstrates multi-specialist collaboration untuk complex output.";
+        dcterms:title        "Landing Page Generator Flow" .
+
+ex:landingpage  rdf:type     owl:Class;
+        dcterms:description  "Structured web page entity.";
+        dcterms:title        "LandingPage" .
+
+ex:ux_researcher_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "ux_researcher_agent";
+        agento:agentID    "ux_researcher_agent";
+        agento:agentRole  "UX Researcher";
+        agento:hasGoal    ex:goal_ux_researcher_agent;
+        agento:hasTask    ex:task_ux_researcher_agent .
+
+ex:goal_ux_researcher_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for ux_researcher_agent";
+        dcterms:title        "Goal for ux_researcher_agent" .
+
+ex:task_ux_researcher_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for ux_researcher_agent";
+        dcterms:title              "Task for ux_researcher_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for ux_researcher_agent" .
+
+ex:web_designer_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "web_designer_agent";
+        agento:agentID    "web_designer_agent";
+        agento:agentRole  "Web Designer";
+        agento:hasGoal    ex:goal_web_designer_agent;
+        agento:hasTask    ex:task_web_designer_agent .
+
+ex:goal_web_designer_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for web_designer_agent";
+        dcterms:title        "Goal for web_designer_agent" .
+
+ex:task_web_designer_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for web_designer_agent";
+        dcterms:title              "Task for web_designer_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for web_designer_agent" .
+
+ex:leadscoreflow  rdf:type  agento:System;
+        dcterms:title  "leadscoreflow" .
+
+ex:lead_score_flow_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mengimplementasikan lead qualification system dengan scoring mechanism dan human review. Flow menganalisis lead data, assign scores berdasarkan multiple criteria, dan route high-value leads untuk human review sebelum passing ke sales team.";
+        dcterms:title        "Lead Score Flow Flow" .
+
+ex:DatatypeProperty_scorethreshold
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Conditional routing requires threshold values untuk branching logic.";
+        agento:name           "scoreThreshold";
+        agento:range          xsd:string .
+
+ex:decisionpoint  rdf:type   owl:Class;
+        dcterms:description  "Conditional branch dalam flow.";
+        dcterms:title        "DecisionPoint" .
+
+ex:leadscore  rdf:type       owl:Class;
+        dcterms:description  "Structured scoring output.";
+        dcterms:title        "LeadScore" .
+
+ex:lead_analyzer_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "lead_analyzer_agent";
+        agento:agentID    "lead_analyzer_agent";
+        agento:agentRole  "Lead Analyzer";
+        agento:hasGoal    ex:goal_lead_analyzer_agent;
+        agento:hasTask    ex:task_lead_analyzer_agent .
+
+ex:goal_lead_analyzer_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for lead_analyzer_agent";
+        dcterms:title        "Goal for lead_analyzer_agent" .
+
+ex:task_lead_analyzer_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for lead_analyzer_agent";
+        dcterms:title              "Task for lead_analyzer_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for lead_analyzer_agent" .
+
+ex:scoring_agent  rdf:type  agento:Agent;
+        dcterms:title     "scoring_agent";
+        agento:agentID    "scoring_agent";
+        agento:agentRole  "Scoring Agent";
+        agento:hasGoal    ex:goal_scoring_agent;
+        agento:hasTask    ex:task_scoring_agent .
+
+ex:goal_scoring_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for scoring_agent";
+        dcterms:title        "Goal for scoring_agent" .
+
+ex:task_scoring_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for scoring_agent";
+        dcterms:title              "Task for scoring_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for scoring_agent" .
+
+ex:lead_routing_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "lead_routing_agent";
+        agento:agentID    "lead_routing_agent";
+        agento:agentRole  "Lead Router";
+        agento:hasGoal    ex:goal_lead_routing_agent;
+        agento:hasTask    ex:task_lead_routing_agent .
+
+ex:goal_lead_routing_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for lead_routing_agent";
+        dcterms:title        "Goal for lead_routing_agent" .
+
+ex:task_lead_routing_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for lead_routing_agent";
+        dcterms:title              "Task for lead_routing_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for lead_routing_agent" .
+
+ex:marketingpostscrew
+        rdf:type       agento:System;
+        dcterms:title  "marketingpostscrew" .
+
+ex:marketing_strategy_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mendefinisikan crew marketing dengan 4 agent specialist: Lead Market Analyst untuk riset, Chief Marketing Strategist untuk strategi, Creative Content Creator untuk konten, dan Chief Creative Director untuk oversight. Crew mengeksekusi 5 task sequential: research, project understanding, strategy formulation, campaign ideation, dan copy creation. Menggunakan SerperDev dan web scraping tools untuk riset.";
+        dcterms:title        "Marketing Strategy Flow" .
+
+ex:DatatypeProperty_role
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Semua agents di CrewAI harus memiliki role." , "\"Code Reviewer\", \"Test Engineer\"." , "\"Content Ideator\", \"Content Editor\", dll." , "\"Support Agent\", \"Escalation Specialist\"." , "\"Data Analyst\", \"Data Visualizer\"." , "\"Document Parser\", \"Summarizer\"." , "Field role membedakan fungsi Email Classifier dan Auto Responder." , "Membedakan fungsi Recruitment Assistant dan Onboarding Guide." , "Membedakan fungsi Meeting Scheduler dan Note Taker dalam sistem.";
+        agento:name           "role";
+        agento:range          xsd:string .
+
+ex:DatatypeProperty_goal
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Core attribute untuk agent behavior di CrewAI.";
+        agento:name           "goal";
+        agento:range          xsd:string .
+
+ex:DatatypeProperty_backstory
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Memberikan context untuk LLM behavior.";
+        agento:name           "backstory";
+        agento:range          xsd:string .
+
+ex:DatatypeProperty_process
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "CrewAI mendukung berbagai process types.";
+        agento:name           "process";
+        agento:range          xsd:string .
+
+ex:crew  rdf:type            owl:Class;
+        dcterms:description  "Sistem orkestrasi multi-agent CrewAI.";
+        dcterms:title        "Crew" .
+
+ex:pydanticmodel  rdf:type   owl:Class;
+        dcterms:description  "Schema terstruktur untuk output validation.";
+        dcterms:title        "PydanticModel" .
+
+ex:lead_market_analyst
+        rdf:type          agento:Agent;
+        dcterms:title     "lead_market_analyst";
+        agento:agentID    "lead_market_analyst";
+        agento:agentRole  "Lead Market Analyst";
+        agento:hasGoal    ex:goal_lead_market_analyst;
+        agento:hasTask    ex:task_lead_market_analyst .
+
+ex:goal_lead_market_analyst
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for lead_market_analyst";
+        dcterms:title        "Goal for lead_market_analyst" .
+
+ex:task_lead_market_analyst
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for lead_market_analyst";
+        dcterms:title              "Task for lead_market_analyst";
+        agento:taskExpectedOutput  "Automatically generated expected output for lead_market_analyst" .
+
+ex:chief_marketing_strategist
+        rdf:type          agento:Agent;
+        dcterms:title     "chief_marketing_strategist";
+        agento:agentID    "chief_marketing_strategist";
+        agento:agentRole  "Chief Marketing Strategist";
+        agento:hasGoal    ex:goal_chief_marketing_strategist;
+        agento:hasTask    ex:task_chief_marketing_strategist .
+
+ex:goal_chief_marketing_strategist
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for chief_marketing_strategist";
+        dcterms:title        "Goal for chief_marketing_strategist" .
+
+ex:task_chief_marketing_strategist
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for chief_marketing_strategist";
+        dcterms:title              "Task for chief_marketing_strategist";
+        agento:taskExpectedOutput  "Automatically generated expected output for chief_marketing_strategist" .
+
+ex:creative_content_creator
+        rdf:type          agento:Agent;
+        dcterms:title     "creative_content_creator";
+        agento:agentID    "creative_content_creator";
+        agento:agentRole  "Creative Content Creator";
+        agento:hasGoal    ex:goal_creative_content_creator;
+        agento:hasTask    ex:task_creative_content_creator .
+
+ex:goal_creative_content_creator
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for creative_content_creator";
+        dcterms:title        "Goal for creative_content_creator" .
+
+ex:task_creative_content_creator
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for creative_content_creator";
+        dcterms:title              "Task for creative_content_creator";
+        agento:taskExpectedOutput  "Automatically generated expected output for creative_content_creator" .
+
+ex:chief_creative_director
+        rdf:type          agento:Agent;
+        dcterms:title     "chief_creative_director";
+        agento:agentID    "chief_creative_director";
+        agento:agentRole  "Chief Creative Director";
+        agento:hasGoal    ex:goal_chief_creative_director;
+        agento:hasTask    ex:task_chief_creative_director .
+
+ex:goal_chief_creative_director
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for chief_creative_director";
+        dcterms:title        "Goal for chief_creative_director" .
+
+ex:task_chief_creative_director
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for chief_creative_director";
+        dcterms:title              "Task for chief_creative_director";
+        agento:taskExpectedOutput  "Automatically generated expected output for chief_creative_director" .
+
+ex:matchingcrew  rdf:type  agento:System;
+        dcterms:title  "matchingcrew" .
+
+ex:match_profile_to_positions_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini implements CV-to-job matching system dengan vector search capabilities. Crew includes profile analyzer untuk CV parsing, job matcher dengan vector embeddings untuk similarity matching, dan recommendation generator. Demonstrates AI-powered matching dengan semantic search.";
+        dcterms:title        "Match Profile To Positions Flow" .
+
+ex:DatatypeProperty_similarityscore
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Vector similarity produces numerical scores (typically 0-1).";
+        agento:name           "similarityScore";
+        agento:range          xsd:string .
+
+ex:vectorsearch  rdf:type    owl:Class;
+        dcterms:description  "Semantic search algorithm.";
+        dcterms:title        "VectorSearch" .
+
+ex:candidateprofile  rdf:type  owl:Class;
+        dcterms:description  "Profile dengan vector embeddings.";
+        dcterms:title        "CandidateProfile" .
+
+ex:profile_analyzer_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "profile_analyzer_agent";
+        agento:agentID    "profile_analyzer_agent";
+        agento:agentRole  "Profile Analyzer";
+        agento:hasGoal    ex:goal_profile_analyzer_agent;
+        agento:hasTask    ex:task_profile_analyzer_agent .
+
+ex:goal_profile_analyzer_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for profile_analyzer_agent";
+        dcterms:title        "Goal for profile_analyzer_agent" .
+
+ex:task_profile_analyzer_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for profile_analyzer_agent";
+        dcterms:title              "Task for profile_analyzer_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for profile_analyzer_agent" .
+
+ex:job_matcher_agent  rdf:type  agento:Agent;
+        dcterms:title     "job_matcher_agent";
+        agento:agentID    "job_matcher_agent";
+        agento:agentRole  "Job Matcher";
+        agento:hasGoal    ex:goal_job_matcher_agent;
+        agento:hasTask    ex:task_job_matcher_agent .
+
+ex:goal_job_matcher_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for job_matcher_agent";
+        dcterms:title        "Goal for job_matcher_agent" .
+
+ex:task_job_matcher_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for job_matcher_agent";
+        dcterms:title              "Task for job_matcher_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for job_matcher_agent" .
+
+ex:recommendation_generator_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "recommendation_generator_agent";
+        agento:agentID    "recommendation_generator_agent";
+        agento:agentRole  "Recommendation Generator";
+        agento:hasGoal    ex:goal_recommendation_generator_agent;
+        agento:hasTask    ex:task_recommendation_generator_agent .
+
+ex:goal_recommendation_generator_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for recommendation_generator_agent";
+        dcterms:title        "Goal for recommendation_generator_agent" .
+
+ex:task_recommendation_generator_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for recommendation_generator_agent";
+        dcterms:title              "Task for recommendation_generator_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for recommendation_generator_agent" .
+
+ex:recruitmentcrew  rdf:type  agento:System;
+        dcterms:title  "recruitmentcrew" .
+
+ex:recruitment_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini implements automated recruitment crew untuk candidate sourcing dan evaluation. Crew includes sourcing specialist untuk finding candidates, resume analyzer untuk screening, dan interview coordinator untuk scheduling. Demonstrates HR automation dengan CV parsing dan candidate ranking.";
+        dcterms:title        "Recruitment Flow" .
+
+ex:DatatypeProperty_matchpercentage
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Candidate-to-job matching uses percentage-based scoring.";
+        agento:name           "matchPercentage";
+        agento:range          xsd:string .
+
+ex:candidateranking  rdf:type  owl:Class;
+        dcterms:description  "Structured ranking system.";
+        dcterms:title        "CandidateRanking" .
+
+ex:sourcing_specialist_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "sourcing_specialist_agent";
+        agento:agentID    "sourcing_specialist_agent";
+        agento:agentRole  "Sourcing Specialist";
+        agento:hasGoal    ex:goal_sourcing_specialist_agent;
+        agento:hasTask    ex:task_sourcing_specialist_agent .
+
+ex:goal_sourcing_specialist_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for sourcing_specialist_agent";
+        dcterms:title        "Goal for sourcing_specialist_agent" .
+
+ex:task_sourcing_specialist_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for sourcing_specialist_agent";
+        dcterms:title              "Task for sourcing_specialist_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for sourcing_specialist_agent" .
+
+ex:resume_analyzer_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "resume_analyzer_agent";
+        agento:agentID    "resume_analyzer_agent";
+        agento:agentRole  "Resume Analyzer";
+        agento:hasGoal    ex:goal_resume_analyzer_agent;
+        agento:hasTask    ex:task_resume_analyzer_agent .
+
+ex:goal_resume_analyzer_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for resume_analyzer_agent";
+        dcterms:title        "Goal for resume_analyzer_agent" .
+
+ex:task_resume_analyzer_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for resume_analyzer_agent";
+        dcterms:title              "Task for resume_analyzer_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for resume_analyzer_agent" .
+
+ex:interview_coordinator_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "interview_coordinator_agent";
+        agento:agentID    "interview_coordinator_agent";
+        agento:agentRole  "Interview Coordinator";
+        agento:hasGoal    ex:goal_interview_coordinator_agent;
+        agento:hasTask    ex:task_interview_coordinator_agent .
+
+ex:goal_interview_coordinator_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for interview_coordinator_agent";
+        dcterms:title        "Goal for interview_coordinator_agent" .
+
+ex:task_interview_coordinator_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for interview_coordinator_agent";
+        dcterms:title              "Task for interview_coordinator_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for interview_coordinator_agent" .
+
+ex:startercrew  rdf:type  agento:System;
+        dcterms:title  "startercrew" .
+
+ex:starter_template_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini provides minimal boilerplate template untuk new CrewAI projects. Demonstrates basic crew structure dengan single agent dan task, configuration files (agents.yaml, tasks.yaml), dan project setup. Serves sebagai starting point untuk custom crew development.";
+        dcterms:title        "Starter Template Flow" .
+
+ex:DatatypeProperty_configformat
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Config systems specify format (YAML, JSON, TOML).";
+        agento:name           "configFormat";
+        agento:range          xsd:string .
+
+ex:configuration  rdf:type   owl:Class;
+        dcterms:description  "External configuration files.";
+        dcterms:title        "Configuration" .
+
+ex:assistant_agent  rdf:type  agento:Agent;
+        dcterms:title     "assistant_agent";
+        agento:agentID    "assistant_agent";
+        agento:agentRole  "AI Assistant";
+        agento:hasGoal    ex:goal_assistant_agent;
+        agento:hasTask    ex:task_assistant_agent .
+
+ex:goal_assistant_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for assistant_agent";
+        dcterms:title        "Goal for assistant_agent" .
+
+ex:task_assistant_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for assistant_agent";
+        dcterms:title              "Task for assistant_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for assistant_agent" .
+
+ex:stockanalysiscrew  rdf:type  agento:System;
+        dcterms:title  "stockanalysiscrew" .
+
+ex:stock_analysis_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini implements financial analysis crew untuk stock research dengan SEC data integration. Crew includes data analyst untuk financial metrics, market researcher untuk trends, dan investment advisor untuk recommendations. Uses external tools untuk SEC filings dan market data.";
+        dcterms:title        "Stock Analysis Flow" .
+
+ex:externaldatatool  rdf:type  owl:Class;
+        dcterms:description  "Tool dengan external API integration.";
+        dcterms:title        "ExternalDataTool" .
+
+ex:investmentadvice  rdf:type  owl:Class;
+        dcterms:description  "Structured advisory output.";
+        dcterms:title        "InvestmentAdvice" .
+
+ex:data_analyst_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "data_analyst_agent";
+        agento:agentID    "data_analyst_agent";
+        agento:agentRole  "Financial Data Analyst";
+        agento:hasGoal    ex:goal_data_analyst_agent;
+        agento:hasTask    ex:task_data_analyst_agent .
+
+ex:goal_data_analyst_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for data_analyst_agent";
+        dcterms:title        "Goal for data_analyst_agent" .
+
+ex:task_data_analyst_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for data_analyst_agent";
+        dcterms:title              "Task for data_analyst_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for data_analyst_agent" .
+
+ex:market_researcher_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "market_researcher_agent";
+        agento:agentID    "market_researcher_agent";
+        agento:agentRole  "Market Researcher";
+        agento:hasGoal    ex:goal_market_researcher_agent;
+        agento:hasTask    ex:task_market_researcher_agent .
+
+ex:goal_market_researcher_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for market_researcher_agent";
+        dcterms:title        "Goal for market_researcher_agent" .
+
+ex:task_market_researcher_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for market_researcher_agent";
+        dcterms:title              "Task for market_researcher_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for market_researcher_agent" .
+
+ex:investment_advisor_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "investment_advisor_agent";
+        agento:agentID    "investment_advisor_agent";
+        agento:agentRole  "Investment Advisor";
+        agento:hasGoal    ex:goal_investment_advisor_agent;
+        agento:hasTask    ex:task_investment_advisor_agent .
+
+ex:goal_investment_advisor_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for investment_advisor_agent";
+        dcterms:title        "Goal for investment_advisor_agent" .
+
+ex:task_investment_advisor_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for investment_advisor_agent";
+        dcterms:title              "Task for investment_advisor_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for investment_advisor_agent" .
+
+ex:writebookflow  rdf:type  agento:System;
+        dcterms:title  "writebookflow" .
+
+ex:write_book_flow_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mengimplementasikan automated book writing system menggunakan parallel chapter generation. Flow membuat outline, generates multiple chapters secara parallel menggunakan multiple crews, kemudian aggregates dan edits hasil final. Demonstrates parallel execution dan result aggregation.";
+        dcterms:title        "Write Book Flow Flow" .
+
+ex:DatatypeProperty_parallelismdegree
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Parallel flows configure number of concurrent executions.";
+        agento:name           "parallelismDegree";
+        agento:range          xsd:string .
+
+ex:DatatypeProperty_chapterid
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Parallel agents need unique identifiers untuk coordination.";
+        agento:name           "chapterId";
+        agento:range          xsd:string .
+
+ex:parallelexecution  rdf:type  owl:Class;
+        dcterms:description  "Multiple concurrent operations pattern.";
+        dcterms:title        "ParallelExecution" .
+
+ex:aggregation  rdf:type     owl:Class;
+        dcterms:description  "Result combination pattern.";
+        dcterms:title        "Aggregation" .
+
+ex:outline_planner_agent
+        rdf:type          agento:Agent;
+        dcterms:title     "outline_planner_agent";
+        agento:agentID    "outline_planner_agent";
+        agento:agentRole  "Outline Planner";
+        agento:hasGoal    ex:goal_outline_planner_agent;
+        agento:hasTask    ex:task_outline_planner_agent .
+
+ex:goal_outline_planner_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for outline_planner_agent";
+        dcterms:title        "Goal for outline_planner_agent" .
+
+ex:task_outline_planner_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for outline_planner_agent";
+        dcterms:title              "Task for outline_planner_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for outline_planner_agent" .
+
+ex:chapter_writer_agents
+        rdf:type          agento:Agent;
+        dcterms:title     "chapter_writer_agents";
+        agento:agentID    "chapter_writer_agents";
+        agento:agentRole  "Chapter Writer";
+        agento:hasGoal    ex:goal_chapter_writer_agents;
+        agento:hasTask    ex:task_chapter_writer_agents .
+
+ex:goal_chapter_writer_agents
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for chapter_writer_agents";
+        dcterms:title        "Goal for chapter_writer_agents" .
+
+ex:task_chapter_writer_agents
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for chapter_writer_agents";
+        dcterms:title              "Task for chapter_writer_agents";
+        agento:taskExpectedOutput  "Automatically generated expected output for chapter_writer_agents" .
+
+ex:editor_agent  rdf:type  agento:Agent;
+        dcterms:title     "editor_agent";
+        agento:agentID    "editor_agent";
+        agento:agentRole  "Senior Editor";
+        agento:hasGoal    ex:goal_editor_agent;
+        agento:hasTask    ex:task_editor_agent .
+
+ex:goal_editor_agent  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for editor_agent";
+        dcterms:title        "Goal for editor_agent" .
+
+ex:task_editor_agent  rdf:type     agento:Task;
+        dcterms:description        "Automatically generated task for editor_agent";
+        dcterms:title              "Task for editor_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for editor_agent" .
+
+ex:aggregator_agent  rdf:type  agento:Agent;
+        dcterms:title     "aggregator_agent";
+        agento:agentID    "aggregator_agent";
+        agento:agentRole  "Content Aggregator";
+        agento:hasGoal    ex:goal_aggregator_agent;
+        agento:hasTask    ex:task_aggregator_agent .
+
+ex:goal_aggregator_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for aggregator_agent";
+        dcterms:title        "Goal for aggregator_agent" .
+
+ex:task_aggregator_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for aggregator_agent";
+        dcterms:title              "Task for aggregator_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for aggregator_agent" .
+
+ex:aggregar_node_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Membangun sebuah StateGraph dengan satu node bernama aggregator_node. Node ini dijadikan sekaligus entry point dan finish point. Tidak ada edge/transition lain";
+        dcterms:title        "aggregar_node Graph" .
+
+ex:node  rdf:type             owl:Class , agento:Node;
+        dcterms:description   "Unit langkah pemrosesan di dalam workflow." , "Langkah pemrosesan di dalam graf." , "Unit langkah pemrosesan." , "Unit langkah eksekusi" , "Langkah eksekusi";
+        dcterms:title         "Node";
+        agento:callableLabel  "lambda x: x" .
+
+ex:workflownode  rdf:type    owl:Class;
+        dcterms:description  "Struktur graf dan langkah eksekusi." , "Hubungkan Workflow dengan Node yang dimilikinya" , "Struktur graf & simpul" , "Struktur graf & simpul eksekusi";
+        dcterms:title        "workflowNode" .
+
+ex:analyzer_node_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama analyzer_node. Node tersebut berfungsi sebagai entry point sekaligus finish point. Tidak terdapat edge lain atau node tambahan. Struktur ini menggambarkan pola standalone node workflow khas LangGraph";
+        dcterms:title        "analyzer_node Graph" .
+
+ex:DatatypeProperty_nodename
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "analyzer_node" , "classifier_node" , "executor_node" , "multi_agent_node" , "Nama node selalu string (\"planner_node\")." , "Nama node selalu string, mis. \"researcher_node\"" , "Nama node selalu string; diperlukan untuk identifikasi." , "Nama node selalu string (di sini \"router_node\")." , "Node selalu memiliki nama string." , "Nama node selalu string dan penting untuk identifikasi." , "Node selalu memiliki nama string unik" , "Node butuh identitas unik";
+        agento:name           "nodeName";
+        agento:range          xsd:string .
+
+ex:DatatypeProperty_callablelabel
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "lambda x: x";
+        agento:name           "callableLabel";
+        agento:range          xsd:string .
+
+ex:classifier_node_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Membuat sebuah StateGraph dengan satu node bernama classifier_node. Node yang sama dipakai sebagai entry point dan finish point. Tidak ada edge/transition lain";
+        dcterms:title        "classifier_node Graph" .
+
+ex:executor_node_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama executor_node. Node tersebut dijadikan entry point sekaligus finish point. Tidak ada node lain maupun edge tambahan. Struktur ini merepresentasikan workflow minimal di LangGraph";
+        dcterms:title        "executor_node Graph" .
+
+ex:multi_agent_node_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama multi_agent_node. Node ini dijadikan entry point sekaligus finish point. Secara struktur, workflow masih single-node (belum benar-benar multi-node), namun penamaan multi_agent_node mengisyaratkan bahwa node ini berada dalam konteks skenario multi-agent";
+        dcterms:title        "multi_agent_node Graph" .
+
+ex:planner_workflow  rdf:type  agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama planner_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan yang bersifat identitas (lambda x: x). Tidak ada node lain, tidak ada edge eksplisit, dan tidak ada integrasi agent, tool, ataupun LLM";
+        dcterms:title        "Planner Graph" .
+
+ex:workflowgraph  rdf:type   owl:Class;
+        dcterms:description  "Representasi graf workflow berbasis StateGraph." , "Representasi graf workflow (StateGraph)." , "Representasi workflow berbasis StateGraph." , "Representasi StateGraph." , "Representasi graf workflow LangGraph (StateGraph)." , "Representasi graf LangGraph";
+        dcterms:title        "WorkflowGraph" .
+
+ex:researcher_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama researcher_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan yang bersifat identitas (lambda x: x). Tidak ada node lain, edge, agent, tool, maupun LLM yang terlibat eksplisit";
+        dcterms:title        "Researcher Graph" .
+
+ex:reviewer_workflow  rdf:type  agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama reviewer_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan identitas (lambda x: x). Tidak ada node lain, edge, agent, tool, ataupun LLM yang dimodelkan eksplisit.";
+        dcterms:title        "Reviewer Graph" .
+
+ex:router_workflow  rdf:type  agento:WorkflowPattern;
+        dcterms:description  "Pattern ini mendefinisikan sebuah StateGraph dengan satu node bernama router_node. Node ini dijadikan titik masuk (entry point) sekaligus titik akhir (finish point), dengan fungsi pemrosesan identitas (lambda x: x). Tidak ada node lain, edge eksplisit, agent, tool, ataupun LLM yang dimodelkan";
+        dcterms:title        "Router Graph" .
+
+ex:simple_graph_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "Pattern ini membangun sebuah StateGraph yang berisi satu node bernama simple_graph_node. Node ini berfungsi sebagai titik masuk (entry point) sekaligus titik akhir (finish point) dari workflow. Fungsi node hanyalah lambda x: x (fungsi identitas). Tidak ada node lain, edge, agent, proses branching, atau interaksi dengan LLM/tool";
+        dcterms:title        "Simple Graph Graph" .
+
+ex:supervisor_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "mendefinisikan sebuah StateGraph dengan satu node bernama supervisor_node. Node ini menjadi titik masuk (entry point) sekaligus titik akhir (finish point) dari workflow, dengan fungsi pemrosesan identitas (lambda x: x). Tidak ada node lain, edge tambahan, agent, tool, maupun LLM yang dimodelkan eksplisit";
+        dcterms:title        "Supervisor Graph" .
+
+ex:synthesizer_workflow
+        rdf:type             agento:WorkflowPattern;
+        dcterms:description  "membangun sebuah StateGraph dengan satu node bernama synthesizer_node. Node ini bertindak sebagai entry point dan finish point secara bersamaan, sama seperti pola minimalis lainnya. Fungsi node adalah lambda x: x (fungsi identitas). Tidak ada node tambahan, edge, tool, agent, atau proses branching";
+        dcterms:title        "Synthesizer Graph" .
+
+ex:writer_workflow  rdf:type  agento:WorkflowPattern;
+        dcterms:description  "Pattern ini membangun sebuah StateGraph sederhana dengan satu node bernama writer_node. Node ini berfungsi sebagai entry point sekaligus finish point. Fungsi yang dijalankan node adalah lambda x: x, yang berarti tidak ada pemrosesan aktual maupun integrasi LLM/tool. Tidak ada node tambahan, edge, atau branching";
+        dcterms:title        "Writer Graph" .
+
+ex:reviewer  rdf:type     agento:Agent;
+        agento:agentID    "reviewer";
+        agento:agentRole  "Code Reviewer";
+        agento:hasGoal    ex:goal_reviewer;
+        agento:hasTask    ex:task_reviewer .
+
+ex:goal_reviewer  rdf:type   agento:Goal;
+        dcterms:description  "Automatically generated goal for reviewer";
+        dcterms:title        "Goal for reviewer" .
+
+ex:task_reviewer  rdf:type         agento:Task;
+        dcterms:description        "Automatically generated task for reviewer";
+        dcterms:title              "Task for reviewer";
+        agento:taskExpectedOutput  "Automatically generated expected output for reviewer" .
+
+ex:tester  rdf:type       agento:Agent;
+        agento:agentID    "tester";
+        agento:agentRole  "Test Engineer";
+        agento:hasGoal    ex:goal_tester;
+        agento:hasTask    ex:task_tester .
+
+ex:goal_tester  rdf:type     agento:Goal;
+        dcterms:description  "Automatically generated goal for tester";
+        dcterms:title        "Goal for tester" .
+
+ex:task_tester  rdf:type           agento:Task;
+        dcterms:description        "Automatically generated task for tester";
+        dcterms:title              "Task for tester";
+        agento:taskExpectedOutput  "Automatically generated expected output for tester" .
+
+ex:code_review_system
+        rdf:type             agento:System;
+        dcterms:description  "Pattern ini mendefinisikan sebuah sistem bernama “Code Review System” yang terdiri dari dua agent: reviewer dan tester. Masing-masing agent memiliki role, instructions, dan model yang digunakan (misalnya gpt-4). Tidak ada definisi eksplisit tentang workflow, task, atau tool; fokus pattern ada pada konfigurasi dan peran agent";
+        dcterms:title        "Code Review System" .
+
+ex:llm_gpt-4  rdf:type  agento:LanguageModel;
+        dcterms:title  "gpt-4" .
+
+ex:DatatypeProperty_instructions
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Dua field instructions pada masing-masing Agent." , "\"Generate content ideas\"" , "\"Handle customer inquiries\"." , "Tercantum di setiap agent." , "Dua agent memiliki instruksi berbeda." , "Field instructions menyimpan deskripsi natural-language untuk operasi masing-masing agent." , "Menjelaskan tugas masing-masing agent dalam bahasa natural." , "Menjelaskan fungsi operasional masing-masing agent.";
+        agento:name           "instructions";
+        agento:range          xsd:string .
+
+ex:DatatypeProperty_modelname
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "\"gpt-4\"." , "\"gpt-4\"" , "Nilai \"gpt-4\" mengindikasikan model LLM yang digunakan." , "Menyimpan informasi \"gpt-4\" sebagai model yang dipakai." , "Menyimpan “gpt-4” sebagai identitas model yang digunakan.";
+        agento:name           "modelName";
+        agento:range          xsd:string .
+
+ex:multiagentsystem__atau_reuse_workflow_
+        rdf:type             owl:Class;
+        dcterms:description  "Mewakili konfigurasi sistem yang berisi beberapa Agent (mis. “Code Review System”).";
+        dcterms:title        "MultiAgentSystem (atau reuse Workflow)" .
+
+ex:llmmodel  rdf:type        owl:Class;
+        dcterms:description  "Representasi model LLM (gpt-4, dll.)." , "Representasi model (gpt-4, dll)." , "Representasi model yang dipakai agent." , "Representasi model." , "Representasi model LLM yang dikonfigurasi untuk agent." , "Representasi model LLM yang dipakai oleh lebih dari satu agent." , "Representasi model LLM yang digunakan oleh agent untuk reasoning." , "Representasi model LLM" , "Mewakili model GPT-4" , "Representasi GPT-4";
+        dcterms:title        "LLMModel" .
+
+ex:content_creation_pipeline
+        rdf:type        agento:Agent;
+        agento:agentID  "Content Creation Pipeline";
+        agento:hasGoal  ex:goal_content_creation_pipeline;
+        agento:hasTask  ex:task_content_creation_pipeline .
+
+ex:goal_content_creation_pipeline
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Content Creation Pipeline";
+        dcterms:title        "Goal for Content Creation Pipeline" .
+
+ex:task_content_creation_pipeline
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Content Creation Pipeline";
+        dcterms:title              "Task for Content Creation Pipeline";
+        agento:taskExpectedOutput  "Automatically generated expected output for Content Creation Pipeline" .
+
+ex:ideator  rdf:type      agento:Agent;
+        agento:agentID    "ideator";
+        agento:agentRole  "Content Ideator";
+        agento:hasGoal    ex:goal_ideator;
+        agento:hasTask    ex:task_ideator .
+
+ex:goal_ideator  rdf:type    agento:Goal;
+        dcterms:description  "Automatically generated goal for ideator";
+        dcterms:title        "Goal for ideator" .
+
+ex:task_ideator  rdf:type          agento:Task;
+        dcterms:description        "Automatically generated task for ideator";
+        dcterms:title              "Task for ideator";
+        agento:taskExpectedOutput  "Automatically generated expected output for ideator" .
+
+ex:writer  rdf:type       agento:Agent;
+        agento:agentID    "writer";
+        agento:agentRole  "Content Writer" , "Writer";
+        agento:hasGoal    ex:goal_writer;
+        agento:hasTask    ex:task_writer .
+
+ex:goal_writer  rdf:type     agento:Goal;
+        dcterms:description  "Automatically generated goal for writer";
+        dcterms:title        "Goal for writer" .
+
+ex:task_writer  rdf:type           agento:Task;
+        dcterms:description        "Automatically generated task for writer";
+        dcterms:title              "Task for writer";
+        agento:taskExpectedOutput  "Automatically generated expected output for writer" .
+
+ex:editor  rdf:type       agento:Agent;
+        agento:agentID    "editor";
+        agento:agentRole  "Content Editor";
+        agento:hasGoal    ex:goal_editor;
+        agento:hasTask    ex:task_editor .
+
+ex:goal_editor  rdf:type     agento:Goal;
+        dcterms:description  "Automatically generated goal for editor";
+        dcterms:title        "Goal for editor" .
+
+ex:task_editor  rdf:type           agento:Task;
+        dcterms:description        "Automatically generated task for editor";
+        dcterms:title              "Task for editor";
+        agento:taskExpectedOutput  "Automatically generated expected output for editor" .
+
+ex:content_creation.json
+        rdf:type             agento:System;
+        dcterms:description  "Pattern ini mendefinisikan sistem bernama “Content Creation Pipeline” yang berisi tiga agent: ideator, writer, dan editor. Setiap agent memiliki role, instructions, dan model. Tidak ada workflow eksplisit, task, atau tools — pattern ini fokus pada konfigurasi agent dalam pipeline pembuatan konten";
+        dcterms:title        "content_creation.json" .
+
+ex:multiagentsystem  rdf:type  owl:Class;
+        dcterms:description  "Representasi konfigurasi multi-agent." , "Sistem yang mengelompokkan beberapa agent & workflow." , "Representasi sistem multi-agent MastraAI." , "Representasi top-level sistem." , "Representasi top-level sistem yang menaungi beberapa agent dan workflow." , "Sistem top-level yang menaungi beberapa agent HR." , "Sistem top-level yang menaungi beberapa agent dalam domain meeting." , "Sistem top-level" , "Mewakili struktur root" , "Struktur root";
+        dcterms:title        "MultiAgentSystem" .
+
+ex:customer_support_system
+        rdf:type        agento:Agent;
+        agento:agentID  "Customer Support System";
+        agento:hasGoal  ex:goal_customer_support_system;
+        agento:hasTask  ex:task_customer_support_system .
+
+ex:goal_customer_support_system
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Customer Support System";
+        dcterms:title        "Goal for Customer Support System" .
+
+ex:task_customer_support_system
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Customer Support System";
+        dcterms:title              "Task for Customer Support System";
+        agento:taskExpectedOutput  "Automatically generated expected output for Customer Support System" .
+
+ex:support_agent  rdf:type  agento:Agent;
+        agento:agentID    "support_agent";
+        agento:agentRole  "Support Agent";
+        agento:hasGoal    ex:goal_support_agent;
+        agento:hasTask    ex:task_support_agent .
+
+ex:goal_support_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for support_agent";
+        dcterms:title        "Goal for support_agent" .
+
+ex:task_support_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for support_agent";
+        dcterms:title              "Task for support_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for support_agent" .
+
+ex:escalation_agent  rdf:type  agento:Agent;
+        agento:agentID    "escalation_agent";
+        agento:agentRole  "Escalation Specialist";
+        agento:hasGoal    ex:goal_escalation_agent;
+        agento:hasTask    ex:task_escalation_agent .
+
+ex:goal_escalation_agent
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for escalation_agent";
+        dcterms:title        "Goal for escalation_agent" .
+
+ex:task_escalation_agent
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for escalation_agent";
+        dcterms:title              "Task for escalation_agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for escalation_agent" .
+
+ex:support_flow  rdf:type  agento:Agent;
+        agento:agentID  "support_flow";
+        agento:hasGoal  ex:goal_support_flow;
+        agento:hasTask  ex:task_support_flow .
+
+ex:goal_support_flow  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for support_flow";
+        dcterms:title        "Goal for support_flow" .
+
+ex:task_support_flow  rdf:type     agento:Task;
+        dcterms:description        "Automatically generated task for support_flow";
+        dcterms:title              "Task for support_flow";
+        agento:taskExpectedOutput  "Automatically generated expected output for support_flow" .
+
+ex:customer_support.yaml
+        rdf:type             agento:System;
+        dcterms:description  "Pattern ini mendefinisikan sistem bernama “Customer Support System” yang terdiri dari dua agent (support_agent, escalation_agent) dan sebuah workflow bernama support_flow. Setiap agent memiliki role, instructions, dan model. Workflow hanya didefinisikan dengan name dan description tanpa rincian langkah";
+        dcterms:title        "customer_support.yaml" .
+
+ex:DatatypeProperty_workflowdescription
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "\"Customer support workflow\".";
+        agento:name           "workflowDescription";
+        agento:range          xsd:string .
+
+ex:workflow  rdf:type        owl:Class;
+        dcterms:description  "Alur kerja tingkat tinggi." , "Representasi alur kerja konseptual dalam sistem." , "Menampung definisi alur riset–penulisan";
+        dcterms:title        "Workflow" .
+
+ex:data_analysis_team
+        rdf:type        agento:Agent;
+        agento:agentID  "Data Analysis Team";
+        agento:hasGoal  ex:goal_data_analysis_team;
+        agento:hasTask  ex:task_data_analysis_team .
+
+ex:goal_data_analysis_team
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Data Analysis Team";
+        dcterms:title        "Goal for Data Analysis Team" .
+
+ex:task_data_analysis_team
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Data Analysis Team";
+        dcterms:title              "Task for Data Analysis Team";
+        agento:taskExpectedOutput  "Automatically generated expected output for Data Analysis Team" .
+
+ex:analyst  rdf:type      agento:Agent;
+        agento:agentID    "analyst";
+        agento:agentRole  "Data Analyst";
+        agento:hasGoal    ex:goal_analyst;
+        agento:hasTask    ex:task_analyst .
+
+ex:goal_analyst  rdf:type    agento:Goal;
+        dcterms:description  "Automatically generated goal for analyst";
+        dcterms:title        "Goal for analyst" .
+
+ex:task_analyst  rdf:type          agento:Task;
+        dcterms:description        "Automatically generated task for analyst";
+        dcterms:title              "Task for analyst";
+        agento:taskExpectedOutput  "Automatically generated expected output for analyst" .
+
+ex:visualizer  rdf:type   agento:Agent;
+        agento:agentID    "visualizer";
+        agento:agentRole  "Data Visualizer";
+        agento:hasGoal    ex:goal_visualizer;
+        agento:hasTask    ex:task_visualizer .
+
+ex:goal_visualizer  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for visualizer";
+        dcterms:title        "Goal for visualizer" .
+
+ex:task_visualizer  rdf:type       agento:Task;
+        dcterms:description        "Automatically generated task for visualizer";
+        dcterms:title              "Task for visualizer";
+        agento:taskExpectedOutput  "Automatically generated expected output for visualizer" .
+
+ex:data_analysis.json
+        rdf:type             agento:System;
+        dcterms:description  "Pattern ini mendefinisikan sistem bernama “Data Analysis Team”, yang terdiri dari dua agent: analyst dan visualizer. Masing-masing agent memiliki role, instructions, dan model. Pattern ini tidak menyertakan workflow, tools, atau urutan langkah—hanya struktur konfigurasi agent";
+        dcterms:title        "data_analysis.json" .
+
+ex:document_processing
+        rdf:type        agento:Agent;
+        agento:agentID  "Document Processing";
+        agento:hasGoal  ex:goal_document_processing;
+        agento:hasTask  ex:task_document_processing .
+
+ex:goal_document_processing
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Document Processing";
+        dcterms:title        "Goal for Document Processing" .
+
+ex:task_document_processing
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Document Processing";
+        dcterms:title              "Task for Document Processing";
+        agento:taskExpectedOutput  "Automatically generated expected output for Document Processing" .
+
+ex:parser  rdf:type       agento:Agent;
+        agento:agentID    "parser";
+        agento:agentRole  "Document Parser";
+        agento:hasGoal    ex:goal_parser;
+        agento:hasTask    ex:task_parser .
+
+ex:goal_parser  rdf:type     agento:Goal;
+        dcterms:description  "Automatically generated goal for parser";
+        dcterms:title        "Goal for parser" .
+
+ex:task_parser  rdf:type           agento:Task;
+        dcterms:description        "Automatically generated task for parser";
+        dcterms:title              "Task for parser";
+        agento:taskExpectedOutput  "Automatically generated expected output for parser" .
+
+ex:summarizer  rdf:type   agento:Agent;
+        agento:agentID    "summarizer";
+        agento:agentRole  "Summarizer";
+        agento:hasGoal    ex:goal_summarizer;
+        agento:hasTask    ex:task_summarizer .
+
+ex:goal_summarizer  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for summarizer";
+        dcterms:title        "Goal for summarizer" .
+
+ex:task_summarizer  rdf:type       agento:Task;
+        dcterms:description        "Automatically generated task for summarizer";
+        dcterms:title              "Task for summarizer";
+        agento:taskExpectedOutput  "Automatically generated expected output for summarizer" .
+
+ex:document_processor.json
+        rdf:type             agento:System;
+        dcterms:description  "Pattern ini mendefinisikan sistem bernama “Document Processing” dengan dua agent: parser dan summarizer. Kedua agent memiliki peran, instruksi, dan model LLM yang sama (gpt-4). Tidak ada workflow eksplisit atau struktur proses tambahan  hanya konfigurasi agent";
+        dcterms:title        "document_processor.json" .
+
+ex:email_automation  rdf:type  agento:Agent;
+        agento:agentID  "Email Automation";
+        agento:hasGoal  ex:goal_email_automation;
+        agento:hasTask  ex:task_email_automation .
+
+ex:goal_email_automation
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Email Automation";
+        dcterms:title        "Goal for Email Automation" .
+
+ex:task_email_automation
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Email Automation";
+        dcterms:title              "Task for Email Automation";
+        agento:taskExpectedOutput  "Automatically generated expected output for Email Automation" .
+
+ex:email_classifier  rdf:type  agento:Agent;
+        agento:agentID    "email_classifier";
+        agento:agentRole  "Email Classifier";
+        agento:hasGoal    ex:goal_email_classifier;
+        agento:hasTask    ex:task_email_classifier .
+
+ex:goal_email_classifier
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for email_classifier";
+        dcterms:title        "Goal for email_classifier" .
+
+ex:task_email_classifier
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for email_classifier";
+        dcterms:title              "Task for email_classifier";
+        agento:taskExpectedOutput  "Automatically generated expected output for email_classifier" .
+
+ex:responder  rdf:type    agento:Agent;
+        agento:agentID    "responder";
+        agento:agentRole  "Auto Responder";
+        agento:hasGoal    ex:goal_responder;
+        agento:hasTask    ex:task_responder .
+
+ex:goal_responder  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for responder";
+        dcterms:title        "Goal for responder" .
+
+ex:task_responder  rdf:type        agento:Task;
+        dcterms:description        "Automatically generated task for responder";
+        dcterms:title              "Task for responder";
+        agento:taskExpectedOutput  "Automatically generated expected output for responder" .
+
+ex:email_handling  rdf:type  agento:Agent;
+        agento:agentID  "email_handling";
+        agento:hasGoal  ex:goal_email_handling;
+        agento:hasTask  ex:task_email_handling .
+
+ex:goal_email_handling
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for email_handling";
+        dcterms:title        "Goal for email_handling" .
+
+ex:task_email_handling
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for email_handling";
+        dcterms:title              "Task for email_handling";
+        agento:taskExpectedOutput  "Automatically generated expected output for email_handling" .
+
+ex:email_automation.yaml
+        rdf:type             agento:System;
+        dcterms:description  "Pattern ini mendefinisikan sistem bernama “Email Automation” dengan dua agent: email_classifier dan responder. Keduanya memiliki peran, instruksi, dan model LLM yang sama (gpt-4). Selain konfigurasi agent, terdapat satu workflow bernama “email_handling” yang dideskripsikan sebagai proses “Classify and respond to emails”";
+        dcterms:title        "email_automation.yaml" .
+
+ex:DatatypeProperty_name
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Field name muncul pada root (\"Email Automation\"), pada agent, dan pada workflow." , "Field name muncul di ketiga tipe entitas." , "Field name digunakan konsisten pada sistem, agent, dan model.";
+        agento:name           "name";
+        agento:range          xsd:string .
+
+ex:DatatypeProperty_description
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Field description pada workflows[0] menjelaskan alur “Classify and respond to emails”.";
+        agento:name           "description";
+        agento:range          xsd:string .
+
+ex:hr_assistant  rdf:type  agento:Agent;
+        agento:agentID  "HR Assistant";
+        agento:hasGoal  ex:goal_hr_assistant;
+        agento:hasTask  ex:task_hr_assistant .
+
+ex:goal_hr_assistant  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for HR Assistant";
+        dcterms:title        "Goal for HR Assistant" .
+
+ex:task_hr_assistant  rdf:type     agento:Task;
+        dcterms:description        "Automatically generated task for HR Assistant";
+        dcterms:title              "Task for HR Assistant";
+        agento:taskExpectedOutput  "Automatically generated expected output for HR Assistant" .
+
+ex:recruiter  rdf:type    agento:Agent;
+        agento:agentID    "recruiter";
+        agento:agentRole  "Recruitment Assistant";
+        agento:hasGoal    ex:goal_recruiter;
+        agento:hasTask    ex:task_recruiter .
+
+ex:goal_recruiter  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for recruiter";
+        dcterms:title        "Goal for recruiter" .
+
+ex:task_recruiter  rdf:type        agento:Task;
+        dcterms:description        "Automatically generated task for recruiter";
+        dcterms:title              "Task for recruiter";
+        agento:taskExpectedOutput  "Automatically generated expected output for recruiter" .
+
+ex:onboarding_guide  rdf:type  agento:Agent;
+        agento:agentID    "onboarding_guide";
+        agento:agentRole  "Onboarding Guide";
+        agento:hasGoal    ex:goal_onboarding_guide;
+        agento:hasTask    ex:task_onboarding_guide .
+
+ex:goal_onboarding_guide
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for onboarding_guide";
+        dcterms:title        "Goal for onboarding_guide" .
+
+ex:task_onboarding_guide
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for onboarding_guide";
+        dcterms:title              "Task for onboarding_guide";
+        agento:taskExpectedOutput  "Automatically generated expected output for onboarding_guide" .
+
+ex:hr_assistant.json  rdf:type  agento:System;
+        dcterms:description  "mendefinisikan sistem “HR Assistant” yang terdiri atas dua agent: recruiter dan onboarding_guide. Keduanya memiliki peran, instruksi, dan model LLM yang sama (gpt-4) untuk membantu proses rekrutmen dan onboarding karyawan baru";
+        dcterms:title        "hr_assistant.json" .
+
+ex:meeting_assistant  rdf:type  agento:Agent;
+        agento:agentID  "Meeting Assistant";
+        agento:hasGoal  ex:goal_meeting_assistant;
+        agento:hasTask  ex:task_meeting_assistant .
+
+ex:goal_meeting_assistant
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Meeting Assistant";
+        dcterms:title        "Goal for Meeting Assistant" .
+
+ex:task_meeting_assistant
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Meeting Assistant";
+        dcterms:title              "Task for Meeting Assistant";
+        agento:taskExpectedOutput  "Automatically generated expected output for Meeting Assistant" .
+
+ex:scheduler  rdf:type    agento:Agent;
+        agento:agentID    "scheduler";
+        agento:agentRole  "Meeting Scheduler";
+        agento:hasGoal    ex:goal_scheduler;
+        agento:hasTask    ex:task_scheduler .
+
+ex:goal_scheduler  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for scheduler";
+        dcterms:title        "Goal for scheduler" .
+
+ex:task_scheduler  rdf:type        agento:Task;
+        dcterms:description        "Automatically generated task for scheduler";
+        dcterms:title              "Task for scheduler";
+        agento:taskExpectedOutput  "Automatically generated expected output for scheduler" .
+
+ex:note_taker  rdf:type   agento:Agent;
+        agento:agentID    "note_taker";
+        agento:agentRole  "Note Taker";
+        agento:hasGoal    ex:goal_note_taker;
+        agento:hasTask    ex:task_note_taker .
+
+ex:goal_note_taker  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for note_taker";
+        dcterms:title        "Goal for note_taker" .
+
+ex:task_note_taker  rdf:type       agento:Task;
+        dcterms:description        "Automatically generated task for note_taker";
+        dcterms:title              "Task for note_taker";
+        agento:taskExpectedOutput  "Automatically generated expected output for note_taker" .
+
+ex:meeting_assistant.json
+        rdf:type             agento:System;
+        dcterms:description  "Pattern ini mendefinisikan sistem “Meeting Assistant” dengan dua agent: scheduler dan note_taker. Keduanya memiliki peran dan instruksi yang berbeda, namun sama-sama menggunakan model LLM gpt-4 untuk membantu penjadwalan pertemuan dan pencatatan notulen";
+        dcterms:title        "meeting_assistant.json" .
+
+ex:research_workflow  rdf:type  agento:Agent;
+        agento:agentID  "Research Workflow";
+        agento:hasGoal  ex:goal_research_workflow;
+        agento:hasTask  ex:task_research_workflow .
+
+ex:goal_research_workflow
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Research Workflow";
+        dcterms:title        "Goal for Research Workflow" .
+
+ex:task_research_workflow
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Research Workflow";
+        dcterms:title              "Task for Research Workflow";
+        agento:taskExpectedOutput  "Automatically generated expected output for Research Workflow" .
+
+ex:researcher  rdf:type   agento:Agent;
+        agento:agentID    "researcher";
+        agento:agentRole  "Researcher";
+        agento:hasGoal    ex:goal_researcher;
+        agento:hasTask    ex:task_researcher .
+
+ex:goal_researcher  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for researcher";
+        dcterms:title        "Goal for researcher" .
+
+ex:task_researcher  rdf:type       agento:Task;
+        dcterms:description        "Automatically generated task for researcher";
+        dcterms:title              "Task for researcher";
+        agento:taskExpectedOutput  "Automatically generated expected output for researcher" .
+
+ex:research_and_write
+        rdf:type        agento:Agent;
+        agento:agentID  "research_and_write";
+        agento:hasGoal  ex:goal_research_and_write;
+        agento:hasTask  ex:task_research_and_write .
+
+ex:goal_research_and_write
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for research_and_write";
+        dcterms:title        "Goal for research_and_write" .
+
+ex:task_research_and_write
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for research_and_write";
+        dcterms:title              "Task for research_and_write";
+        agento:taskExpectedOutput  "Automatically generated expected output for research_and_write" .
+
+ex:research_workflow.json
+        rdf:type             agento:System;
+        dcterms:description  "Sistem “Research Workflow” berisi dua agent (researcher & writer) serta satu workflow research_and_write";
+        dcterms:title        "research_workflow.json" .
+
+ex:simple_agent  rdf:type  agento:Agent;
+        agento:agentID  "Simple Agent";
+        agento:hasGoal  ex:goal_simple_agent;
+        agento:hasTask  ex:task_simple_agent .
+
+ex:goal_simple_agent  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for Simple Agent";
+        dcterms:title        "Goal for Simple Agent" .
+
+ex:task_simple_agent  rdf:type     agento:Task;
+        dcterms:description        "Automatically generated task for Simple Agent";
+        dcterms:title              "Task for Simple Agent";
+        agento:taskExpectedOutput  "Automatically generated expected output for Simple Agent" .
+
+ex:simple_agent.json  rdf:type  agento:System;
+        dcterms:description  "Sistem ini hanya berisi satu agent bernama assistant tanpa workflow maupun komponen tambahan. Pattern ini adalah bentuk paling minimal dari konfigurasi MastraAI";
+        dcterms:title        "simple_agent.json" .
+
+ex:DatatypeProperty_role__instructions__name__modelname
+        rdf:type              agento:DatatypeProperty;
+        agento:domain         agento:Agent;
+        agento:justification  "Sesuai field JSON" , "Sesuai JSON";
+        agento:name           "role, instructions, name, modelName";
+        agento:range          xsd:string .
+
+ex:social_media_manager
+        rdf:type        agento:Agent;
+        agento:agentID  "Social Media Manager";
+        agento:hasGoal  ex:goal_social_media_manager;
+        agento:hasTask  ex:task_social_media_manager .
+
+ex:goal_social_media_manager
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Social Media Manager";
+        dcterms:title        "Goal for Social Media Manager" .
+
+ex:task_social_media_manager
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Social Media Manager";
+        dcterms:title              "Task for Social Media Manager";
+        agento:taskExpectedOutput  "Automatically generated expected output for Social Media Manager" .
+
+ex:content_planner  rdf:type  agento:Agent;
+        agento:agentID    "content_planner";
+        agento:agentRole  "Content Planner";
+        agento:hasGoal    ex:goal_content_planner;
+        agento:hasTask    ex:task_content_planner .
+
+ex:goal_content_planner
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for content_planner";
+        dcterms:title        "Goal for content_planner" .
+
+ex:task_content_planner
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for content_planner";
+        dcterms:title              "Task for content_planner";
+        agento:taskExpectedOutput  "Automatically generated expected output for content_planner" .
+
+ex:post_creator  rdf:type  agento:Agent;
+        agento:agentID    "post_creator";
+        agento:agentRole  "Post Creator";
+        agento:hasGoal    ex:goal_post_creator;
+        agento:hasTask    ex:task_post_creator .
+
+ex:goal_post_creator  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for post_creator";
+        dcterms:title        "Goal for post_creator" .
+
+ex:task_post_creator  rdf:type     agento:Task;
+        dcterms:description        "Automatically generated task for post_creator";
+        dcterms:title              "Task for post_creator";
+        agento:taskExpectedOutput  "Automatically generated expected output for post_creator" .
+
+ex:engagement_monitor
+        rdf:type          agento:Agent;
+        agento:agentID    "engagement_monitor";
+        agento:agentRole  "Engagement Monitor";
+        agento:hasGoal    ex:goal_engagement_monitor;
+        agento:hasTask    ex:task_engagement_monitor .
+
+ex:goal_engagement_monitor
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for engagement_monitor";
+        dcterms:title        "Goal for engagement_monitor" .
+
+ex:task_engagement_monitor
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for engagement_monitor";
+        dcterms:title              "Task for engagement_monitor";
+        agento:taskExpectedOutput  "Automatically generated expected output for engagement_monitor" .
+
+ex:social_media.json  rdf:type  agento:System;
+        dcterms:description  "Sistem “Social Media Manager” berisi tiga agent berbeda: content_planner, post_creator, dan engagement_monitor. Masing-masing memiliki peran dan instruksi yang berbeda, namun semuanya menggunakan model LLM yang sama";
+        dcterms:title        "social_media.json" .
+
+ex:translation_service
+        rdf:type        agento:Agent;
+        agento:agentID  "Translation Service";
+        agento:hasGoal  ex:goal_translation_service;
+        agento:hasTask  ex:task_translation_service .
+
+ex:goal_translation_service
+        rdf:type             agento:Goal;
+        dcterms:description  "Automatically generated goal for Translation Service";
+        dcterms:title        "Goal for Translation Service" .
+
+ex:task_translation_service
+        rdf:type                   agento:Task;
+        dcterms:description        "Automatically generated task for Translation Service";
+        dcterms:title              "Task for Translation Service";
+        agento:taskExpectedOutput  "Automatically generated expected output for Translation Service" .
+
+ex:translator  rdf:type   agento:Agent;
+        agento:agentID    "translator";
+        agento:agentRole  "Translator";
+        agento:hasGoal    ex:goal_translator;
+        agento:hasTask    ex:task_translator .
+
+ex:goal_translator  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for translator";
+        dcterms:title        "Goal for translator" .
+
+ex:task_translator  rdf:type       agento:Task;
+        dcterms:description        "Automatically generated task for translator";
+        dcterms:title              "Task for translator";
+        agento:taskExpectedOutput  "Automatically generated expected output for translator" .
+
+ex:localizer  rdf:type    agento:Agent;
+        agento:agentID    "localizer";
+        agento:agentRole  "Cultural Localizer";
+        agento:hasGoal    ex:goal_localizer;
+        agento:hasTask    ex:task_localizer .
+
+ex:goal_localizer  rdf:type  agento:Goal;
+        dcterms:description  "Automatically generated goal for localizer";
+        dcterms:title        "Goal for localizer" .
+
+ex:task_localizer  rdf:type        agento:Task;
+        dcterms:description        "Automatically generated task for localizer";
+        dcterms:title              "Task for localizer";
+        agento:taskExpectedOutput  "Automatically generated expected output for localizer" .
+
+ex:translation_service.json
+        rdf:type             agento:System;
+        dcterms:description  "Sistem “Translation Service” memiliki dua agent: translator dan localizer, yang masing-masing memiliki peran untuk menerjemahkan dan menyesuaikan konten secara budaya. Keduanya menggunakan model LLM yang sama, yaitu gpt-4.";
+        dcterms:title        "translation_service.json" .
